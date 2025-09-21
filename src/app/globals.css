@@ -25,6 +25,7 @@
 
 html,body{
     background-color: #050505;
+    -webkit-font-smoothing: antialiased;
 }
 
 ::view-transition-old(root),

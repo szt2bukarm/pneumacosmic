@@ -55,6 +55,16 @@ export default function HeroContent() {
             end: "60% top",
             scrub: true,
             id: "hero-dim",
+            onLeave: () => {
+                gsap.set('[data-gsap="hero-bg"]', {
+                    display: "none"
+                })
+            },
+            onEnterBack: () => {
+                gsap.set('[data-gsap="hero-bg"]', {
+                    display: "block"
+                })
+            },
             animation: gsap.to('[data-gsap="hero-dim"]', {
                 opacity: 1,
                 paused: true
