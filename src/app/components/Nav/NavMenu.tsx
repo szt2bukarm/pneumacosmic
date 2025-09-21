@@ -1,0 +1,183 @@
+"use client"
+import gsap from "gsap"
+import { useEffect, useRef, useState } from "react"
+import { useStore } from "../../useStore";
+import { useGSAP } from "@gsap/react";
+
+
+const navlinks = [
+  { image: "images/fal.webp", text: "EGY FIKTÍV KUTATÁS LÁTKÉPE" },
+  { image: "images/bennszorult.webp", text: "BENNSZORULT LÉLEGZET" },
+  { image: "images/paroslab.webp", text: "PÁROS LÁBBAL A FÖLD FÖLÖTT" },
+  { image: "images/lelegzofal.webp", text: "VÉGTELEN TÜRELEM" },
+  { image: "images/akusztikus.webp", text: "AKUSZTIKUS ELEM" },
+]
+
+export default function NavMenu() {
+    const { navOpen, setNavOpen } = useStore()
+  const imageRefs = useRef<HTMLImageElement[]>([])
+  const numberRefs = useRef<HTMLParagraphElement[]>([])
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const tweenRef = useRef<gsap.core.Tween | null>(null)
+
+  const handleHover = (index: number) => {
+    if (currentIndex === index) return
+    setCurrentIndex(index)
+
+    if (tweenRef.current) tweenRef.current.kill()
+
+    // Fade out all images & numbers
+    imageRefs.current.forEach((img, i) => {
+      if (i !== index) gsap.to(img, { opacity: 0, duration: 0.3, ease: "power1.out" })
+    })
+    numberRefs.current.forEach((num, i) => {
+      if (i !== index) gsap.to(num, { opacity: 0, duration: 0.3, ease: "power1.out" })
+    })
+
+    // Fade in hovered image & number
+    gsap.set([imageRefs.current[index], numberRefs.current[index]], { opacity: 0, y: -50 })
+    tweenRef.current = gsap.to([imageRefs.current[index], numberRefs.current[index]], {
+      opacity: 1,
+      y: 0,
+      stagger: 0.2,
+      duration: 0.5,
+      ease: "power2.out",
+    })
+  }
+
+  useGSAP(() => {
+    if (navOpen) {
+        gsap.set("[data-gsap='nav-menu']", {
+            opacity: 0,
+            filter: "blur(50px)",
+            scale: 1.2,
+            pointerEvents: "none"
+        })
+        gsap.set("[data-gsap='nav-links']", {
+            y: 20,
+            opacity: 0,
+        })
+        gsap.set("[data-gsap='nav-navigation']", {
+            opacity: 0,
+            pointerEvents: "none"
+        })
+        gsap.to("[data-gsap='nav-navigation']", {
+            opacity: 1,
+            pointerEvents: "all",
+            duration: 0.5
+        })
+        gsap.to("[data-gsap='nav-menu']", {
+            opacity: 1,
+            scale: 1,
+            pointerEvents: "all",
+            filter: "blur(0px)",
+            duration: 0.5
+        })
+        gsap.to("[data-gsap='nav-links']", {
+            y: 0,
+            opacity: 1,
+            delay: 0.25,
+            stagger: 0.05,
+            duration: 0.5
+        })
+    } else {
+        gsap.to("[data-gsap='nav-menu']", {
+            opacity: 0,
+            pointerEvents: "none",
+            duration: 0.25,
+        })
+        gsap.to("[data-gsap='nav-navigation']", {
+            opacity: 0,
+            pointerEvents: "none",
+            duration: 0.25,
+        })
+    }
+  },[navOpen])
+
+
+  useEffect(() => {
+    const html = document.documentElement;
+
+    if (navOpen) {
+        html.style.overflow = "hidden";
+        html.style.touchAction = "none";
+    } else {
+        html.style.overflow = "";
+        html.style.touchAction = "";
+    }
+
+    return () => {
+        html.style.overflow = "";
+        html.style.touchAction = "";
+    }
+}, [navOpen])
+
+
+  return (
+    <>
+    {/* navigation */}
+    <div data-gsap="nav-navigation" className="opacity-0 pointer-events-none fixed w-screen h-fit top-0 left-0 pt-[80px] px-[40px] md:px-[110px] flex justify-between z-[101]">
+        <img src="logo.svg" className="hidden sm:block w-[175px]" />
+        <img src="menu-close.svg" className="ml-auto w-[30px] h-[30px] hover:opacity-50 transition-opacity duration-150 cursor-pointer" onClick={() => setNavOpen(false)} />
+      </div>
+
+    <div data-gsap="nav-menu" className="fixed top-0 left-0 z-[100] opacity-0 pointer-events-none">
+    <div className="relative w-screen min-h-screen bg-black" onWheel={(e) => e.stopPropagation()}>
+
+
+      {/* stacked images */}
+      {navlinks.map((link, index) => (
+        <img
+          key={index}
+          ref={el => (imageRefs.current[index] = el!)}
+          src={link.image}
+          className="absolute inset-0 w-full h-[600px] object-cover object-center"
+          style={{ opacity: index === 0 ? 1 : 0 }}
+        />
+      ))}
+
+      {/* stacked numbers */}
+      {navlinks.map((_, index) => (
+        <p
+          key={index}
+          ref={el => (numberRefs.current[index] = el!)}
+          className="absolute mix-blend-overlay right-1 top-[-50px] md:top-[-250px] xl:top-0 md:right-5 text-midlight font-gara text-[400px] leading-[400px] md:text-[1000px] md:leading-[1000px] xl:text-[800px] xl:leading-[800px]"
+          style={{ opacity: index === 0 ? 1 : 0 }}
+        >
+          {index + 1}
+        </p>
+      ))}
+
+      {/* top fade */}
+      <div className="absolute top-0 left-0 h-[400px] xl:opacity-85 w-full bg-gradient-to-t from-transparent to-black"></div>
+
+      {/* links */}
+      <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-dark from-[0%] via-dark via-[70%] md:via-[50%] xl:via-[40%] to-transparent to-[100%] xl:to-[70%] px-[40px] md:px-[100px] pb-[80px] pt-[250px] md:pt-[350px] xl:py-[80px] overflow-y-auto
+        xl:flex xl:items-end xl:justify-between flex-col xl:flex-row ">
+
+        <div className="flex flex-col gap-[45px] max-h-full">
+          {navlinks.map((link, index) => (
+            <div data-gsap="nav-links" key={index} className="relative" onMouseOver={() => handleHover(index)}>
+              <p className="absolute text-midlight -top-[50px] -left-5 opacity-20 font-gara text-h1">{index + 1}</p>
+              <p className="font-gara text-midlight text-lg md:text-h4 cursor-pointer hover:opacity-50 transition-opacity duration-150">
+                {link.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* extra links */}
+        <div className="flex flex-col gap-[12px] mt-[50px]">
+          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Pneuma osmic WIKI</a>
+          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Werk képek</a>
+          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Instagram</a>
+          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Blog</a>
+          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Impresszum</a>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    </>
+  )
+}

@@ -2,26 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+
+@font-face {
+    font-family: "HALTimezone-MonoRegular";
+    src: url("/fonts/HALTimezone-MonoRegular.otf") format("opentype");
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+    font-family: "EBGaramond-Medium";
+    src: url("/fonts/EBGaramond-Medium.ttf") format("truetype");
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@font-face {
+    font-family: "EBGaramond-MediumItalic";
+    src: url("/fonts/EBGaramond-MediumItalic.ttf") format("truetype");
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+@font-face {
+    font-family: "EBGaramond-Bold";
+    src: url("/fonts/EBGaramond-Bold.ttf") format("truetype");
+}
+
+html,body{
+    background-color: #050505;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+::view-transition-group(root) {
+  z-index: auto !important;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+  will-change: transform, opacity;
+  z-index: -1;
 }
