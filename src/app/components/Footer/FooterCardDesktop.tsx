@@ -1,4 +1,8 @@
 import TransitionLink from "@/app/TransitionLink";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 interface cardInterface {
     index: number,
@@ -9,16 +13,37 @@ interface cardInterface {
 }
 
 export default function FooterCardDesktop({ index, width, image, text, href }: cardInterface) {
+
+    useGSAP(() => {
+        const ctx = gsap.context(() => {
+            let trigger = ScrollTrigger.create({
+                trigger: '[data-gsap="footer-card-image"]',
+                start: "top-=300 center",
+                end: "bottom+=300 center",
+                scrub: true,
+                animation: gsap.to('[data-gsap="footer-card-image"]', {
+                    y: 100,
+                })
+            })
+
+            return () => {
+                trigger.kill()
+            }
+        })
+
+        return () => ctx.revert()
+    })
+
     return (
         <TransitionLink href={href} className={`cursor-pointer ${width === "full" ? "!flex-1" : "!flex-[0.5]"} relative flex-[0.5] transition-all duration-500 ease-in-out min-h-full
-                        hover:!flex-[0_0_800px] brightness-100 group-hover:brightness-50 
+                        hover:!flex-[0_0_800px] brightness-100 group-hover:brightness-[0.3] 
                         hover:!brightness-100 group/card overflow-hidden`}>
-          <img src={image} className="w-full h-full object-cover" />
-  
-          {/* gradient overlay (only this card’s hover) */}
-          <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-b 
+          <img data-gsap="footer-card-image" src={image} className="scale-[1.2] w-full h-full object-cover" />
+        
+          {/* gradient overlay */}
+          <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-bl 
                           from-[#0000004b] to-black z-2 opacity-0 
-                          group-hover/card:opacity-100 transition-opacity duration-300 ease-in-out"></div>
+                          group-hover/card:opacity-85 transition-opacity duration-300 ease-in-out"></div>
   
           {/* text content */}
           <div className="opacity-0 -translate-x-[400px] group-hover/card:translate-x-0 pointer-events-none

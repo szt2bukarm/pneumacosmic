@@ -7,9 +7,10 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useLenis } from "@studio-freight/react-lenis";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function TransitionLink({ href, children, className }: {
+export default function TransitionLink({ href, children,data, className }: {
     href: string;
     children: React.ReactNode;
+    data?: any
     className?: string;
 }) {
     const Router = useTransitionRouter();
@@ -76,7 +77,7 @@ export default function TransitionLink({ href, children, className }: {
     };
     
     return (
-        <Link href={href} onClick={(e) => {
+        <Link data-gsap={data} href={href} onClick={(e) => {
             e.preventDefault();
             if (pathname === href) return;
             setTimeout(() => {

@@ -1,9 +1,39 @@
-export default function FooterText() {
-    return (
-        <div className="bg-black pt-[180px] pb-[240px] mx-auto gap-[145px] flex flex-col items-start justify-center w-[90vw] xl:w-[1000px]">
-            <p className="font-gara text-middark text-lg md:text-h4 ">A kiállítás a légmozgás és a transzcendens vagy gondolati világ között állít párhuzamot, felhívva a figyelmet a környezetünk intuitív megéléséből fakadó tapasztalatok komplexitására.</p>
+"use client"
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
 
-            <a className="font-hal text-midlight text-lg md:text-h4 cursor-pointer ">→ Pneuma Cosmic WIKI</a>
+export default function FooterText() {
+
+    useGSAP(() => {
+        const ctx = gsap.context(() => {
+            gsap.set('[data-gsap="footer-text"]', {
+                opacity: 0,
+                y: 50,
+                filter: "blur(10px)"
+            })
+
+            gsap.to('[data-gsap="footer-text"]', {
+                opacity: 1,
+                y: 0,
+                filter: "blur(0px)",
+                ease: "power4.out",
+                duration: 1,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: '[data-gsap="footer-text-wrapper"]',
+                    start: "top center",
+                    end: "bottom center",
+                    scrub: true,
+                }
+            })
+        })
+    })
+
+    return (
+        <div data-gsap="footer-text-wrapper" className="bg-black pt-[80px] pb-[80px] sm:pt-[120px] sm:pb-[120px] md:pt-[180px] md:pb-[240px] mx-auto gap-[120px] md:gap-[145px] flex flex-col items-start justify-center w-[90vw] xl:w-[1000px]">
+            <p data-gsap="footer-text" className="font-gara text-middark text-lg md:text-h4 ">A kiállítás a légmozgás és a transzcendens vagy gondolati világ között állít párhuzamot, felhívva a figyelmet a környezetünk intuitív megéléséből fakadó tapasztalatok komplexitására.</p>
+
+            <a data-gsap="footer-text" className="font-hal text-midlight text-lg md:text-h4 cursor-pointer ">→ Pneuma Cosmic WIKI</a>
         </div>
     )
 }

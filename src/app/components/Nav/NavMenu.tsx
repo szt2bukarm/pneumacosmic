@@ -3,6 +3,8 @@ import gsap from "gsap"
 import { useEffect, useRef, useState } from "react"
 import { useStore } from "../../useStore";
 import { useGSAP } from "@gsap/react";
+import NavSound from "./NavSound";
+import NavLanguage from "./NavLanguage";
 
 
 const navlinks = [
@@ -116,10 +118,14 @@ export default function NavMenu() {
   return (
     <>
     {/* navigation */}
-    <div data-gsap="nav-navigation" className="opacity-0 pointer-events-none fixed w-screen h-fit top-0 left-0 pt-[80px] px-[40px] md:px-[110px] flex justify-between z-[101]">
+    <div data-gsap="nav-navigation" className="opacity-0 pointer-events-none fixed w-screen h-fit top-0 left-0 pt-[50px] xl:pt-[65px] px-[20px] sm:px-[40px] xl:px-[110px] flex justify-between z-[101]">
         <img src="logo.svg" className="hidden sm:block w-[175px]" />
+        <div className="flex sm:hidden items-end gap-[40px]">
+                <NavSound />
+                <NavLanguage />
+            </div>
         <img src="menu-close.svg" className="ml-auto w-[30px] h-[30px] hover:opacity-50 transition-opacity duration-150 cursor-pointer" onClick={() => setNavOpen(false)} />
-      </div>
+    </div>
 
     <div data-gsap="nav-menu" className="fixed top-0 left-0 z-[100] opacity-0 pointer-events-none">
     <div className="relative w-screen min-h-screen bg-black" onWheel={(e) => e.stopPropagation()}>
@@ -131,7 +137,7 @@ export default function NavMenu() {
           key={index}
           ref={el => (imageRefs.current[index] = el!)}
           src={link.image}
-          className="absolute inset-0 w-full h-[600px] object-cover object-center"
+          className="absolute inset-0 w-full h-[400px] md:h-[70vh] object-cover object-center"
           style={{ opacity: index === 0 ? 1 : 0 }}
         />
       ))}
@@ -149,13 +155,55 @@ export default function NavMenu() {
       ))}
 
       {/* top fade */}
-      <div className="absolute top-0 left-0 h-[400px] xl:opacity-85 w-full bg-gradient-to-t from-transparent to-black"></div>
+      <div className="absolute top-0 left-0 h-[400px] opacity-60 xl:opacity-85 w-full bg-gradient-to-t from-transparent to-black"></div>
 
-      {/* links */}
-      <div className="absolute bottom-0 left-0 w-full h-full bg-gradient-to-t from-dark from-[0%] via-dark via-[70%] md:via-[50%] xl:via-[40%] to-transparent to-[100%] xl:to-[70%] px-[40px] md:px-[100px] pb-[80px] pt-[250px] md:pt-[350px] xl:py-[80px] overflow-y-auto
-        xl:flex xl:items-end xl:justify-between flex-col xl:flex-row ">
+      {/* gradient background (only visual) */}
+      <div
+        className="absolute hidden md:block bottom-0 left-0 w-full h-full pointer-events-none"
+        style={{
+          background: `
+            linear-gradient(
+              to top,
+              rgb(40,40,40) 0%,
+              rgba(40,40,40,1) 40%,
+              rgba(40,40,40,0.9) 50%,
+              rgba(40,40,40,0.7) 60%,
+              rgba(40,40,40,0) 100%
+            )
+          `,
+        }}
+      ></div>
 
-        <div className="flex flex-col gap-[45px] max-h-full">
+      <div
+        className="absolute block md:hidden bottom-0 left-0 w-full h-full pointer-events-none"
+        style={{
+          background: `
+            linear-gradient(
+              to top,
+              rgb(40,40,40) 0%,
+              rgba(40,40,40,1) 60%,
+              rgba(40,40,40,0.9) 70%,
+              rgba(40,40,40,0.7) 75%,
+              rgba(40,40,40,0) 100%
+            )
+          `,
+        }}
+      ></div>
+
+
+      {/* links container (separate, scrollable) */}
+      <div
+  className="absolute bottom-0 left-0 w-full 
+             px-[40px] md:px-[100px] pb-[80px] pt-[120px] md:pt-[120px] xl:py-[80px] 
+             flex flex-col xl:flex-row xl:items-end xl:justify-between gap-[50px] 
+             overflow-y-auto max-h-[90vh] md:max-h-[75vh] xl:max-h-full 
+             [mask-image:linear-gradient(to_bottom,transparent,black_120px,black)] 
+             [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_120px,black)] 
+             [mask-repeat:no-repeat] [-webkit-mask-repeat:no-repeat] 
+             [mask-size:100%_100%] [-webkit-mask-size:100%_100%]"
+>        
+        {/* navlinks list */}
+        <div className="flex flex-col gap-[45px] flex-shrink-0">
           {navlinks.map((link, index) => (
             <div data-gsap="nav-links" key={index} className="relative" onMouseOver={() => handleHover(index)}>
               <p className="absolute text-midlight -top-[50px] -left-5 opacity-20 font-gara text-h1">{index + 1}</p>
@@ -167,7 +215,7 @@ export default function NavMenu() {
         </div>
 
         {/* extra links */}
-        <div className="flex flex-col gap-[12px] mt-[50px]">
+        <div className="flex flex-col gap-[12px] flex-shrink-0">
           <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Pneuma osmic WIKI</a>
           <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Werk képek</a>
           <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Instagram</a>
@@ -175,7 +223,6 @@ export default function NavMenu() {
           <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Impresszum</a>
         </div>
       </div>
-
     </div>
     </div>
     </>

@@ -1,6 +1,6 @@
 export default function FooterLinks() {
     return (
-        <div className="relative w-full h-full pb-[180px] flex items-center 2xl:-translate-x-[65px] justify-center">
+        <div className="relative w-full h-full pb-[180px] hidden xl:flex items-center 2xl:-translate-x-[65px] justify-center">
 
 
             <div className="flex flex-col 2xl:flex-row gap-[50px] 2xl:gap-[100px]">
@@ -36,12 +36,6 @@ export default function FooterLinks() {
                 </div>
 
             </div>
-
-
-            <div className="absolute bottom-10 left-10 flex xl:hidden gap-[40px]">
-                    <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">PRESS KIT</a>
-                    <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">DOWNLOAD</a>
-                </div>
 
         </div>
     )

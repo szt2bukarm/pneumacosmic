@@ -25,10 +25,10 @@ export default function Page() {
         style={{ width: "100%", height: "100%" }}
       ></spline-viewer>
 
-      <div className="px-[90px] py-[60px] flex justify-between items-center absolute w-full h-[200px] bg-gradient-to-b from-transparent to-black bottom-0 left-0 z-1">
+      <div className="px-[30px] xl:px-[90px] py-[60px] flex flex-col xl:flex-row justify-end gap-[30px] xl:justify-between xl:items-center absolute w-full h-[400px] md:h-[300px] xl:h-[200px] bg-gradient-to-b from-transparent to-black bottom-0 left-0 z-1">
             <div className="flex flex-col gap-[8px]">
                 <p className="font-hal text-middark text-md leading-none">Bal oldali kör alakú terem</p>
-                <p className="font-gara text-middark text-h4 leading-none">EGY FIKTÍV KUTATÁS LÁTKÉPE</p>
+                <p className="font-gara text-middark text-lg md:text-h4 leading-none">EGY FIKTÍV KUTATÁS LÁTKÉPE</p>
             </div>
 
             <a className="font-hal text-midlight text-lg md:text-lg cursor-pointer hover:opacity-50 transition-opacity duration-150">→ Pneuma Cosmic WIKI</a>
@@ -36,9 +36,9 @@ export default function Page() {
       </div>
       
       
-      <div className="flex items-center justify-center absolute w-full h-[200px] bg-gradient-to-b from-black to-transparent top-0 left-0 z-1">
+      <div className="flex items-center sm:justify-center absolute w-full h-[200px] bg-gradient-to-b from-black to-transparent top-0 left-0 z-1">
         <TransitionLink href="/" className="">
-        <img src="logo.svg" className="w-[175px] -translate-y-4" />
+        <img src="logo.svg" className="w-[130px] md:w-[175px] translate-x-5 sm:translate-x-[70px] lg:translate-x-0 -translate-y-7 xl:-translate-y-4" />
         </TransitionLink>
       </div>
     </div>
