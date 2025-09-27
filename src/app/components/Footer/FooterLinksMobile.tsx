@@ -1,25 +1,56 @@
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger);
+
 export default function FooterLinksMobile() {
+
+    useGSAP(() => {
+        const ctx = gsap.context(() => {
+            gsap.set('[data-gsap="footer-links-item-mobile"]', {
+                opacity: 0,
+                y: 20
+            })
+            gsap.to('[data-gsap="footer-links-item-mobile"]', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: '[data-gsap="footer-bg"]',
+                    start: "20% center",
+                    end: "bottom center",
+                }
+            })
+        })
+
+        return () => ctx.revert()
+    },[])
+
+
+
     return (
         <div className="relative w-full h-full justify-center items-center flex md:hidden">
 
 
             <div className="flex items-center justify-center flex-col gap-[50px]">
-                <img src="/logo.svg" className="w-[130px] h-fit" />
+                <img data-gsap="footer-links-item-mobile" src="/logo.svg" className="w-[130px] h-fit" />
                 
 
                     <div className="flex items-center justify-center flex-col gap-[40px]">
-                        <div className="flex items-center justify-center flex-col">
+                        <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col">
                             <p className="font-hal text-middark text-lg leading-[125%]">BLOG</p>
                             <p className="font-hal text-middark text-lg leading-[125%]">blog.pneumacosmic.hu</p>
                         </div>
 
-                        <div className="flex items-center justify-center flex-col">
+                        <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col">
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Séták</a>
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Beszélgetések</a>
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Mozi</a>
                         </div>
 
-                        <div className="flex items-center justify-center flex-col mb-[30px]">
+                        <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col mb-[30px]">
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">IMPRESSZUM</a>
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Ludwig Múzeum</a>
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Biennálé Iroda</a>
@@ -27,7 +58,7 @@ export default function FooterLinksMobile() {
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">szponzorok</a>
                         </div>
 
-                        <div className="flex items-center justify-center gap-[40px]">
+                        <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center gap-[40px]">
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">PRESS KIT</a>
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">DOWNLOAD</a>
                         </div>

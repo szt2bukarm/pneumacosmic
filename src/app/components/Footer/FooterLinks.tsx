@@ -1,15 +1,46 @@
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+gsap.registerPlugin(ScrollTrigger);
+
 export default function FooterLinks() {
+
+    useGSAP(() => {
+        const ctx = gsap.context(() => {
+            gsap.set('[data-gsap="footer-links-item"]', {
+                opacity: 0,
+                y: 20
+            })
+            gsap.to('[data-gsap="footer-links-item"]', {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.15,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: '[data-gsap="footer"]',
+                    start: "bottom-=200 bottom",
+                    end: "bottom bottom",
+                }
+            })
+        })
+
+        return () => ctx.revert()
+    },[])
+
+
+
     return (
         <div className="relative w-full h-full pb-[180px] hidden xl:flex items-center 2xl:-translate-x-[65px] justify-center">
 
 
             <div className="flex flex-col 2xl:flex-row gap-[50px] 2xl:gap-[100px]">
-                <img src="/logo.svg" className="w-[130px] h-fit" />
+                <img data-gsap="footer-links-item" src="/logo.svg" className="w-[130px] h-fit" />
                 
                 <div className="flex gap-[40px] lg:gap-[100px]">
 
 
-                    <div className="flex flex-col">
+                    <div data-gsap="footer-links-item" className="flex flex-col">
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">IMPRESSZUM</a>
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Ludwig Múzeum</a>
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Biennálé Iroda</a>
@@ -17,18 +48,18 @@ export default function FooterLinks() {
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">szponzorok</a>
                     </div>
 
-                    <div className="flex flex-col">
+                    <div data-gsap="footer-links-item" className="flex flex-col">
                         <p className="font-hal text-middark text-lg leading-[125%]">BLOG</p>
                         <p className="font-hal text-middark text-lg leading-[125%]">blog.pneumacosmic.hu</p>
                     </div>
 
-                    <div className="flex flex-col">
+                    <div data-gsap="footer-links-item" className="flex flex-col">
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Séták</a>
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Beszélgetések</a>
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Mozi</a>
                     </div>
 
-                    <div className="hidden xl:flex flex-col">
+                    <div data-gsap="footer-links-item" className="hidden xl:flex flex-col">
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">PRESS KIT</a>
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">DOWNLOAD</a>
                     </div>

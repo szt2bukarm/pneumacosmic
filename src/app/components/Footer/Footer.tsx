@@ -6,50 +6,32 @@ import FooterLinksMedium from "./FooterLinksMedium";
 import FooterLinksMobile from "./FooterLinksMobile";
 import FooterText from "./FooterText";
 import gsap from "gsap";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+    const pathname = usePathname();
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
-            gsap.set('[data-gsap="footer-links"]', {
-                y: 50,
-                opacity: 0
-            })
-
             gsap.set('[data-gsap="footer-bg"]', {
-                y: 900
+                opacity: 0.001,
             })
-
-            gsap.to('[data-gsap="footer-links"]', {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                ease: "power4.out",
-                scrollTrigger: {
-                    trigger: '[data-gsap="footer-links"]',
-                    start: "20% bottom",
-                    end: "bottom bottom",
-                    scrub: true,
-                }
-            })
-
             gsap.to('[data-gsap="footer-bg"]', {
-                y: 800,
-                duration: 1,
+                opacity: 1,
+                duration: 3,
                 ease: "power4.out",
                 scrollTrigger: {
-                    trigger: '[data-gsap="footer-links"]',
-                    start: "10% bottom",
+                    markers: true,
+                    trigger: '[data-gsap="footer"]',
+                    start: "bottom-=200 bottom",
                     end: "bottom bottom",
-                    scrub: true,
                 }
             })
         })
-    })
-
+    },[])
 
     return (
-        <footer className="relative h-fit w-full overflow-hidden">
+        <footer data-gsap="footer" className="relative h-fit w-screen overflow-hidden">
             <FooterCards />
             <FooterText />
 
@@ -58,14 +40,14 @@ export default function Footer() {
                 <FooterLinksMedium />
                 <FooterLinksMobile />
 
-                <div className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-white">
+                <div className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-white z-10">
                     <img src="/footerbanner.svg" className="w-full h-fit" />
                 </div>
             </div>
 
-            <div data-gsap="footer-bg" className="absolute inset-0 translate-y-[800px] w-full pointer-events-none"
-                    style={{background: "radial-gradient(71.81% 71.81% at 48.87% 91.42%, #F2F2F2 0%, rgba(40, 40, 40, 0.00) 100%)", filter: "blur(50px)"}}>
-                </div>
+            <div data-gsap="footer-bg" className={`absolute inset-0 ${pathname === "/" ? "translate-y-[800px]" : "translate-y-[500px]"} left-1/2 -translate-x-1/2 w-[130vw] md:w-screen md:translate-x-0 md:left-0 pointer-events-none`}
+                style={{background: "radial-gradient(71.81% 71.81% at 48.87% 91.42%, #F2F2F2 0%, rgba(40, 40, 40, 0.00) 100%)", filter: "blur(50px)"}}>
+            </div>
 
         </footer>
     )

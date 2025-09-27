@@ -97,7 +97,9 @@ export default function HeroContent() {
         <div className="absolute top-0 left-0 w-screen h-screen flex flex-col items-center justify-center">
             <p data-gsap="text" className="px-[20px] leading-none font-hal text-md md:text-lg text-midlight text-center">KORONCZI Endre : <span className="font-gara text-lg md:text-h5">pneuma cosmic</span><br/>Kurátor : CSERHALMI Luca</p>
 
+            <div>
             <img data-gsap="hero-logo" src="logo.svg" alt="Pneuma Cosmic logo" className="my-[20px] md:my-[70px] w-[80vw] h-[40vh] max-w-[1100px] !mix-blend-difference"/>
+            </div>
 
             <p data-gsap="text" className="px-[80px] leading-none font-hal text-md md:text-lg text-midlight text-center">61. Velencei Képzőművészeti Biennálé, 2026<br/><span className="block mt-[30px] md:mt-0">Magyar Pavilon</span></p>
         </div>

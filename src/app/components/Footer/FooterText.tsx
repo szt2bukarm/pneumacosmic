@@ -1,8 +1,11 @@
 "use client"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
+import { usePathname } from "next/navigation"
 
 export default function FooterText() {
+    const pathname = usePathname
+
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
@@ -28,6 +31,12 @@ export default function FooterText() {
             })
         })
     })
+
+    if (pathname() !== "/") {
+        return (
+            <div className="h-[200px] w-full"></div>
+        )
+    }
 
     return (
         <div data-gsap="footer-text-wrapper" className="bg-black pt-[80px] pb-[80px] sm:pt-[120px] sm:pb-[120px] md:pt-[180px] md:pb-[240px] mx-auto gap-[120px] md:gap-[145px] flex flex-col items-start justify-center w-[90vw] xl:w-[1000px]">

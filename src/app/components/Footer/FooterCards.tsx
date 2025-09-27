@@ -1,89 +1,129 @@
-"use client"
+"use client";
+import { useState, useRef } from "react";
 import FooterCardDesktop from "./FooterCardDesktop";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
-import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import FooterCardMobile from "./FooterCardMobile";
 import TransitionLink from "@/app/TransitionLink";
+
 gsap.registerPlugin(ScrollTrigger);
 
-
 const cards = [
-    {
-        width: "half",
-        image: "images/fal.webp",
-        text: "EGY FIKTÍV KUTATÁS LÁTKÉPE",
-        href: "/exhibition-1"
-    },
-    {
-        width: "full",
-        image: "images/bennszorult.webp",
-        text: "BENNSZORULT LÉLEGZET",
-        href: "/exhibition-2"
-    },
-    {
-        width: "full",
-        image: "images/paroslab.webp",
-        text: "PÁROS LÁBBAL A FÖLD FÖLÖTT",
-        href: "/exhibition-3"
-    },
-    {
-        width: "full",
-        image: "images/lelegzofal.webp",
-        text: "VÉGTELEN TÜRELEM",
-        href: "/exhibition-4"
-    },
-    {
-        width: "half",
-        image: "images/akusztikus.webp",
-        text: "AKUSZTIKUS ELEM",
-        href: "/exhibition-5"
-    },
-
-]
-
+  {
+    width: "half",
+    image: "images/fal.webp",
+    text: "EGY FIKTÍV KUTATÁS LÁTKÉPE",
+    href: "/exhibition-1",
+  },
+  {
+    width: "full",
+    image: "images/bennszorult.webp",
+    text: "BENNSZORULT LÉLEGZET",
+    href: "/exhibition-2",
+  },
+  {
+    width: "full",
+    image: "images/paroslab.webp",
+    text: "PÁROS LÁBBAL A FÖLD FÖLÖTT",
+    href: "/exhibition-3",
+  },
+  {
+    width: "full",
+    image: "images/lelegzofal.webp",
+    text: "VÉGTELEN TÜRELEM",
+    href: "/exhibition-4",
+  },
+  {
+    width: "half",
+    image: "images/akusztikus.webp",
+    text: "AKUSZTIKUS ELEM",
+    href: "/exhibition-5",
+  },
+];
 
 export default function FooterCards() {
-    const cardsRef = useRef<HTMLDivElement[]>([]);
+  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const [activeIndex, setActiveIndex] = useState(1);
 
+  useGSAP(() => {
+    if (!cardsRef.current.length) return;
 
-    useGSAP(() => {
-        if (!cardsRef.current.length) return;
-      
-        // Set initial positions
-        gsap.set(cardsRef.current, { opacity: 0 });
-      
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: '[data-gsap="footer-cards"]',
-            start: "top center",
-            end: "bottom center",
-            markers: true,
-          }
-        });
-      
-        // Animate each card into place
-        tl.to(cardsRef.current, {
-          opacity: 1,
-          stagger: 0.02
-        });
-      }, []);
-      
-    return (
-      <div data-gsap="footer-cards" className="relative h-[540px] w-full flex gap-[12px] group">
+    gsap.set(cardsRef.current, { opacity: 0 });
 
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '[data-gsap="footer-cards"]',
+        start: "top center",
+        end: "bottom center",
+        markers: true,
+      },
+    });
+
+    tl.to(cardsRef.current, {
+      opacity: 1,
+      stagger: 0.02,
+    });
+  }, []);
+
+  return (
+    <>
+      {/* Desktop Layout */}
+      <div
+        data-gsap="footer-cards"
+        className="hidden lg:flex relative h-[540px] w-full gap-[12px] group"
+      >
         {cards.map((card, index) => (
-
-            <FooterCardDesktop
+          <FooterCardDesktop
+            key={index}
             index={index + 1}
             width={card.width}
             image={card.image}
             text={card.text}
-            href={card.href}/>
-
+            href={card.href}
+          />
         ))}
-
       </div>
-    );
-  }
-  
+
+      {/* Mobile Layout with Swiper */}
+      <div
+        data-gsap="footer-cards"
+        className="lg:hidden relative h-[650px] w-full group"
+      >
+        <Swiper
+          spaceBetween={12}
+          slidesPerView="auto"
+          slidesOffsetBefore={50}
+          slidesOffsetAfter={50}
+          centeredSlides={false}
+          className="w-full h-full"
+          onBeforeInit={(swiper) => {
+            // dynamically calculate offset so last card can snap to left
+            const cardWidth = 400; // <- matches your !w-[400px]
+            const leftPadding = 50;
+            swiper.params.slidesOffsetAfter =
+              window.innerWidth - cardWidth - leftPadding;
+          }}
+          onSlideChange={(swiper) => {
+            setActiveIndex(swiper.activeIndex+1)
+          }}
+        >
+          {cards.map((card, index) => (
+            <SwiperSlide key={index} className="!w-[400px]">
+              <FooterCardMobile
+                index={index + 1}
+                width={card.width}
+                image={card.image}
+                activeIndex={activeIndex}
+                text={card.text}
+                href={card.href}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </>
+  );
+}

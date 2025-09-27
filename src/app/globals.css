@@ -24,7 +24,7 @@
 }
 
 html,body{
-    background-color: #050505;
+    background-color: #000;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -41,4 +41,18 @@ html,body{
   isolation: isolate;
   will-change: transform, opacity;
   z-index: -1;
+}
+
+.show-vignette {
+  opacity: 1 !important;
+  transition: opacity 0.15s;
+}
+
+::view-transition-new(root) .show-vignette > div {
+  opacity: 0 !important;
+}
+
+
+::-webkit-scrollbar{
+  display: none;
 }

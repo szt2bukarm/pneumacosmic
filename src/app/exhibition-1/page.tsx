@@ -1,29 +1,30 @@
 "use client"
 import { useEffect, useRef } from "react"
 import TransitionLink from "../TransitionLink"
+import PageNavHeader from "../components/common/PageNavHeader"
 
 export default function Page() {
   const splineRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    // Dynamically load the Spline viewer script
-    const script = document.createElement("script")
-    script.src = "https://unpkg.com/@splinetool/viewer@1.10.64/build/spline-viewer.js"
-    script.type = "module"
-    document.body.appendChild(script)
+  // useEffect(() => {
+  //   // Dynamically load the Spline viewer script
+  //   const script = document.createElement("script")
+  //   script.src = "https://unpkg.com/@splinetool/viewer@1.10.64/build/spline-viewer.js"
+  //   script.type = "module"
+  //   document.body.appendChild(script)
 
-    return () => {
-      document.body.removeChild(script)
-    }
-  }, [])
+  //   return () => {
+  //     document.body.removeChild(script)
+  //   }
+  // }, [])
 
   return (
     <div className="relative w-screen h-screen">
-      <spline-viewer
+      {/* <spline-viewer
         ref={splineRef}
         url="https://prod.spline.design/3w84BwUrBJ9uKgeJ/scene.splinecode"
         style={{ width: "100%", height: "100%" }}
-      ></spline-viewer>
+      ></spline-viewer> */}
 
       <div className="px-[30px] xl:px-[90px] py-[60px] flex flex-col xl:flex-row justify-end gap-[30px] xl:justify-between xl:items-center absolute w-full h-[400px] md:h-[300px] xl:h-[200px] bg-gradient-to-b from-transparent to-black bottom-0 left-0 z-1">
             <div className="flex flex-col gap-[8px]">
@@ -36,11 +37,7 @@ export default function Page() {
       </div>
       
       
-      <div className="flex items-center sm:justify-center absolute w-full h-[200px] bg-gradient-to-b from-black to-transparent top-0 left-0 z-1">
-        <TransitionLink href="/" className="">
-        <img src="logo.svg" className="w-[130px] md:w-[175px] translate-x-5 sm:translate-x-[70px] lg:translate-x-0 -translate-y-7 xl:-translate-y-4" />
-        </TransitionLink>
-      </div>
+      <PageNavHeader />
     </div>
   )
 }

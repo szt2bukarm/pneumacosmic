@@ -5,14 +5,15 @@ import { useStore } from "../../useStore";
 import { useGSAP } from "@gsap/react";
 import NavSound from "./NavSound";
 import NavLanguage from "./NavLanguage";
+import TransitionLink from "@/app/TransitionLink";
 
 
 const navlinks = [
-  { image: "images/fal.webp", text: "EGY FIKTÍV KUTATÁS LÁTKÉPE" },
-  { image: "images/bennszorult.webp", text: "BENNSZORULT LÉLEGZET" },
-  { image: "images/paroslab.webp", text: "PÁROS LÁBBAL A FÖLD FÖLÖTT" },
-  { image: "images/lelegzofal.webp", text: "VÉGTELEN TÜRELEM" },
-  { image: "images/akusztikus.webp", text: "AKUSZTIKUS ELEM" },
+  { image: "images/fal.webp", text: "EGY FIKTÍV KUTATÁS LÁTKÉPE", href: "/exhibition-1" },
+  { image: "images/bennszorult.webp", text: "BENNSZORULT LÉLEGZET", href: "/exhibition-1" },
+  { image: "images/paroslab.webp", text: "PÁROS LÁBBAL A FÖLD FÖLÖTT", href: "/exhibition-1" },
+  { image: "images/lelegzofal.webp", text: "VÉGTELEN TÜRELEM", href: "/exhibition-1" },
+  { image: "images/akusztikus.webp", text: "AKUSZTIKUS ELEM", href: "/exhibition-1" },
 ]
 
 export default function NavMenu() {
@@ -119,8 +120,8 @@ export default function NavMenu() {
     <>
     {/* navigation */}
     <div data-gsap="nav-navigation" className="opacity-0 pointer-events-none fixed w-screen h-fit top-0 left-0 pt-[50px] xl:pt-[65px] px-[20px] sm:px-[40px] xl:px-[110px] flex justify-between z-[101]">
-        <img src="logo.svg" className="hidden sm:block w-[175px]" />
-        <div className="flex sm:hidden items-end gap-[40px]">
+        <img src="logo.svg" className="hidden lg:block w-[175px]" />
+        <div className="flex lg:hidden items-end gap-[40px]">
                 <NavSound />
                 <NavLanguage />
             </div>
@@ -207,9 +208,9 @@ export default function NavMenu() {
           {navlinks.map((link, index) => (
             <div data-gsap="nav-links" key={index} className="relative" onMouseOver={() => handleHover(index)}>
               <p className="absolute text-midlight -top-[50px] -left-5 opacity-20 font-gara text-h1">{index + 1}</p>
-              <p className="font-gara text-midlight text-lg md:text-h4 cursor-pointer hover:opacity-50 transition-opacity duration-150">
+              <TransitionLink href={link.href} className="font-gara text-midlight text-lg md:text-h4 cursor-pointer hover:opacity-50 transition-opacity duration-150">
                 {link.text}
-              </p>
+              </TransitionLink>
             </div>
           ))}
         </div>
