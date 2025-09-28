@@ -10,7 +10,7 @@ import TransitionLink from "@/app/TransitionLink";
 
 const navlinks = [
   { image: "images/fal.webp", text: "EGY FIKTÍV KUTATÁS LÁTKÉPE", href: "/exhibition-1" },
-  { image: "images/bennszorult.webp", text: "BENNSZORULT LÉLEGZET", href: "/exhibition-1" },
+  { image: "images/bennszorult.webp", text: "BENNSZORULT LÉLEGZET", href: "/exhibition-2" },
   { image: "images/paroslab.webp", text: "PÁROS LÁBBAL A FÖLD FÖLÖTT", href: "/exhibition-1" },
   { image: "images/lelegzofal.webp", text: "VÉGTELEN TÜRELEM", href: "/exhibition-1" },
   { image: "images/akusztikus.webp", text: "AKUSZTIKUS ELEM", href: "/exhibition-1" },

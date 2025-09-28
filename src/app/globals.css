@@ -56,3 +56,9 @@ html,body{
 ::-webkit-scrollbar{
   display: none;
 }
+
+img {
+  user-drag: none;          /* Safari / Chrome */
+  -webkit-user-drag: none;  /* legacy prefix for WebKit */
+  user-select: none;        /* optional: also prevent text selection if inside the image */
+}

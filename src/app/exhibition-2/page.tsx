@@ -11,9 +11,23 @@ import PinnedImageReveal from "../components/Exhibition-2/PinnedImageReveal";
 import Footer from "../components/Footer/Footer";
 import ImageGallery from "../components/ImageGallery";
 import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
+import { useLenis } from "@studio-freight/react-lenis";
+import { useEffect } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Page() {
+    const lenis = useLenis();
+
+    useEffect(() => {
+        lenis?.scrollTo(0,{immediate: true})
+        setTimeout(() => {
+            lenis?.stop();
+            setTimeout(() => {
+                window.scrollTo(0,0)
+            }, 10);
+        }, 5);
+    },[])
+
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
