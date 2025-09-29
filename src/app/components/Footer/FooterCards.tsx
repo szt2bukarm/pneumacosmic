@@ -95,23 +95,34 @@ export default function FooterCards() {
         <Swiper
           spaceBetween={12}
           slidesPerView="auto"
-          slidesOffsetBefore={50}
-          slidesOffsetAfter={50}
+          slidesOffsetBefore={20}
+          slidesOffsetAfter={20}
           centeredSlides={false}
           className="w-full h-full"
           onBeforeInit={(swiper) => {
-            // dynamically calculate offset so last card can snap to left
-            const cardWidth = 400; // <- matches your !w-[400px]
-            const leftPadding = 50;
-            swiper.params.slidesOffsetAfter =
-              window.innerWidth - cardWidth - leftPadding;
+            const updateOffsets = () => {
+              const slide = swiper.slides[0] as HTMLElement;
+              if (!slide) return;
+              const cardWidth = slide.offsetWidth;
+              const leftPadding = 20;
+              swiper.params.slidesOffsetAfter =
+                window.innerWidth - cardWidth - leftPadding;
+              swiper.update();
+            };
+          
+            updateOffsets();
+          
+            swiper.on("resize", updateOffsets);
           }}
-          onSlideChange={(swiper) => {
+            onSlideChange={(swiper) => {
             setActiveIndex(swiper.activeIndex+1)
           }}
         >
           {cards.map((card, index) => (
-            <SwiperSlide key={index} className="!w-[400px]">
+            <SwiperSlide 
+              key={index} 
+              className="!w-[90vw] sm:!w-[60vw] md:!w-[400px] lg:!w-[450px]"
+            >
               <FooterCardMobile
                 index={index + 1}
                 width={card.width}
@@ -121,7 +132,7 @@ export default function FooterCards() {
                 href={card.href}
               />
             </SwiperSlide>
-          ))}
+            ))}
         </Swiper>
       </div>
     </>

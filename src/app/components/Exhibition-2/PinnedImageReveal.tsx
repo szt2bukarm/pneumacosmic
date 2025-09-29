@@ -74,9 +74,9 @@ export default function PinnedImageReveal() {
   return (
     <div
       data-gsap="exhibition-2-pinned-reveal"
-      className="flex items-center justify-center"
+      className="flex flex-col md:flex-row md:items-center justify-center"
     >
-      <div data-gsap="exhibition-2-pinned-reveal-left" className="opacity-0 translate-x-[-1000px] relative h-[75vh] w-[60%] rotate-[-23deg]">
+      <div data-gsap="exhibition-2-pinned-reveal-left" className="opacity-0 translate-x-[-1000px] relative min-h-[50vh] md:min-h-[75vh] w-[80%] md:w-[60%] rotate-[-23deg]">
         {Array.from({ length: 6 }).map((_, i) => (
           <img
             data-gsap="exhibition-2-pinned-reveal-item"
@@ -86,11 +86,17 @@ export default function PinnedImageReveal() {
           />
         ))}
       </div>
-      <img
+      <div
         data-gsap="exhibition-2-pinned-reveal-right"
-        src="images/exhibition-2/MTA/0.webp"
-        className="w-[40%] rotate-[22.5deg] opacity-0 translate-x-[1000px]"
-      />
+        className="ml-auto w-[65%] md:w-[40%] opacity-0 translate-x-[1000px] rotate-[22.5deg]"
+        >
+        <img
+            src="images/exhibition-2/MTA/0.webp"
+            className="w-full h-full object-cover -translate-y-[100px] md:-translate-y-0"
+            style={{
+            }}
+        />
+        </div>
     </div>
   );
 }

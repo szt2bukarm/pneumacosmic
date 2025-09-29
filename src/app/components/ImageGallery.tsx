@@ -7,7 +7,7 @@ import { useStore } from '../useStore';
 
 gsap.registerPlugin(Flip);
 
-const IMAGES_PER_COLUMN = 5;
+const IMAGES_PER_COLUMN = 3;
 
 export default function ImageGallery() {
     const { galleryImages: images, setGalleryOpen, galleryOpen } = useStore();

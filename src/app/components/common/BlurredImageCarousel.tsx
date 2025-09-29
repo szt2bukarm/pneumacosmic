@@ -50,7 +50,7 @@ images: string[],
       }, [])
 
     return (
-      <div className="relative w-full h-[600px] overflow-visible cursor-pointer" onClick={openGallery}>
+      <div className="relative w-full h-[320px] md:h-[350px] lg:h-[600px] overflow-visible cursor-pointer" onClick={openGallery}>
         {/* Blurred layer */}
         <div ref={blurRef} className="absolute top-0 left-0 flex gap-[10px] h-full overflow-visible opacity-75">
           {images.map((image) => (

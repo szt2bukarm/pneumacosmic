@@ -21,8 +21,8 @@ export default function StaggeredSplitText({children}: {children: React.ReactNod
 
             let trigger = ScrollTrigger.create({
                 trigger: textRef.current,
-                start: "top-=200 center",
-                end: "bottom-=200 center",
+                start: "top-=200 40%",
+                end: "bottom-=200 40%",
                 scrub: true,
                 animation: gsap.to(split.words, {
                     opacity: 1,

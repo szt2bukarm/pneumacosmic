@@ -21,7 +21,6 @@ export default function Footer() {
                 duration: 3,
                 ease: "power4.out",
                 scrollTrigger: {
-                    markers: true,
                     trigger: '[data-gsap="footer"]',
                     start: "bottom-=200 bottom",
                     end: "bottom bottom",

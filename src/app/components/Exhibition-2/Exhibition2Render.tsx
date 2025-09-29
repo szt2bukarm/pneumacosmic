@@ -142,7 +142,7 @@ function CameraAnimation() {
   
     // Responsive offsets
     useEffect(() => {
-      const handleResize = () => {
+      const handleTarget = () => {
         const width = window.innerWidth;
   
         if (width < 550) {
@@ -161,18 +161,26 @@ function CameraAnimation() {
           cameraOffset.current = 0;
           setTarget(new THREE.Vector3(0, 0.7, 0));
         }
-  
-        if (cameraRef.current) {
-          gsap.to(cameraRef.current.position, {
-            z: 17.5 + cameraOffset.current,
-            y: 1,
-            x: 0,
-            duration: 0.5,
-            ease: "power2.out",
-          });
-        }
       };
-  
+
+      const handleCamera = () => {
+        if (cameraRef.current) {
+            gsap.to(cameraRef.current.position, {
+              z: 17.5 + cameraOffset.current,
+              y: 1,
+              x: 0,
+              duration: 0.5,
+              ease: "power2.out",
+            });
+          }
+      }
+
+      const handleResize = () => {
+        handleTarget();
+        handleCamera();
+      }
+
+      handleTarget();
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
     }, []);
