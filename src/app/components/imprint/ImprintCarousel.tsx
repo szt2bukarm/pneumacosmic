@@ -3,7 +3,7 @@ interface Props {
     setIndex: (index: number) => void
 }
 
-export default function HeroCarousel({index,setIndex}: Props ) {
+export default function ImprintCarousel({index,setIndex}: Props ) {
     return (
         <div className="absolute right-0 top-[50%] translate-y-[-50%] flex flex-col gap-[5px] justify-end items-end z-[10]">
             {Array.from({ length: 6 }).map((_, i) => (

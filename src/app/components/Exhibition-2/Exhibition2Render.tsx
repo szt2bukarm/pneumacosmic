@@ -9,7 +9,7 @@ import {
   useGLTF,
   PerspectiveCamera,
 } from "@react-three/drei";
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { EffectComposer, Bloom, DepthOfField } from "@react-three/postprocessing";
 import { useGSAP } from "@gsap/react";
@@ -54,7 +54,7 @@ function GLBModel({
   return <primitive object={gltf.scene} position={position} scale={scale} rotation={rotation} />;
 }
 
-function Scene({ cameraRef }: { cameraRef: React.RefObject<THREE.PerspectiveCamera> }) {
+function Scene() {
   const lightRef = useRef<THREE.SpotLight>(null);
 
   const videoTexture = useVideoTexture("video.mp4", {
@@ -90,7 +90,7 @@ function Scene({ cameraRef }: { cameraRef: React.RefObject<THREE.PerspectiveCame
       />
 
       {/* Reflective Floor */}
-      <mesh rotation={[-Math.PI / 2, 0, 0]}>
+      <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[50, 50]} />
         <MeshReflectorMaterial
           blur={[2000, 500]}
@@ -131,36 +131,75 @@ function Scene({ cameraRef }: { cameraRef: React.RefObject<THREE.PerspectiveCame
     </>
   );
 }
+
 function CameraAnimation() {
     const lenis = useLenis();
     const cameraRef = useRef<THREE.PerspectiveCamera>(null);
-    const target = new THREE.Vector3(0, 0.7, 0); // point to look at
+    const [target, setTarget] = useState(new THREE.Vector3(0, 0.7, 0));
+    const cameraOffset = useRef(0);
   
-    // create the custom ease
     CustomEase.create("customEase", "M0,0 C0.12,0.65 0.35,1 1,1");
   
+    // Responsive offsets
+    useEffect(() => {
+      const handleResize = () => {
+        const width = window.innerWidth;
+  
+        if (width < 550) {
+          cameraOffset.current = 20;
+          setTarget(new THREE.Vector3(0, 1.85, 0));
+        } else if (width < 768) {
+          cameraOffset.current = 10;
+          setTarget(new THREE.Vector3(0, 1.8, 0));
+        } else if (width < 1024) {
+          cameraOffset.current = 7;
+          setTarget(new THREE.Vector3(0, 1.55, 0));
+        } else if (width < 1400) {
+          cameraOffset.current = 5;
+          setTarget(new THREE.Vector3(0, 0.9, 0));
+        } else {
+          cameraOffset.current = 0;
+          setTarget(new THREE.Vector3(0, 0.7, 0));
+        }
+  
+        if (cameraRef.current) {
+          gsap.to(cameraRef.current.position, {
+            z: 17.5 + cameraOffset.current,
+            y: 1,
+            x: 0,
+            duration: 0.5,
+            ease: "power2.out",
+          });
+        }
+      };
+  
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
+    // Entrance anim only once
     useEffect(() => {
       if (!cameraRef.current || !lenis) return;
-        lenis?.stop();
-      // entrance animation
+  
+      lenis.stop();
+  
       gsap.fromTo(
         cameraRef.current.position,
-        { x: 0, y: 25, z: 17.5 },
+        { x: 0, y: 25, z: 17.5 + cameraOffset.current },
         {
           x: 0,
           y: 1,
-          z: 17.5,
+          z: 17.5 + cameraOffset.current,
           duration: 3,
           delay: 0.5,
           ease: "customEase",
           onComplete: () => {
-            lenis?.start();
-            // start scroll-triggered animation after entrance
+            lenis.start();
             gsap.to(cameraRef.current.position, {
               y: -15,
               ease: "none",
               scrollTrigger: {
-                trigger: "[data-gsap='canvas']", // whole page
+                trigger: "[data-gsap='canvas']",
                 start: "top top",
                 end: "bottom top",
                 scrub: true,
@@ -172,23 +211,33 @@ function CameraAnimation() {
     }, [lenis]);
   
     useFrame(() => {
-      if (cameraRef.current) cameraRef.current.lookAt(target);
+      if (cameraRef.current) {
+        cameraRef.current.lookAt(target);
+      }
     });
   
-    return <PerspectiveCamera ref={cameraRef} makeDefault fov={24} position={[0, 25, 17.5]} />;
-  }
-  
-  export default function Exhibition2Render() {
     return (
-      <Canvas
-        data-gsap="canvas"
-        gl={{
-          toneMapping: THREE.ACESFilmicToneMapping,
-          outputEncoding: THREE.sRGBEncoding,
-        }}
-      >
-        <CameraAnimation />
-        <Scene />
-      </Canvas>
+      <PerspectiveCamera
+        ref={cameraRef}
+        makeDefault
+        fov={24}
+        position={[0, 25, 17.5 + cameraOffset.current]}
+      />
     );
   }
+    
+export default function Exhibition2Render() {
+  return (
+    <Canvas
+      data-gsap="canvas"
+      dpr={[1, 1.5]}
+      gl={{
+        toneMapping: THREE.ACESFilmicToneMapping,
+        outputEncoding: THREE.sRGBEncoding,
+      }}
+    >
+      <CameraAnimation />
+      <Scene />
+    </Canvas>
+  );
+}

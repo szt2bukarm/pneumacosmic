@@ -103,7 +103,7 @@ function AuroraPlane() {
   );
 }
 
-export default function HeroBackground() {
+export default function ImprintBackground() {
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
@@ -111,28 +111,34 @@ export default function HeroBackground() {
                 opacity: 0.001,
             })
             gsap.to('[data-gsap="hero-bg"]', {
-                opacity: 0.3,
-                duration: 10,
-                delay: 0.75,
+                opacity: 1,
+                duration: 3,
                 ease: "power4.out"
             })
         })
     })
 
   return (
-    <div 
-    data-gsap="hero-bg"
-    style={{
-      width: "100vw",
-      height: "100vh",
-      zIndex: 0,
-      filter: "saturate(0)",
-      opacity: 0.5,
-      willChange: "opacity"
-    }}>
-      <Canvas gl={{ antialias: true }} dpr={[0.025, 0.025]}>
-        <AuroraPlane />
-      </Canvas>
-    </div>
+<div
+  data-gsap="hero-bg"
+  className="absolute inset-0 z-10"
+  style={{
+    filter: "saturate(0) brightness(0.5)",
+    opacity: 1,
+    willChange: "opacity",
+    WebkitMaskImage:
+      "linear-gradient(-135deg, black 5%, transparent 30%, transparent 25%, transparent 35%, black 65%, black 100%)",
+    WebkitMaskRepeat: "no-repeat",
+    WebkitMaskSize: "cover",
+    maskImage:
+      "linear-gradient(-135deg, black 5%, transparent 30%, transparent 25%, transparent 35%, black 65%, black 100%)",
+    maskRepeat: "no-repeat",
+    maskSize: "cover",
+  }}
+>
+  <Canvas gl={{ antialias: true }} dpr={[0.5, 1.5]}>
+    <AuroraPlane />
+  </Canvas>
+</div>
   );
 }

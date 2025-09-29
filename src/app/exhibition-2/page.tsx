@@ -55,13 +55,6 @@ export default function Page() {
 
     <div className="relative w-screen min-h-screen bg-black overflow-x-hidden">
 
-        {/* <div className="absolute top-0 left-0 w-full h-full">
-            <div className="relative w-full h-full">
-                <img src="render.png" className="w-full h-full object-cover z-1" />
-                <div className="absolute w-full h-[2000px] bg-gradient-to-b from-transparent to-[#000] bottom-0 left-0 z-1"></div>
-            </div>
-        </div> */}
-
         <PageNavHeader />
         <PageTitle delay={2.5} subtext="Bal oldali szárny" text="BENNSZORULT LÉLEGZET" />
 
@@ -69,7 +62,7 @@ export default function Page() {
         <Exhibiton2Render />
         </div>
 
-        <div className="h-[600px]"></div>
+        <div className="h-[calc(100vh-290px)]"></div>
 
         <div className="relative w-full h-full bg-black">
 
