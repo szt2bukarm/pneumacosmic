@@ -113,7 +113,7 @@ export default function HeroBackground() {
             gsap.to('[data-gsap="hero-bg"]', {
                 opacity: 0.3,
                 duration: 10,
-                delay: 0.75,
+                delay: 1.75,
                 ease: "power4.out"
             })
         })

@@ -2,7 +2,8 @@
 import { useStore } from "@/app/useStore"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import { blur } from "three/tsl"
 
 interface Props {
 images: string[],
@@ -12,7 +13,6 @@ images: string[],
     const {setGalleryOpen, setGalleryImages} = useStore()
 
     const openGallery = () => {
-        console.log("asd")
         setGalleryOpen(true)
         setGalleryImages(images)
     }
@@ -26,7 +26,6 @@ images: string[],
         const blurEl = blurRef.current
         const sharpEl = sharpRef.current
     
-        // calculate total width of all images + 10px gap between each
         let totalWidth = 0
         sharpEl.childNodes.forEach((child) => {
           if (child instanceof HTMLElement) {
@@ -35,8 +34,6 @@ images: string[],
           }
         })
     
-        console.log(totalWidth/2);
-
         const ctx = gsap.context(() => {
           gsap.to([blurEl, sharpEl], {
             x: -totalWidth/2,
@@ -47,7 +44,7 @@ images: string[],
         })
     
         return () => ctx.revert()
-      }, [])
+      }, [blurRef, sharpRef])
 
     return (
       <div className="relative w-full h-[320px] md:h-[350px] lg:h-[600px] overflow-visible cursor-pointer" onClick={openGallery}>

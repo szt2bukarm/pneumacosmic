@@ -73,7 +73,7 @@ export default function FooterCards() {
       {/* Desktop Layout */}
       <div
         data-gsap="footer-cards"
-        className="hidden lg:flex relative h-[540px] w-full gap-[12px] group"
+        className="hidden lg:flex relative h-[540px] w-full gap-[12px] group overflow-hidden"
       >
         {cards.map((card, index) => (
           <FooterCardDesktop
@@ -90,7 +90,7 @@ export default function FooterCards() {
       {/* Mobile Layout with Swiper */}
       <div
         data-gsap="footer-cards"
-        className="lg:hidden relative h-[650px] w-full group"
+        className="lg:hidden relative h-full w-full group"
       >
         <Swiper
           spaceBetween={12}

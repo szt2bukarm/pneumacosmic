@@ -20,7 +20,7 @@ export default function TransitionLink({ href, children,data, className }: {
     const lenis = useLenis();
 
     const animation = () => {
- 
+            
 
             document.documentElement.animate([
                 { 

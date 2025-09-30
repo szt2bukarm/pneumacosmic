@@ -5,7 +5,8 @@ import NavMenu from "./components/Nav/NavMenu";
 import { ViewTransitions } from "next-view-transitions";
 import Vignette from "./components/Vignette";
 import GradualBlurMemo from "./components/GradualBlur";
-import ImageGallery from "./components/ImageGallery";
+import ImageGallery from "./components/common/ImageGallery/ImageGallery";
+import ImageGalleryWrapper from "./components/common/ImageGallery/ImageGalleryWrapper";
 
 export default function RootLayout({
   children,
@@ -36,7 +37,7 @@ export default function RootLayout({
           />
         {/* <Vignette /> */}
         <NavMenu />
-        <ImageGallery />
+        <ImageGalleryWrapper />
         </SmoothScroll>
       </body>
     </html>

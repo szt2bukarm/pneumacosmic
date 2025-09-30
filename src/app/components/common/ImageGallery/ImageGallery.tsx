@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { Flip } from 'gsap/Flip';
-import { useStore } from '../useStore';
+import { useStore } from '../../../useStore';
 
 gsap.registerPlugin(Flip);
 
@@ -12,29 +12,12 @@ const IMAGES_PER_COLUMN = 3;
 export default function ImageGallery() {
     const { galleryImages: images, setGalleryOpen, galleryOpen } = useStore();
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const subtitleRef = useRef<HTMLParagraphElement | null>(null);
   const allowMouseMove = useRef(false);
   const [clickedSrc, setClickedSrc] = useState<string | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const animationTimeline = useRef<gsap.core.Timeline | null>(null);
-  const galleryWrapper = useRef<HTMLDivElement | null>(null);
-  const galleryItem = useRef<HTMLDivElement | null>(null);
 
-  useGSAP(() => {
-    if (galleryOpen) {
-        gsap.set(galleryWrapper.current, {opacity: 0})
-        gsap.set(galleryItem.current, { x: 1500, y:500, rotate: -20 })
-        gsap.to(galleryWrapper.current, {opacity: 0.75, duration: 1, ease: "power4.out"})
-        gsap.to(galleryItem.current, { x: 0,y:0,rotate:0, duration: 1, ease: "power4.out"})
-    }
-  }, [galleryOpen]);
 
-  const closeGallery = () => {
-    gsap.to(galleryItem.current, {opacity: 0,x: 500, duration: 0.5,ease: "power4.out"})
-    gsap.to(galleryWrapper.current, {opacity: 0, duration: 0.5, onComplete: () => {
-        setGalleryOpen(false)
-    }})
-  }
 
   const animateImages = useCallback(() => {
     if (!containerRef.current) return;
@@ -100,7 +83,7 @@ export default function ImageGallery() {
   }, []);
 
   useGSAP(() => {
-    if (!containerRef.current || !subtitleRef.current || !galleryOpen) return;
+    if (!containerRef.current || !galleryOpen) return;
     animateImages();
 
     const timer = setTimeout(() => {
@@ -119,7 +102,7 @@ export default function ImageGallery() {
     if (animationTimeline.current) animationTimeline.current.kill();
 
     gsap.to(containerRef.current, { opacity: 0, scale: 1.05, duration: 0.5 });
-    gsap.to(subtitleRef.current, { opacity: 0, duration: 0.5 });
+    gsap.to("[data-gsap='gallery-subtitle']", { opacity: 0, duration: 0.5 });
 
     if (imageRef.current) {
         const targetSrc = e.currentTarget.dataset.src;
@@ -146,7 +129,7 @@ export default function ImageGallery() {
       duration: 0.5,
       onComplete: () => {
         setTimeout(() => (allowMouseMove.current = true), 300);
-        gsap.to(subtitleRef.current, { opacity: 1, duration: 0.5 });
+        gsap.to("[data-gsap='gallery-subtitle']", { opacity: 1, duration: 0.5 });
       },
     });
 
@@ -179,26 +162,13 @@ export default function ImageGallery() {
     columns.push(images.slice(i, i + IMAGES_PER_COLUMN));
   }
 
-  if (!galleryOpen) return null;
 
   return (
-    <div className='fixed top-0 left-0 w-screen h-screen z-[100]'>
-        <div ref={galleryWrapper} className='absolute top-0 left-0 w-screen h-screen bg-black opacity-75' onClick={closeGallery}></div>
-            <div ref={galleryItem}  className='absolute top-[20px] right-5 w-[75vw] h-[95vh] border border-white/15 rounded-[16px] overflow-hidden'>
                 <div
-                className="relative w-full h-full overflow-hidden pt-[500px]"
+                className="hidden md:block relative w-full h-full overflow-hidden pt-[500px]"
                 style={{background: "linear-gradient(180deg, #050505 0%, #0A0A0A 14.9%, #191919 89.42%, #191919 100%)"}}
                 onMouseMove={mouseMoveHandler}
                 >
-
-
-                {/* fades */}
-                <div className='pointer-events-none absolute top-0 left-0 w-full h-[175px] opacity-85 bg-gradient-to-t from-transparent to-black z-[9]'></div>
-                <div className='pointer-events-none absolute bottom-0 left-0 w-full h-[175px] opacity-85 bg-gradient-to-b from-transparent to-black z-[9]'></div>
-
-                {/* UI */}
-                <img src="menu-close.svg" className='w-[24px] h-[24px] absolute top-[47px] left-[40px] z-[10]' />
-                <p ref={subtitleRef} className='font-gara text-middark text-h3 absolute bottom-[30px] left-[40px] z-[10]'>KÉPEK A KIÁLLITÁSRÓL</p>
 
                 {/* Enlarged image overlay */}
                 <div
@@ -237,7 +207,5 @@ export default function ImageGallery() {
                     ))}
                 </div>
             </div>
-        </div>
-    </div>
   );
 }

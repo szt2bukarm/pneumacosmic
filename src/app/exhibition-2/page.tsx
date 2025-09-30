@@ -9,7 +9,7 @@ import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import PinnedImageReveal from "../components/Exhibition-2/PinnedImageReveal";
 import Footer from "../components/Footer/Footer";
-import ImageGallery from "../components/ImageGallery";
+import ImageGallery from "../components/common/ImageGallery/ImageGallery";
 import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect } from "react";

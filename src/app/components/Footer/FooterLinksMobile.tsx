@@ -63,7 +63,7 @@ export default function FooterLinksMobile() {
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">DOWNLOAD</a>
                         </div>
 
-                        <div className="mt-[20px] h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-white z-[10]">
+                        <div className="mt-[20px] h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-[10]">
                             <img src="/footerbanner.svg" className="w-full h-fit" />
                         </div>
                     </div>

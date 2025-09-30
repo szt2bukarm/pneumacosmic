@@ -28,6 +28,7 @@ export default function HeroContent() {
                 filter: "blur(0px)",
                 y: 0,
                 opacity: 1,
+                delay: 1,
                 duration: 3,
                 ease: "power4.out"
             })
@@ -37,7 +38,7 @@ export default function HeroContent() {
                 y: 0,
                 filter: "blur(0px)",
                 duration: 1.5,
-                delay: 1,
+                delay: 2,
                 stagger: 0.2,
                 ease: "power4.out"
             })

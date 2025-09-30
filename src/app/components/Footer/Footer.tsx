@@ -39,7 +39,7 @@ export default function Footer() {
                 <FooterLinksMedium />
                 <FooterLinksMobile />
 
-                <div className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-white z-10">
+                <div className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-10">
                     <img src="/footerbanner.svg" className="w-full h-fit" />
                 </div>
             </div>

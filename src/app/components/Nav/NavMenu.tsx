@@ -12,7 +12,7 @@ const navlinks = [
   { image: "images/fal.webp", text: "EGY FIKTÍV KUTATÁS LÁTKÉPE", href: "/exhibition-1" },
   { image: "images/bennszorult.webp", text: "BENNSZORULT LÉLEGZET", href: "/exhibition-2" },
   { image: "images/paroslab.webp", text: "PÁROS LÁBBAL A FÖLD FÖLÖTT", href: "/exhibition-1" },
-  { image: "images/lelegzofal.webp", text: "VÉGTELEN TÜRELEM", href: "/exhibition-1" },
+  { image: "images/lelegzofal.webp", text: "VÉGTELEN TÜRELEM", href: "/exhibition-4" },
   { image: "images/akusztikus.webp", text: "AKUSZTIKUS ELEM", href: "/exhibition-1" },
 ]
 
@@ -120,7 +120,9 @@ export default function NavMenu() {
     <>
     {/* navigation */}
     <div data-gsap="nav-navigation" className="opacity-0 pointer-events-none fixed w-screen h-fit top-0 left-0 pt-[50px] xl:pt-[65px] px-[20px] sm:px-[40px] xl:px-[110px] flex justify-between z-[101]">
-        <img src="logo.svg" className="hidden lg:block w-[175px]" />
+        <TransitionLink href="/">
+        <img src="logo.svg" className="hidden lg:block w-[175px] cursor-pointer" />
+        </TransitionLink>
         <div className="flex lg:hidden items-end gap-[40px]">
                 <NavSound />
                 <NavLanguage />
@@ -217,11 +219,11 @@ export default function NavMenu() {
 
         {/* extra links */}
         <div className="flex flex-col gap-[12px] flex-shrink-0">
-          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Pneuma osmic WIKI</a>
+          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Pneuma cosmic WIKI</a>
           <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Werk képek</a>
           <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Instagram</a>
           <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Blog</a>
-          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Impresszum</a>
+          <TransitionLink href="/imprint" data="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Impresszum</TransitionLink>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import gsap from "gsap"
 import { usePathname } from "next/navigation"
 
 export default function FooterText() {
-    const pathname = usePathname
+    const pathname = usePathname();
 
 
     useGSAP(() => {
@@ -32,9 +32,9 @@ export default function FooterText() {
         })
     })
 
-    if (pathname() !== "/") {
+    if (pathname !== "/") {
         return (
-            <div className="h-[200px] w-full"></div>
+            <div className="h-[70px] sm:h-[100px] md:h-[200px] w-full"></div>
         )
     }
 
