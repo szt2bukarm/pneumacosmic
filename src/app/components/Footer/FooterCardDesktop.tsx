@@ -20,24 +20,26 @@ export default function FooterCardDesktop({
   href,
 }: cardInterface) {
   useGSAP(() => {
-    const ctx = gsap.context(() => {
-      const trigger = ScrollTrigger.create({
-        trigger: '[data-gsap="footer-card-image"]',
-        start: "top-=300 center",
-        end: "bottom+=300 center",
-        scrub: true,
-        animation: gsap.to('[data-gsap="footer-card-image"]', {
-          y: 100, // parallax movement
-        }),
+    setTimeout(() => {
+      const ctx = gsap.context(() => {
+        const trigger = ScrollTrigger.create({
+          trigger: '[data-gsap="footer-card-image"]',
+          start: "top-=300 center",
+          end: "bottom+=300 center",
+          scrub: true,
+          animation: gsap.to('[data-gsap="footer-card-image"]', {
+            y: 100, // parallax movement
+          }),
+        });
+  
+        return () => {
+          trigger.kill();
+        };
       });
-
-      return () => {
-        trigger.kill();
-      };
-    });
-
-    return () => ctx.revert();
-  });
+  
+      return () => ctx.revert();  
+    }, 50);
+  },[]);
 
   return (
     <TransitionLink

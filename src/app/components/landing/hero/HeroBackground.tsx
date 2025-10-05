@@ -128,9 +128,9 @@ export default function HeroBackground() {
       zIndex: 0,
       filter: "saturate(0)",
       opacity: 0.5,
-      willChange: "opacity"
+      willChange: "opacity",
     }}>
-      <Canvas gl={{ antialias: true }} dpr={[0.025, 0.025]}>
+      <Canvas gl={{ antialias: true }} dpr={[0.25,0.25]}>
         <AuroraPlane />
       </Canvas>
     </div>

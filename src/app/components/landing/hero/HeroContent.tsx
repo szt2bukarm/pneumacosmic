@@ -53,7 +53,7 @@ export default function HeroContent() {
         let trigger = ScrollTrigger.create({
             trigger: '[data-gsap="hero-dim"]',
             start: "10% top",
-            end: "60% top",
+            end: "50% top",
             scrub: true,
             id: "hero-dim",
             onLeave: () => {
@@ -72,22 +72,9 @@ export default function HeroContent() {
             })
         })
 
-        let colorTrigger = ScrollTrigger.create({
-            trigger: '[data-gsap="footer-cards"]',
-            start: "-200% top",
-            end: "-50% top",
-            scrub: true,
-            id: "hero-dim",
-            animation: gsap.to('[data-gsap="hero-dim"]', {
-                backgroundColor: "#050505",
-                paused: true
-            })
-        })
-
-
         return () => {
             trigger.kill() 
-            colorTrigger.kill()}
+        }
     }, [])
 
     

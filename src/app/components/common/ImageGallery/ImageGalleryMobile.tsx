@@ -12,12 +12,10 @@ const IMAGES_PER_COLUMN = 3;
 export default function ImageGalleryMobile() {
   const { galleryImages: images, setGalleryOpen, galleryOpen } = useStore();
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const allowMouseMove = useRef(false);
+  const [allowScroll,setAllowScroll] = useState(false);
   const [clickedSrc, setClickedSrc] = useState<string | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const animationTimeline = useRef<gsap.core.Timeline | null>(null);
-
-
 
   const animateImages = useCallback(() => {
     if (!containerRef.current) return;
@@ -26,34 +24,26 @@ export default function ImageGalleryMobile() {
     const imgs = container.querySelectorAll<HTMLImageElement>('img');
     const parents = Array.from(imgs).map(img => img.parentElement!) as HTMLElement[];
 
-    gsap.set(parents, {
-      position: 'absolute',
-      left: '100%',
-      top: '0%',
-      xPercent: -50,
-      yPercent: window.innerHeight / 2,
-      transformOrigin: '50% 50%',
+    gsap.set(parents.slice(0, 4), {
+      y: 550,
     });
 
-    const state = Flip.getState(parents);
-
-    parents.forEach(el => {
-      gsap.set(el, { clearProps: 'all', scale: 1, transformOrigin: '50% 50%' });
-    });
-
-    if (animationTimeline.current) animationTimeline.current.kill();
-
-    animationTimeline.current = Flip.from(state, {
-      duration: 1.5,
+    gsap.to(parents, {
+      y: 0,
+      duration: 1,
+      stagger: 0.1,
+      delay: 0.15,
       ease: 'power4.out',
-      stagger: 0.03,
-    });
+    })
   }, []);
 
 
   useGSAP(() => {
     if (!containerRef.current || !galleryOpen) return;
     animateImages();
+    setTimeout(() => {
+      setAllowScroll(true);
+    }, 1000);
   }, [galleryOpen,animateImages]);
 
   const onClick = useCallback((e: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
@@ -80,8 +70,6 @@ export default function ImageGalleryMobile() {
   const closeImage = useCallback(() => {
     if (!clickedSrc || !containerRef.current || !imageRef.current) return;
 
-    allowMouseMove.current = false;
-
     gsap.to(containerRef.current, {
       opacity: 1,
       scale: 1,
@@ -107,6 +95,7 @@ export default function ImageGalleryMobile() {
   }, [clickedSrc]);
 
   useEffect(() => {
+    setAllowScroll(false);
     return () => {
       if (animationTimeline.current) animationTimeline.current.kill();
     };
@@ -116,8 +105,8 @@ export default function ImageGalleryMobile() {
 
   return (
                 <div
-                className="block md:hidden relative w-full h-full overflow-scroll py-[100px]"
-                style={{background: "linear-gradient(180deg, #050505 0%, #0A0A0A 14.9%, #191919 89.42%, #191919 100%)"}}
+                className="block md:hidden relative w-full h-full overflow-scroll py-[100px] overlfow-x-hidden"
+                style={{background: "linear-gradient(180deg, #050505 0%, #0A0A0A 14.9%, #191919 89.42%, #191919 100%)", pointerEvents: allowScroll ? "auto" : "none"}}
                 >
 
                 {/* Enlarged image overlay */}
@@ -138,7 +127,8 @@ export default function ImageGalleryMobile() {
                 {/* Image grid container */}
                 <div
                     ref={containerRef}
-                    className="z-0 flex flex-col gap-[24px]"
+                    className="z-0 flex flex-col gap-[24px] max-w-fit !overlfow-x-hidden"
+                    style={{pointerEvents: "auto"}}
                 >
 
                     {images.map((src, index) => (

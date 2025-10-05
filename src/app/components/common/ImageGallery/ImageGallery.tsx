@@ -164,11 +164,11 @@ export default function ImageGallery() {
 
 
   return (
-                <div
-                className="hidden md:block relative w-full h-full overflow-hidden pt-[500px]"
-                style={{background: "linear-gradient(180deg, #050505 0%, #0A0A0A 14.9%, #191919 89.42%, #191919 100%)"}}
-                onMouseMove={mouseMoveHandler}
-                >
+    <div
+      className="hidden md:block relative w-full h-full overflow-hidden pt-[500px]"
+      style={{background: "linear-gradient(180deg, #050505 0%, #0A0A0A 14.9%, #191919 89.42%, #191919 100%)"}}
+      onMouseMove={mouseMoveHandler}
+      >
 
                 {/* Enlarged image overlay */}
                 <div

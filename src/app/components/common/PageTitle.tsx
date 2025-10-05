@@ -66,6 +66,7 @@ export default function PageTitle({ subtext, text, delay = 0 }: Props) {
         </p>
         <p
           ref={titleRef}
+          style={{transform: "translate3D(0, 0, 0)"}}
           className="font-gara text-middark text-h3 leading-[44px] md:text-h1 md:leading-[70px]"
         >
           {text}

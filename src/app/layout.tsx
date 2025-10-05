@@ -7,6 +7,7 @@ import Vignette from "./components/Vignette";
 import GradualBlurMemo from "./components/GradualBlur";
 import ImageGallery from "./components/common/ImageGallery/ImageGallery";
 import ImageGalleryWrapper from "./components/common/ImageGallery/ImageGalleryWrapper";
+import MobileTest from "./MobileTest";
 
 export default function RootLayout({
   children,
@@ -15,6 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
+    <MobileTest />
     <html lang="en">
       <head>
       <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = "manual"` }} />

@@ -7,9 +7,30 @@ import FooterLinksMobile from "./FooterLinksMobile";
 import FooterText from "./FooterText";
 import gsap from "gsap";
 import { usePathname } from "next/navigation";
+import ScrollTrigger from "gsap/src/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
     const pathname = usePathname();
+
+    useGSAP(() => {
+        if (pathname == "/") {
+            let trigger = ScrollTrigger.create({
+                trigger: '[data-gsap="landing-text-wrapper"]',
+                start: "50% center",
+                end: "bottom+=200 center",
+                scrub: true,
+                animation: gsap.to('[data-gsap="footer"]', {
+                    background: "#050505"
+                })
+            })
+
+            return () => {
+                trigger.kill();
+            };
+        }
+    },[pathname])
+
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
@@ -27,10 +48,12 @@ export default function Footer() {
                 }
             })
         })
+
+        return () => ctx.revert()
     },[])
 
     return (
-        <footer data-gsap="footer" className="relative h-fit w-screen overflow-hidden">
+        <footer data-gsap="footer" style={{background: pathname === "/" ? "#282828" : "transparent"}} className="relative h-fit w-screen overflow-hidden">
             <FooterCards />
             <FooterText />
 

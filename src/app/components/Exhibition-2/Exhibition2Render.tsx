@@ -238,7 +238,7 @@ export default function Exhibition2Render() {
   return (
     <Canvas
       data-gsap="canvas"
-      dpr={[1, 1.5]}
+      dpr={[0.5,1.25]}
       gl={{
         toneMapping: THREE.ACESFilmicToneMapping,
         outputEncoding: THREE.sRGBEncoding,
