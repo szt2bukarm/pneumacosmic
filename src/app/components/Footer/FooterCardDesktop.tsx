@@ -38,7 +38,7 @@ export default function FooterCardDesktop({
       });
   
       return () => ctx.revert();  
-    }, 50);
+    }, 5);
   },[]);
 
   return (

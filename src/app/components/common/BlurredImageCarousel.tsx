@@ -21,28 +21,36 @@ export default function BlurredImageCarousel({ images }: Props) {
   const tweenRef = useRef<gsap.core.Tween | null>(null)
 
   useGSAP(() => {
-    if (!blurRef.current || !sharpRef.current) return
+    setTimeout(() => {
+      if (!blurRef.current || !sharpRef.current) return
 
-    const blurEl = blurRef.current
-    const sharpEl = sharpRef.current
+      const ctx = gsap.context(() => {
+            const blurEl = blurRef.current
+      const sharpEl = sharpRef.current
 
-    let totalWidth = 0
-    sharpEl.childNodes.forEach((child) => {
-      if (child instanceof HTMLElement) totalWidth += child.offsetWidth + 10
-    })
+      let totalWidth = 0
+      sharpEl.childNodes.forEach((child) => {
+        if (child instanceof HTMLElement) totalWidth += child.offsetWidth + 10
+      })
 
-    if (tweenRef.current) tweenRef.current.kill()
+      if (tweenRef.current) tweenRef.current.kill()
 
-    tweenRef.current = gsap.to([blurEl, sharpEl], {
-      x: -totalWidth / 2,
-      duration: images.length * 10,
-      repeat: -1,
-      ease: "none"
+      tweenRef.current = gsap.to([blurEl, sharpEl], {
+        x: -totalWidth / 2,
+        duration: images.length * 10,
+        repeat: -1,
+        ease: "none"
+      })
+
+      return () => {
+        tweenRef.current?.kill()
+      }
     })
 
     return () => {
-      tweenRef.current?.kill()
+      ctx.revert()
     }
+    }, 5);
   }, [images, isMobile])
 
   return (

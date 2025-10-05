@@ -48,7 +48,7 @@ export default function LandingText() {
     })
 
     return (
-        <div data-gsap="landing-text-wrapper" className="mt-[100vh] relative w-screen h-fit py-[70px] md:py-[100px] xl:py-[120px] flex items-center justify-center flex-col gap-[85px] z-10 opacity-0">
+        <div data-gsap="landing-text-wrapper" className="mt-[100vh] relative w-screen h-fit py-[70px] md:py-[100px] xl:py-[120px] flex items-center justify-center flex-col gap-[85px] z-10 opacity-0 bg-dark">
             <StaggeredSplitText>
             Koronczi Endre <span className="font-garabold">pneuma cosmic</span> című kiállítástervében meghatározó a lassúság, a megfigyelés és az elvont asszociációs gondolatok ötvözéséből születő légkör. A koncepció alapja egy fiktív kutatás, mely a világ egészét kitöltő, légmozgásként megmutatkozó <span className="font-garaitalic">kozmikus lehelet</span> megjelenési formáit tárja fel.<br></br><br></br>Ennek folyamán a tudományos kutatások logikája és a mélyen metaforikus, asszociatív gondolatpárhuzamok egyaránt megjelennek, mely a kiállítás bejárásának folyamán feloldódik, bizonyítás helyett egy homályosan körvonalazható sejtést mutatva be. 
             </StaggeredSplitText>

@@ -50,31 +50,36 @@ export default function HeroContent() {
 
     // dim overlay
     useGSAP(() => {
-        let trigger = ScrollTrigger.create({
-            trigger: '[data-gsap="hero-dim"]',
-            start: "10% top",
-            end: "50% top",
-            scrub: true,
-            id: "hero-dim",
-            onLeave: () => {
-                gsap.set('[data-gsap="hero-bg"]', {
-                    display: "none"
+        setTimeout(() => {
+            const ctx = gsap.context(() => {
+                let trigger = ScrollTrigger.create({
+                trigger: '[data-gsap="hero-dim"]',
+                start: "10% top",
+                end: "50% top",
+                scrub: true,
+                id: "hero-dim",
+                onLeave: () => {
+                    gsap.set('[data-gsap="hero-bg"]', {
+                        display: "none"
+                    })
+                },
+                onEnterBack: () => {
+                    gsap.set('[data-gsap="hero-bg"]', {
+                        display: "block"
+                    })
+                },
+                animation: gsap.to('[data-gsap="hero-dim"]', {
+                    opacity: 1,
+                    paused: true
                 })
-            },
-            onEnterBack: () => {
-                gsap.set('[data-gsap="hero-bg"]', {
-                    display: "block"
-                })
-            },
-            animation: gsap.to('[data-gsap="hero-dim"]', {
-                opacity: 1,
-                paused: true
             })
-        })
-
-        return () => {
-            trigger.kill() 
-        }
+    
+                return () => {
+                    trigger.kill() 
+                }
+            })
+            return () => ctx.revert()    
+        }, 5);
     }, [])
 
     
