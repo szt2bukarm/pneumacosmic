@@ -7,8 +7,8 @@ interface Store {
     galleryOpen: boolean,
     setGalleryOpen: (galleryOpen: boolean) => void
 
-    galleryImages: string[],
-    setGalleryImages: (galleryImages: string[]) => void,
+    galleryImages: { src: string; text: string }[]
+    setGalleryImages: (galleryImages: { src: string; text: string }[]) => void
 
     isMobile: boolean | null,
     setIsMobile: (isMobile: boolean) => void
@@ -25,5 +25,5 @@ export const useStore = create<Store>((set) => ({
     setGalleryImages: (galleryImages) => set({ galleryImages }),
 
     isMobile: null,
-    setIsMobile: (isMobile) => set({ isMobile })
+    setIsMobile: (isMobile) => set({ isMobile }),
 }))

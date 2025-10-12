@@ -13,30 +13,35 @@ gsap.registerPlugin(ScrollTrigger);
 
 const cards = [
   {
+    number: 4,
     width: "half",
     image: "images/fal.webp",
     text: "EGY FIKTÍV KUTATÁS LÁTKÉPE",
     href: "/exhibition-1",
   },
   {
+    number: 1,
     width: "full",
     image: "images/bennszorult.webp",
     text: "BENNSZORULT LÉLEGZET",
     href: "/exhibition-2",
   },
   {
+    number: 2,
     width: "full",
     image: "images/paroslab.webp",
     text: "PÁROS LÁBBAL A FÖLD FÖLÖTT",
     href: "/exhibition-3",
   },
   {
+    number: 3,
     width: "full",
     image: "images/lelegzofal.webp",
     text: "VÉGTELEN TÜRELEM",
     href: "/exhibition-4",
   },
   {
+    number: 5,
     width: "half",
     image: "images/akusztikus.webp",
     text: "AKUSZTIKUS ELEM",
@@ -78,6 +83,7 @@ export default function FooterCards() {
         {cards.map((card, index) => (
           <FooterCardDesktop
             key={index}
+            number={card.number}
             index={index + 1}
             width={card.width}
             image={card.image}
@@ -126,6 +132,7 @@ export default function FooterCards() {
               <FooterCardMobile
                 index={index + 1}
                 width={card.width}
+                number={card.number}
                 image={card.image}
                 activeIndex={activeIndex}
                 text={card.text}

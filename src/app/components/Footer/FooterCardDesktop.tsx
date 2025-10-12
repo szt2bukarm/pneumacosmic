@@ -6,6 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface cardInterface {
   index: number;
+  number: number;
   width: string;
   image: string;
   text: string;
@@ -14,6 +15,7 @@ interface cardInterface {
 
 export default function FooterCardDesktop({
   index,
+  number,
   width,
   image,
   text,
@@ -71,7 +73,7 @@ export default function FooterCardDesktop({
                    px-[40px] py-[30px] absolute top-0 left-0 min-w-[801px] min-h-[540px] 
                    text-middark flex flex-col"
       >
-        <p className="font-gara text-h1 mb-auto">{index}</p>
+        <p className="font-gara text-h1 mb-auto">{number}</p>
         <p className="font-gara text-h1 leading-[90%] mb-[10px]">{text}</p>
         <p className="font-hal text-h5">megtekintés →</p>
       </div>

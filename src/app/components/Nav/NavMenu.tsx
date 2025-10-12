@@ -9,11 +9,39 @@ import TransitionLink from "@/app/TransitionLink";
 
 
 const navlinks = [
-  { image: "images/fal.webp", text: "EGY FIKTÍV KUTATÁS LÁTKÉPE", href: "/exhibition-1" },
   { image: "images/bennszorult.webp", text: "BENNSZORULT LÉLEGZET", href: "/exhibition-2" },
-  { image: "images/paroslab.webp", text: "PÁROS LÁBBAL A FÖLD FÖLÖTT", href: "/exhibition-1" },
+  { image: "images/paroslab.webp", text: "PÁROS LÁBBAL A FÖLD FÖLÖTT", href: "/exhibition-3" },
   { image: "images/lelegzofal.webp", text: "VÉGTELEN TÜRELEM", href: "/exhibition-4" },
+  { image: "images/fal.webp", text: "EGY FIKTÍV KUTATÁS LÁTKÉPE", href: "/exhibition-1" },
   { image: "images/akusztikus.webp", text: "AKUSZTIKUS ELEM", href: "/exhibition-1" },
+]
+
+const sublinks = [
+  {
+    text: "Pneuma Cosmic WIKI",
+    external: true,
+    href: "/"
+  },
+  {
+    text: "Bemutatkozás",
+    external: false,
+    href: "/"
+  },
+  {
+    text: "Instagram",
+    external: true,
+    href: "/"
+  },
+  {
+    text: "Blog",
+    external: true,
+    href: "/"
+  },
+  {
+    text: "Impresszum",
+    external: false,
+    href: "/imprint"
+  }
 ]
 
 export default function NavMenu() {
@@ -219,12 +247,24 @@ export default function NavMenu() {
 
         {/* extra links */}
         <div className="flex flex-col gap-[12px] flex-shrink-0">
-          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Pneuma cosmic WIKI</a>
-          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Werk képek</a>
-          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Instagram</a>
-          <a data-gsap="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Blog</a>
-          <TransitionLink href="/imprint" data="nav-links" className="font-hal text-md md:text-lg text-midlight">→ Impresszum</TransitionLink>
-        </div>
+
+          {sublinks.map((link, index) => (
+              <div data-gsap="nav-links">
+                {!link.external && (
+                <TransitionLink href={link.href} className="group hover:opacity-50 font-hal text-md md:text-lg text-midlight flex gap-[15px]   cursor-pointer transition-opacity duration-150">
+                <p>→</p>
+                <p className="group-hover:translate-x-2 transition-transform duration-150">{link.text}</p>
+              </TransitionLink>
+                )}
+                {link.external && (
+                  <a href={link.href} className="group hover:opacity-50 font-hal text-md md:text-lg text-midlight flex gap-[15px]   cursor-pointer transition-opacity duration-150">
+                  <p>→</p>
+                  <p className="group-hover:translate-x-2 transition-transform duration-150">{link.text}</p>
+                </a>
+                )}
+              </div>
+          ))}
+t        </div>
       </div>
     </div>
     </div>

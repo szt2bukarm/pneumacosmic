@@ -38,7 +38,7 @@ export default function Video({ thumbnail, videoID }: Props) {
   return (
     <div
       ref={wrapperRef}
-      className="relative h-[52vw] lg:h-[50vw] 2xl:h-[40vw] mx-auto aspect-video rounded-[8px] lg:rounded-[16px] overflow-hidden"
+      className="relative h-[52vw] lg:h-[50vw] 2xl:h-[40vw] mx-auto aspect-video rounded-[4px] lg:rounded-[4px] overflow-hidden"
     >
       {!isStarted && (
         <>

@@ -6,6 +6,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ImageGalleryMobile from "./ImageGalleryMobile";
 
+
+
 export default function ImageGalleryWrapper() {
     const galleryWrapper = useRef<HTMLDivElement | null>(null);
     const galleryItem = useRef<HTMLDivElement | null>(null);
@@ -25,8 +27,8 @@ export default function ImageGalleryWrapper() {
     
 
     const closeGallery = () => {
-        gsap.to(galleryItem.current, {opacity: 0,rotate: -20,x: 1500,y: 500, duration: 1,ease: "power4.out"})
-        gsap.to(galleryWrapper.current, {opacity: 0, duration: 0.5, onComplete: () => {
+        gsap.to(galleryItem.current, {opacity: 0,rotate: -20,x: 1500,y: 500, duration: 0.5,ease: "power4.in"})
+        gsap.to(galleryWrapper.current, {opacity: 0, duration: 0.5,delay:0.2, onComplete: () => {
             setGalleryOpen(false)
         }})
       }
