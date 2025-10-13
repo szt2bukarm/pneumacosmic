@@ -12,7 +12,7 @@ import Footer from "../components/Footer/Footer";
 import ImageGallery from "../components/common/ImageGallery/ImageGallery";
 import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
@@ -258,16 +258,46 @@ const carousel4 = [
 
 export default function Page() {
     const lenis = useLenis();
+    const [mounted,setMounted] = useState(0);
 
     useEffect(() => {
-        lenis?.scrollTo(0,{immediate: true})
-        setTimeout(() => {
-            lenis?.stop();
-            setTimeout(() => {
-                window.scrollTo(0,0)
-            }, 10);
-        }, 5);
-    },[])
+        // scroll instantly to top via Lenis if available
+        if (lenis) {
+          lenis.scrollTo(0, { immediate: true });
+          lenis.stop(); // pause scroll
+        }
+      
+        // fallback native scroll
+        requestAnimationFrame(() => {
+          window.scrollTo(0, 0);
+        });
+      
+        // optionally restart Lenis after a frame
+        requestAnimationFrame(() => {
+          lenis?.start();
+        });
+      }, [lenis]);
+      
+
+      useEffect(() => {
+        // only run on client
+        if (typeof window === "undefined") return;
+      
+        const handleScroll = () => {
+          if (window.scrollY === 0 && mounted === 0) {
+            setMounted(1);
+          }
+        };
+      
+        // check immediately in case page already at top
+        handleScroll();
+      
+        window.addEventListener("scroll", handleScroll);
+      
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+        };
+      }, [mounted]);
 
 
     useGSAP(() => {
@@ -294,7 +324,7 @@ export default function Page() {
 
     return (
 
-    <div className="relative w-screen min-h-screen bg-black overflow-x-hidden">
+    <div key={mounted} className="relative w-screen min-h-screen bg-black overflow-x-hidden">
 
         <PageNavHeader />
         <PageTitle delay={2.5} subtext="Bal oldali szárny" text="BENNSZORULT LÉLEGZET" />

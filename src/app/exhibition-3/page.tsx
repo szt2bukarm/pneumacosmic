@@ -12,7 +12,7 @@ import Footer from "../components/Footer/Footer";
 import ImageGallery from "../components/common/ImageGallery/ImageGallery";
 import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import WalkSequence from "../components/Exhibition-3/WalkSequence";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -243,18 +243,49 @@ const carousel3 = [
 
 export default function Page() {
     const lenis = useLenis();
+    const [mounted,setMounted] = useState(0);
 
     useEffect(() => {
-        if (!lenis) return
-        lenis?.scrollTo(0,{immediate: true})
-        setTimeout(() => {
-            lenis?.stop();
-            setTimeout(() => {
-                window.scrollTo(0,0)
-                lenis?.start();
-            }, 10);
-        }, 5);
-    },[lenis])
+        // scroll instantly to top via Lenis if available
+        if (lenis) {
+          lenis.scrollTo(0, { immediate: true });
+          lenis.stop(); // pause scroll
+        }
+      
+        // fallback native scroll
+        requestAnimationFrame(() => {
+          window.scrollTo(0, 0);
+        });
+      
+        // optionally restart Lenis after a frame
+        requestAnimationFrame(() => {
+          lenis?.start();
+        });
+      }, [lenis]);
+      
+
+      useEffect(() => {
+        // only run on client
+        if (typeof window === "undefined") return;
+      
+        const handleScroll = () => {
+          if (window.scrollY === 0 && mounted === 0) {
+            setMounted(1);
+            requestAnimationFrame(() => {
+                ScrollTrigger.refresh();
+            })
+          }
+        };
+      
+        // check immediately in case page already at top
+        handleScroll();
+      
+        window.addEventListener("scroll", handleScroll);
+      
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+        };
+      }, [mounted]);
 
     useGSAP(() => {
         gsap.set('[data-gsap="exhibition-3-gallery-1"]', {
@@ -268,12 +299,12 @@ export default function Page() {
             delay: 1.6,
             ease: "power4.out"
         })
-    })
+    },[mounted])
 
       
 
       return (
-        <div data-gsap="exhibition-3" className="relative w-screen min-h-screen bg-dark overflow-x-hidden">
+        <div key={mounted} data-gsap="exhibition-3" className="relative w-screen min-h-screen bg-dark overflow-x-hidden">
 
         <PageNavHeader />
 

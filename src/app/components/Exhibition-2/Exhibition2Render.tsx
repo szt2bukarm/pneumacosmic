@@ -233,6 +233,48 @@ function CameraAnimation() {
       />
     );
   }
+
+
+function DynamicDPR() {
+  const { gl } = useThree()
+
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const fullDPR = window.devicePixelRatio
+    const lowDPR = 0.001
+
+    const trigger = ScrollTrigger.create({
+      trigger: "[data-gsap='canvas']", // 👈 change to whatever element defines visibility
+      start: "top-=1 bottom",
+      end: "80% top",
+      markers: true,
+      onEnter: () => {
+        gl.setPixelRatio(fullDPR)
+        gsap.set("[data-gsap='canvas']", { display: "block" })
+      },
+      onLeave: () => {
+        gsap.set("[data-gsap='canvas']", { display: "none" })
+        gl.setPixelRatio(lowDPR)
+      },
+      onEnterBack: () => {
+        gsap.set("[data-gsap='canvas']", { display: "block" })
+        gl.setPixelRatio(fullDPR)
+      },
+      onLeaveBack: () => {
+        gsap.set("[data-gsap='canvas']", { display: "none" })
+        gl.setPixelRatio(lowDPR)
+      },
+    })
+
+    return () => {
+      trigger.kill()
+      gl.setPixelRatio(fullDPR)
+    }
+  }, [gl])
+
+  return null
+}
     
 export default function Exhibition2Render() {
   return (
@@ -246,6 +288,7 @@ export default function Exhibition2Render() {
     >
       <CameraAnimation />
       <Scene />
+      <DynamicDPR />
     </Canvas>
   );
 }

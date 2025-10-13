@@ -1,12 +1,24 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function PinnedImageReveal() {
+  const [scrollY, setScrollY] = useState(0);
+
+  // track scroll position
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // reveal anim
   useGSAP(() => {
+    if (typeof window === "undefined" || scrollY !== 0) return;
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: '[data-gsap="exhibition-2-pinned-reveal"]',
@@ -30,10 +42,14 @@ export default function PinnedImageReveal() {
         }
       });
     });
-  },[]);
+
+    return () => ctx.revert();
+  }, [scrollY]); // <-- re-run when scrollY changes
 
   // scroll anims
   useGSAP(() => {
+    if (typeof window === "undefined" || scrollY !== 0) return;
+
     const ctx = gsap.context(() => {
       const items = '[data-gsap="exhibition-2-pinned-reveal-item"]';
       const container = '[data-gsap="exhibition-2-pinned-reveal"]';
@@ -58,8 +74,7 @@ export default function PinnedImageReveal() {
     });
 
     return () => ctx.revert();
-  }, []);
-
+  }, [scrollY]); // <-- same deal here
   return (
     <div
       data-gsap="exhibition-2-pinned-reveal"

@@ -89,6 +89,9 @@ export default function WalkSequence() {
               opacity: 0,
               duration: 0.3
           })
+          requestAnimationFrame(() => {
+            ScrollTrigger.refresh();
+          })
       },
       onEnterBack: () => {
           gsap.to(blurCanvasRef.current, {
