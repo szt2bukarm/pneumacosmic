@@ -8,6 +8,7 @@ import FooterText from "./FooterText";
 import gsap from "gsap";
 import { usePathname } from "next/navigation";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
+import { useLayoutEffect } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
@@ -32,21 +33,28 @@ export default function Footer() {
     },[pathname])
 
 
-    useGSAP(() => {
+    useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-            gsap.set('[data-gsap="footer-bg"]', {
-                opacity: 0.001,
-            })
-            gsap.to('[data-gsap="footer-bg"]', {
-                opacity: 1,
-                duration: 3,
-                ease: "power4.out",
-                scrollTrigger: {
+            let trigger: ScrollTrigger;
+            setTimeout(() => {
+                gsap.set('[data-gsap="footer-bg"]', {
+                    opacity: 0.001,
+                })
+                trigger = ScrollTrigger.create({
                     trigger: '[data-gsap="footer"]',
-                    start: "bottom-=200 bottom",
-                    end: "bottom bottom",
-                }
-            })
+                    start: "top top",
+                    end: "bottom+=200 top",
+                    animation: gsap.to('[data-gsap="footer-bg"]', {
+                        opacity: 1,
+                        duration: 3,
+                        ease: "power4.out",
+                    })
+                })
+            }, 100);
+
+            return () => {
+                trigger.kill();
+            }
         })
 
         return () => ctx.revert()

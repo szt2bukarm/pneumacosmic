@@ -258,7 +258,7 @@ const carousel4 = [
 
 export default function Page() {
     const lenis = useLenis();
-    const [mounted,setMounted] = useState(0);
+    const [mounted,setMounted] = useState(false);
 
     useEffect(() => {
         // scroll instantly to top via Lenis if available
@@ -284,8 +284,8 @@ export default function Page() {
         if (typeof window === "undefined") return;
       
         const handleScroll = () => {
-          if (window.scrollY === 0 && mounted === 0) {
-            setMounted(1);
+          if (window.scrollY === 0 && !mounted) {
+            setMounted(true);
           }
         };
       
@@ -321,10 +321,10 @@ export default function Page() {
     },[])
 
 
+    if (!mounted) return <div></div>
 
     return (
-
-    <div key={mounted} className="relative w-screen min-h-screen bg-black overflow-x-hidden">
+    <div className="relative w-screen min-h-screen bg-black overflow-x-hidden">
 
         <PageNavHeader />
         <PageTitle delay={2.5} subtext="Bal oldali szárny" text="BENNSZORULT LÉLEGZET" />

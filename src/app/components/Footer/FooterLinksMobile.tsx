@@ -7,22 +7,29 @@ export default function FooterLinksMobile() {
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
-            gsap.set('[data-gsap="footer-links-item-mobile"]', {
-                opacity: 0,
-                y: 20
-            })
-            gsap.to('[data-gsap="footer-links-item-mobile"]', {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                stagger: 0.15,
-                ease: "power4.out",
-                scrollTrigger: {
-                    trigger: '[data-gsap="footer-bg"]',
-                    start: "20% center",
-                    end: "bottom center",
-                }
-            })
+            let trigger : ScrollTrigger
+            setTimeout(() => {
+                gsap.set('[data-gsap="footer-links-item"]', {
+                    opacity: 0,
+                    y: 20
+                })
+                trigger = ScrollTrigger.create({
+                    trigger: '[data-gsap="footer"]',
+                    start: "bottom-=200 bottom",
+                    end: "bottom bottom",                    
+                    animation: gsap.to('[data-gsap="footer-links-item"]', {
+                        opacity: 1,
+                        y: 0,
+                        duration: 1,
+                        stagger: 0.15,
+                        ease: "power4.out"
+                    })
+                })
+            }, 100);
+
+            return () => {
+                trigger.kill();
+            };
         })
 
         return () => ctx.revert()

@@ -9,6 +9,7 @@ export default function WalkSequence() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const blurCanvasRef = useRef<HTMLCanvasElement | null>(null)
   const containerRef = useRef<HTMLDivElement | null>(null)
+  const scrollTriggerRef = useRef<ScrollTrigger | null>(null) // Add ref for the specific trigger
 
   useEffect(() => {
     const frameCount = 64
@@ -27,11 +28,9 @@ export default function WalkSequence() {
       if (!canvas || !blurCanvas || !containerRef.current) return
       const { width } = containerRef.current.getBoundingClientRect()
 
-      // normal canvas = 85vh
       const renderHeight = window.innerHeight * 0.85
       const renderWidth = renderHeight * aspectRatio
 
-      // blurred bg = 95vh
       const blurHeight = window.innerHeight * 0.95
       const blurWidth = blurHeight * aspectRatio
 
@@ -44,7 +43,6 @@ export default function WalkSequence() {
       render()
     }
 
-    // load frames
     const loadFrames = async () => {
       for (let i = 1; i <= frameCount; i++) {
         const url = `images/exhibition-3/walk/${i}walk.webp`
@@ -61,49 +59,45 @@ export default function WalkSequence() {
       if (!ctx || !blurCtx || !loaded || !canvas || !blurCanvas) return
       const img = images[currentFrame]
 
-      // blur background
       blurCtx.clearRect(0, 0, blurCanvas.width, blurCanvas.height)
       blurCtx.filter = "blur(50px) brightness(0.6)"
       blurCtx.drawImage(img, 0, 0, blurCanvas.width, blurCanvas.height)
 
-      // sharp foreground
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
     }
 
-    ScrollTrigger.create({
+    // Store the ScrollTrigger instance in a ref
+    scrollTriggerRef.current = ScrollTrigger.create({
       trigger: containerRef.current,
       start: "top top",
       end: "+=4000",
       scrub: true,
       pin: true,
-      markers: false,
+      markers: false, // Set to true temporarily for debugging
       onEnter: () => {
-          gsap.to(blurCanvasRef.current, {
-              opacity: 1,
-              duration: 0.3
-          })
+        gsap.to(blurCanvasRef.current, {
+          opacity: 1,
+          duration: 0.3
+        })
       },
       onLeave: () => {
-          gsap.to(blurCanvasRef.current, {
-              opacity: 0,
-              duration: 0.3
-          })
-          requestAnimationFrame(() => {
-            ScrollTrigger.refresh();
-          })
+        gsap.to(blurCanvasRef.current, {
+          opacity: 0,
+          duration: 0.3
+        })
       },
       onEnterBack: () => {
-          gsap.to(blurCanvasRef.current, {
-              opacity: 1,
-              duration: 0.3
-          })
+        gsap.to(blurCanvasRef.current, {
+          opacity: 1,
+          duration: 0.3
+        })
       },
       onLeaveBack: () => {
-          gsap.to(blurCanvasRef.current, {
-              opacity: 0,
-              duration: 0.3
-          })
+        gsap.to(blurCanvasRef.current, {
+          opacity: 0,
+          duration: 0.3
+        })
       },
       onUpdate: (self) => {
         if (!loaded) return
@@ -116,6 +110,9 @@ export default function WalkSequence() {
       animation: gsap.to("[data-gsap='exhibition-3']", {
         background: "#050505",
       }),
+      // Add these to prevent scroll jumping
+      anticipatePin: 1,
+      pinSpacing: true
     })
 
     const handleResize = () => requestAnimationFrame(resizeCanvases)
@@ -125,18 +122,22 @@ export default function WalkSequence() {
 
     return () => {
       window.removeEventListener("resize", handleResize)
-      ScrollTrigger.getAll().forEach(t => t.kill())
+      
+      // Only kill the specific ScrollTrigger created by this component
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill()
+      }
+      
       images.forEach(img => img.close?.())
     }
   }, [])
 
   return (
     <section
-        data-gsap="walk-sequence"
+      data-gsap="walk-sequence"
       ref={containerRef}
       className="relative w-full h-[100vh] flex items-center justify-center overflow-hidden"
     >
-      {/* blurred background */}
       <canvas
         ref={blurCanvasRef}
         width={1080}
@@ -144,8 +145,6 @@ export default function WalkSequence() {
         className="opacity-0 absolute w-full h-[95vh] object-contain blur-3xl brightness-90"
         style={{ zIndex: 0 }}
       />
-
-      {/* sharp main image */}
       <canvas
         ref={canvasRef}
         width={1080}

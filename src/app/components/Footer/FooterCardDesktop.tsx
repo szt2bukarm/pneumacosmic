@@ -21,18 +21,21 @@ export default function FooterCardDesktop({
   text,
   href,
 }: cardInterface) {
+  
   useGSAP(() => {
-    setTimeout(() => {
       const ctx = gsap.context(() => {
-        const trigger = ScrollTrigger.create({
-          trigger: '[data-gsap="footer-card-image"]',
-          start: "top-=300 center",
-          end: "bottom+=300 center",
-          scrub: true,
-          animation: gsap.to('[data-gsap="footer-card-image"]', {
-            y: 100, // parallax movement
-          }),
-        });
+        let trigger: ScrollTrigger
+        setTimeout(() => {
+          trigger = ScrollTrigger.create({
+            trigger: '[data-gsap="footer-card-image"]',
+            start: "top-=300 center",
+            end: "bottom+=300 center",
+            scrub: true,
+            animation: gsap.to('[data-gsap="footer-card-image"]', {
+              y: 100, 
+            }),
+          });
+        }, 100);
   
         return () => {
           trigger.kill();
@@ -40,7 +43,6 @@ export default function FooterCardDesktop({
       });
   
       return () => ctx.revert();  
-    }, 5);
   },[]);
 
   return (
@@ -52,14 +54,14 @@ export default function FooterCardDesktop({
                  hover:!flex-[0_0_800px] brightness-100 group-hover:brightness-[0.3] 
                  hover:!brightness-100 group/card !overflow-hidden`}
     >
-        {/* only the image is moved by GSAP */}
+        {/*  image  */}
         <img
           data-gsap="footer-card-image"
           src={image}
           className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] scale-[1.4] w-full h-full object-cover"
         />
 
-        {/* gradient overlay sticks to card */}
+        {/* gradient overlay */}
         <div
           className="absolute inset-0 bg-gradient-to-bl 
                      from-[#0000004b] to-black z-2 opacity-0

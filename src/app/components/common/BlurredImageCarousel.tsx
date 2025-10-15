@@ -42,7 +42,7 @@ export default function BlurredImageCarousel({ images }: Props) {
   }
 
   useGSAP(() => {
-    const timeout = setTimeout(createTween, 50)
+    const timeout = setTimeout(createTween, 100)
 
     const handleResize = () => {
       tweenRef.current?.kill()

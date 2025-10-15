@@ -243,7 +243,7 @@ const carousel3 = [
 
 export default function Page() {
     const lenis = useLenis();
-    const [mounted,setMounted] = useState(0);
+    const [mounted,setMounted] = useState(false);
 
     useEffect(() => {
         // scroll instantly to top via Lenis if available
@@ -269,10 +269,12 @@ export default function Page() {
         if (typeof window === "undefined") return;
       
         const handleScroll = () => {
-          if (window.scrollY === 0 && mounted === 0) {
-            setMounted(1);
+          if (window.scrollY === 0 && !mounted) {
             requestAnimationFrame(() => {
-                ScrollTrigger.refresh();
+                setMounted(true);
+                requestAnimationFrame(() => {
+                    ScrollTrigger.refresh();
+                })    
             })
           }
         };
@@ -287,7 +289,9 @@ export default function Page() {
         };
       }, [mounted]);
 
+
     useGSAP(() => {
+        if (!mounted) return;
         gsap.set('[data-gsap="exhibition-3-gallery-1"]', {
             y: 150,
             opacity: 0
@@ -301,10 +305,10 @@ export default function Page() {
         })
     },[mounted])
 
-      
+      if (!mounted) return <div></div>
 
       return (
-        <div key={mounted} data-gsap="exhibition-3" className="relative w-screen min-h-screen bg-dark overflow-x-hidden">
+        <div data-gsap="exhibition-3" className="relative w-screen min-h-screen bg-dark overflow-x-hidden">
 
         <PageNavHeader />
 

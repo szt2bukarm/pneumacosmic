@@ -61,12 +61,13 @@ export default function StaggeredSplitText({children}: {children: React.ReactNod
       let split: SplitText | null = null
       let trigger: ScrollTrigger | null = null
 
-      // choose which animation to run
-      if (isMobile) {
-        ({ split, trigger } = animateMobile())
-      } else {
-        ({ split, trigger } = animateDesktop())
-      }
+      setTimeout(() => {
+        if (isMobile) {
+          ({ split, trigger } = animateMobile())
+        } else {
+          ({ split, trigger } = animateDesktop())
+        }
+      }, 100);
 
       const handleResize = () => trigger?.refresh()
       window.addEventListener("resize", handleResize)

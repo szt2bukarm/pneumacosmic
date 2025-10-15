@@ -50,28 +50,28 @@ const cards = [
 ];
 
 export default function FooterCards() {
-  const cardsRef = useRef<HTMLDivElement[]>([]);
   const [activeIndex, setActiveIndex] = useState(1);
+  // const cardsRef = useRef<HTMLDivElement[]>([]);
 
-  useGSAP(() => {
-    if (!cardsRef.current.length) return;
+  // useGSAP(() => {
+  //   if (!cardsRef.current.length) return;
 
-    gsap.set(cardsRef.current, { opacity: 0 });
+  //   gsap.set(cardsRef.current, { opacity: 0 });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '[data-gsap="footer-cards"]',
-        start: "top center",
-        end: "bottom center",
-        markers: true,
-      },
-    });
+  //   const tl = gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: '[data-gsap="footer-cards"]',
+  //       start: "top center",
+  //       end: "bottom center",
+  //       markers: true,
+  //     },
+  //   });
 
-    tl.to(cardsRef.current, {
-      opacity: 1,
-      stagger: 0.02,
-    });
-  }, []);
+  //   tl.to(cardsRef.current, {
+  //     opacity: 1,
+  //     stagger: 0.02,
+  //   });
+  // }, []);
 
   return (
     <>
