@@ -279,7 +279,7 @@ function DynamicDPR() {
 export default function Exhibition2Render() {
   return (
     <Canvas
-      data-gsap="canvas"
+      className="translate-y-[-20vh] md:translate-y-0"
       dpr={[0.5,1.25]}
       gl={{
         toneMapping: THREE.ACESFilmicToneMapping,

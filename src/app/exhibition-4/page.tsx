@@ -13,6 +13,7 @@ import ImageGallery from "../components/common/ImageGallery/ImageGallery";
 import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect } from "react";
+import AnimatedLink from "../components/common/AnimatedLink";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
@@ -90,9 +91,9 @@ export default function Page() {
         <StaggeredSplitText>Koronczi első lélegző fal installációja 2018-ban volt látható az azonos című Végtelen türelem című projektkiállításon, Budapesten. A mű egy polgári otthon múlttal átitatott terében jelent meg, felületén tapétamintával.<br></br><br></br>Hat évvel később, 2024-ben készült el az installáció egy újabb változata, azonos címmel Koronczi Endre Kérem, sóhajtson, Széchényi Úr! című egyéni kiállításán a Godot Kortárs Művészeti Intézetben. Ekkor a mű steril, white cube típusú térben valósult meg, a használt anyag is homogén, fehér, így nem hordozta magán a személyesség érzetét, tisztán a jelenségre került a hangsúly. A 61. Velencei Képzőművészeti Biennálén megvalósuló Végtelen türelem installáció ehhez áll legközelebb, ám a pozícionálás tekintetében eltérést mutatnak.</StaggeredSplitText>
         </div>
 
-        <div className="mx-auto flex flex-col gap-[20px] md:gap-[30px] mb-[70px] md:mb-[150px] lg:mb-[200px] w-[90vw] xl:w-[1050px]">
+        <div className="mx-auto flex flex-col gap-[10px] mb-[70px] md:mb-[150px] lg:mb-[200px] w-[90vw] xl:w-[1050px]">
             <p className="font-gara text-middark text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>
-            <p className="font-gara text-middark text-h5 md:text-h4 hover:opacity-50 cursor-pointer transition-opacity duration-150">→ Végtelen Türelem VIDEÓ</p>
+            <AnimatedLink external={false} size="large" text="Végtelen Türelem VIDEÓ" href="/" />
         </div>
 
         <Footer />

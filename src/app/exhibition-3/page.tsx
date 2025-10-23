@@ -14,6 +14,7 @@ import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect, useState } from "react";
 import WalkSequence from "../components/Exhibition-3/WalkSequence";
+import AnimatedLink from "../components/common/AnimatedLink";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
@@ -336,11 +337,11 @@ export default function Page() {
 
         <BlurredImageCarousel images={carousel3} />
 
-        <div className="mx-auto flex flex-col gap-[20px] md:gap-[30px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[1050px]">
+        <div className="mx-auto flex flex-col gap-[10px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[1050px]">
             <p className="font-gara text-middark text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>
             <div>
-            <p className="font-gara text-middark text-h5 md:text-h4 hover:opacity-50 cursor-pointer transition-opacity duration-150">→ A Végtelen Zarándoklat VIDEÓ</p>
-            <p className="font-gara text-middark text-h5 md:text-h4 hover:opacity-50 cursor-pointer transition-opacity duration-150">→ A Fejrehelyezés VIDEÓ</p>
+            <AnimatedLink href={"/"} external={true} size="large" text="A Végtelen Zarándoklat VIDEÓ" />
+            <AnimatedLink href={"/"} external={true} size="large" text="A Fejrehelyezés VIDEÓ" />
             </div>
         </div>
 

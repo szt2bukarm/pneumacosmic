@@ -12,6 +12,9 @@ interface Store {
 
     isMobile: boolean | null,
     setIsMobile: (isMobile: boolean) => void
+
+    loaded: boolean,
+    setLoaded: (loaded: boolean) => void
 }
 
 export const useStore = create<Store>((set) => ({
@@ -26,4 +29,7 @@ export const useStore = create<Store>((set) => ({
 
     isMobile: null,
     setIsMobile: (isMobile) => set({ isMobile }),
+
+    loaded: false,
+    setLoaded: (loaded) => set({ loaded }),
 }))

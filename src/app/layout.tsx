@@ -8,6 +8,7 @@ import GradualBlurMemo from "./components/GradualBlur";
 import ImageGallery from "./components/common/ImageGallery/ImageGallery";
 import ImageGalleryWrapper from "./components/common/ImageGallery/ImageGalleryWrapper";
 import MobileTest from "./MobileTest";
+import Loader from "./components/Loader";
 
 export default function RootLayout({
   children,
@@ -23,6 +24,7 @@ export default function RootLayout({
       </head>
       <body
       >
+        <Loader />
         <Nav />
         <SmoothScroll>
         {children}

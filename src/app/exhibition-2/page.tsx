@@ -329,11 +329,11 @@ export default function Page() {
         <PageNavHeader />
         <PageTitle delay={2.5} subtext="Bal oldali szárny" text="BENNSZORULT LÉLEGZET" />
 
-        <div className="h-[150vh] w-screen fixed top-0 left-0">
+        <div data-gsap="canvas" className="h-[150vh] w-screen fixed top-0 left-0">
         <Exhibiton2Render />
         </div>
 
-        <div className="h-[calc(100vh-290px)]"></div>
+        <div className="w-full h-[calc(100vh-290px-20vh)] md:h-[calc(100vh-290px)]"></div>
 
         <div className="relative w-full h-full bg-black">
 

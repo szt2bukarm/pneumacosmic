@@ -2,6 +2,7 @@
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { usePathname } from "next/navigation"
+import AnimatedLink from "../common/AnimatedLink";
 
 export default function FooterText() {
     const pathname = usePathname();
@@ -42,7 +43,9 @@ export default function FooterText() {
         <div data-gsap="footer-text-wrapper" className="pt-[80px] pb-[80px] sm:pt-[120px] sm:pb-[120px] md:pt-[180px] md:pb-[240px] mx-auto gap-[120px] md:gap-[145px] flex flex-col items-start justify-center w-[90vw] xl:w-[1000px]">
             <p data-gsap="footer-text" className="font-gara text-middark text-lg md:text-h4 ">A kiállítás a légmozgás és a transzcendens vagy gondolati világ között állít párhuzamot, felhívva a figyelmet a környezetünk intuitív megéléséből fakadó tapasztalatok komplexitására.</p>
 
-            <a data-gsap="footer-text" className="font-hal text-midlight text-lg md:text-h4 cursor-pointer ">→ Pneuma Cosmic WIKI</a>
+            <div data-gsap="footer-text">
+            <AnimatedLink external={true} href={"/"} size="large" text="Pneuma Cosmic WIKI" />
+            </div>
         </div>
     )
 }

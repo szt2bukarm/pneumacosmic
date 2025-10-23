@@ -9,15 +9,15 @@ export default function FooterLinksMobile() {
         const ctx = gsap.context(() => {
             let trigger : ScrollTrigger;
             setTimeout(() => {
-                gsap.set('[data-gsap="footer-links-item"]', {
+                gsap.set('[data-gsap="footer-links-item-mobile"]', {
                     opacity: 0,
                     y: 20
                 })
                 trigger = ScrollTrigger.create({
                     trigger: '[data-gsap="footer"]',
                     start: "bottom-=200 bottom",
-                    end: "bottom bottom",                    
-                    animation: gsap.to('[data-gsap="footer-links-item"]', {
+                    end: "bottom bottom",
+                    animation: gsap.to('[data-gsap="footer-links-item-mobile"]', {
                         opacity: 1,
                         y: 0,
                         duration: 1,

@@ -107,7 +107,7 @@ export default function BlurredImageCarousel({ images }: Props) {
       <div ref={sharpRef} className="absolute top-0 left-0 flex gap-[3px] md:gap-[5px] lg:gap-[10px] h-full overflow-visible">
         {images.concat(images).map((image, i) => (
           <div className="relative h-full w-[320px] md:w-[550px] lg:w-[950px] overflow-hidden">
-          <img key={i} src={image.src} ref={el => imagesRef.current[i] = el} className="scale-125 h-full w-full object-cover" />
+          <img key={i} src={image.src} ref={el => imagesRef.current[i] = el} className="scale-110 h-full w-full object-cover" />
 
           {image.text && (
             <>

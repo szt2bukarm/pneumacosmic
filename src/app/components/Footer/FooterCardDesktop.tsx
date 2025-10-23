@@ -2,6 +2,7 @@ import TransitionLink from "@/app/TransitionLink";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useEffect, useLayoutEffect, useState } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 interface cardInterface {
@@ -21,29 +22,52 @@ export default function FooterCardDesktop({
   text,
   href,
 }: cardInterface) {
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+    let resizeTimeout: ReturnType<typeof setTimeout>;
+
+    const handleResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        setWindowWidth(window.innerWidth);
+      }, 50); 
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      clearTimeout(resizeTimeout);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useGSAP(() => {
       const ctx = gsap.context(() => {
         let trigger: ScrollTrigger
-        setTimeout(() => {
+
+        const setup = () => {
           trigger = ScrollTrigger.create({
             trigger: '[data-gsap="footer-card-image"]',
             start: "top-=300 center",
             end: "bottom+=300 center",
             scrub: true,
-            animation: gsap.to('[data-gsap="footer-card-image"]', {
-              y: 100, 
-            }),
+            animation: gsap.fromTo('[data-gsap="footer-card-image"]', 
+              {y: 0},
+              {y: 100,}),
           });
-        }, 100);
-  
+        }
+        setTimeout(() => {
+          setup();
+        }, 300);
+        
         return () => {
           trigger?.kill();
         };
       });
   
       return () => ctx.revert();  
-  },[]);
+  },[windowWidth]);
 
   return (
     <TransitionLink

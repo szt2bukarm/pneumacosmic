@@ -10,7 +10,7 @@ export default function FooterLinksMedium() {
         const ctx = gsap.context(() => {
             let trigger : ScrollTrigger
             setTimeout(() => {
-                gsap.set('[data-gsap="footer-links-item"]', {
+                gsap.set('[data-gsap="footer-links-item-medium"]', {
                     opacity: 0,
                     y: 20
                 })
@@ -18,7 +18,7 @@ export default function FooterLinksMedium() {
                     trigger: '[data-gsap="footer"]',
                     start: "bottom-=200 bottom",
                     end: "bottom bottom",                    
-                    animation: gsap.to('[data-gsap="footer-links-item"]', {
+                    animation: gsap.to('[data-gsap="footer-links-item-medium"]', {
                         opacity: 1,
                         y: 0,
                         duration: 1,

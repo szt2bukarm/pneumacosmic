@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import NavSound from "./NavSound";
 import NavLanguage from "./NavLanguage";
 import TransitionLink from "@/app/TransitionLink";
+import AnimatedLink from "../common/AnimatedLink";
 
 
 const navlinks = [
@@ -250,18 +251,7 @@ export default function NavMenu() {
 
           {sublinks.map((link, index) => (
               <div data-gsap="nav-links">
-                {!link.external && (
-                <TransitionLink href={link.href} className="group hover:opacity-50 font-hal text-md md:text-lg text-midlight flex gap-[15px]   cursor-pointer transition-opacity duration-150">
-                <p>→</p>
-                <p className="group-hover:translate-x-2 transition-transform duration-150">{link.text}</p>
-              </TransitionLink>
-                )}
-                {link.external && (
-                  <a href={link.href} className="group hover:opacity-50 font-hal text-md md:text-lg text-midlight flex gap-[15px]   cursor-pointer transition-opacity duration-150">
-                  <p>→</p>
-                  <p className="group-hover:translate-x-2 transition-transform duration-150">{link.text}</p>
-                </a>
-                )}
+                <AnimatedLink external={false} size="small" text={link.text} href={link.href} />
               </div>
           ))}
         </div>

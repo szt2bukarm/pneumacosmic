@@ -8,7 +8,7 @@ export default function PinnedImageReveal() {
 
   // reveal anim
   useLayoutEffect(() => {
-    // const isProd = process.env.NODE_ENV === "production";
+    const isProd = process.env.NODE_ENV === "production";
     const ctx = gsap.context(() => {
       let trigger: ScrollTrigger;
       const setup = () => {
@@ -34,8 +34,7 @@ export default function PinnedImageReveal() {
           }
         });
       }
-      // isProd ? setTimeout(setup, 100) : setup();
-      setup();
+      isProd ? setTimeout(setup, 100) : setup();
 
       return () => {
         trigger?.kill();
@@ -47,7 +46,7 @@ export default function PinnedImageReveal() {
 
   // scroll anims
   useLayoutEffect(() => {
-    // const isProd = process.env.NODE_ENV === "production";
+    const isProd = process.env.NODE_ENV === "production";
     const ctx = gsap.context(() => {
       let trigger : ScrollTrigger
       const setup = () => {
@@ -72,8 +71,7 @@ export default function PinnedImageReveal() {
           },  
         });
       }
-      setup();
-      // isProd ? setTimeout(setup, 100) : setup();
+      isProd ? setTimeout(setup, 100) : setup();
 
       return () => {
         trigger?.kill();

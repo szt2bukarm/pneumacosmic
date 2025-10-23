@@ -96,7 +96,7 @@ export default function FooterCards() {
       {/* Mobile Layout with Swiper */}
       <div
         data-gsap="footer-cards"
-        className="lg:hidden relative h-full w-full group"
+        className="lg:hidden relative h-full w-full group cursor-grab active:cursor-grabbing"
       >
         <Swiper
           spaceBetween={12}
