@@ -28,6 +28,10 @@ html,body{
     -webkit-font-smoothing: antialiased;
 }
 
+.word-split a {
+  text-decoration: underline;
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none !important;

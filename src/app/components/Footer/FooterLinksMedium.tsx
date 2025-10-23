@@ -1,11 +1,12 @@
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useLayoutEffect } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FooterLinksMedium() {
 
-    useGSAP(() => {
+    useLayoutEffect(() => {
         const ctx = gsap.context(() => {
             let trigger : ScrollTrigger
             setTimeout(() => {
@@ -28,7 +29,7 @@ export default function FooterLinksMedium() {
             }, 100);
 
             return () => {
-                trigger.kill();
+                trigger?.kill();
             };
         })
 

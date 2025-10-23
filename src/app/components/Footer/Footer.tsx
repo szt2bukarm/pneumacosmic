@@ -53,7 +53,7 @@ export default function Footer() {
             }, 100);
 
             return () => {
-                trigger.kill();
+                trigger?.kill();
             }
         })
 

@@ -25,7 +25,7 @@ const sublinks = [
   {
     text: "Bemutatkozás",
     external: false,
-    href: "/"
+    href: "/introduction"
   },
   {
     text: "Instagram",
@@ -264,7 +264,7 @@ export default function NavMenu() {
                 )}
               </div>
           ))}
-t        </div>
+        </div>
       </div>
     </div>
     </div>

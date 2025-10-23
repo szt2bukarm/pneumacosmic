@@ -50,9 +50,10 @@ export default function HeroContent() {
 
     // dim overlay
     useGSAP(() => {
-        setTimeout(() => {
             const ctx = gsap.context(() => {
-                let trigger = ScrollTrigger.create({
+                let trigger: ScrollTrigger;
+                setTimeout(() => {
+                trigger = ScrollTrigger.create({
                 trigger: '[data-gsap="hero-dim"]',
                 start: "10% top",
                 end: "50% top",
@@ -73,13 +74,13 @@ export default function HeroContent() {
                     paused: true
                 })
             })
+        }, 100);
     
                 return () => {
-                    trigger.kill() 
+                    trigger?.kill() 
                 }
             })
             return () => ctx.revert()    
-        }, 5);
     }, [])
 
     

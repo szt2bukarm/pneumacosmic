@@ -28,7 +28,7 @@ export default function FooterLinks() {
             }, 100);
 
             return () => {
-                trigger.kill();
+                trigger?.kill();
             };
         })
 

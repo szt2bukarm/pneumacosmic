@@ -35,7 +35,13 @@ export default function StaggeredSplitText({children}: {children: React.ReactNod
 
   // ----- separate function for mobile -----
   const animateMobile = () => {
-    const split = new SplitText(textRef.current, { type: "words" })
+    const nodes = Array.from(textRef.current.childNodes)
+
+    nodes.forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE) {
+        new SplitText(node, { type: "words", wordsClass: "split-word" })
+      }
+    })
     gsap.set(split.words, { opacity: 0, y: 15, })
 
     const trigger = ScrollTrigger.create({

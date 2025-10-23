@@ -7,11 +7,12 @@ gsap.registerPlugin(ScrollTrigger);
 export default function PinnedImageReveal() {
 
   // reveal anim
-  useGSAP(() => {
+  useLayoutEffect(() => {
+    // const isProd = process.env.NODE_ENV === "production";
     const ctx = gsap.context(() => {
       let trigger: ScrollTrigger;
-      setTimeout(() => {
-        trigger = ScrollTrigger.create({
+      const setup = () => {
+          trigger = ScrollTrigger.create({
           trigger: '[data-gsap="exhibition-2-pinned-reveal"]',
           start: "top-=300 30%",
           onEnter: () => {
@@ -32,10 +33,12 @@ export default function PinnedImageReveal() {
             });
           }
         });
-      }, 100);
+      }
+      // isProd ? setTimeout(setup, 100) : setup();
+      setup();
 
       return () => {
-        trigger.kill();
+        trigger?.kill();
       }
     });
 
@@ -43,35 +46,37 @@ export default function PinnedImageReveal() {
   }, []);
 
   // scroll anims
-  useGSAP(() => {
-
+  useLayoutEffect(() => {
+    // const isProd = process.env.NODE_ENV === "production";
     const ctx = gsap.context(() => {
       let trigger : ScrollTrigger
-      setTimeout(() => {
-        const items = '[data-gsap="exhibition-2-pinned-reveal-item"]';
+      const setup = () => {
+      const items = '[data-gsap="exhibition-2-pinned-reveal-item"]';
         const container = '[data-gsap="exhibition-2-pinned-reveal"]';
   
         const scaleAnim = gsap.to(items, {
           scale: 1,
-          stagger: 5,
-          duration: 5,
-          paused: true
+          stagger: 10,
+          duration: 10,
+          paused: true,
         });
   
         trigger = ScrollTrigger.create({
           trigger: container,
           start: "top top+=15%",
-          end: "bottom+=300 top",
+          end: "bottom+=900 top",
           scrub: true,
           pin: true,
           onUpdate: (self) => {
             scaleAnim.progress(self.progress);
           },  
         });
-      }, 100);
+      }
+      setup();
+      // isProd ? setTimeout(setup, 100) : setup();
 
       return () => {
-        trigger.kill();
+        trigger?.kill();
       }
     });
 

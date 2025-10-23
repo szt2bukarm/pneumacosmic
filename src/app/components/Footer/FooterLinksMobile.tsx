@@ -7,7 +7,7 @@ export default function FooterLinksMobile() {
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
-            let trigger : ScrollTrigger
+            let trigger : ScrollTrigger;
             setTimeout(() => {
                 gsap.set('[data-gsap="footer-links-item"]', {
                     opacity: 0,
@@ -28,9 +28,9 @@ export default function FooterLinksMobile() {
             }, 100);
 
             return () => {
-                trigger.kill();
+                trigger?.kill();
             };
-        })
+        },[])
 
         return () => ctx.revert()
     },[])

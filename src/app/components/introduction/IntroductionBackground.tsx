@@ -102,37 +102,40 @@ function AuroraPlane() {
     </mesh>
   );
 }
-
-export default function HeroBackground() {
-
-    useGSAP(() => {
-        const ctx = gsap.context(() => {
-            gsap.set('[data-gsap="hero-bg"]', {
-                opacity: 0.001,
-            })
-            gsap.to('[data-gsap="hero-bg"]', {
-                opacity: 0.3,
-                duration: 10,
-                delay: 1.75,  
-                ease: "power4.out"
-            })
-        })
-    })
+export default function IntroductionBackground() {
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      gsap.set('[data-gsap="hero-bg"]', { opacity: 0.001 });
+      gsap.to('[data-gsap="hero-bg"]', {
+        opacity: 1,
+        delay: 1,
+        duration: 1.5,
+        ease: "power4.out"
+      });
+    });
+    return () => ctx.revert();
+  });
 
   return (
-    <div 
-    data-gsap="hero-bg"
-    style={{
-      width: "100vw",
-      height: "100vh",
-      zIndex: 0,
-      filter: "saturate(0)",
-      opacity: 0.5,
-      willChange: "opacity",
-    }}>
-      <Canvas gl={{ antialias: true }} dpr={[0.25,0.25]}>
+    <div
+      data-gsap="hero-bg"
+      className="absolute h-[50vh] inset-0 z-10 rotate-180 "
+      style={{
+        filter: "saturate(0) brightness(0.5)",
+        opacity: 1,
+        willChange: "opacity",
+        WebkitMaskImage: "linear-gradient(to top, black 60%, transparent 100%)",
+        WebkitMaskRepeat: "no-repeat",
+        WebkitMaskSize: "cover",
+        maskImage: "linear-gradient(to top, black 60%, transparent 100%)",
+        maskRepeat: "no-repeat",
+        maskSize: "cover",
+      }}          
+      >
+      <Canvas gl={{ antialias: true }} dpr={[0.5, 1.5]}>
         <AuroraPlane />
       </Canvas>
     </div>
   );
 }
+

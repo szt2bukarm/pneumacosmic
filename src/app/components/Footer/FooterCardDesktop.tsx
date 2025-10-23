@@ -21,7 +21,7 @@ export default function FooterCardDesktop({
   text,
   href,
 }: cardInterface) {
-  
+
   useGSAP(() => {
       const ctx = gsap.context(() => {
         let trigger: ScrollTrigger
@@ -38,7 +38,7 @@ export default function FooterCardDesktop({
         }, 100);
   
         return () => {
-          trigger.kill();
+          trigger?.kill();
         };
       });
   
