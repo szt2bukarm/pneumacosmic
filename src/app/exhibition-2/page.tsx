@@ -369,7 +369,7 @@ export default function Page() {
         </div>
         )}
 
-        <div className="w-full h-[calc(100vh-290px-20vh)] md:h-[calc(100vh)]"></div>
+        <div className="w-full h-[calc(100vh-290px-20vh)] md:h-[calc(100vh-290px)]"></div>
 
         <div className="relative w-full h-full bg-black">
 

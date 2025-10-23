@@ -28,14 +28,17 @@ export default function Loader() {
   const progressRef = useRef(0);
   const [hideLoader, setHideLoader] = useState(false);
   const [domReady, setDomReady] = useState(false);
-  const { setIsMobile } = useStore();
+  const { setIsMobile,isMobile } = useStore();
 
   useEffect(() => {
+    if (isMobile == null) return;
+    if (!isMobile) {
     useGLTF.preload('3dc.glb');
     useEnvironment.preload({ files: 'black.exr' });
     const video = document.createElement('video');
     video.src = 'video.mp4';
     video.load();
+    }
 
     const onDOMContentLoaded = () => setDomReady(true);
     if (document.readyState === "complete" || document.readyState === "interactive") {
@@ -44,7 +47,7 @@ export default function Loader() {
       window.addEventListener("DOMContentLoaded", onDOMContentLoaded);
     }
     return () => window.removeEventListener("DOMContentLoaded", onDOMContentLoaded);
-  }, []);
+  }, [isMobile]);
 
   const preloadAssets = (urls: string[]) =>
     new Promise<void>((resolve) => {
@@ -65,6 +68,7 @@ export default function Loader() {
     });
 
   useEffect(() => {
+    if (isMobile == null) return;
     const loadAll = async () => {
       try {
         await preloadAssets(assets);
@@ -74,7 +78,7 @@ export default function Loader() {
       }
     };
     loadAll();
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     if (loaded && domReady) setHideLoader(true);
