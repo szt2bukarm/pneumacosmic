@@ -13,6 +13,7 @@ import ImageGallery from "../components/common/ImageGallery/ImageGallery";
 import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect, useState } from "react";
+import { useStore } from "../useStore";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
@@ -259,6 +260,10 @@ const carousel4 = [
 export default function Page() {
     const lenis = useLenis();
     const [mounted,setMounted] = useState(false);
+    const {isMobile} = useStore();
+    const [videoID, setVideoID] = useState(1);
+
+
 
     useEffect(() => {
         // scroll instantly to top via Lenis if available
@@ -329,11 +334,31 @@ export default function Page() {
         <PageNavHeader />
         <PageTitle delay={2.5} subtext="Bal oldali szárny" text="BENNSZORULT LÉLEGZET" />
 
+        {!isMobile && (
         <div data-gsap="canvas" className="h-[150vh] w-screen fixed top-0 left-0">
         <Exhibiton2Render />
         </div>
+        )}
 
-        <div className="w-full h-[calc(100vh-290px-20vh)] md:h-[calc(100vh-290px)]"></div>
+{isMobile && (
+  <div className="fixed top-0 left-0 w-screen h-[calc(100vh)] bg-[#000]">
+    <video
+      key={videoID} // force re-render when src changes
+      autoPlay
+      muted
+      playsInline
+      className="w-full h-full object-contain"
+      src={`scene${videoID}.mp4`}
+      onEnded={() => {
+        if (videoID === 1) {
+          setVideoID(2);
+        }
+      }}
+    />
+  </div>
+)}
+
+        <div className="w-full h-[calc(100vh-290px-20vh)] md:h-[calc(100vh)]"></div>
 
         <div className="relative w-full h-full bg-black">
 

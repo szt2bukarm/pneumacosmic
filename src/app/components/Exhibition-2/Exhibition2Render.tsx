@@ -55,7 +55,7 @@ function Scene() {
   const lightRef = useRef<THREE.SpotLight>(null);
   const {isMobile,loaded} = useStore();
 
-  const videoTexture = useVideoTexture("videoc.mp4", {
+  const videoTexture = useVideoTexture("video.mp4", {
     muted: true,
     loop: true,
     autoplay: true,
@@ -252,7 +252,6 @@ function DynamicDPR() {
       trigger: "[data-gsap='canvas']", 
       start: "top-=1 bottom",
       end: "80% top",
-      markers: true,
       onEnter: () => {
         gl.setPixelRatio(fullDPR)
         gsap.set("[data-gsap='canvas']", { display: "block" })
