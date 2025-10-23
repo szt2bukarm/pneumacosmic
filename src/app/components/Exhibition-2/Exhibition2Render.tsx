@@ -55,7 +55,7 @@ function Scene() {
   const lightRef = useRef<THREE.SpotLight>(null);
   const {isMobile,loaded} = useStore();
 
-  const videoTexture = useVideoTexture("video.mp4", {
+  const videoTexture = useVideoTexture("videoc.mp4", {
     muted: true,
     loop: true,
     autoplay: true,

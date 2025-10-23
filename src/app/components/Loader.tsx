@@ -34,7 +34,7 @@ export default function Loader() {
     useGLTF.preload('3dc.glb');
     useEnvironment.preload({ files: 'black.exr' });
     const video = document.createElement('video');
-    video.src = 'video.mp4';
+    video.src = 'videoc.mp4';
     video.load();
 
     const onDOMContentLoaded = () => setDomReady(true);
@@ -127,7 +127,7 @@ export default function Loader() {
       data-gsap="loader"
       className="pointer-events-none fixed top-0 left-0 w-screen h-screen bg-black z-[9999] flex items-center justify-center"
     >
-      <p className="text-white text-h1">loading</p>
+      <p className="text-white text-h1">{loaded ? "loaded" : "loading"}</p>
       <div className="w-[1px] h-[1px] opacity-0">
         {!loaded && <Exhibition2Render />}
       </div>
