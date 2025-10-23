@@ -120,7 +120,7 @@ function Scene() {
 
 
       {/* 3D Model */}
-      <GLBModel path="3d.glb" position={[0, -0.45, 0]} scale={[0.4, 0.4, 0.4]} />
+      <GLBModel path="3dc.glb" position={[0, -0.45, 0]} scale={[0.4, 0.4, 0.4]} />
 
       {/* Environment */}
       <Environment files="black.exr" />

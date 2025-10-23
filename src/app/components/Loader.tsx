@@ -31,7 +31,7 @@ export default function Loader() {
   const { setIsMobile } = useStore();
 
   useEffect(() => {
-    useGLTF.preload('3d.glb');
+    useGLTF.preload('3dc.glb');
     useEnvironment.preload({ files: 'black.exr' });
     const video = document.createElement('video');
     video.src = 'video.mp4';
