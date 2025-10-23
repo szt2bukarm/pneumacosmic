@@ -91,10 +91,9 @@ export default function BlurredImageCarousel({ images }: Props) {
       className="relative w-full h-[200px] md:h-[350px] lg:h-[600px] overflow-visible cursor-pointer"
       onClick={openGallery}
     >
-      {!isMobile && (
         <div
           ref={blurRef}
-          className="absolute top-0 left-0 flex gap-[3px] md:gap-[5px] lg:gap-[10px] h-full overflow-visible opacity-50"
+          className={`${isMobile && "hidden"} absolute top-0 left-0 flex gap-[3px] md:gap-[5px] lg:gap-[10px] h-full overflow-visible opacity-50`}
         >
           {images.concat(images).map((image, i) => (
             <div className="w-[320px] md:w-[550px] lg:w-[950px] h-full">
@@ -102,7 +101,6 @@ export default function BlurredImageCarousel({ images }: Props) {
             </div>
           ))}
         </div>
-      )}
 
       <div ref={sharpRef} className="absolute top-0 left-0 flex gap-[3px] md:gap-[5px] lg:gap-[10px] h-full overflow-visible">
         {images.concat(images).map((image, i) => (

@@ -2,21 +2,18 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import {
   MeshReflectorMaterial,
-  OrbitControls,
-  useHelper,
   useVideoTexture,
   Environment,
   useGLTF,
   PerspectiveCamera,
 } from "@react-three/drei";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import { EffectComposer, Bloom, DepthOfField } from "@react-three/postprocessing";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useLenis } from "@studio-freight/react-lenis";
+import { useStore } from "@/app/useStore";
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 
 interface GLBModelProps {
@@ -56,6 +53,7 @@ function GLBModel({
 
 function Scene() {
   const lightRef = useRef<THREE.SpotLight>(null);
+  const {isMobile,loaded} = useStore();
 
   const videoTexture = useVideoTexture("video.mp4", {
     muted: true,
@@ -90,11 +88,12 @@ function Scene() {
       />
 
       {/* Reflective Floor */}
+      {loaded && (
       <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[50, 50]} />
         <MeshReflectorMaterial
-          blur={[2000, 500]}
-          resolution={2048}
+          blur={isMobile ? [2000, 500] : [2000, 500]}
+          resolution={isMobile ? 64 : 512}
           mixBlur={1}
           mixStrength={550}
           roughness={1}
@@ -102,11 +101,14 @@ function Scene() {
           metalness={0}
         />
       </mesh>
+      )}
+
+      {loaded && (
       <mesh position={[0, 0, -8.5]}>
         <planeGeometry args={[50, 50]} />
         <MeshReflectorMaterial
           blur={[300, 300]}
-          resolution={1024}
+          resolution={isMobile ? 64 : 512}
           mixBlur={1}
           mixStrength={150}
           roughness={1}
@@ -114,6 +116,8 @@ function Scene() {
           metalness={0}
         />
       </mesh>
+      )}
+
 
       {/* 3D Model */}
       <GLBModel path="3d.glb" position={[0, -0.45, 0]} scale={[0.4, 0.4, 0.4]} />
@@ -245,7 +249,7 @@ function DynamicDPR() {
     const lowDPR = 0.001
 
     const trigger = ScrollTrigger.create({
-      trigger: "[data-gsap='canvas']", // 👈 change to whatever element defines visibility
+      trigger: "[data-gsap='canvas']", 
       start: "top-=1 bottom",
       end: "80% top",
       markers: true,
@@ -277,12 +281,14 @@ function DynamicDPR() {
 }
     
 export default function Exhibition2Render() {
+  const {isMobile} = useStore();
+
   return (
     <Canvas
       className="translate-y-[-20vh] md:translate-y-0"
       dpr={[0.5,1.25]}
       gl={{
-        toneMapping: THREE.ACESFilmicToneMapping,
+        toneMapping: isMobile ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping,
         outputEncoding: THREE.sRGBEncoding,
       }}
     >
