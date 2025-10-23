@@ -73,7 +73,7 @@ export default function Page() {
 
     <div className="relative w-screen min-h-screen bg-white overflow-x-hidden">
 
-        <PageNavHeader />
+        <div className="z-[30] fixed top-0 left-0 w-screen h-[150px] bg-gradient-to-b from-[#FFFFFFA9] to-transparent opacity-75"></div>
 
         <PageTitle delay={1.5} subtext="Jobb oldali szárny" text="VÉGTELEN TÜRELEM" />
         <div className="h-[100px]" ></div>

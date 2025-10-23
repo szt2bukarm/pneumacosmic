@@ -311,7 +311,7 @@ export default function Page() {
       return (
         <div data-gsap="exhibition-3" className="relative w-screen min-h-screen bg-dark overflow-x-hidden">
 
-        <PageNavHeader />
+        <div className="z-[30] fixed top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-black to-transparent"></div>
 
         <PageTitle delay={1.35} subtext="Apszis" text="PÁROS LÁBBAL A FÖLD FÖLÖTT" />
 

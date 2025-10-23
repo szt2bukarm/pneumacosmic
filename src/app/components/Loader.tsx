@@ -34,7 +34,7 @@ export default function Loader() {
     useGLTF.preload('3dc.glb');
     useEnvironment.preload({ files: 'black.exr' });
     const video = document.createElement('video');
-    video.src = 'videoc.mp4';
+    video.src = 'video.mp4';
     video.load();
 
     const onDOMContentLoaded = () => setDomReady(true);
@@ -87,38 +87,6 @@ export default function Loader() {
       opacity: 0,
       duration: 1,
       delay: 0.75,
-      onComplete: () => {
-        let index = 0;
-        const batchSize = 4;
-  
-        const loadBatch = () => {
-          const batch = assetsAfterLoaded.slice(index, index + batchSize);
-          batch.forEach((src) => {
-            const img = new Image();
-            img.src = src;
-          });
-          index += batchSize;
-  
-          if (index < assetsAfterLoaded.length) {
-            if ('requestIdleCallback' in window) {
-              requestIdleCallback(loadBatch, { timeout: 100 });
-            } else {
-              setTimeout(loadBatch, 100);
-            }
-          } else {
-            const loaderEl = document.querySelector('[data-gsap="loader"]');
-            if (loaderEl?.parentNode) {
-              loaderEl.parentNode.removeChild(loaderEl);
-            }
-          }
-        };
-  
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(loadBatch, { timeout: 100 });
-        } else {
-          setTimeout(loadBatch, 100);
-        }
-      },
     });
   }, [hideLoader]);
 

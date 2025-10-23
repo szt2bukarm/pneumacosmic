@@ -331,7 +331,7 @@ export default function Page() {
     return (
     <div className="relative w-screen min-h-screen bg-black overflow-x-hidden">
 
-        <PageNavHeader />
+        <div className="z-[30] fixed top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-black to-transparent"></div>
         <PageTitle delay={2.5} subtext="Bal oldali szárny" text="BENNSZORULT LÉLEGZET" />
 
         {!isMobile && (
@@ -340,23 +340,34 @@ export default function Page() {
         </div>
         )}
 
-{isMobile && (
-  <div className="fixed top-0 left-0 w-screen h-[calc(100vh)] bg-[#000]">
-    <video
-      key={videoID} // force re-render when src changes
-      autoPlay
-      muted
-      playsInline
-      className="w-full h-full object-contain"
-      src={`scene${videoID}.mp4`}
-      onEnded={() => {
-        if (videoID === 1) {
-          setVideoID(2);
-        }
-      }}
-    />
-  </div>
-)}
+        {isMobile && (
+        <div className="fixed top-0 left-0 w-screen h-[calc(100vh)] bg-[#000]">
+            {videoID == 1 && (
+            <video
+            autoPlay
+            muted
+            playsInline
+            className="w-full h-full object-contain"
+            src={`scene${videoID}.mp4`}
+            onEnded={() => {
+            if (videoID === 1) {
+                setVideoID(2);
+            }}}
+            />
+            )}
+
+            {videoID == 2 && (
+            <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-contain"
+            src={`scene${videoID}.mp4`}
+            />
+            )}
+        </div>
+        )}
 
         <div className="w-full h-[calc(100vh-290px-20vh)] md:h-[calc(100vh)]"></div>
 
