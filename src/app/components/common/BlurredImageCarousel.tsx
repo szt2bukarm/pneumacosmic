@@ -36,7 +36,7 @@ export default function BlurredImageCarousel({ images,title }: Props) {
             start: "top-=200 center",
             end: "bottom+=200 center",
             scrub: true,
-            animation: gsap.fromTo(image, { y: -30 }, { y: 30 }),
+            animation: gsap.fromTo(image, { y: "-5%" }, { y: "5%" }),
           });
           triggers.push(trigger);
         });

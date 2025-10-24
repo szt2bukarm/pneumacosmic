@@ -63,6 +63,31 @@ export default function WalkSequence() {
       end: "+=4000",
       scrub: true,
       pin: true,
+      markers: false, // Set to true temporarily for debugging
+      onEnter: () => {
+        gsap.to(blurCanvasRef.current, {
+          opacity: 1,
+          duration: 0.3
+        })
+      },
+      onLeave: () => {
+        gsap.to(blurCanvasRef.current, {
+          opacity: 0,
+          duration: 0.3
+        })
+      },
+      onEnterBack: () => {
+        gsap.to(blurCanvasRef.current, {
+          opacity: 1,
+          duration: 0.3
+        })
+      },
+      onLeaveBack: () => {
+        gsap.to(blurCanvasRef.current, {
+          opacity: 0,
+          duration: 0.3
+        })
+      },
       onUpdate: (self) => {
         const frame = Math.floor(self.progress * (frameCount - 1));
         if (frame !== currentFrame) {
@@ -70,10 +95,14 @@ export default function WalkSequence() {
           renderFrame();
         }
       },
+      animation: gsap.to("[data-gsap='exhibition-3']", {
+        background: "#050505",
+      }),
+      // Add these to prevent scroll jumping
       anticipatePin: 1,
-      pinSpacing: true,
-    });
-
+      pinSpacing: true
+    })
+    
     const handleResize = () => requestAnimationFrame(resizeCanvases);
     window.addEventListener("resize", handleResize);
     resizeCanvases();
@@ -102,3 +131,5 @@ export default function WalkSequence() {
     </section>
   );
 }
+
+

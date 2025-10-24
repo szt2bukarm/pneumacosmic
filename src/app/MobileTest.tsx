@@ -14,7 +14,7 @@ export default function MobileTest() {
             (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
           return isMobileUA || isIpad;
         }; 
-        setIsMobile(checkIfMobile());
+        setIsMobile(true);
       }, []);
 
     return null;

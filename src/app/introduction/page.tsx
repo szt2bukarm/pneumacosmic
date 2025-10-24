@@ -20,8 +20,10 @@ export default function Page() {
             lenis?.stop();
             setTimeout(() => {
                 window.scrollTo(0,0)
+            }, 25);
+            setTimeout(() => {
                 lenis?.start();
-            }, 10);
+            }, 35);
         }, 5);
     },[lenis])
 

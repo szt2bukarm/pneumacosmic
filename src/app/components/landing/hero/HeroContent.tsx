@@ -2,9 +2,11 @@
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import ScrollTrigger from "gsap/src/ScrollTrigger"
+import { useStore } from "@/app/useStore"
 gsap.registerPlugin(ScrollTrigger)
 
 export default function HeroContent() {
+    const {isMobile} = useStore();
 
     // hero animations
     useGSAP(() => {
@@ -12,7 +14,7 @@ export default function HeroContent() {
             
             // initial state
             gsap.set('[data-gsap="hero-logo"]', {
-                filter: "blur(100px)",
+                filter: isMobile ? "blur(20px)" : "blur(100px)",
                 y: 500,
                 opacity: 0,
             })
@@ -20,7 +22,7 @@ export default function HeroContent() {
             gsap.set('[data-gsap="text"]', {
                 opacity: 0,
                 y: 50,
-                filter: "blur(10px)"
+                filter: isMobile ? "blur(10px)" : "blur(10px)"
             })
 
             // // animate in

@@ -6,17 +6,19 @@ import IntroductionBackground from "./IntroductionBackground";
 import gsap from "gsap";
 import { useLayoutEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useStore } from "@/app/useStore";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function IntroductionHeader() {
+    const {isMobile} = useStore();
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
             gsap.set('[data-gsap="introduction-bg"]', { 
                 opacity: 0,
                 scale: 1.4,
-                filter: "blur(20px)"
+                filter: isMobile ? "" : "blur(20px)"
             });
             gsap.to('[data-gsap="introduction-bg"]', {
                 opacity: 1,
@@ -52,7 +54,13 @@ export default function IntroductionHeader() {
 
     return (
         <div className="relative w-full h-[120vh] md:h-[120vh] overflow-hidden">
+            {isMobile && (
+                <div className="absolute z-[20] top-0 left-0 w-screen h-[350px] bg-gradient-to-b from-dark to-transparent">
+                </div>
+            )}
+            {!isMobile && (
             <IntroductionBackground />
+            )}
 
             <PageTitle text="BEMUTATKOZÁS" subtext="" delay={1.5} shadow />
 
