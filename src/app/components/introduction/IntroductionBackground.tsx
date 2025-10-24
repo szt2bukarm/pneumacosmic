@@ -121,16 +121,16 @@ export default function IntroductionBackground() {
       data-gsap="hero-bg"
       className="absolute h-[50vh] inset-0 z-10 rotate-180 "
       style={{
-        filter: "saturate(0) brightness(0.5)",
+        filter: "saturate(0) brightness(0.85)",
         opacity: 1,
         willChange: "opacity",
-        WebkitMaskImage: "linear-gradient(to top, black 60%, transparent 100%)",
+        WebkitMaskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.5) 70%, transparent 100%)",
         WebkitMaskRepeat: "no-repeat",
         WebkitMaskSize: "cover",
-        maskImage: "linear-gradient(to top, black 60%, transparent 100%)",
+        maskImage: "linear-gradient(to top, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.5) 70%, transparent 100%)",
         maskRepeat: "no-repeat",
         maskSize: "cover",
-      }}          
+      }}     
       >
       <Canvas gl={{ antialias: true }} dpr={[0.5, 1.5]}>
         <AuroraPlane />

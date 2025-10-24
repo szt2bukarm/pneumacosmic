@@ -17,7 +17,10 @@ interface Store {
     setIsMobile: (isMobile: boolean) => void
 
     loaded: boolean,
-    setLoaded: (loaded: boolean) => void
+    setLoaded: (loaded: boolean) => void,
+
+    walkBitmaps: ImageBitmap[] | null,          // NEW
+    setWalkBitmaps: (walkBitmaps: ImageBitmap[]) => void // NEW
 }
 
 export const useStore = create<Store>((set) => ({
@@ -38,4 +41,7 @@ export const useStore = create<Store>((set) => ({
 
     loaded: false,
     setLoaded: (loaded) => set({ loaded }),
+
+    walkBitmaps: null,
+    setWalkBitmaps: (walkBitmaps) => set({ walkBitmaps }),
 }))

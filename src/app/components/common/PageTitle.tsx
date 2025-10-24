@@ -7,10 +7,11 @@ gsap.registerPlugin(SplitText);
 interface Props {
   subtext: string,
   text: string,
-  delay: number
+  delay: number,
+  shadow?: boolean
 }
 
-export default function PageTitle({ subtext, text, delay = 0 }: Props) {
+export default function PageTitle({ subtext, text, delay = 0,shadow=false}: Props) {
   const titleRef = useRef<HTMLParagraphElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
 
@@ -66,7 +67,7 @@ export default function PageTitle({ subtext, text, delay = 0 }: Props) {
         </p>
         <p
           ref={titleRef}
-          style={{transform: "translate3D(0, 0, 0)"}}
+          style={{transform: "translate3D(0, 0, 0)",filter: shadow? "drop-shadow(0px 0px 20px rgb(0, 0, 0)" : ""}}
           className="font-gara text-middark text-h3 leading-[44px] md:text-h1 md:leading-[70px]"
         >
           {text}

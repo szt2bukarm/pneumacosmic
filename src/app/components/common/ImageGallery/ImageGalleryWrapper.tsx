@@ -58,7 +58,7 @@ export default function ImageGalleryWrapper() {
 
 
             <div ref={galleryItem}  className='absolute top-[20px] right-5 w-[calc(100vw-40px)] md:w-[75vw] h-[95dvh] border border-white/15 rounded-[16px] overflow-hidden'>
-                <ImageGallery />
+                <ImageGallery closeGallery={closeGallery} />
                 <ImageGalleryMobile />
 
                 {/* fades */}

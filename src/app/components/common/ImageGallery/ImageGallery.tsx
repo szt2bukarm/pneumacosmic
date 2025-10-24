@@ -10,8 +10,8 @@ gsap.registerPlugin(Flip)
 
 const IMAGES_PER_COLUMN = 3
 
-export default function ImageGallery() {
-  const { galleryImages: images, galleryOpen,isMobile } = useStore()
+export default function ImageGallery({closeGallery}: {closeGallery: () => void}) {
+  const { galleryImages: images, galleryOpen, isMobile } = useStore()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const allowMouseMove = useRef(false)
   const [clickedSrc, setClickedSrc] = useState<string | null>(null)
@@ -171,6 +171,43 @@ export default function ImageGallery() {
   for (let i = 0; i < images.length; i += IMAGES_PER_COLUMN) {
     columns.push(images.slice(i, i + IMAGES_PER_COLUMN))
   }
+
+  // Key navigation for left/right arrows
+useEffect(() => {
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (currentImage === null) return;
+    if (e.key === "Escape") {
+      // Close image
+      if (!clickedSrc) {
+        closeGallery();
+        return;
+      } else { 
+        closeImage();
+      }
+    }
+    if (e.key === "ArrowLeft") {
+      // Previous image
+      if (!clickedSrc) return;
+      const prevIndex = currentImage === 0 ? images.length - 1 : currentImage - 1;
+      const prevImage = images[prevIndex];
+      setCurrentImage(prevIndex);
+      setClickedSrc(prevImage.src);
+      setClickedText(prevImage.text || null);
+    } else if (e.key === "ArrowRight") {
+      if (!clickedSrc) return;
+      // Next image
+      const nextIndex = currentImage === images.length - 1 ? 0 : currentImage + 1;
+      const nextImage = images[nextIndex];
+      setCurrentImage(nextIndex);
+      setClickedSrc(nextImage.src);
+      setClickedText(nextImage.text || null);
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+  return () => window.removeEventListener("keydown", handleKeyDown); // cleanup
+}, [clickedSrc, currentImage, images]);
 
   return (
     <div
