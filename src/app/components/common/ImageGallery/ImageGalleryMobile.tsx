@@ -4,16 +4,18 @@ import { useGSAP } from "@gsap/react"
 import { useEffect, useRef, useState, useCallback } from "react"
 import { Flip } from "gsap/Flip"
 import { useStore } from "../../../useStore"
+import { useLenis } from "@studio-freight/react-lenis"
 
 gsap.registerPlugin(Flip)
 
 export default function ImageGalleryMobile() {
-  const { galleryImages: images, setGalleryOpen, galleryOpen } = useStore()
+  const { galleryImages: images, setGalleryOpen, galleryOpen,isMobile } = useStore()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [allowScroll, setAllowScroll] = useState(false)
   const [clickedSrc, setClickedSrc] = useState<string | null>(null)
   const [clickedText, setClickedText] = useState<string | null>(null)
   const imageRef = useRef<HTMLImageElement | null>(null)
+  const lenis = useLenis();
   const animationTimeline = useRef<gsap.core.Timeline | null>(null)
 
   const animateImages = useCallback(() => {
@@ -23,22 +25,25 @@ export default function ImageGalleryMobile() {
     const imgs = container.querySelectorAll<HTMLImageElement>("img")
     const parents = Array.from(imgs).map((img) => img.parentElement!) as HTMLElement[]
 
-    gsap.set(parents.slice(0, 4), { y: 550 })
+    gsap.set(parents, { y: 100,opacity:0 })
 
     gsap.to(parents, {
       y: 0,
-      duration: 1,
-      stagger: 0.1,
-      delay: 0.15,
+      opacity:1,
+      duration: 0.5,
+      stagger: 0.05,
+      delay: 0.3,
       ease: "power4.out",
     })
   }, [])
 
   useGSAP(() => {
     if (!containerRef.current || !galleryOpen) return
+    lenis?.stop();
     animateImages()
     setTimeout(() => {
       setAllowScroll(true)
+      lenis?.start();
     }, 1000)
   }, [galleryOpen, animateImages])
 
@@ -60,6 +65,7 @@ export default function ImageGalleryMobile() {
         onStart: () => {
           setClickedSrc(targetSrc || null)
           setClickedText(targetText || null)
+          lenis?.stop();
         },
         duration: 0.25,
         ease: "power4.out",
@@ -77,6 +83,7 @@ export default function ImageGalleryMobile() {
       duration: 0.5,
       onComplete: () => {
         gsap.to("[data-gsap='gallery-subtitle']", { opacity: 1, duration: 0.5 })
+        lenis?.start();
       },
     })
 
@@ -104,7 +111,7 @@ export default function ImageGalleryMobile() {
 
   return (
     <div
-      className="block md:hidden relative w-full h-full overflow-scroll py-[100px] overflow-x-hidden"
+      className={`${isMobile ? "block" : "block md:hidden"} relative w-full h-full overflow-scroll py-[100px] overflow-x-hidden`}
       style={{
         background:
           "linear-gradient(180deg, #050505 0%, #0A0A0A 14.9%, #191919 89.42%, #191919 100%)",
@@ -135,13 +142,13 @@ export default function ImageGalleryMobile() {
       {/* Image grid container */}
       <div
         ref={containerRef}
-        className="z-0 flex flex-col gap-[12px] max-w-fit overflow-x-hidden"
-        style={{ pointerEvents: "auto" }}
+        className="z-0 grid grid-cols-1 md:grid-cols-2 gap-[12px] absolute top-0 py-[100px] max-w-fit overflow-x-hidden px-[20px]"
+        style={{ pointerEvents: "auto"}}
       >
         {images.map(({ src, text }, index) => (
           <div
             key={index}
-            className="relative hover:opacity-100 transition-opacity duration-350 aspect-[16/9] overflow-hidden w-[95%] mx-auto"
+            className="relative aspect-[16/9] overflow-hidden w-[100%] mx-auto"
           >
             <img
               className="w-full h-full object-cover object-center cursor-pointer"

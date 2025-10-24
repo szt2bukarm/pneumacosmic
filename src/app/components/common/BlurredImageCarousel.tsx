@@ -8,10 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   images: { src: string; text?: string }[]
+  title: string
 }
 
-export default function BlurredImageCarousel({ images }: Props) {
-  const { setGalleryOpen, setGalleryImages, isMobile } = useStore()
+export default function BlurredImageCarousel({ images,title }: Props) {
+  const { setGalleryOpen, setGalleryImages,setGalleryTitle, isMobile } = useStore()
   const imagesRef = useRef<HTMLImageElement[]>([])
   const [imageWidth,setImageWidth] = useState(950);
   const [width,setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 0);
@@ -19,6 +20,7 @@ export default function BlurredImageCarousel({ images }: Props) {
     const openGallery = () => {
       setGalleryOpen(true)
       setGalleryImages(images)
+      setGalleryTitle(title)
     }
 
     useGSAP(() => {

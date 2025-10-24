@@ -11,7 +11,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function IntroductionHeader() {
 
-    useLayoutEffect(() => {
+    useGSAP(() => {
         const ctx = gsap.context(() => {
             gsap.set('[data-gsap="introduction-bg"]', { 
                 opacity: 0,
@@ -56,7 +56,6 @@ export default function IntroductionHeader() {
         <div className="relative w-full h-[calc(100vh+100px)] md:h-[calc(120vh+100px)] overflow-hidden">
             <IntroductionBackground />
             <PageTitle text="BEMUTATKOZÁS" subtext="" delay={1.5} />
-            <div className="absolute top-0 left-0 h-[200px] w-screen bg-black"></div>
 
             <div data-gsap="introduction-bg-scrollwrap" className="absolute top-0 left-0 w-full h-full">
             <img data-gsap="introduction-bg" src="images/introduction/introduction.webp" className="opacity-0 w-full h-[100vh] md:h-[120vh] object-cover" />

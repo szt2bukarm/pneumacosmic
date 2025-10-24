@@ -10,6 +10,9 @@ interface Store {
     galleryImages: { src: string; text: string }[]
     setGalleryImages: (galleryImages: { src: string; text: string }[]) => void
 
+    galleryTitle: string,
+    setGalleryTitle: (galleryTitle: string) => void
+
     isMobile: boolean | null,
     setIsMobile: (isMobile: boolean) => void
 
@@ -26,6 +29,9 @@ export const useStore = create<Store>((set) => ({
 
     galleryImages: [],
     setGalleryImages: (galleryImages) => set({ galleryImages }),
+
+    galleryTitle: "",
+    setGalleryTitle: (galleryTitle) => set({ galleryTitle }),
 
     isMobile: null,
     setIsMobile: (isMobile) => set({ isMobile }),

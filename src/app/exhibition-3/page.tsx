@@ -247,26 +247,19 @@ export default function Page() {
     const [mounted,setMounted] = useState(false);
 
     useEffect(() => {
-        // scroll instantly to top via Lenis if available
-        if (lenis) {
-          lenis.scrollTo(0, { immediate: true });
-          lenis.stop(); // pause scroll
-        }
-      
-        // fallback native scroll
-        requestAnimationFrame(() => {
-          window.scrollTo(0, 0);
-        });
-      
-        // optionally restart Lenis after a frame
-        requestAnimationFrame(() => {
-          lenis?.start();
-        });
-      }, [lenis]);
+        if (!lenis) return
+        lenis?.scrollTo(0,{immediate: true})
+        setTimeout(() => {
+            lenis?.stop();
+            setTimeout(() => {
+                window.scrollTo(0,0)
+                lenis?.start();
+            }, 10);
+        }, 5);
+    },[lenis])
       
 
       useEffect(() => {
-        // only run on client
         if (typeof window === "undefined") return;
       
         const handleScroll = () => {
@@ -279,8 +272,6 @@ export default function Page() {
             })
           }
         };
-      
-        // check immediately in case page already at top
         handleScroll();
       
         window.addEventListener("scroll", handleScroll);

@@ -11,11 +11,11 @@ function SmoothScroll({ children }: { children: React.ReactNode }) {
     gsap.config({
       nullTargetWarn: false,
     });
-    if (!loaded) return null;
+    // if (!loaded) return null;
 
   return (
     <ReactLenis className="current-page" root options={{ lerp: 0.1, duration: 1 }}>
-      {children}
+      {loaded && children}
     </ReactLenis>
   );
 }

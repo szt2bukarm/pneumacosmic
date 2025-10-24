@@ -266,22 +266,16 @@ export default function Page() {
 
 
     useEffect(() => {
-        // scroll instantly to top via Lenis if available
-        if (lenis) {
-          lenis.scrollTo(0, { immediate: true });
-          lenis.stop(); // pause scroll
-        }
-      
-        // fallback native scroll
-        requestAnimationFrame(() => {
-          window.scrollTo(0, 0);
-        });
-      
-        // optionally restart Lenis after a frame
-        requestAnimationFrame(() => {
-          lenis?.start();
-        });
-      }, [lenis]);
+        if (!lenis) return
+        lenis?.scrollTo(0,{immediate: true})
+        setTimeout(() => {
+            lenis?.stop();
+            setTimeout(() => {
+                window.scrollTo(0,0)
+                lenis?.start();
+            }, 10);
+        }, 5);
+    },[lenis])
       
 
       useEffect(() => {
@@ -377,7 +371,7 @@ export default function Page() {
         <StaggeredSplitText>A Bennszorult lélegzet a szemlélődés, az archeológia és a művészeti kutatás megismerési formáit modellezi az akadémiai tudományos élet tárgyi emlékén keresztül. Az installáció a Magyar Tudományos Akadémia felújítása során, a harmadik emeleti padlózatból kibontott szellőztetőrendszer elemeiből áll. <br></br><br></br>A 200 éves intézmény történelmi jelentőségű épületének lélegzéséért láthatatlanul felelős tárgyak szimbolikusan a tudományos élet nagyjainak leheletét, sóhajait, az agyakat átjáró oxigént őrzik. A szellőzőrendszer a világot egybekötő levegőáramláshoz kapcsolódik, miként a léghez hasonló, testetlen gondolatok létének alapja is a folyamatos, termékeny cserélődés.</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel1} />
+        <BlurredImageCarousel images={carousel1} title="gallery-1"/>
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
         <StaggeredSplitText>Az ipari tárgyakkal párbeszédbe állított természeti felvétel jelenik meg a falon, melyen a lassan változó fumarola jelenség a pneuma cosmic bolygó léptékű, természeti megmutatkozásaként, egy kozmikus lehelet kiáramlásaként jelenik meg. A levegő és a gondolatok cserélődése itt egy leletben tárul a néző elé, melynek kutatása párbeszédet teremt a tudományos akadémiák szellemisége és egy kutató művész metaforikus világlátása között.</StaggeredSplitText>
@@ -385,7 +379,7 @@ export default function Page() {
 
         <Video thumbnail="images/akusztikus.webp" videoID="zwJSWwiAQ5g" />
         <div className="h-[150px]"></div>
-        <BlurredImageCarousel images={carousel2} />
+        <BlurredImageCarousel images={carousel2} title="gallery-2"/>
 
         <div
             className="relative w-full h-full md:h-[550px] lg:h-[800px] pt-[70px] pb-[70px] md:pt-0 md:pb-0 flex items-center justify-center"
@@ -403,14 +397,14 @@ export default function Page() {
         <PinnedImageReveal />
 
         <div className="h-[150px]"></div>
-        <BlurredImageCarousel images={carousel3} />
+        <BlurredImageCarousel images={carousel3} title="gallery-3"/>
 
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[220px] flex items-center justify-center">
             <StaggeredSplitText>Ez a metafora jelenik meg az installációhoz tartozó szénrajzon is, melyen a Magyar Tudományos Akadémia neoreneszánsz székházának homlokzata jelenik meg. Az épületet átjárja vagy megzavarja egy megfoghatatlan, absztrakt motívum, a gesztusszerűen megjelenített légmozgás. A rajzon a két eltérő elem találkozása az általuk képviselt világnézeti és megismerési módok (tudomány és művészet) eltérő jellegét tükrözi, nyitva hagyva a kérdést, hogy találkozásuk termékeny vagy lehetetlen párbeszédet teremt.</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel4} />
+        <BlurredImageCarousel images={carousel4} title="gallery-4"/>
 
         <div className="mx-auto flex flex-col gap-[20px] md:gap-[30px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[924px]">
             <p className="font-gara text-middark text-lg md:text-h4">Az installáció először Koronczi Endre Kérem, sóhajtson, Széchényi Úr! című kiállításán került bemutatásra. 

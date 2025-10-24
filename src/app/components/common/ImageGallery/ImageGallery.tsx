@@ -4,17 +4,19 @@ import { useGSAP } from "@gsap/react"
 import { useEffect, useRef, useState, useCallback } from "react"
 import { Flip } from "gsap/Flip"
 import { useStore } from "../../../useStore"
+import { number } from "mathjs"
 
 gsap.registerPlugin(Flip)
 
 const IMAGES_PER_COLUMN = 3
 
 export default function ImageGallery() {
-  const { galleryImages: images, setGalleryOpen, galleryOpen } = useStore()
+  const { galleryImages: images, galleryOpen,isMobile } = useStore()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const allowMouseMove = useRef(false)
   const [clickedSrc, setClickedSrc] = useState<string | null>(null)
   const [clickedText, setClickedText] = useState<string | null>(null)
+  const [currentImage, setCurrentImage] = useState<number | null>(1)
   const imageRef = useRef<HTMLImageElement | null>(null)
   const animationTimeline = useRef<gsap.core.Timeline | null>(null)
 
@@ -28,8 +30,8 @@ export default function ImageGallery() {
     gsap.set(parents, {
       position: "absolute",
       left: "100%",
-      top: "0%",
-      xPercent: -50,
+      top: "100%",
+      xPercent: -100,
       yPercent: window.innerHeight / 2,
       transformOrigin: "50% 50%",
     })
@@ -56,33 +58,31 @@ export default function ImageGallery() {
 
   const mouseMoveHandler = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      if (!allowMouseMove.current || !containerRef.current) return
-
-      const centerX = window.innerWidth / 2
-      const centerY = window.innerHeight / 2
-
-      const offsetX = centerX - e.clientX
-      const offsetY = centerY - e.clientY
-
-      const container = containerRef.current
-      const containerWidth = container.offsetWidth
-      const containerHeight = container.offsetHeight
-
-      const normX = offsetX / window.innerWidth
-      const normY = offsetY / (window.innerHeight / 2)
-
-      const maxTranslateX = containerWidth / 3
-      const maxTranslateY = containerHeight / 2.5
-
+      if (!allowMouseMove.current || !containerRef.current) return;
+  
+      const container = containerRef.current;
+  
+      const viewportHeight = window.innerHeight;
+      const contentHeight = container.scrollHeight;
+  
+      const normX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+      const normY = (e.clientY - viewportHeight / 2) / (viewportHeight / 2);
+  
+      const maxTranslateX = container.offsetWidth / 5.5;
+  
+      const extraHeight = Math.max(contentHeight - viewportHeight, 0);
+      const maxTranslateY = extraHeight / 1.7; 
+  
       gsap.to(container, {
-        x: normX * maxTranslateX,
-        y: normY * maxTranslateY,
-        duration: 0.75,
-        ease: "power4.out",
-      })
+        x: -normX * maxTranslateX,
+        y: -normY * maxTranslateY,
+        duration: 1,
+        ease: "power3.out",
+      });
     },
     []
-  )
+  );
+
 
   useGSAP(() => {
     if (!containerRef.current || !galleryOpen) return
@@ -105,15 +105,18 @@ export default function ImageGallery() {
 
     gsap.to(containerRef.current, { opacity: 0, scale: 1.05, duration: 0.5 })
     gsap.to("[data-gsap='gallery-subtitle']", { opacity: 0, duration: 0.5 })
+    gsap.to("[data-gsap='gallery-pagination']", { opacity: 1, duration: 0.5 })
     gsap.to("[data-gsap='clicked-text']", { opacity: 1, duration: 0.5,delay: 0.2 })
 
     if (imageRef.current) {
       const targetSrc = e.currentTarget.dataset.src
       const targetText = e.currentTarget.dataset.text
+      const targetIndex = number(e.currentTarget.dataset.index)
       gsap.to(imageRef.current, {
         filter: "blur(0px)",
         opacity: 1,
         onStart: () => {
+          setCurrentImage(targetIndex || 0);
           setClickedSrc(targetSrc || null)
           setClickedText(targetText || null)
         },
@@ -129,6 +132,7 @@ export default function ImageGallery() {
 
     allowMouseMove.current = false
     gsap.to("[data-gsap='clicked-text']", { opacity: 0, duration: 0.5 })
+    gsap.to("[data-gsap='gallery-pagination']", { opacity: 0, duration: 0.5 })
     gsap.to(containerRef.current, {
       opacity: 1,
       scale: 1,
@@ -170,7 +174,7 @@ export default function ImageGallery() {
 
   return (
     <div
-      className="hidden md:block relative w-full h-full overflow-hidden pt-[500px]"
+      className={`${isMobile ? "hidden" : "hidden md:block"} relative w-full h-full overflow-hidden pt-[500px]`}
       style={{
         background:
           "linear-gradient(180deg, #050505 0%, #0A0A0A 14.9%, #191919 89.42%, #191919 100%)",
@@ -193,38 +197,72 @@ export default function ImageGallery() {
         <p data-gsap="clicked-text" className="opacity-0 font-hal text-lg text-middark">{clickedText || ""}</p>
       </div>
 
+      <div data-gsap="gallery-pagination" className="opacity-0 z-[100] absolute left-[50%] top-2 translate-x-[-50%] items-center justify-center flex gap-[5px]">
+          <p
+            onClick={() => {
+              console.log("prev")
+              if (currentImage === null) return;
+              const prevIndex = currentImage === 0 ? images.length - 1 : currentImage - 1; // wrap around
+              const prevImage = images[prevIndex];
+              setCurrentImage(prevIndex);
+              setClickedSrc(prevImage.src);
+              setClickedText(prevImage.text || null);
+            }}
+            className="select-none hover:opacity-50 transition-all duration-150 cursor-pointer font-hal text-h5 text-middark"
+          >
+            {"❮"}
+          </p>
+
+          <p className="font-hal text-lg text-middark w-[80px] text-center">{(currentImage ?? 0) + 1}/{images.length}</p>
+
+          <p
+            onClick={() => {
+              if (currentImage === null) return;
+              const nextIndex = currentImage === images.length - 1 ? 0 : currentImage + 1; // wrap around
+              const nextImage = images[nextIndex];
+              setCurrentImage(nextIndex);
+              setClickedSrc(nextImage.src);
+              setClickedText(nextImage.text || null);
+            }}
+            className="select-none hover:opacity-50 transition-all duration-150 cursor-pointer font-hal text-h5 text-middark"
+          >
+            {"❯"}
+          </p>
+        </div>
+
+
       {/* Image grid container */}
       <div
         ref={containerRef}
         className="z-0 pl-[150px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 grid grid-flow-row auto-rows-[400px] gap-[12px] min-w-full will-change-auto"
       >
         {columns.map((col, colIndex) => (
-          <div
-            key={colIndex}
-            className={`flex flex-row min-h-[600px] gap-[12px] mt-${colIndex * 5}`}
-          >
-            {col.map(({ src, text }, index) => (
-              <div
-                key={index}
-                className="relative hover:opacity-100 transition-opacity duration-350 min-w-[600px] h-[400px] overflow-hidden cursor-pointer"
-              >
-                <img
-                  className="w-full h-full object-cover object-center"
-                  src={src}
-                  onClick={onClick}
-                  data-src={src}
-                  data-text={text || null}
-                  alt={text || `Gallery image ${index}`}
-                />
-                {text && (
-                  <>
-                    <div className="pointer-events-none z-10 absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-black to-transparent"></div>
-                    <p className="pointer-events-none z-20 absolute bottom-5 left-5 font-hal text-lg text-middark">{text}</p>            
-                  </>
-                )}
-
-              </div>
-            ))}
+          <div key={colIndex} className={`flex flex-row min-h-[600px] gap-[12px] `}>
+            {col.map(({ src, text }, index) => {
+              const globalIndex = colIndex * IMAGES_PER_COLUMN + index;
+              return (
+                <div
+                  key={globalIndex} // use global index as key
+                  className="relative hover:opacity-100 transition-opacity duration-350 min-w-[600px] h-[400px] overflow-hidden cursor-pointer"
+                >
+                  <img
+                    className="w-full h-full object-cover object-center"
+                    src={src}
+                    onClick={onClick}
+                    data-index={globalIndex} // <-- assign global index here
+                    data-src={src}
+                    data-text={text || null}
+                    alt={text || `Gallery image ${globalIndex}`}
+                  />
+                  {text && (
+                    <>
+                      <div className="pointer-events-none z-10 absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-black to-transparent"></div>
+                      <p className="pointer-events-none z-20 absolute bottom-5 left-5 font-hal text-lg text-middark">{text}</p>
+                    </>
+                  )}
+                </div>
+              )
+            })}
           </div>
         ))}
       </div>

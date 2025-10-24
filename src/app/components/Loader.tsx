@@ -130,11 +130,6 @@ export default function Loader() {
       className="pointer-events-none fixed top-0 left-0 w-screen h-screen bg-black z-[9999] flex items-center justify-center"
     >
       <p className="text-white text-h1">{loaded ? "loaded" : "loading" + " " + Math.floor(progress)}</p>
-      {!isMobile && (
-              <div className='w-[1px] h-[1px] opacity-0'>
-              <Exhibition2Render />
-              </div>
-      )}
     </div>
   );
 }
