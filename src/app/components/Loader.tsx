@@ -15,12 +15,21 @@ const assets = [
   "images/fal.webp",
   "images/akusztikus.webp",
   "logo.svg",
-  "footerbanner.svg"
+  "footerbanner.svg",
+  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-2/gallery-1/${i + 1}.webp`),
+  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-2/gallery-2/${i + 1}mtan.webp`),
+  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-2/gallery-3/${i + 1}kecskemet.webp`),
+  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-2/gallery-4/${i + 1}mta.webp`),
+  ...Array.from({ length: 7 }, (_, i) => `images/exhibition-2/MTA/${i}.webp`),
+  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-3/gallery-1/${i + 1}general.webp`),
+  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-3/gallery-2/${i + 1}werk.webp`),
+  ...Array.from({ length: 3 }, (_, i) => `images/exhibition-3/gallery-3/${i + 1}object.webp`),
+  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-3/walk/${i + 1}walk.webp`),
+  ...Array.from({ length: 3 }, (_, i) => `images/exhibition-4/gallery-1/${i + 1}kiallitas.webp`),
 ];
 
-const assetsAfterLoaded = Array.from({ length: 64 }, (_, i) =>
-  `images/exhibition-3/walk/${i + 1}walk.webp`
-);
+// const assetsAfterLoaded = [
+// ];
 
 export default function Loader() {
   const { setLoaded, loaded } = useStore();
@@ -28,27 +37,9 @@ export default function Loader() {
   const progressRef = useRef(0);
   const [hideLoader, setHideLoader] = useState(false);
   const [domReady, setDomReady] = useState(false);
-  const { setIsMobile,isMobile } = useStore();
+  const { setIsMobile, isMobile } = useStore();
 
-  useEffect(() => {
-    if (isMobile == null) return;
-    if (!isMobile) {
-    useGLTF.preload('3dc.glb');
-    useEnvironment.preload({ files: 'black.exr' });
-    const video = document.createElement('video');
-    video.src = 'video.mp4';
-    video.load();
-    }
-
-    const onDOMContentLoaded = () => setDomReady(true);
-    if (document.readyState === "complete" || document.readyState === "interactive") {
-      setDomReady(true);
-    } else {
-      window.addEventListener("DOMContentLoaded", onDOMContentLoaded);
-    }
-    return () => window.removeEventListener("DOMContentLoaded", onDOMContentLoaded);
-  }, [isMobile]);
-
+  // ---- preload helper ----
   const preloadAssets = (urls: string[]) =>
     new Promise<void>((resolve) => {
       let loadedCount = 0;
@@ -60,6 +51,7 @@ export default function Loader() {
           loadedCount++;
           const prog = (loadedCount / total) * 100;
           setProgress(prog);
+          console.log(prog)
           progressRef.current = prog;
           if (loadedCount >= total) resolve();
         };
@@ -67,6 +59,36 @@ export default function Loader() {
       });
     });
 
+  // ---- initial setup ----
+  useEffect(() => {
+    if (isMobile == null) return;
+
+    if (!isMobile) {
+      useGLTF.preload('3dc.glb');
+      useEnvironment.preload({ files: 'black.exr' });
+      const video = document.createElement('video');
+      video.src = 'video.mp4';
+      video.load();
+    } else {
+      const video1 = document.createElement('video');
+      video1.src = 'scene1.mp4';
+      video1.load();
+      const video2 = document.createElement('video');
+      video2.src = 'scene2.mp4';
+      video2.load();
+    }
+
+    const onDOMContentLoaded = () => setDomReady(true);
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+      setDomReady(true);
+    } else {
+      window.addEventListener("DOMContentLoaded", onDOMContentLoaded);
+    }
+
+    return () => window.removeEventListener("DOMContentLoaded", onDOMContentLoaded);
+  }, [isMobile]);
+
+  // ---- preload initial assets ----
   useEffect(() => {
     if (isMobile == null) return;
     const loadAll = async () => {
@@ -80,17 +102,25 @@ export default function Loader() {
     loadAll();
   }, [isMobile]);
 
+  // ---- trigger hide loader ----
   useEffect(() => {
     if (loaded && domReady) setHideLoader(true);
   }, [loaded, domReady]);
 
+  // ---- GSAP fadeout + post-load ----
   useGSAP(() => {
     if (!hideLoader) return;
-  
+
     gsap.to('[data-gsap="loader"]', {
       opacity: 0,
       duration: 1,
       delay: 0.75,
+      // onComplete: () => {
+      //   // load the rest in the background, no batching
+      //   preloadAssets(assetsAfterLoaded).catch((e) =>
+      //     console.error("Background asset preload error:", e)
+      //   );
+      // }
     });
   }, [hideLoader]);
 
@@ -99,8 +129,12 @@ export default function Loader() {
       data-gsap="loader"
       className="pointer-events-none fixed top-0 left-0 w-screen h-screen bg-black z-[9999] flex items-center justify-center"
     >
-      <p className="text-white text-h1">{loaded ? "loaded" : "loading"}</p>
-
+      <p className="text-white text-h1">{loaded ? "loaded" : "loading" + " " + Math.floor(progress)}</p>
+      {!isMobile && (
+              <div className='w-[1px] h-[1px] opacity-0'>
+              <Exhibition2Render />
+              </div>
+      )}
     </div>
   );
 }
