@@ -48,28 +48,15 @@ export default function Page() {
         }, 5);
     },[lenis])
 
-
     useGSAP(() => {
-        const ctx = gsap.context(() => {
-            let parallaxTrigger = ScrollTrigger.create({
-                trigger: '[data-gsap="exhibition-2-textbg"]',
-                start: "top-=100 center",
-                end: "bottom+=100 center",
-                scrub: true,
-                animation: gsap.to('[data-gsap="exhibition-2-textbg"]', {
-                    y: "10%",
-                })
-            })
-
-            return () => {
-                parallaxTrigger.kill()
-            }
+        gsap.from('[data-gsap="exhibition-4-gallery-1"]', {
+            y: 150,
+            opacity: 0,
+            duration: 1.5,
+            delay: 1.6,
+            ease: "power4.out"
         })
-
-        return () => ctx.revert()
     },[])
-
-
 
     return (
 
@@ -80,7 +67,9 @@ export default function Page() {
         <PageTitle delay={1.5} subtext="Jobb oldali szárny" text="VÉGTELEN TÜRELEM" />
         <div className="h-[100px]" ></div>
 
-        <BlurredImageCarousel images={carousel1} />
+        <div data-gsap="exhibition-4-gallery-1" className="mt-[100px]">
+        <BlurredImageCarousel images={carousel1} trigger={false} />
+        </div>
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
         <StaggeredSplitText>Az installáción megjelenő mozgás visszafogott, alig észrevehető, mely a fókuszált figyelem és tekintet határait feszegeti, miközben a lassú mozgás megfigyelése egy kutató türelmére készteti a nézőt. A lélegző fal egyúttal egy optikai játékot is űz velünk: a fal síkjának emelkedése szemből vizsgálva alig észrevehető, elnyeli az egynemű fehér felület, míg oldalról jobban megfigyelhető a kidomborodó, majd visszaereszkedő anyag. A művön végbemenő változás a lélegző mellkas mozgását idézi.<br></br><br></br>A Végtelen türelem minimalista, traszcendentális hatást kelt, víziószerűen mutatva be a pavilon légzését. A metafizikai valóságra reflektáló installáció a világ észrevétlen, testetlen mozgatójára utal. A kiállítás alatt bejárt asszociációs kör végpontjaként az installáció környezet és légmozgás kapcsolatának, valamint a pneuma cosmic gondolatának elvont, absztrakt megfogalmazása.</StaggeredSplitText>

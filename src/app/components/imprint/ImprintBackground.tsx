@@ -1,9 +1,10 @@
 "use client";
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { useStore } from "@/app/useStore";
 
 function AuroraPlane() {
   const meshRef = useRef<any>();
@@ -104,24 +105,68 @@ function AuroraPlane() {
 }
 
 export default function ImprintBackground() {
+  const [carouselIndex, setCarouselIndex] = useState(0)
+  const imagesRef = useRef<HTMLImageElement[]>([])
+  const tweenRef = useRef<gsap.core.Tween | null>(null)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const [allowTimeout, setAllowTimeout] = useState<boolean>(true)
+  const {isMobile} = useStore();
 
-    useGSAP(() => {
-        const ctx = gsap.context(() => {
-            gsap.set('[data-gsap="hero-bg"]', {
-                opacity: 0.001,
-            })
-            gsap.to('[data-gsap="hero-bg"]', {
+      useGSAP(() => {
+
+        if (!imagesRef.current) return
+        if (tweenRef.current) tweenRef.current.kill()
+            
+            imagesRef.current.forEach((img, i) => {
+                if (i !== carouselIndex) gsap.to(img, { opacity: 0, duration: 0.3,scale: 1.05, filter: "blur(15px)", ease: "power1.out" })
+                })
+
+            
+            gsap.set(imagesRef.current[carouselIndex],{ opacity: 0, y: -50 })
+            tweenRef.current = gsap.to(imagesRef.current[carouselIndex],  {
                 opacity: 1,
-                duration: 3,
-                ease: "power4.out"
+                scale: 1,
+                filter: "blur(0px)",
+                duration: 1,
+                ease: "power2.out",
             })
-        })
-    })
+    },[carouselIndex,imagesRef.current])
+
+    useEffect(() => {
+        if (!allowTimeout) {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current)
+                timeoutRef.current = null
+            }
+            return
+        }
+
+        if (timeoutRef.current) clearTimeout(timeoutRef.current)
+        timeoutRef.current = setTimeout(() => {
+            setCarouselIndex((prev) => {
+                if (prev === 5) return 0
+                return prev + 1
+            })
+        }, 5000)
+    },[carouselIndex,allowTimeout])
+
+
 
   return (
-<div
-  data-gsap="hero-bg"
-  className="absolute inset-0 z-10"
+  <div data-gsap="imprint-bg-wrapper" className="sticky top-0 w-screen h-screen opacity-50">
+    <div className="relative w-full h-full overflow-hidden">
+    <div data-gsap="imprint-bgimage" className="absolute top-0 left-0 w-screen h-screen !z-[5] opacity-75">
+        <img ref={el => {imagesRef.current[0] = el}} src="images/saroslab.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img ref={el => {imagesRef.current[1] = el}} src="images/fal.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img ref={el => {imagesRef.current[2] = el}} src="images/bennszorult.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img ref={el => {imagesRef.current[3] = el}} src="images/paroslab.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img ref={el => {imagesRef.current[4] = el}} src="images/lelegzofal.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img ref={el => {imagesRef.current[5] = el}} src="images/akusztikus.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+    </div>
+    {!isMobile && (
+  <div
+  data-gsap="imprint-bg"
+  className="absolute top-0 left-0 w-screen h-screen z-[10]"
   style={{
     filter: "saturate(0) brightness(0.5)",
     opacity: 1,
@@ -136,9 +181,15 @@ export default function ImprintBackground() {
     maskSize: "cover",
   }}
 >
-  <Canvas gl={{ antialias: true }} dpr={[0.5, 1.5]}>
-    <AuroraPlane />
-  </Canvas>
+    <div className="w-screen h-screen z-[10]">
+    <Canvas gl={{ antialias: true }} dpr={[0.5, 1.5]}>
+      <AuroraPlane />
+    </Canvas>
+    </div>
+  </div>
+    )}
+  </div>
 </div>
+
   );
 }

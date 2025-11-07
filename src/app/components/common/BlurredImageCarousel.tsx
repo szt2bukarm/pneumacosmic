@@ -9,12 +9,14 @@ gsap.registerPlugin(ScrollTrigger);
 interface Props {
   images: { src: string; text?: string }[]
   title: string
+  trigger?: boolean
 }
 
-export default function BlurredImageCarousel({ images,title }: Props) {
+export default function BlurredImageCarousel({ images,title,trigger=true }: Props) {
   const { setGalleryOpen, setGalleryImages,setGalleryTitle, isMobile } = useStore()
   const imagesRef = useRef<HTMLImageElement[]>([])
   const [imageWidth,setImageWidth] = useState(950);
+  const carouselRef = useRef<HTMLDivElement>(null);
   const [width,setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 0);
   
     const openGallery = () => {
@@ -22,6 +24,30 @@ export default function BlurredImageCarousel({ images,title }: Props) {
       setGalleryImages(images)
       setGalleryTitle(title)
     }
+
+    useGSAP(() => {
+      if (!trigger) return;
+      const ctx = gsap.context(() => {
+        setTimeout(() => {
+          gsap.set(carouselRef.current, {
+            opacity: 0,
+            y: 50
+          })
+          let trigger = ScrollTrigger.create({
+            trigger: carouselRef.current,
+            start: "top-=200 center",
+            end: "top+=100 center",
+            scrub: true,
+            animation: gsap.to(carouselRef.current, {
+              opacity: 1,
+              y: 0,
+            }),
+          })
+          return () => trigger.kill();
+        }, 100);
+      })
+      return () => ctx.revert();
+    },[])
 
     useGSAP(() => {
       if (!imagesRef.current?.length) return;
@@ -90,6 +116,7 @@ export default function BlurredImageCarousel({ images,title }: Props) {
 
   return (
     <div
+    ref={carouselRef}
       className="relative w-full h-[200px] md:h-[350px] lg:h-[600px] overflow-visible cursor-pointer"
       onClick={openGallery}
     >

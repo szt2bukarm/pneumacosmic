@@ -303,19 +303,21 @@ export default function Page() {
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
-            let parallaxTrigger = ScrollTrigger.create({
-                trigger: '[data-gsap="exhibition-2-textbg"]',
-                start: "top-=100 center",
-                end: "bottom+=100 center",
-                scrub: true,
-                animation: gsap.to('[data-gsap="exhibition-2-textbg"]', {
-                    y: "10%",
+            setTimeout(() => {
+                let parallaxTrigger = ScrollTrigger.create({
+                    trigger: '[data-gsap="exhibition-2-textbg"]',
+                    start: "top-=100 center",
+                    end: "bottom+=100 center",
+                    scrub: true,
+                    animation: gsap.to('[data-gsap="exhibition-2-textbg"]', {
+                        y: "10%",
+                    })
                 })
-            })
-
-            return () => {
-                parallaxTrigger.kill()
-            }
+    
+                return () => {
+                    parallaxTrigger.kill()
+                }
+            }, 100);
         })
 
         return () => ctx.revert()

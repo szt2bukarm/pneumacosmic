@@ -286,13 +286,9 @@ export default function Page() {
 
     useGSAP(() => {
         if (!mounted) return;
-        gsap.set('[data-gsap="exhibition-3-gallery-1"]', {
+        gsap.from('[data-gsap="exhibition-3-gallery-1"]', {
             y: 150,
-            opacity: 0
-        })
-        gsap.to("[data-gsap='exhibition-3-gallery-1']", {
-            y: 0,
-            opacity: 1,
+            opacity: 0,
             duration: 1.5,
             delay: 1.6,
             ease: "power4.out"
@@ -309,7 +305,7 @@ export default function Page() {
         <PageTitle delay={1.35} subtext="Apszis" text="PÁROS LÁBBAL A FÖLD FÖLÖTT" />
 
         <div data-gsap="exhibition-3-gallery-1" className="mt-[100px]">
-        <BlurredImageCarousel images={carousel1} />
+        <BlurredImageCarousel images={carousel1} trigger={false} />
         </div>
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">

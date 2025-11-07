@@ -2,6 +2,7 @@
 import { useLenis } from "@studio-freight/react-lenis";
 import ImprintHeader from "../components/imprint/ImprintHeader";
 import { useEffect } from "react";
+import Footer from "../components/Footer/Footer";
 
 export default function Page() {
     const lenis = useLenis();
@@ -25,6 +26,7 @@ export default function Page() {
     return (
         <div className="w-full h-full">
             <ImprintHeader />
+            <Footer />
         </div>
     )
 }

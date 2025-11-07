@@ -12,21 +12,24 @@ const assets = [
   "images/lelegzofal.webp",
   "images/fal.webp",
   "images/akusztikus.webp",
-  "logo.svg",
+  "logo.webp",
   "footerbanner.svg",
-  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-2/gallery-1/${i + 1}.webp`),
-  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-2/gallery-2/${i + 1}mtan.webp`),
-  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-2/gallery-3/${i + 1}kecskemet.webp`),
-  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-2/gallery-4/${i + 1}mta.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `images/exhibition-2/gallery-1/${i + 1}.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `images/exhibition-2/gallery-2/${i + 1}mtan.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `images/exhibition-2/gallery-3/${i + 1}kecskemet.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `images/exhibition-2/gallery-4/${i + 1}mta.webp`),
   ...Array.from({ length: 7 }, (_, i) => `images/exhibition-2/MTA/${i}.webp`),
-  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-3/gallery-1/${i + 1}general.webp`),
-  ...Array.from({ length: 5 }, (_, i) => `images/exhibition-3/gallery-2/${i + 1}werk.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `images/exhibition-3/gallery-1/${i + 1}general.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `images/exhibition-3/gallery-2/${i + 1}werk.webp`),
   ...Array.from({ length: 3 }, (_, i) => `images/exhibition-3/gallery-3/${i + 1}object.webp`),
   ...Array.from({ length: 3 }, (_, i) => `images/exhibition-4/gallery-1/${i + 1}kiallitas.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `images/exhibition-5/gallery-1/werk${i + 1}.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `images/exhibition-5/gallery-2/mate${i + 1}.webp`),
+  ...Array.from({ length: 2 }, (_, i) => `images/exhibition-5/gallery-3/studio${i + 1}.webp`),
 ];
 
 // walk frames for the canvas sequence
-const walkFrames = Array.from({ length: 64 }, (_, i) => `images/exhibition-3/walk/${i+1}walk.webp`);
+const walkFrames = Array.from({ length: 64 }, (_, i) => `images/exhibition-3/walk/${i+1}walk.avif`);
 
 export default function Loader() {
   const { setLoaded, loaded, setWalkBitmaps } = useStore();

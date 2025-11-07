@@ -1,3 +1,4 @@
+import TransitionLink from "@/app/TransitionLink";
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -48,7 +49,7 @@ export default function FooterLinksMedium() {
                     <div className="flex flex-col gap-[40px]">
                         <div data-gsap="footer-links-item-medium" className="flex flex-col">
                             <p className="font-hal text-middark text-lg leading-[125%]">BLOG</p>
-                            <p className="font-hal text-middark text-lg leading-[125%]">blog.pneumacosmic.hu</p>
+                            <a target="_blank" href="https://blog.pneumacosmic.hu/" className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">blog.pneumacosmic.hu</a>
                         </div>
 
                         <div data-gsap="footer-links-item-medium" className="flex flex-col mb-[100px]">
@@ -64,8 +65,8 @@ export default function FooterLinksMedium() {
                     </div>
 
                     <div data-gsap="footer-links-item-medium" className="flex flex-col">
-                        <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">IMPRESSZUM</a>
-                        <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Ludwig Múzeum</a>
+                    <TransitionLink href="/imprint" className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">IMPRESSZUM</TransitionLink>
+                    <a target="_blank" href="https://www.ludwigmuseum.hu/" className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Ludwig Múzeum</a>
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Biennálé Iroda</a>
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Nemzeti Biztos</a>
                         <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">szponzorok</a>
