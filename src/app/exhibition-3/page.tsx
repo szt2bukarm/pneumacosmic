@@ -288,7 +288,7 @@ export default function Page() {
         if (!mounted) return;
         gsap.from('[data-gsap="exhibition-3-gallery-1"]', {
             y: 150,
-            opacity: 0,
+            opacity: 0.01,
             duration: 1.5,
             delay: 1.6,
             ease: "power4.out"

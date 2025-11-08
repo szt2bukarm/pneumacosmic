@@ -51,7 +51,7 @@ export default function Page() {
     useGSAP(() => {
         gsap.from('[data-gsap="exhibition-4-gallery-1"]', {
             y: 150,
-            opacity: 0,
+            opacity: 0.01,
             duration: 1.5,
             delay: 1.6,
             ease: "power4.out"
@@ -65,7 +65,6 @@ export default function Page() {
         <div className="z-[30] fixed top-0 left-0 w-screen h-[150px] bg-gradient-to-b from-[#FFFFFFA9] to-transparent opacity-75"></div>
 
         <PageTitle delay={1.5} subtext="Jobb oldali szárny" text="VÉGTELEN TÜRELEM" />
-        <div className="h-[100px]" ></div>
 
         <div data-gsap="exhibition-4-gallery-1" className="mt-[100px]">
         <BlurredImageCarousel images={carousel1} trigger={false} />

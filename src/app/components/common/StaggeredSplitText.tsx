@@ -14,7 +14,7 @@ export default function StaggeredSplitText({children}: {children: React.ReactNod
   // ----- separate function for desktop -----
   const animateDesktop = () => {
     const split = new SplitText(textRef.current, { type: "words" })
-    gsap.set(split.words, { opacity: 0, y: 20, filter: "blur(10px)", willChange: "filter" })
+    gsap.set(split.words, { opacity: 0, y: 20,filter: "blur(4px)", willChange: "filter" })
 
     const trigger = ScrollTrigger.create({
       trigger: textRef.current,

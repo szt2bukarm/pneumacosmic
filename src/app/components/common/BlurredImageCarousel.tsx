@@ -30,7 +30,7 @@ export default function BlurredImageCarousel({ images,title,trigger=true }: Prop
       const ctx = gsap.context(() => {
         setTimeout(() => {
           gsap.set(carouselRef.current, {
-            opacity: 0,
+            opacity: 0.001  ,
             y: 50
           })
           let trigger = ScrollTrigger.create({

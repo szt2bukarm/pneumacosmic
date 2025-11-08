@@ -182,7 +182,7 @@ export default function Page() {
     useGSAP(() => {
         gsap.from('[data-gsap="exhibition-5-gallery-1"]', {
             y: 150,
-            opacity: 0,
+            opacity: 0.01,
             duration: 1.5,
             delay: 1.6,
             ease: "power4.out"
