@@ -44,7 +44,6 @@ export default function Video({ thumbnail, videoID }: Props) {
       trigger: wrapperRef.current,
       start: "top-=500 center",
       end: "bottom+=500 center",
-      markers: true,
       onLeaveBack: () => {
         if (isStarted) setIsStarted(false)
       },
