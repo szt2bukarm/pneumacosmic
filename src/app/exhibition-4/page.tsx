@@ -74,7 +74,7 @@ export default function Page() {
         <StaggeredSplitText>Az installáción megjelenő mozgás visszafogott, alig észrevehető, mely a fókuszált figyelem és tekintet határait feszegeti, miközben a lassú mozgás megfigyelése egy kutató türelmére készteti a nézőt. A lélegző fal egyúttal egy optikai játékot is űz velünk: a fal síkjának emelkedése szemből vizsgálva alig észrevehető, elnyeli az egynemű fehér felület, míg oldalról jobban megfigyelhető a kidomborodó, majd visszaereszkedő anyag. A művön végbemenő változás a lélegző mellkas mozgását idézi.<br></br><br></br>A Végtelen türelem minimalista, traszcendentális hatást kelt, víziószerűen mutatva be a pavilon légzését. A metafizikai valóságra reflektáló installáció a világ észrevétlen, testetlen mozgatójára utal. A kiállítás alatt bejárt asszociációs kör végpontjaként az installáció környezet és légmozgás kapcsolatának, valamint a pneuma cosmic gondolatának elvont, absztrakt megfogalmazása.</StaggeredSplitText>
         </div>
 
-        <Video thumbnail="images/exhibition-4/video.webp" videoID="zwJSWwiAQ5g" />
+        <Video thumbnail="images/exhibition-4/video.webp" videoID="ND5wqvvxMrM" />
 
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">

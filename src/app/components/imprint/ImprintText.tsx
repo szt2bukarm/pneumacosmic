@@ -93,7 +93,7 @@ export default function ImprintText() {
             Gabriella Vidoni, Marco Vidoni
             </p>
 
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
+            <p id="tamogatok" className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
             <span className="opacity-75 font-garaitalic">Főtámogató:</span><br></br>
             Kulturális és Innovációs Minisztérium
             </p>

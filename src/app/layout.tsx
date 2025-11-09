@@ -9,6 +9,7 @@ import ImageGallery from "./components/common/ImageGallery/ImageGallery";
 import ImageGalleryWrapper from "./components/common/ImageGallery/ImageGalleryWrapper";
 import MobileTest from "./MobileTest";
 import Loader from "./components/Loader";
+import TextOverlay from "./components/common/TextOverlay";
 
 export default function RootLayout({
   children,
@@ -26,6 +27,7 @@ export default function RootLayout({
       >
         <Loader />
         <Nav />
+        <TextOverlay />
         <SmoothScroll>
         {children}
         <GradualBlurMemo

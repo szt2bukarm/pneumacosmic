@@ -2,6 +2,10 @@
 
 import { useState, useRef, useEffect } from "react"
 import YouTube, { YouTubeProps } from "react-youtube"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/all"
+import { useGSAP } from "@gsap/react"
+gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   thumbnail: string
@@ -34,6 +38,22 @@ export default function Video({ thumbnail, videoID }: Props) {
   const handleReady: YouTubeProps["onReady"] = (event) => {
     event.target.playVideo()
   }
+
+  useGSAP(() => {
+    let pauseTrigger = ScrollTrigger.create({
+      trigger: wrapperRef.current,
+      start: "top-=500 center",
+      end: "bottom+=500 center",
+      markers: true,
+      onLeaveBack: () => {
+        if (isStarted) setIsStarted(false)
+      },
+      onLeave: () => {
+        if (isStarted) setIsStarted(false)
+      }
+    })
+    return () => pauseTrigger.kill();
+  },[isStarted])
 
   return (
     <div

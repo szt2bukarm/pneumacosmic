@@ -8,14 +8,15 @@ import { useLenis } from "@studio-freight/react-lenis";
 import { useStore } from "./useStore";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function TransitionLink({ href, children,data, className }: {
+export default function TransitionLink({ href, children,data,scrollTarget, className }: {
     href: string;
     children: React.ReactNode;
     data?: any
+    scrollTarget: string | null
     className?: string;
 }) {
     const Router = useTransitionRouter();
-    const {navOpen,setNavOpen} = useStore();
+    const {navOpen,setNavOpen,setScrollTarget} = useStore();
     const pathname = usePathname();
     const lenis = useLenis();
 
@@ -84,7 +85,7 @@ export default function TransitionLink({ href, children,data, className }: {
         <Link data-gsap={data} href={href} onClick={(e) => {
             e.preventDefault();
             if (pathname === href) return;
-            document.querySelector('[data-element="vignette"]')?.classList.add("show-vignette")
+            if (scrollTarget) setScrollTarget(scrollTarget);
             setTimeout(() => {
                 Router.push(href, {
                     onTransitionReady: animation
@@ -93,9 +94,6 @@ export default function TransitionLink({ href, children,data, className }: {
             setTimeout(() => {
             setNavOpen(false)
             }, 30);
-            // setTimeout(() => {
-            //     document.querySelector('[data-element="vignette"]')?.classList.remove("show-vignette")
-            // }, navOpen ? 300 : 200);
         }} className={className}>
             {children}
         </Link>

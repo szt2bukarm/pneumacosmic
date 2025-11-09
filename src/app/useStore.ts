@@ -19,8 +19,14 @@ interface Store {
     loaded: boolean,
     setLoaded: (loaded: boolean) => void,
 
-    walkBitmaps: ImageBitmap[] | null,          // NEW
-    setWalkBitmaps: (walkBitmaps: ImageBitmap[]) => void // NEW
+    walkBitmaps: ImageBitmap[] | null,        
+    setWalkBitmaps: (walkBitmaps: ImageBitmap[]) => void 
+
+    scrollTarget: string | null,
+    setScrollTarget: (scrollTarget: string) => void
+
+    overlayText: string | TrustedHTML,
+    setOverlayText: (overlayText: string) => void
 }
 
 export const useStore = create<Store>((set) => ({
@@ -44,4 +50,10 @@ export const useStore = create<Store>((set) => ({
 
     walkBitmaps: null,
     setWalkBitmaps: (walkBitmaps) => set({ walkBitmaps }),
+
+    scrollTarget: '',
+    setScrollTarget: (scrollTarget) => set({ scrollTarget }),
+
+    overlayText: null,
+    setOverlayText: (overlayText) => set({ overlayText }),
 }))

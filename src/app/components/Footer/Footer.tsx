@@ -70,9 +70,9 @@ export default function Footer() {
                 <FooterLinksMedium />
                 <FooterLinksMobile />
 
-                <div className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-10">
+                <a href="https://www.labiennale.org/en" target="_blank" className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-10">
                     <img src="/footerbanner.svg" className="w-full h-fit" />
-                </div>
+                </a>
             </div>
 
             <div data-gsap="footer-bg" className={`absolute inset-0 ${pathname === "/" ? "translate-y-[800px]" : "translate-y-[500px]"} left-1/2 -translate-x-1/2 w-[130vw] md:w-screen md:translate-x-0 md:left-0 pointer-events-none`}

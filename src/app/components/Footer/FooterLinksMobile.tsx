@@ -59,21 +59,21 @@ export default function FooterLinksMobile() {
                         </div>
 
                         <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col mb-[30px]">
-                        <TransitionLink href="/imprint" className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">IMPRESSZUM</TransitionLink>
-                    <a target="_blank" href="https://www.ludwigmuseum.hu/" className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Ludwig Múzeum</a>
+                        <TransitionLink href="/imprint" className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Impresszum</TransitionLink>
+                    <a target="_blank" href="https://www.ludwigmuseum.hu/velencei-biennale/" className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Ludwig Múzeum</a>
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Biennálé Iroda</a>
                             <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Nemzeti Biztos</a>
-                            <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">szponzorok</a>
+                            <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Szponzorok</a>
                         </div>
 
                         <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center gap-[40px]">
-                            <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">PRESS KIT</a>
-                            <a className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">DOWNLOAD</a>
+                        <a href="http://vb26press.ludwigmuseum.hu/" target="_blank" className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">PRESS KIT</a>
+                        <a href="http://vb26press.ludwigmuseum.hu/" target="_blank" className="font-hal text-middark text-lg cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">DOWNLOAD</a>
                         </div>
 
-                        <div className="mt-[20px] h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-[10]">
+                        <a href="https://www.labiennale.org/en" target="_blank" className="mt-[20px] h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-[10]">
                             <img src="/footerbanner.svg" className="w-full h-fit" />
-                        </div>
+                        </a>
                     </div>
             </div>
 

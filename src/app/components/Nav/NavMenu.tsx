@@ -21,7 +21,7 @@ const sublinks = [
   {
     text: "Pneuma Cosmic WIKI",
     external: true,
-    href: "/"
+    href: "https://hu.wikipedia.org/wiki/Pneuma_Cosmic"
   },
   {
     text: "Bemutatkozás",
@@ -31,12 +31,12 @@ const sublinks = [
   {
     text: "Instagram",
     external: true,
-    href: "/"
+    href: "https://www.instagram.com/pneumacosmic"
   },
   {
     text: "Blog",
     external: true,
-    href: "/"
+    href: "https://blog.pneumacosmic.hu/"
   },
   {
     text: "Impresszum",
@@ -251,7 +251,7 @@ export default function NavMenu() {
 
           {sublinks.map((link, index) => (
               <div data-gsap="nav-links">
-                <AnimatedLink external={false} size="small" text={link.text} href={link.href} />
+                <AnimatedLink external={link.external} size="small" text={link.text} href={link.href} />
               </div>
           ))}
         </div>

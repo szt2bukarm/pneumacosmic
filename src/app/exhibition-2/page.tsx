@@ -381,7 +381,7 @@ export default function Page() {
         <StaggeredSplitText>Az ipari tárgyakkal párbeszédbe állított természeti felvétel jelenik meg a falon, melyen a lassan változó fumarola jelenség a pneuma cosmic bolygó léptékű, természeti megmutatkozásaként, egy kozmikus lehelet kiáramlásaként jelenik meg. A levegő és a gondolatok cserélődése itt egy leletben tárul a néző elé, melynek kutatása párbeszédet teremt a tudományos akadémiák szellemisége és egy kutató művész metaforikus világlátása között.</StaggeredSplitText>
         </div>
 
-        <Video thumbnail="images/akusztikus.webp" videoID="zwJSWwiAQ5g" />
+        <Video thumbnail="images/exhibition-2/video.webp" videoID="zwJSWwiAQ5g" />
         <div className="h-[150px]"></div>
         <BlurredImageCarousel images={carousel2} title="gallery-2"/>
 

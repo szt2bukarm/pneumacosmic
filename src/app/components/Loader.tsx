@@ -38,6 +38,7 @@ export default function Loader() {
   const [hideLoader, setHideLoader] = useState(false);
   const [domReady, setDomReady] = useState(false);
   const { setIsMobile, isMobile } = useStore();
+  const [random, setRandom] = useState(Math.floor(Math.random() * 4)+1);
 
   // ---- preload helper for normal images ----
   const preloadAssets = (urls: string[]) =>
@@ -137,14 +138,20 @@ export default function Loader() {
     });
   }, [hideLoader]);
 
+  useGSAP(() => {
+    gsap.to('[data-gsap="loader-logo"]', { clipPath: `inset(0% 0% ${progressRef.current}% 0%)`,duration: 0.1 });
+  },[progress])
+
   return (
     <div
       data-gsap="loader"
-      className="pointer-events-none fixed top-0 left-0 w-screen h-screen bg-black z-[9999] flex items-center justify-center"
+      className="pointer-events-none fixed top-0 left-0 w-screen h-screen bg-[#111111] z-[9999] flex items-center justify-center"
     >
-      <p className="text-white text-h1">
+      <img src={`loader/loader${random}.webp`} className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] h-[440px]' />
+      <img data-gsap="loader-logo" src={`loader/loader${random}.webp`} className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] h-[440px]' />
+      {/* <p className="text-white text-h1">
         {loaded ? "loaded" : "loading " + Math.floor(progress) + "%"}
-      </p>
+      </p> */}
     </div>
   );
 }

@@ -44,7 +44,7 @@ export default function FooterText() {
             <p data-gsap="footer-text" className="font-gara text-middark text-lg md:text-h4 ">A kiállítás a légmozgás és a transzcendens vagy gondolati világ között állít párhuzamot, felhívva a figyelmet a környezetünk intuitív megéléséből fakadó tapasztalatok komplexitására.</p>
 
             <div data-gsap="footer-text">
-            <AnimatedLink external={true} href={"/"} size="large" text="Pneuma Cosmic WIKI" />
+            <AnimatedLink external={true} href={"https://hu.wikipedia.org/wiki/Pneuma_Cosmic"} size="large" text="Pneuma Cosmic WIKI" />
             </div>
         </div>
     )
