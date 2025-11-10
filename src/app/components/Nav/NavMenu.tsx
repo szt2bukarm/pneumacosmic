@@ -239,7 +239,7 @@ export default function NavMenu() {
           {navlinks.map((link, index) => (
             <div data-gsap="nav-links" key={index} className="relative" onMouseOver={() => handleHover(index)}>
               <p className="absolute text-midlight -top-[50px] -left-5 opacity-20 font-gara text-h1">{index + 1}</p>
-              <TransitionLink href={link.href} className="font-gara text-midlight text-lg md:text-h4 cursor-pointer hover:opacity-50 transition-opacity duration-150">
+              <TransitionLink href={link.href} className="font-gara text-midlight text-md sm:text-lg md:text-h4 cursor-pointer hover:opacity-50 transition-opacity duration-150">
                 {link.text}
               </TransitionLink>
             </div>

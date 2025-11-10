@@ -327,7 +327,7 @@ export default function Page() {
         <BlurredImageCarousel images={carousel3} />
 
         <div className="mx-auto flex flex-col gap-[10px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[1050px]">
-            <p className="font-gara text-middark text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>
+            <p className="font-gara text-middark text-lg sm:text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>
             <div>
             <AnimatedLink href={"/"} external={true} size="large" text="A Végtelen Zarándoklat VIDEÓ" />
             <AnimatedLink href={"/"} external={true} size="large" text="A Fejrehelyezés VIDEÓ" />

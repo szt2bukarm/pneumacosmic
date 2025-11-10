@@ -411,7 +411,7 @@ export default function Page() {
         <BlurredImageCarousel images={carousel4} title="gallery-4"/>
 
         <div className="mx-auto flex flex-col gap-[20px] md:gap-[30px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[924px]">
-            <p className="font-gara text-middark text-lg md:text-h4">Az installáció először Koronczi Endre Kérem, sóhajtson, Széchényi Úr! című kiállításán került bemutatásra. 
+            <p className="font-gara text-middark text-md sm:text-lg md:text-h4">Az installáció először Koronczi Endre Kérem, sóhajtson, Széchényi Úr! című kiállításán került bemutatásra. 
             <br></br><br></br>
             Godot Kortárs Művészeti Intézet,<br></br> 
             Budapest, 2024. 02. 23 – 06. 23, 
