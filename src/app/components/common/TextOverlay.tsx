@@ -3,10 +3,16 @@
 import { useStore } from "@/app/useStore"
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export default function TextOverlay() {
     const {overlayText, setOverlayText} = useStore();
+    const pathname = usePathname();
+
+    useEffect(() => {
+        closeOverlay();
+    },[pathname])
 
     useGSAP(() => {
         if (overlayText) {

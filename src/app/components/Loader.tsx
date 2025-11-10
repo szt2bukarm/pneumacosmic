@@ -152,7 +152,7 @@ export default function Loader() {
   return (
     <div
       data-gsap="loader"
-      className="pointer-events-none fixed top-0 left-0 w-screen h-screen bg-[#111111] z-[9999] flex items-center justify-center"
+      className="pointer-events-none fixed top-0 left-0 w-screen h-[100dvh] bg-[#111111] z-[9999] flex items-center justify-center"
     >
       <img data-gsap="loader-logo-full" src={`loader/loader${random}.webp`} className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
       <img data-gsap="loader-logo" src={`loader/loader${random}.webp`} className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
