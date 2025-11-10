@@ -285,7 +285,7 @@ export default function Exhibition2Render() {
   return (
     <Canvas
       className="translate-y-[-20vh] md:translate-y-0"
-      dpr={[0.5,1.25]}
+      dpr={[0.5,1]}
       gl={{
         toneMapping: isMobile ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping,
         outputEncoding: THREE.sRGBEncoding,

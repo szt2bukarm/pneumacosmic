@@ -13,7 +13,7 @@ const navlinks = [
   { image: "images/bennszorult.webp", text: "BENNSZORULT LÉLEGZET", href: "/exhibition-2" },
   { image: "images/paroslab.webp", text: "PÁROS LÁBBAL A FÖLD FÖLÖTT", href: "/exhibition-3" },
   { image: "images/lelegzofal.webp", text: "VÉGTELEN TÜRELEM", href: "/exhibition-4" },
-  { image: "images/fal.webp", text: "EGY FIKTÍV KUTATÁS LÁTKÉPE", href: "/exhibition-1" },
+  { image: "images/fal.webp", text: "LEBEGŐ HIPOTÉZIS", href: "/exhibition-1" },
   { image: "images/akusztikus.webp", text: "AKUSZTIKUS ELEM", href: "/exhibition-5" },
 ]
 

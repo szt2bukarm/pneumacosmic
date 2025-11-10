@@ -35,7 +35,7 @@ export default function RootLayout({
           position="top"
           height="150px"
           strength={1}
-          divCount={5}
+          divCount={3}
           curve="bezier"
           opacity={1}
           exponential={true}

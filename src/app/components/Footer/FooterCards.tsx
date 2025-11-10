@@ -16,7 +16,7 @@ const cards = [
     number: 4,
     width: "half",
     image: "images/fal.webp",
-    text: "EGY FIKTÍV KUTATÁS LÁTKÉPE",
+    text: "LEBEGŐ HIPOTÉZIS",
     href: "/exhibition-1",
   },
   {
