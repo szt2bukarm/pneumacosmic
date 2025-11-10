@@ -38,7 +38,11 @@ export default function Loader() {
   const [hideLoader, setHideLoader] = useState(false);
   const [domReady, setDomReady] = useState(false);
   const { setIsMobile, isMobile } = useStore();
-  const [random, setRandom] = useState(Math.floor(Math.random() * 4)+1);
+  const [random, setRandom] = useState(0);
+
+  useEffect(() => {
+    setRandom(Math.floor(Math.random() * 4) + 1);
+  }, []);
 
   // ---- preload helper for normal images ----
   const preloadAssets = (urls: string[]) =>
@@ -154,8 +158,12 @@ export default function Loader() {
       data-gsap="loader"
       className="pointer-events-none fixed top-0 left-0 w-screen h-[100dvh] bg-[#111111] z-[9999] flex items-center justify-center"
     >
-      <img data-gsap="loader-logo-full" src={`loader/loader${random}.webp`} className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
-      <img data-gsap="loader-logo" src={`loader/loader${random}.webp`} className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
+      {random != 0 && (
+        <>
+        <img data-gsap="loader-logo-full" src={`loader/loader${random}.webp?v=${random}`}  className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
+      <img data-gsap="loader-logo" src={`loader/loader${random}.webp?v=${random}`}  className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
+        </>
+      )}
       {/* <p className="text-white text-h1">
         {loaded ? "loaded" : "loading " + Math.floor(progress) + "%"}
       </p> */}
