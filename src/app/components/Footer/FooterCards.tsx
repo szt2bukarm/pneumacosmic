@@ -127,7 +127,7 @@ export default function FooterCards() {
           {cards.map((card, index) => (
             <SwiperSlide 
               key={index} 
-              className="!w-[70vw] sm:!w-[60vw] md:!w-[400px] lg:!w-[450px]"
+              className="!w-[80vw] sm:!w-[60vw] md:!w-[400px] lg:!w-[450px]"
             >
               <FooterCardMobile
                 index={index + 1}
