@@ -228,7 +228,7 @@ export default function NavMenu() {
   className="absolute bottom-0 left-0 w-full 
              px-[40px] md:px-[100px] pb-[80px] pt-[120px] md:pt-[120px] xl:py-[80px] 
              flex flex-col xl:flex-row xl:items-end xl:justify-between gap-[50px] 
-             overflow-y-auto max-h-[90vh] md:max-h-[75vh] xl:max-h-full 
+             overflow-y-auto max-h-[90dvh] md:max-h-[75vh] xl:max-h-full 
              [mask-image:linear-gradient(to_bottom,transparent,black_120px,black)] 
              [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_120px,black)] 
              [mask-repeat:no-repeat] [-webkit-mask-repeat:no-repeat] 
