@@ -18,6 +18,7 @@ export default function ImageGallery({closeGallery}: {closeGallery: () => void})
   const [clickedText, setClickedText] = useState<string | null>(null)
   const [currentImage, setCurrentImage] = useState<number | null>(1)
   const imageRef = useRef<HTMLImageElement | null>(null)
+  const wrapperRef = useRef<HTMLDivElement | null>(null)
   const animationTimeline = useRef<gsap.core.Timeline | null>(null)
 
   const animateImages = useCallback(() => {
@@ -58,20 +59,25 @@ export default function ImageGallery({closeGallery}: {closeGallery: () => void})
 
   const mouseMoveHandler = useCallback(
     (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      if (!allowMouseMove.current || !containerRef.current) return;
+      if (!allowMouseMove.current || !containerRef.current || !wrapperRef.current) return;
   
       const container = containerRef.current;
+      const wrapper = wrapperRef.current;
   
-      const viewportHeight = window.innerHeight;
-      const contentHeight = container.scrollHeight;
+      const wrapperRect = wrapper.getBoundingClientRect();
   
-      const normX = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
-      const normY = (e.clientY - viewportHeight / 2) / (viewportHeight / 2);
+      // Mouse position relative to wrapper center
+      const normX = (e.clientX - wrapperRect.left - wrapperRect.width / 2) / (wrapperRect.width / 2);
+      const normY = (e.clientY - wrapperRect.top - wrapperRect.height / 2) / (wrapperRect.height / 2);
   
-      const maxTranslateX = container.offsetWidth / 5.5;
+      const totalContentWidth = 3 * 630; // 3 images x 600px + 30px gap each
+      const extraWidth = Math.max(totalContentWidth - wrapperRect.width, 0);
   
-      const extraHeight = Math.max(contentHeight - viewportHeight, 0);
-      const maxTranslateY = extraHeight / 1.7; 
+      // Translate X based on extra width
+      const maxTranslateX = extraWidth / 2; // center the movement
+  
+      const extraHeight = Math.max(container.scrollHeight - wrapperRect.height, 0);
+      const maxTranslateY = extraHeight / 1.7;
   
       gsap.to(container, {
         x: -normX * maxTranslateX,
@@ -193,7 +199,7 @@ useEffect(() => {
       const prevImage = images[prevIndex];
       setCurrentImage(prevIndex);
       setClickedSrc(prevImage.src);
-      setClickedText(prevImage.text || null);
+      // setClickedText(prevImage.text || null);
     } else if (e.key === "ArrowRight") {
       if (!clickedSrc) return;
       // Next image
@@ -201,7 +207,7 @@ useEffect(() => {
       const nextImage = images[nextIndex];
       setCurrentImage(nextIndex);
       setClickedSrc(nextImage.src);
-      setClickedText(nextImage.text || null);
+      // setClickedText(nextImage.text || null);
     }
   };
 
@@ -216,11 +222,12 @@ useEffect(() => {
         background:
           "linear-gradient(180deg, #050505 0%, #0A0A0A 14.9%, #191919 89.42%, #191919 100%)",
       }}
+      ref={wrapperRef}
       onMouseMove={mouseMoveHandler}
     >
       {/* Enlarged image overlay */}
       <div
-        className={`!z-50 fixed inset-0 flex items-center justify-center flex-col gap-[12px] ${clickedText && "translate-y-5"} ${
+        className={`!z-50 fixed inset-0 flex items-center justify-center flex-col gap-[12px] ${
           clickedSrc ? "pointer-events-auto" : "pointer-events-none"
         }`}
         onClick={closeImage}
@@ -231,10 +238,10 @@ useEffect(() => {
           className="opacity-0 z-50 max-w-[85%] max-h-[85%] object-cover object-center"
           alt="Enlarged view"
         />
-        <p data-gsap="clicked-text" className="opacity-0 font-hal text-lg text-middark">{clickedText || ""}</p>
+        {/* <p data-gsap="clicked-text" className="opacity-0 font-hal text-lg text-middark">{clickedText || ""}</p> */}
       </div>
 
-      <div data-gsap="gallery-pagination" className="opacity-0 z-[100] absolute left-[50%] top-2 translate-x-[-50%] items-center justify-center flex gap-[5px]">
+      <div data-gsap="gallery-pagination" className="opacity-0 z-[100] absolute left-[50%] bottom-2 translate-x-[-50%] items-center justify-center flex gap-[5px]">
           <p
             onClick={() => {
               console.log("prev")
@@ -247,7 +254,7 @@ useEffect(() => {
             }}
             className="select-none hover:opacity-50 transition-all duration-150 cursor-pointer font-hal text-h5 text-middark"
           >
-            {"❮"}
+            {"←"}
           </p>
 
           <p className="font-hal text-lg text-middark w-[80px] text-center">{(currentImage ?? 0) + 1}/{images.length}</p>
@@ -263,7 +270,7 @@ useEffect(() => {
             }}
             className="select-none hover:opacity-50 transition-all duration-150 cursor-pointer font-hal text-h5 text-middark"
           >
-            {"❯"}
+            {"→"}
           </p>
         </div>
 
@@ -271,7 +278,7 @@ useEffect(() => {
       {/* Image grid container */}
       <div
         ref={containerRef}
-        className="z-0 pl-[150px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 grid grid-flow-row auto-rows-[400px] gap-[12px] min-w-full will-change-auto"
+        className="z-0 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 grid grid-flow-row auto-rows-[400px] gap-[12px] min-w-full will-change-auto"
       >
         {columns.map((col, colIndex) => (
           <div key={colIndex} className={`flex flex-row min-h-[600px] gap-[12px] `}>

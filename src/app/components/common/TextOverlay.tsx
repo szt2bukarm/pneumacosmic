@@ -4,12 +4,16 @@ import { useStore } from "@/app/useStore"
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import AnimatedLink from "./AnimatedLink";
+import { SplitText } from "gsap/SplitText";
+gsap.registerPlugin(SplitText)
 
 export default function TextOverlay() {
     const {overlayText, setOverlayText} = useStore();
+    const textRef = useRef<HTMLParagraphElement>(null);
     const pathname = usePathname();
+    const splitRef = useRef<SplitText | null>(null);
 
     useEffect(() => {
         closeOverlay();
@@ -23,6 +27,48 @@ export default function TextOverlay() {
             });
         }
     },[overlayText])
+
+    const splitLines = () => {
+        if (!textRef.current) return;
+
+        // revert previous split first
+        splitRef.current?.revert();
+
+        const split = new SplitText(textRef.current, { type: "lines" });
+        splitRef.current = split;
+
+        split.lines.forEach((line) => {
+            const wrap = document.createElement("div");
+            wrap.style.display = "block";
+            wrap.style.overflow = "hidden";
+            wrap.style.width = "100%";
+            line.parentNode?.insertBefore(wrap, line);
+            wrap.appendChild(line);
+        });
+
+        gsap.from(split.lines, {
+            y: -30,
+            duration: 1.5,
+            stagger: 0.03,
+            ease: "power4.out"
+        });
+    }
+
+    useEffect(() => {
+        if (!overlayText) return;
+
+        splitLines(); // initial split
+
+        const handleResize = () => {
+            splitLines();
+        }
+
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            splitRef.current?.revert();
+        }
+    }, [overlayText]);
 
     useEffect(() => {
         const html = document.documentElement;
@@ -41,6 +87,17 @@ export default function TextOverlay() {
         }
     }, [overlayText])
     
+    useEffect(() => {
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape" && overlayText) {
+                closeOverlay();
+            }
+        };
+    
+        window.addEventListener("keydown", handleKey);
+        return () => window.removeEventListener("keydown", handleKey);
+    }, [overlayText]);
+
     const closeOverlay = () => {
         gsap.to("[data-gsap='overlay-text']", {
             opacity: 0,
@@ -62,10 +119,9 @@ export default function TextOverlay() {
                 <button onClick={closeOverlay} className="w-fit font-hal text-lg leading-[24px] text-midlight cursor-pointer hover:opacity-50 transition-opacity duration-150">
                 ← Vissza
                 </button>
-                <p className="font-gara text-lg leading-[28px] text-middark mb-[70px] mt-[50px]" dangerouslySetInnerHTML={{__html: overlayText}}></p>
+                <p ref={textRef} className="font-gara text-md sm:text-lg leading-[28px] text-middark mb-[70px] mt-[50px]" dangerouslySetInnerHTML={{__html: overlayText}}></p>
                 <AnimatedLink external={true} size="large" text="Pneuma Cosmic WIKI" href="https://hu.wikipedia.org/wiki/Pneuma_Cosmic" />
             </div>
-            {/* <div className="absolute top-0 left-0 w-full h-full bg-[#050505] opacity-75"></div> */}
         </div>
     )
 }

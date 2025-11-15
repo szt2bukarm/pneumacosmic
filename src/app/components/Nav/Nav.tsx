@@ -105,7 +105,7 @@ export default function Nav() {
         <div data-gsap="nav" style={{viewTransitionName: "nav"}} className={`fixed w-screen top-0 left-0 z-[50] h-[200px] pt-[50px] xl:pt-[65px] px-[20px] sm:px-[40px] xl:px-[110px] flex justify-between items-start pointer-events-none`}>
 
             <div data-gsap="nav-sound" className="hidden lg:flex items-end gap-[40px] mr-auto">
-                <NavSound />
+                {/* <NavSound /> */}
                 <NavLanguage />
             </div>
 

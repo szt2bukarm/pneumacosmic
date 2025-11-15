@@ -309,7 +309,7 @@ export default function Page() {
         </div>
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-        <StaggeredSplitText>Egy évig tartó gyaloglás. Koronczi Endre egy fontos sóhaj keresésére indult útnak, a hátán a sóhaj befogására alkalmas üvegbúrával. A séta kezdetén még nem tudta, hogy hol találja meg, amit keres, így a mű nem csak fikciós, hanem valós kutatási folyamat is, a dokumentáció és a videóművészet határán egyensúlyoz.</StaggeredSplitText>
+        <StaggeredSplitText>Koronczi Endre egy fontos sóhaj keresésére indult útnak, a hátán a sóhaj befogására alkalmas üvegtárggyal. Az egy évig tartó gyaloglás kezdetén még nem tudta, hogy hol fogja megtalálni, amit keres, így a mű nemcsak fikciós, hanem valós kutatási folyamat is a dokumentáció és a videoművészet határán.</StaggeredSplitText>
         </div>
 
         <BlurredImageCarousel images={carousel2} title="A sóhaj befogásához készített egyedi üvegtárgy Parádsasvári Üvegmanufaktúra műhelyében"/>
@@ -318,14 +318,14 @@ export default function Page() {
         <Video thumbnail="images/exhibition-3/gallery-2/14werk.webp" videoID="ABDaCca_uOk" />
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
-        <StaggeredSplitText>A mű három egységből áll: a művész vándorló kutatását bemutató, a séta monotonitását a helyszínek változatosságával ötvöző videóból, az üvegtárgyból, melyben a keresett sóhajtás kerül megőrzésre, valamint a sóhaj befogásának pillanatát bemutató videóból. A két videóban meghatározó a lassúság, a kulcsjelenetek helyett a folyamat hangsúlyozása.</StaggeredSplitText>
+        <StaggeredSplitText>Az installáció három egységből áll: a művész kutatását bemutató, a vándorlás monotonitását a helyszínek változatosságával ötvöző videóból, az üvegtárgyból, melyben a megtalált sóhajtás kerül megőrzésre, valamint a sóhaj befogásának pillanatát bemutató videóból. A két videóban meghatározó a lassúság, a kulcsjelenetek helyett a hosszú folyamat hangsúlyozása.</StaggeredSplitText>
         </div>
 
 
         <WalkSequence />
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
-        <StaggeredSplitText>A Páros lábbal a föld felett installáció egy játék, a lehetetlenre tett kísérlet, mely az illékony pillanat és az anyagtalan dolgok megragadásának vágyát fejezi ki. Koronczi Endre több évtizede dolgozik a széllel és a különböző légmozgásformákkal, azok metaforikus jelentésrétegeivel. A Páros lábbal a föld felett ennek a hosszú, egy kutató kitartásával zajló művészeti projektnek az analógiája is egyben.</StaggeredSplitText>
+        <StaggeredSplitText>A Páros lábbal a föld felett egy játék, a lehetetlenre tett kísérlet, mely az illékony pillanat és az anyagtalan dolgok megragadásának vágyát fejezi ki.</StaggeredSplitText>
         </div>
 
         <BlurredImageCarousel images={carousel3} title="Az üvegtárgy a háti hordozóval és a zarándoklatot rögzítő kamerával"/>

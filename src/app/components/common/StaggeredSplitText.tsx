@@ -40,8 +40,8 @@ export default function StaggeredSplitText({children}: {children: React.ReactNod
 
     const trigger = ScrollTrigger.create({
       trigger: textRef.current,
-      start: "top 60%",
-      end: "bottom 60%",
+      start: "top 80%",
+      end: "bottom 80%",
       scrub: true,
       animation: gsap.to(split.words, {
         opacity: 1,
@@ -84,7 +84,7 @@ export default function StaggeredSplitText({children}: {children: React.ReactNod
 
     return (
         <p ref={textRef}
-        className="leading-[135%] font-gara text-middark text-lg md:text-h4 w-[90vw] xl:w-[1050px]">{children}
+        className="leading-[135%] font-gara text-middark text-md sm:text-lg md:text-h4 w-[90vw] xl:w-[1050px]">{children}
         </p>
     )
 }

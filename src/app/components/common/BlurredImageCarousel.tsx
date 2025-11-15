@@ -18,6 +18,7 @@ export default function BlurredImageCarousel({ images,title,trigger=true }: Prop
   const [imageWidth,setImageWidth] = useState(950);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [width,setWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 0);
+  const textRef = useRef<HTMLParagraphElement>(null);
   
     const openGallery = () => {
       setGalleryOpen(true)
@@ -30,8 +31,7 @@ export default function BlurredImageCarousel({ images,title,trigger=true }: Prop
       const ctx = gsap.context(() => {
         setTimeout(() => {
           gsap.set(carouselRef.current, {
-            opacity: 0.001  ,
-            y: 50
+            opacity: 0.001,
           })
           let trigger = ScrollTrigger.create({
             trigger: carouselRef.current,
@@ -40,10 +40,23 @@ export default function BlurredImageCarousel({ images,title,trigger=true }: Prop
             scrub: true,
             animation: gsap.to(carouselRef.current, {
               opacity: 1,
-              y: 0,
             }),
           })
-          return () => trigger.kill();
+          let textTrigger = ScrollTrigger.create({
+            trigger: carouselRef.current,
+            start: "top-=200 center",
+            end: "top+=100 center",
+            scrub: true,
+            animation: gsap.fromTo(textRef.current, {
+              opacity: 0,
+            },{
+              opacity: 1,
+            }),
+          })
+          return () => {
+            trigger.kill();
+            textTrigger.kill();
+          }
         }, 100);
       })
       return () => ctx.revert();
@@ -149,7 +162,7 @@ export default function BlurredImageCarousel({ images,title,trigger=true }: Prop
     </div>
 
     </div>
-    <p className="relative font-hal text-midlight text-md leading-[18px] text-center my-[20px] mx-auto w-[calc(100%-40px)] md:w-[600px] xl:w-[800px] z-10">{title}</p>
+    <p ref={textRef} className="relative font-hal text-midlight text-md leading-[18px] text-center my-[20px] mx-auto w-[calc(100%-40px)] md:w-[600px] xl:w-[800px] z-10">{title}</p>
     </>
 
   )

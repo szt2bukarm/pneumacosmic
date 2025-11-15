@@ -153,7 +153,7 @@ export default function NavMenu() {
         <img src="logo.svg" className="hidden lg:block w-[175px] cursor-pointer" />
         </TransitionLink>
         <div className="flex lg:hidden items-end gap-[40px]">
-                <NavSound />
+                {/* <NavSound /> */}
                 <NavLanguage />
             </div>
         <img src="menu-close.svg" className="ml-auto w-[30px] h-[30px] hover:opacity-50 transition-opacity duration-150 cursor-pointer" onClick={() => setNavOpen(false)} />
