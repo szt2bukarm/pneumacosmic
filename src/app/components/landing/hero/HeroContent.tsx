@@ -52,10 +52,11 @@ export default function HeroContent() {
 
     // dim overlay
     useGSAP(() => {
-            const ctx = gsap.context(() => {
-                let trigger: ScrollTrigger;
-                setTimeout(() => {
-                trigger = ScrollTrigger.create({
+        const ctx = gsap.context(() => {
+            let trigger: ScrollTrigger;
+            setTimeout(() => {
+            let colorTrigger: ScrollTrigger;
+            trigger = ScrollTrigger.create({
                 trigger: '[data-gsap="hero-dim"]',
                 start: "10% top",
                 end: "50% top",
@@ -71,25 +72,39 @@ export default function HeroContent() {
                         display: "block"
                     })
                 },
-                animation: gsap.to('[data-gsap="hero-dim"]', {
+                animation: gsap.fromTo('[data-gsap="hero-dim"]',{
+                    opacity: 0,
+                }, {
                     opacity: 1,
-                    paused: true
+                })
+            })
+    
+            colorTrigger = ScrollTrigger.create({
+                trigger: '[data-gsap="landing-text"]',
+                start: "20% top",
+                end: "90% top",
+                scrub: true,
+                animation: gsap.fromTo('[data-gsap="hero-dim"]', {
+                    background: "#282828"
+                }, {
+                    background: "#050505"
                 })
             })
         }, 100);
+
     
-                return () => {
-                    trigger?.kill() 
-                }
-            })
-            return () => ctx.revert()    
+        return () => {
+            trigger?.kill() 
+        }
+    })
+    return () => ctx.revert()    
     }, [])
 
     
 
     return (
         <>
-        <div data-gsap="hero-dim" className="absolute top-0 left-0 w-screen h-screen bg-dark z-20    opacity-0 pointer-events-none"></div>
+        <div data-gsap="hero-dim" className="absolute top-0 left-0 w-screen h-screen bg-dark z-20 opacity-0 pointer-events-none"></div>
         <div className="absolute top-0 left-0 w-screen h-screen flex flex-col items-center justify-center">
             <p data-gsap="text" className="px-[20px] leading-none font-hal text-md md:text-lg text-midlight text-center">KORONCZI Endre : <span className="font-gara text-lg md:text-h5">pneuma cosmic</span><br/>Kurátor : CSERHALMI Luca</p>
 

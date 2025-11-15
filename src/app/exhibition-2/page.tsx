@@ -12,7 +12,7 @@ import Footer from "../components/Footer/Footer";
 import ImageGallery from "../components/common/ImageGallery/ImageGallery";
 import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useStore } from "../useStore";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -323,11 +323,71 @@ export default function Page() {
         return () => ctx.revert()
     },[])
 
+    
+    useGSAP(() => {
+        let trigger: ScrollTrigger | null = null;
+      
+        const timeoutId = setTimeout(() => {
+      
+          trigger = ScrollTrigger.create({
+            trigger: '[data-gsap="exhibition-2-pin-helper"]',
+            start: "top+=300 center",
+            end: "top+=1800 center",
+            onEnter: () =>
+              gsap.to(
+                '[data-gsap="exhibition-2-fixedtext-left"], [data-gsap="exhibition-2-fixedtext-right"]',
+                { opacity: 1,
+                    duration: 0.15      
+                 }
+              ),
+            onLeave: () =>
+              gsap.to(
+                '[data-gsap="exhibition-2-fixedtext-left"], [data-gsap="exhibition-2-fixedtext-right"]',
+                { opacity: 0,
+                    duration: 0.15      
+                 }
+              ),
+            onEnterBack: () =>
+              gsap.to(
+                '[data-gsap="exhibition-2-fixedtext-left"], [data-gsap="exhibition-2-fixedtext-right"]',
+                { opacity: 1,
+                    duration: 0.15      
+                 }
+              ),
+            onLeaveBack: () =>
+              gsap.to(
+                '[data-gsap="exhibition-2-fixedtext-left"], [data-gsap="exhibition-2-fixedtext-right"]',
+                { opacity: 0,
+                    duration: 0.15      
+                 }
+              ),
+          });
+      
+          ScrollTrigger.refresh();
+        }, 100);
+      
+        const handleResize = () => {
+          trigger?.refresh();
+        };
+      
+        window.addEventListener("resize", handleResize);
+      
+        return () => {
+          clearTimeout(timeoutId);
+          window.removeEventListener("resize", handleResize);
+          trigger?.kill();
+        };
+      });
 
     if (!mounted) return <div></div>
 
     return (
     <div className="relative w-screen min-h-screen bg-black overflow-x-hidden">
+
+        <p data-gsap="exhibition-2-fixedtext-left" className="hidden xl:block opacity-0 fixed bottom-5 left-5 font-gara text-middark text-lg z-30 xl:w-[550px] leading-[18px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai</p>
+        <p data-gsap="exhibition-2-fixedtext-right" className="hidden xl:block opacity-0 fixed bottom-5 right-5 text-right font-gara text-middark text-lg z-30  xl:w-[550px] leading-[18px]">Leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
+
+
 
         <div className="z-[30] fixed top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-black to-transparent"></div>
         <PageTitle delay={2.5} subtext="Bal oldali szárny" text="BENNSZORULT LÉLEGZET" />
@@ -375,21 +435,23 @@ export default function Page() {
         <StaggeredSplitText>A Bennszorult lélegzet a szemlélődés, az archeológia és a művészeti kutatás megismerési formáit modellezi az akadémiai tudományos élet tárgyi emlékén keresztül. Az installáció a Magyar Tudományos Akadémia felújítása során, a harmadik emeleti padlózatból kibontott szellőztetőrendszer elemeiből áll. <br></br><br></br>A 200 éves intézmény történelmi jelentőségű épületének lélegzéséért láthatatlanul felelős tárgyak szimbolikusan a tudományos élet nagyjainak leheletét, sóhajait, az agyakat átjáró oxigént őrzik. A szellőzőrendszer a világot egybekötő levegőáramláshoz kapcsolódik, miként a léghez hasonló, testetlen gondolatok létének alapja is a folyamatos, termékeny cserélődés.</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel1} title="gallery-1"/>
+        <BlurredImageCarousel images={carousel1} title="A Bennszorul lélegzet című installáció a Kérem, sóhajtson, Széchenyi Úr! című kiállításon a Godot Kortárs Művészeti Intézetben, 2024"/>
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
         <StaggeredSplitText>Az ipari tárgyakkal párbeszédbe állított természeti felvétel jelenik meg a falon, melyen a lassan változó fumarola jelenség a pneuma cosmic bolygó léptékű, természeti megmutatkozásaként, egy kozmikus lehelet kiáramlásaként jelenik meg. A levegő és a gondolatok cserélődése itt egy leletben tárul a néző elé, melynek kutatása párbeszédet teremt a tudományos akadémiák szellemisége és egy kutató művész metaforikus világlátása között.</StaggeredSplitText>
         </div>
 
-        <Video thumbnail="images/exhibition-2/video.webp" videoID="zwJSWwiAQ5g" />
+        <Video thumbnail="images/exhibition-2/video.webp" videoID="hHZyi2eXODs" />
         <div className="h-[150px]"></div>
-        <BlurredImageCarousel images={carousel2} title="gallery-2"/>
+        <BlurredImageCarousel images={carousel2} title="A Magyar Tudományos Akadémia harmadik emeleti kiállítótermei a felújítás előtti állapotban"/>
 
         <div
-            className="relative w-full h-full md:h-[550px] lg:h-[800px] pt-[70px] pb-[70px] md:pt-0 md:pb-0 flex items-center justify-center"
+            className="mt-[-100px] relative w-full h-full md:h-[550px] lg:h-[1000px] pt-[180px] pb-[70px] md:pt-0 md:pb-0 flex items-center justify-center"
             >
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-                <img data-gsap="exhibition-2-textbg" src="images/exhibition-2/exhibition-2-textbg.png" className="scale-110 w-full h-full object-cover z-1" />
+                <video data-gsap="exhibition-2-textbg" className="scale-110 w-full h-full object-cover z-1" playsInline muted loop autoPlay>
+                <source src="images/exhibition-2/bg_video2.mp4" type="video/mp4" />
+                </video>
             </div>
 
             <div className="absolute top-0 left-0 w-full h-full" style={{background: "linear-gradient(to bottom, rgba(5,5,5,1), rgba(5,5,5,0.75), rgba(5,5,5,1))"}}>
@@ -398,17 +460,20 @@ export default function Page() {
             <StaggeredSplitText>Az archeológia tudományát is megidéző projekt a korábban padlóba rejtett, hétköznapi tárgyakat művészeti értékükben tárja a néző elé. A labirintusszerűen elhelyezett szellőzőelemek erőteljesen indusztriális jellege és sajátos története mellett az installáció a művész által a tárgyakban meglátott metaforán keresztül válik teljessé.</StaggeredSplitText>
         </div>
 
+        <div data-gsap="exhibition-2-pin-helper" className="w-full h-[0px]"></div>
         <PinnedImageReveal />
+        <p className="pt-[75px] mx-auto block xl:hidden text-center font-gara text-middark text-lg z-30  w-[calc(100%-40px)] leading-[18px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai, mellete leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
+
 
         <div className="h-[150px]"></div>
-        <BlurredImageCarousel images={carousel3} title="gallery-3"/>
+        <BlurredImageCarousel images={carousel4} title="A Magyar Tudományos Akadémia szellőztetőrendszeréből kibontott installációs elemek elszállítása az MTA Székház díszes folyosóin és lépcsőházán keresztül"/>
 
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[220px] flex items-center justify-center">
             <StaggeredSplitText>Ez a metafora jelenik meg az installációhoz tartozó szénrajzon is, melyen a Magyar Tudományos Akadémia neoreneszánsz székházának homlokzata jelenik meg. Az épületet átjárja vagy megzavarja egy megfoghatatlan, absztrakt motívum, a gesztusszerűen megjelenített légmozgás. A rajzon a két eltérő elem találkozása az általuk képviselt világnézeti és megismerési módok (tudomány és művészet) eltérő jellegét tükrözi, nyitva hagyva a kérdést, hogy találkozásuk termékeny vagy lehetetlen párbeszédet teremt.</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel4} title="gallery-4"/>
+        <BlurredImageCarousel images={carousel3} title="z installáció elemeinek szállítása a K-ARTS Művészeti Alapítvány kecskeméti telephelyére"/>
 
         <div className="mx-auto flex flex-col gap-[20px] md:gap-[30px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[924px]">
             <p className="font-gara text-middark text-md sm:text-lg md:text-h4">Az installáció először Koronczi Endre Kérem, sóhajtson, Széchényi Úr! című kiállításán került bemutatásra. 

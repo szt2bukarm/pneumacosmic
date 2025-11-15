@@ -115,9 +115,10 @@ export default function BlurredImageCarousel({ images,title,trigger=true }: Prop
     }, [images, imageWidth]);
 
   return (
+    <>
     <div
     ref={carouselRef}
-      className="relative w-full h-[200px] md:h-[350px] lg:h-[600px] overflow-visible cursor-pointer"
+      className="relative w-full h-[200px] md:h-[350px] lg:h-[600px] overflow-visible cursor-pointer z-10"
       onClick={openGallery}
     >
         <div
@@ -136,16 +137,20 @@ export default function BlurredImageCarousel({ images,title,trigger=true }: Prop
           <div className="relative h-full w-[320px] md:w-[550px] lg:w-[950px] overflow-hidden">
           <img key={i} src={image.src} ref={el => imagesRef.current[i] = el} className="scale-110 h-full w-full object-cover" />
 
-          {image.text && (
+          {/* {image.text && (
             <>
               <div className="!pointer-events-none z-10 absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-black to-transparent"></div>
               <p className="!pointer-events-none z-20 absolute bottom-5 left-5 font-hal text-lg text-middark">{image.text}</p>            
             </>
-          )}
+          )} */}
 
           </div>
         ))}
     </div>
+
     </div>
+    <p className="relative font-hal text-midlight text-md leading-[18px] text-center my-[20px] mx-auto w-[calc(100%-40px)] md:w-[600px] xl:w-[800px] z-10">{title}</p>
+    </>
+
   )
 }

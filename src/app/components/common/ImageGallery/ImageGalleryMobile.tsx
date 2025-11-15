@@ -158,14 +158,14 @@ export default function ImageGalleryMobile() {
               data-text={text || null}
               alt={text || `Gallery image ${index}`}
             />
-            {text && (
+            {/* {text && (
               <>
                 <div className="pointer-events-none z-10 absolute bottom-0 left-0 w-full h-[120px] bg-gradient-to-t from-black to-transparent"></div>
                 <p className="pointer-events-none z-20 absolute bottom-4 left-5 font-hal text-base text-middark">
                   {text}
                 </p>
               </>
-            )}
+            )} */}
           </div>
         ))}
       </div>

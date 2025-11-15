@@ -54,9 +54,12 @@ export default function Page() {
             <IntroductionHeader />
             <IntroductionText />
 
+
             <div data-gsap="introduction-video" className="pb-[150px] py-[100px] md:py-[150px] lg:py-[200px] bg-dark">
             <Video thumbnail="images/saroslab.webp" videoID="kG5n-XbcAzs" />
             </div>
+
+
 
             <Footer />
         </div>

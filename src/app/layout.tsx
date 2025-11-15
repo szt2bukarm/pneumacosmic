@@ -10,6 +10,14 @@ import ImageGalleryWrapper from "./components/common/ImageGallery/ImageGalleryWr
 import MobileTest from "./MobileTest";
 import Loader from "./components/Loader";
 import TextOverlay from "./components/common/TextOverlay";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Pneuma Cosmic",
+  icons: {
+    icon: "/favicon.png",
+  }
+};
 
 export default function RootLayout({
   children,

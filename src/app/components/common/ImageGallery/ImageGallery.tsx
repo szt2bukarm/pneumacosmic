@@ -291,12 +291,12 @@ useEffect(() => {
                     data-text={text || null}
                     alt={text || `Gallery image ${globalIndex}`}
                   />
-                  {text && (
+                  {/* {text && (
                     <>
                       <div className="pointer-events-none z-10 absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-black to-transparent"></div>
                       <p className="pointer-events-none z-20 absolute bottom-5 left-5 font-hal text-lg text-middark">{text}</p>
                     </>
-                  )}
+                  )} */}
                 </div>
               )
             })}

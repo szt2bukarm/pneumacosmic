@@ -63,7 +63,9 @@ export default function Footer() {
     return (
         <footer data-gsap="footer" style={{background: pathname === "/" ? "#282828" : "transparent"}} className="relative h-fit w-screen overflow-hidden">
             <FooterCards />
-            <FooterText />
+            <div className="h-[70px] sm:h-[100px] md:h-[200px] w-full"></div>
+
+            {/* <FooterText /> */}
 
             <div data-gsap="footer-links">
                 <FooterLinks />
@@ -75,7 +77,7 @@ export default function Footer() {
                 </a>
             </div>
 
-            <div data-gsap="footer-bg" className={`absolute inset-0 ${pathname === "/" ? "translate-y-[800px]" : "translate-y-[500px]"} left-1/2 -translate-x-1/2 w-[130vw] md:w-screen md:translate-x-0 md:left-0 pointer-events-none`}
+            <div data-gsap="footer-bg" className={`absolute inset-0 translate-y-[500px] left-1/2 -translate-x-1/2 w-[130vw] md:w-screen md:translate-x-0 md:left-0 pointer-events-none`}
                 style={{background: "radial-gradient(71.81% 71.81% at 48.87% 91.42%, #F2F2F2 0%, rgba(40, 40, 40, 0.00) 100%)", filter: "blur(50px)"}}>
             </div>
 

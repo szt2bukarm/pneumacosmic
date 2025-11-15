@@ -63,7 +63,7 @@ export default function PinnedImageReveal() {
         trigger = ScrollTrigger.create({
           trigger: container,
           start: "top top+=15%",
-          end: "bottom+=900 top",
+          end: "top+=1500 top",
           scrub: true,
           pin: true,
           onUpdate: (self) => {

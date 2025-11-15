@@ -22,7 +22,9 @@ export default function ImprintText() {
             Budapest, <a className="underline" target="_blank" href="https://www.ludwigmuseum.hu/">https://www.ludwigmuseum.hu/</a>
             </p>
 
-            <img src="ludwig.webp" className="w-[70%] md:w-[360px] mb-[50px]" />
+            <a href="https://www.ludwigmuseum.hu/velencei-biennale" target="_blank" className="w-full h-full">
+            <img src="ludwig-museum.webp" className="w-[70%] md:w-[360px] mb-[50px]" />
+            </a>
 
             <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Projektkoordináció:</span><br></br>
@@ -97,24 +99,39 @@ export default function ImprintText() {
             <span className="opacity-75 font-garaitalic">Főtámogató:</span><br></br>
             Kulturális és Innovációs Minisztérium
             </p>
+            <a href="https://kormany.hu/kormanyzat/kulturalis-es-innovacios-miniszterium" target="_blank" className="w-full h-full">
             <img src="KIM.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            </a>
 
             <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
             <span className="opacity-75 font-garaitalic">Támogatók:</span><br></br>
             Eszterházy Károly Katolikus Egyetem, Művészeti Kar
             <br></br> <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="underline">https://uni-eszterhazy.hu/mk</a>
             </p>
-
+            <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="w-full h-full">
             <img src="EKKE-MK.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            </a>
+            
             <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
-            K-ARTS vagy KÉSZ Csoport
+            K-ARTS
             </p>
+            <a href="https://www.karts.hu/" target="_blank" className="w-full h-full">
+            <img src="K-ARTS.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            </a>
+
+            <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
+            KÉSZ Csoport
+            </p>
+            <a href="https://www.keszgroup.com/" target="_blank" className="w-full h-full">
             <img src="KESZ.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            </a>
 
             <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
             Dreher
             </p>
+            <a href="https://dreher.hu/" target="_blank" className="w-full h-full">
             <img src="dreher.webp" className="w-[70%] md:w-[360px] mb-[80px]" />
+            </a>
 
             <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Külön Köszönet:</span><br></br>
@@ -124,6 +141,7 @@ export default function ImprintText() {
             <br></br>Csontó Lajos, Tari Ilona
             <br></br>Török Róbert
             <br></br>Varga Mihály
+            <br></br>Koronczi Johanna
             </p>~
 
             <a href="https://pneumacosmic.hu/" target="_blank" className="font-gara text-lg leading-[23px] text-middark underline">pneumacosmic.hu/</a>

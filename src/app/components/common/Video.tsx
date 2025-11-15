@@ -65,14 +65,14 @@ export default function Video({ thumbnail, videoID }: Props) {
             src={thumbnail}
             className="w-full h-full object-cover pointer-events-none"
           />
+          <div className="absolute top-0 left-0 w-full h-full bg-[#00000020]"></div>
           <div
             onClick={() => setIsStarted(true)}
-            className="cursor-pointer absolute top-0 left-0 w-full h-full flex items-center justify-center group bg-[#05050530] hover:bg-[#0505054a] duration-150 transition-all"
+            className="cursor-pointer absolute top-0 left-0 w-full h-full flex items-center justify-center group bg-[#05050530] hover:bg-[#0505054c] duration-150 transition-all"
           >
             <img
               src="video-play.svg"
-              className="group-hover:w-[120px] group-hover:lg:w-[250px] transition-all duration-150 ease-in-out w-[150px] lg:w-[300px]"
-              style={{ filter: "drop-shadow(0px 0px 20px #000)" }}
+              className="group-hover:w-[120px] group-hover:lg:w-[280px] transition-all duration-150 ease-in-out w-[150px] lg:w-[300px]"
             />
           </div>
         </>

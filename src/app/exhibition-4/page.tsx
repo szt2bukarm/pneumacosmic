@@ -67,7 +67,7 @@ export default function Page() {
         <PageTitle delay={1.5} subtext="Jobb oldali szárny" text="VÉGTELEN TÜRELEM" />
 
         <div data-gsap="exhibition-4-gallery-1" className="mt-[100px]">
-        <BlurredImageCarousel images={carousel1} trigger={false} />
+        <BlurredImageCarousel images={carousel1} trigger={false} title="A Végtelen türelem című installáció a Kérem, sóhajtson, Széchenyi Úr! című kiállításon a Godot Kortárs Művészeti Intézetben, 2024"/>
         </div>
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
@@ -83,7 +83,7 @@ export default function Page() {
 
         <div className="mx-auto flex flex-col gap-[10px] mb-[70px] md:mb-[150px] lg:mb-[200px] w-[90vw] xl:w-[1050px]">
             <p className="font-gara text-middark text-lg sm:text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>
-            <AnimatedLink external={false} size="large" text="Végtelen Türelem VIDEÓ" href="/" />
+            <AnimatedLink external={false} size="large" text="Végtelen Türelem VIDEÓ" href="https://www.youtube.com/watch?v=Q6nwi3D_nvM&feature=youtu.be" />
         </div>
 
         <Footer />

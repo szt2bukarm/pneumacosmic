@@ -305,18 +305,22 @@ export default function Page() {
         <PageTitle delay={1.35} subtext="Apszis" text="PÁROS LÁBBAL A FÖLD FÖLÖTT" />
 
         <div data-gsap="exhibition-3-gallery-1" className="mt-[100px]">
-        <BlurredImageCarousel images={carousel1} trigger={false} />
+        <BlurredImageCarousel images={carousel1} trigger={false} title="Példák a közel egy évig tartó zarándoklat változatos helyszíneiből"/>
         </div>
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
         <StaggeredSplitText>Egy évig tartó gyaloglás. Koronczi Endre egy fontos sóhaj keresésére indult útnak, a hátán a sóhaj befogására alkalmas üvegbúrával. A séta kezdetén még nem tudta, hogy hol találja meg, amit keres, így a mű nem csak fikciós, hanem valós kutatási folyamat is, a dokumentáció és a videóművészet határán egyensúlyoz.</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel2} />
+        <BlurredImageCarousel images={carousel2} title="A sóhaj befogásához készített egyedi üvegtárgy Parádsasvári Üvegmanufaktúra műhelyében"/>
+
+        <div className="h-[70px] md:h-[150px]"></div>
+        <Video thumbnail="images/exhibition-3/gallery-2/14werk.webp" videoID="ABDaCca_uOk" />
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
         <StaggeredSplitText>A mű három egységből áll: a művész vándorló kutatását bemutató, a séta monotonitását a helyszínek változatosságával ötvöző videóból, az üvegtárgyból, melyben a keresett sóhajtás kerül megőrzésre, valamint a sóhaj befogásának pillanatát bemutató videóból. A két videóban meghatározó a lassúság, a kulcsjelenetek helyett a folyamat hangsúlyozása.</StaggeredSplitText>
         </div>
+
 
         <WalkSequence />
 
@@ -324,7 +328,7 @@ export default function Page() {
         <StaggeredSplitText>A Páros lábbal a föld felett installáció egy játék, a lehetetlenre tett kísérlet, mely az illékony pillanat és az anyagtalan dolgok megragadásának vágyát fejezi ki. Koronczi Endre több évtizede dolgozik a széllel és a különböző légmozgásformákkal, azok metaforikus jelentésrétegeivel. A Páros lábbal a föld felett ennek a hosszú, egy kutató kitartásával zajló művészeti projektnek az analógiája is egyben.</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel3} />
+        <BlurredImageCarousel images={carousel3} title="Az üvegtárgy a háti hordozóval és a zarándoklatot rögzítő kamerával"/>
 
         <div className="mx-auto flex flex-col gap-[10px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[1050px]">
             <p className="font-gara text-middark text-lg sm:text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>

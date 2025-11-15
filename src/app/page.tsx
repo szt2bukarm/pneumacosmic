@@ -4,6 +4,7 @@ import LandingText from "./components/landing/LandingText";
 import Footer from "./components/Footer/Footer";
 import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect } from "react";
+import Video from "./components/common/Video";
 
 export default function Home() {
   const lenis = useLenis();
@@ -21,11 +22,15 @@ export default function Home() {
   },[lenis])
 
   return (
-    <main className="w-screen h-screen bg-white">
+    <main className="w-screen h-screen bg-dark relative">
 
       <Hero />
-      <LandingText />
 
+      <LandingText />
+      <Video thumbnail="herovideo.webp" videoID="wdN32OWRcrI" />
+
+      <p
+        className="relative mx-auto leading-[135%] font-gara text-middark text-lg md:text-h4 w-[calc(100%-40px)] text-center pt-[150px] pb-[50px]"><span className="opacity-50">A konceptualista, efemer művekből felépülő kiállítás</span> öt elemre osztható:</p>
 
       <Footer/>
     </main>
