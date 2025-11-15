@@ -4,9 +4,9 @@ export default function ImprintText() {
 
             <img src="logo.webp" className="w-[80%] md:w-[410px] mb-[40px]" />
 
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">IMPRESSZUM</p>
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">IMPRESSZUM</p>
             
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[80px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[80px]">
             Koronczi Endre kiállítása
             <br></br>61. Nemzetközi Képzőművészeti Kiállítás – La Biennale di Venezia
             <br></br>Magyar Pavilon
@@ -16,7 +16,7 @@ export default function ImprintText() {
             <br></br>Kurátor: Cserhalmi Luca
             </p>
 
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
             <span className="opacity-75 font-garaitalic">Szervező:</span><br></br>
             Ludwig Múzeum – Kortárs Művészeti Múzeum,<br></br>
             Budapest, <a className="underline" target="_blank" href="https://www.ludwigmuseum.hu/">https://www.ludwigmuseum.hu/</a>
@@ -26,76 +26,76 @@ export default function ImprintText() {
             <img src="ludwig-museum.webp" className="w-[70%] md:w-[360px] mb-[50px]" />
             </a>
 
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Projektkoordináció:</span><br></br>
             Velencei Biennále Iroda: Boros Géza, Bálványos Anna, Lakó Zsigmond
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Pályázati zsűri:</span><br></br>
             Boros Géza, Dr. Fabényi Julia, Kopeczky Róna, Sturcz János, Szipőcs Krisztina, Vízi Katalin
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Kommunikáció:</span><br></br>
             Fehér Zsuzsanna, Rothman Gabriella, Szabó Zsófia, Somogyvári Ágnes
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Grafikai tervezés:</span><br></br>
             Visnyai Zoltán <a className="underline" target="_blank" href="https://www.instagram.com/visnya.i/">https://www.instagram.com/visnya.i/</a>
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Angol fordítás:</span><br></br>
             Sípos Dániel
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Olasz fordítás:</span><br></br>
             Lakó Zsigmond
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">A katalógus szerzői:</span><br></br>
             Juraj Ćarný, Nagy Edina, Németh Ilona, Balogh Máté
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Olvasó szerkesztő:</span><br></br>
             Kőrösi Zsuzsanna
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Műszaki vezető:</span><br></br>
             Bodor Béla
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">A kiállítás akusztikus eleme:</span><br></br>
             Balogh Máté zeneszerző munkája <a className="underline" target="_blank" href="https://baloghmate.com/">https://baloghmate.com/</a>
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Hangmérnök:</span><br></br>
             Kádár Mihály, Soundwork
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">A Kozmikus lehelet című videómű közreműködői:</span><br></br>
             Erhardt Miklós (angol szinkron), Klöpfler-Topor Tibor (hangmérnök)
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Pneuma Cosmic weboldal:</span><br></br>
             Bukvity Ármin és Bukvity Lorisz
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Web tartalomszolgáltatás:</span><br></br>
             Gyöngy Dániel
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Reklámtáska tervezése:</span><br></br>
             Gspann Zsuzsanna
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Reklámtáska kivitelezése:</span><br></br>
             §Mikka Design
             </p>
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[100px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[100px]">
             <span className="opacity-75 font-garaitalic">Pavilon felügyelet:</span><br></br>
             Gabriella Vidoni, Marco Vidoni
             </p>
 
-            <p id="tamogatok" className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
+            <p id="tamogatok" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
             <span className="opacity-75 font-garaitalic">Főtámogató:</span><br></br>
             Kulturális és Innovációs Minisztérium
             </p>
@@ -103,7 +103,7 @@ export default function ImprintText() {
             <img src="KIM.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
             <span className="opacity-75 font-garaitalic">Támogatók:</span><br></br>
             Eszterházy Károly Katolikus Egyetem, Művészeti Kar
             <br></br> <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="underline">https://uni-eszterhazy.hu/mk</a>
@@ -112,28 +112,28 @@ export default function ImprintText() {
             <img src="EKKE-MK.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
             
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
             K-ARTS
             </p>
             <a href="https://www.karts.hu/" target="_blank" className="w-full h-full">
             <img src="K-ARTS.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
             KÉSZ Csoport
             </p>
             <a href="https://www.keszgroup.com/" target="_blank" className="w-full h-full">
             <img src="KESZ.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[15px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
             Dreher
             </p>
             <a href="https://dreher.hu/" target="_blank" className="w-full h-full">
             <img src="dreher.webp" className="w-[70%] md:w-[360px] mb-[80px]" />
             </a>
 
-            <p className="font-gara text-lg leading-[23px] text-middark mb-[30px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Külön Köszönet:</span><br></br>
             Albrecht Zsófia és Bicskei Éva (Magyar Tudományos Akadémia, Képzőművészeti Gyűjtemény)
             <br></br>Árvai István (K-Arts Művészeti és Rendezvényszervező Kft.)
@@ -144,10 +144,10 @@ export default function ImprintText() {
             <br></br>Koronczi Johanna
             </p>~
 
-            <a href="https://pneumacosmic.hu/" target="_blank" className="font-gara text-lg leading-[23px] text-middark underline">pneumacosmic.hu/</a>
-            <a href="https://www.instagram.com/pneumacosmic" target="_blank" className="font-gara text-lg leading-[23px] text-middark underline">instagram.com/pneumacosmic</a>
-            <a href="http://koronczi.hu/" target="_blank" className="font-gara text-lg leading-[23px] text-middark underline">www.koronczi.hu</a>
-            <a href="https://www.ludwigmuseum.hu/" target="_blank" className="font-gara text-lg leading-[23px] text-middark underline">ludwigmuseum.hu/</a>
+            <a href="https://pneumacosmic.hu/" target="_blank" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark underline">pneumacosmic.hu/</a>
+            <a href="https://www.instagram.com/pneumacosmic" target="_blank" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark underline">instagram.com/pneumacosmic</a>
+            <a href="http://koronczi.hu/" target="_blank" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark underline">www.koronczi.hu</a>
+            <a href="https://www.ludwigmuseum.hu/" target="_blank" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark underline">ludwigmuseum.hu/</a>
 
 
         </div>

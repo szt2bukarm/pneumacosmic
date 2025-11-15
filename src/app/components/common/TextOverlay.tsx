@@ -119,7 +119,7 @@ export default function TextOverlay() {
                 <button onClick={closeOverlay} className="w-fit font-hal text-lg leading-[24px] text-midlight cursor-pointer hover:opacity-50 transition-opacity duration-150">
                 ← Vissza
                 </button>
-                <p ref={textRef} className="font-gara text-md sm:text-lg leading-[28px] text-middark mb-[70px] mt-[50px]" dangerouslySetInnerHTML={{__html: overlayText}}></p>
+                <p ref={textRef} className="font-gara text-md leading-[20px] sm:text-lg sm:leading-[28px] text-middark mb-[70px] mt-[50px]" dangerouslySetInnerHTML={{__html: overlayText}}></p>
                 <AnimatedLink external={true} size="large" text="Pneuma Cosmic WIKI" href="https://hu.wikipedia.org/wiki/Pneuma_Cosmic" />
             </div>
         </div>

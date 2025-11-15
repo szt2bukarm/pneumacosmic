@@ -162,7 +162,7 @@ export default function BlurredImageCarousel({ images,title,trigger=true }: Prop
     </div>
 
     </div>
-    <p ref={textRef} className="relative font-hal text-midlight text-md leading-[18px] text-center my-[20px] mx-auto w-[calc(100%-40px)] md:w-[600px] xl:w-[800px] z-10">{title}</p>
+    <p ref={textRef} className="relative font-hal text-midlight text-sm leading-[15px] text-center my-[20px] mx-auto w-[calc(100%-40px)] md:w-[600px] xl:w-[800px] z-10">{title}</p>
     </>
 
   )

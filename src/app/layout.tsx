@@ -3,7 +3,6 @@ import SmoothScroll from "./components/utils/SmoothScroll";
 import Nav from "./components/Nav/Nav";
 import NavMenu from "./components/Nav/NavMenu";
 import { ViewTransitions } from "next-view-transitions";
-import Vignette from "./components/Vignette";
 import GradualBlurMemo from "./components/GradualBlur";
 import ImageGallery from "./components/common/ImageGallery/ImageGallery";
 import ImageGalleryWrapper from "./components/common/ImageGallery/ImageGalleryWrapper";

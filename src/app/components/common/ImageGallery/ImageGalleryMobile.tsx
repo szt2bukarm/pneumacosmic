@@ -142,7 +142,7 @@ export default function ImageGalleryMobile() {
       {/* Image grid container */}
       <div
         ref={containerRef}
-        className="z-0 grid grid-cols-1 md:grid-cols-2 gap-[12px] absolute top-0 py-[100px] max-w-fit overflow-x-hidden px-[20px]"
+        className="z-0 grid grid-cols-1 md:grid-cols-2 gap-[4px] absolute top-0 py-[100px] max-w-fit overflow-x-hidden px-[10px]"
         style={{ pointerEvents: "auto"}}
       >
         {images.map(({ src, text }, index) => (

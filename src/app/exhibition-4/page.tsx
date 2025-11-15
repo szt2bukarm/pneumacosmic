@@ -1,93 +1,83 @@
 "use client"
-import BlurredImageCarousel from "../components/common/BlurredImageCarousel";
-import PageNavHeader from "../components/common/PageNavHeader";
-import PageTitle from "../components/common/PageTitle";
-import StaggeredSplitText from "../components/common/StaggeredSplitText";
-import Video from "../components/common/Video";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import ScrollTrigger from "gsap/src/ScrollTrigger";
-import PinnedImageReveal from "../components/Exhibition-2/PinnedImageReveal";
-import Footer from "../components/Footer/Footer";
-import ImageGallery from "../components/common/ImageGallery/ImageGallery";
-import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
-import { useLenis } from "@studio-freight/react-lenis";
-import { useEffect } from "react";
-import AnimatedLink from "../components/common/AnimatedLink";
-gsap.registerPlugin(ScrollTrigger);
-
-const carousel1 = [
-    {
-        src: "images/exhibition-4/gallery-1/1kiallitas.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-4/gallery-1/2kiallitas.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-4/gallery-1/3kiallitas.webp",
-        text: "Próba szöveg"
-    },
-]
+import { useEffect, useRef } from "react"
+import TransitionLink from "../TransitionLink"
+import PageNavHeader from "../components/common/PageNavHeader"
+import { useStore } from "../useStore"
+import gsap from "gsap"
 
 export default function Page() {
-    const lenis = useLenis();
+  const splineRef = useRef<HTMLDivElement>(null)
+  const {setOverlayText,isMobile} = useStore();
 
-    useEffect(() => {
-        if (!lenis) return
-        lenis?.scrollTo(0,{immediate: true})
-        setTimeout(() => {
-            lenis?.stop();
-            setTimeout(() => {
-                window.scrollTo(0,0)
-            }, 25);
-            setTimeout(() => {
-                lenis?.start();
-            }, 35);
-        }, 5);
-    },[lenis])
+  const openOverlay = () => {
+    setOverlayText("A Pneuma Cosmic projekt fogalmi és vizuális asszociatív térképe a Lebegő hipotézis. Azokat a videókat, kifejezéseket és képeket mutatja be, melyek a pneuma cosmic mint hipotetikus kutatási tárgy művészeti feltárása alatt meghatározóvá váltak. Az installáció segít közelebb kerülni a pneuma cosmic fiktív kutatási projektjéhez, amelynek célja nem egy konkrét jelenség leírása, hanem egy körvonalak nélküli sejtés megragadására tett kísérlet. Koronczi itt pontokat jelöl ki, az összefüggések olvasata a nézőben születik meg. A kérdésfelvetés, a befogadóban létrejövő intuitív gondolkodási folyamat a kiállítás meghatározó eleme. A Lebegő hipotézis által felkínált kulcsok egy még be nem fejezett, tapogatózó kutatásba, cikázó gondolatokba engednek betekintést. A mű annak a tapasztalatnak a leképezése, miszerint az analitikus elme nem mindenhez enged hozzáférést, és olykor érdemes segítségül hívni a rendszerező struktúrák mellett a kevésbé tudatos gondolati folyamatokat is, hogy közelebb kerüljünk a megismeréshez.")
+  }
 
-    useGSAP(() => {
-        gsap.from('[data-gsap="exhibition-4-gallery-1"]', {
-            y: 150,
-            opacity: 0.01,
-            duration: 1.5,
-            delay: 1.6,
-            ease: "power4.out"
-        })
-    },[])
+  useEffect(() => {
+    const script = document.createElement("script")
+    script.src = "https://unpkg.com/@splinetool/viewer@1.10.64/build/spline-viewer.js"
+    script.type = "module"
+    document.body.appendChild(script)
 
-    return (
+    return () => {
+      document.body.removeChild(script)
+    }
+  }, [])
 
-    <div className="relative w-screen min-h-screen bg-white overflow-x-hidden">
+  useEffect(() => {
+    const el = splineRef.current
+    if (!el) return
+  
+    customElements.whenDefined("spline-viewer").then(() => {
+      const shadow = el.shadowRoot
+  
+      const checkScene = setInterval(() => {
+        const canvas = shadow?.querySelector("canvas")
+        const logo = shadow?.querySelector("a#logo")
+        if (canvas) {
+          clearInterval(checkScene)
+          logo?.remove();
+          gsap.to('[data-gsap="exhibition-1-wrapper"]', {
+            opacity: 1,
+            scale: 1,
+            duration: 0.5,
+            delay: 1,
+            ease: "power2.out",
+          })
+        }
+      }, 100)
+  
+      return () => clearInterval(checkScene)
+    })
+  }, [])
 
-        <div className="z-[30] fixed top-0 left-0 w-screen h-[150px] bg-gradient-to-b from-[#FFFFFFA9] to-transparent opacity-75"></div>
+  return (
+    <div className="relative w-screen h-screen">
+      <div data-gsap='exhibition-1-wrapper' className="w-screen h-screen opacity-0 scale-125">
+      <spline-viewer
+        ref={splineRef}
+        url="https://prod.spline.design/3w84BwUrBJ9uKgeJ/scene.splinecode"
+        style={{ width: "100vw", height: "100vh" }}
+      ></spline-viewer>
+      </div>
 
-        <PageTitle delay={1.5} subtext="Jobb oldali szárny" text="VÉGTELEN TÜRELEM" />
+      <div className="px-[30px] xl:px-[90px] py-[60px] flex flex-col xl:flex-row justify-end gap-[30px] xl:justify-between xl:items-center absolute w-full h-[400px] md:h-[300px] xl:h-[200px] bg-gradient-to-b from-transparent to-black bottom-0 left-0 z-1 pointer-events-none">
+            <div className="flex flex-col gap-[8px]">
+                <p className="font-hal text-middark text-md leading-none">Bal oldali kör alakú terem</p>
+                <p className="font-gara text-middark text-lg md:text-h4 leading-none">LEBEGŐ HIPOTÉZIS</p>
+                {!isMobile && (
+                  <div className="flex items-center gap-[12px]">
+                    <p className="font-hal text-middark text-md leading-none">Navigáció:</p>
+                    <img src="mouseicon.webp" className="w-[16px]" />
+                  </div>
+                )}
+            </div>
 
-        <div data-gsap="exhibition-4-gallery-1" className="mt-[100px]">
-        <BlurredImageCarousel images={carousel1} trigger={false} title="A Végtelen türelem című installáció a Kérem, sóhajtson, Széchenyi Úr! című kiállításon a Godot Kortárs Művészeti Intézetben, 2024"/>
-        </div>
+            <button onClick={openOverlay} className="font-hal text-midlight text-lg md:text-lg cursor-pointer hover:opacity-50 transition-opacity duration-150 w-fit pointer-events-auto">→ Bővebben</button>
 
-        <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-        <StaggeredSplitText>Az installáción megjelenő mozgás visszafogott, alig vesszük észre. A fókuszált figyelem és tekintet határait feszegeti, miközben a lassú mozgás követése egy kutató türelmére készteti a nézőt. A Lélegző fal egyúttal egy optikai játékot űz velünk: a fal síkjának emelkedése és süllyedése szemből alig érzékelhető, a mozgást elnyeli az egynemű fehér felület, míg oldalról már látható a kidomborodó, majd visszaereszkedő anyag. A művön végbemenő változás a lélegző mellkas mozgását idézi. <br></br><br></br>A Végtelen türelem minimalista, transzcendentális hatást kelt, víziószerűen mutatva be a pavilon légzését. A metafizikai valóságra reflektáló installáció a világ észrevétlen, testetlen mozgatójára utal. Az installáció a kiállítás alatt bejárt asszociációs kör végpontjaként környezet és légmozgás kapcsolatának, valamint a pneuma cosmic gondolatának elvont, absztrakt megfogalmazása.</StaggeredSplitText>
-        </div>
-
-        <Video thumbnail="images/exhibition-4/video.webp" videoID="ND5wqvvxMrM" />
-
-
-        <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-        <StaggeredSplitText>Koronczi Endre első lélegző fal installációja 2018-ban került bemutatásra az azonos című Végtelen türelem projektkiállításon, Budapesten. A mű egy polgári otthon múlttal átitatott terében jelent meg, felületén tapétamintával. Hat évvel később, 2024-ben készült el az installáció egy új változata, azonos címmel Koronczi Endre Kérem, sóhajtson, Széchenyi Úr! egyéni kiállításán a Godot Kortárs Művészeti Intézetben.<br></br><br></br>Ekkor a mű steril, white cube típusú térben valósult meg, a használt anyag is homogén, fehér, így nem hordozta magán a személyesség érzetét, tisztán a jelenségre került a hangsúly. A 61. Velencei Képzőművészeti Biennálén megvalósuló Végtelen türelem installáció ehhez áll legközelebb, ám a pozícionálás tekintetében eltérést mutatnak.</StaggeredSplitText>
-        </div>
-
-        <div className="mx-auto flex flex-col gap-[10px] mb-[70px] md:mb-[150px] lg:mb-[200px] w-[90vw] xl:w-[1050px]">
-            <p className="font-gara text-middark text-lg sm:text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>
-            <AnimatedLink external={false} size="large" text="Végtelen Türelem VIDEÓ" href="https://www.youtube.com/watch?v=Q6nwi3D_nvM&feature=youtu.be" />
-        </div>
-
-        <Footer />
+      </div>
+      
+      
     </div>
-    )
-
+  )
 }

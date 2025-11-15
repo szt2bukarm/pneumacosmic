@@ -5,6 +5,7 @@ import { useStore } from "@/app/useStore";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ImageGalleryMobile from "./ImageGalleryMobile";
+import { usePathname } from "next/navigation";
 
 
 
@@ -12,6 +13,7 @@ export default function ImageGalleryWrapper() {
     const galleryWrapper = useRef<HTMLDivElement | null>(null);
     const galleryItem = useRef<HTMLDivElement | null>(null);
     const { galleryImages: images, setGalleryOpen, galleryOpen,galleryTitle } = useStore();
+    const pathname = usePathname();
     const subtitleRef = useRef<HTMLParagraphElement | null>(null);
 
 
@@ -49,6 +51,10 @@ export default function ImageGalleryWrapper() {
             html.style.touchAction = "";
         }
     }, [galleryOpen])
+
+    useEffect(() => {
+        closeGallery();
+    },[pathname])
 
       if (!galleryOpen) return null;
 

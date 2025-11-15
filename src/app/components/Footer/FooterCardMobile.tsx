@@ -22,7 +22,7 @@ export default function FooterCardMobile({ index,activeIndex, number, width, ima
             <p className={`${activeIndex == index ? "translate-y-0" : "translate-y-[100px]"} relative z-5 text-center font-gara text-h5 md:text-h4 text-middark transition-all duration-300 ease-in-out`}>{text}</p>
 
             <TransitionLink href={href} className="w-full">
-            <button className={`${activeIndex === index ? "opacity-100" : "opacity-0"} relative z-5 flex items-center justify-center font-hal w-full h-[60px] rounded-[50px] bg-dark border border-[#7D7D7D] text-middark text-lg transition-all duration-300 ease-in-out`}>{pathname == href ? "Jelenleg itt" : "Megtekintes →"}</button>
+            <button className={`${activeIndex === index ? "opacity-100" : "opacity-0"} relative z-5 flex items-center justify-center font-hal w-full h-[60px] rounded-[50px] bg-dark border border-[#7D7D7D] text-middark text-lg transition-all duration-300 ease-in-out`}>{pathname == href ? "Jelenleg itt" : "Megtekintés →"}</button>
             </TransitionLink>
         </div>
     )

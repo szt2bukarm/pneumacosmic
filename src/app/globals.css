@@ -32,6 +32,11 @@ html,body{
   text-decoration: underline;
 }
 
+::selection {
+  background-color: #8C8C8C; 
+  color: #FFF;            
+}
+
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none !important;

@@ -12,258 +12,239 @@ import Footer from "../components/Footer/Footer";
 import ImageGallery from "../components/common/ImageGallery/ImageGallery";
 import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
-import { useEffect, useRef, useState } from "react";
-import { useStore } from "../useStore";
+import { useEffect, useState } from "react";
+import WalkSequence from "../components/Exhibition-3/WalkSequence";
+import AnimatedLink from "../components/common/AnimatedLink";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
     {
-        src: "images/exhibition-2/gallery-1/1.webp",
+        src: "images/exhibition-3/gallery-1/1general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/2.webp",
+        src: "images/exhibition-3/gallery-1/2general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/3.webp",
+        src: "images/exhibition-3/gallery-1/3general.webp",
         text: "Próba szöveg"
     },
     {
-        src: "images/exhibition-2/gallery-1/4.webp",
+        src: "images/exhibition-3/gallery-1/4general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/5.webp",
+        src: "images/exhibition-3/gallery-1/5general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/6.webp",
+        src: "images/exhibition-3/gallery-1/6general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/7.webp",
+        src: "images/exhibition-3/gallery-1/7general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/8.webp",
+        src: "images/exhibition-3/gallery-1/8general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/9.webp",
+        src: "images/exhibition-3/gallery-1/9general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/10.webp",
+        src: "images/exhibition-3/gallery-1/10general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/11.webp",
+        src: "images/exhibition-3/gallery-1/11general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/12.webp",
+        src: "images/exhibition-3/gallery-1/12general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/13.webp",
+        src: "images/exhibition-3/gallery-1/13general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/14.webp",
+        src: "images/exhibition-3/gallery-1/14general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/15.webp",
+        src: "images/exhibition-3/gallery-1/15general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/16.webp",
+        src: "images/exhibition-3/gallery-1/16general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/17.webp",
+        src: "images/exhibition-3/gallery-1/17general.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-1/18.webp",
+        src: "images/exhibition-3/gallery-1/18general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/19general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/20general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/21general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/22general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/23general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/24general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/25general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/26general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/27general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/28general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/29general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/30general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/31general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/32general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/33general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/34general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/35general.webp",
+        text: null
+    },
+    {
+        src: "images/exhibition-3/gallery-1/36general.webp",
         text: null
     },
 ]
 
 const carousel2 = [
     {
-        src: "images/exhibition-2/gallery-2/1mtan.webp",
+        src: "images/exhibition-3/gallery-2/1werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/2mtan.webp",
+        src: "images/exhibition-3/gallery-2/2werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/3mtan.webp",
+        src: "images/exhibition-3/gallery-2/3werk.webp",
         text: "Próba szöveg"
     },
     {
-        src: "images/exhibition-2/gallery-2/4mtan.webp",
+        src: "images/exhibition-3/gallery-2/4werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/5mtan.webp",
+        src: "images/exhibition-3/gallery-2/5werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/6mtan.webp",
+        src: "images/exhibition-3/gallery-2/6werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/7mtan.webp",
+        src: "images/exhibition-3/gallery-2/7werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/8mtan.webp",
+        src: "images/exhibition-3/gallery-2/8werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/9mtan.webp",
+        src: "images/exhibition-3/gallery-2/9werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/10mtan.webp",
+        src: "images/exhibition-3/gallery-2/10werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/11mtan.webp",
+        src: "images/exhibition-3/gallery-2/11werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/12mtan.webp",
+        src: "images/exhibition-3/gallery-2/12werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/13mtan.webp",
+        src: "images/exhibition-3/gallery-2/13werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/14mtan.webp",
+        src: "images/exhibition-3/gallery-2/14werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-2/15mtan.webp",
+        src: "images/exhibition-3/gallery-2/15werk.webp",
         text: null
     },
 ]
 
 const carousel3 = [
     {
-        src: "images/exhibition-2/gallery-3/1kecskemet.webp",
+        src: "images/exhibition-3/gallery-3/1object.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-3/2kecskemet.webp",
+        src: "images/exhibition-3/gallery-3/2object.webp",
         text: null
     },
     {
-        src: "images/exhibition-2/gallery-3/3kecskemet.webp",
-        text: "Próba szöveg"
-    },
-    {
-        src: "images/exhibition-2/gallery-3/4kecskemet.webp",
+        src: "images/exhibition-3/gallery-3/3object.webp",
         text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-3/5kecskemet.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-3/6kecskemet.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-3/7kecskemet.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-3/8kecskemet.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-3/9kecskemet.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-3/10kecskemet.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-3/11kecskemet.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-3/12kecskemet.webp",
-        text: null
-    },
-]
-
-
-const carousel4 = [
-    {
-        src: "images/exhibition-2/gallery-4/1mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/2mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/3mta.webp",
-        text: "Próba szöveg"
-    },
-    {
-        src: "images/exhibition-2/gallery-4/4mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/5mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/6mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/7mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/8mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/9mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/10mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/11mta.webp",
-        text: null
-    },
-    {
-        src: "images/exhibition-2/gallery-4/12mta.webp",
-        text: null
-    },
+    }
 ]
 
 export default function Page() {
     const lenis = useLenis();
     const [mounted,setMounted] = useState(false);
-    const {isMobile} = useStore();
-    const [videoID, setVideoID] = useState(1);
-
-
 
     useEffect(() => {
         if (!lenis) return
@@ -281,16 +262,18 @@ export default function Page() {
       
 
       useEffect(() => {
-        // only run on client
         if (typeof window === "undefined") return;
       
         const handleScroll = () => {
           if (window.scrollY === 0 && !mounted) {
-            setMounted(true);
+            requestAnimationFrame(() => {
+                setMounted(true);
+                requestAnimationFrame(() => {
+                    ScrollTrigger.refresh();
+                })    
+            })
           }
         };
-      
-        // check immediately in case page already at top
         handleScroll();
       
         window.addEventListener("scroll", handleScroll);
@@ -302,190 +285,60 @@ export default function Page() {
 
 
     useGSAP(() => {
-        const ctx = gsap.context(() => {
-            setTimeout(() => {
-                let parallaxTrigger = ScrollTrigger.create({
-                    trigger: '[data-gsap="exhibition-2-textbg"]',
-                    start: "top-=100 center",
-                    end: "bottom+=100 center",
-                    scrub: true,
-                    animation: gsap.to('[data-gsap="exhibition-2-textbg"]', {
-                        y: "10%",
-                    })
-                })
-    
-                return () => {
-                    parallaxTrigger.kill()
-                }
-            }, 100);
+        if (!mounted) return;
+        gsap.from('[data-gsap="exhibition-3-gallery-1"]', {
+            y: 150,
+            opacity: 0.01,
+            duration: 1.5,
+            delay: 1.6,
+            ease: "power4.out"
         })
+    },[mounted])
 
-        return () => ctx.revert()
-    },[])
+      if (!mounted) return <div></div>
 
-    
-    useGSAP(() => {
-        let trigger: ScrollTrigger | null = null;
-      
-        const timeoutId = setTimeout(() => {
-      
-          trigger = ScrollTrigger.create({
-            trigger: '[data-gsap="exhibition-2-pin-helper"]',
-            start: "top+=300 center",
-            end: "top+=1800 center",
-            onEnter: () =>
-              gsap.to(
-                '[data-gsap="exhibition-2-fixedtext-left"], [data-gsap="exhibition-2-fixedtext-right"]',
-                { opacity: 1,
-                    duration: 0.15      
-                 }
-              ),
-            onLeave: () =>
-              gsap.to(
-                '[data-gsap="exhibition-2-fixedtext-left"], [data-gsap="exhibition-2-fixedtext-right"]',
-                { opacity: 0,
-                    duration: 0.15      
-                 }
-              ),
-            onEnterBack: () =>
-              gsap.to(
-                '[data-gsap="exhibition-2-fixedtext-left"], [data-gsap="exhibition-2-fixedtext-right"]',
-                { opacity: 1,
-                    duration: 0.15      
-                 }
-              ),
-            onLeaveBack: () =>
-              gsap.to(
-                '[data-gsap="exhibition-2-fixedtext-left"], [data-gsap="exhibition-2-fixedtext-right"]',
-                { opacity: 0,
-                    duration: 0.15      
-                 }
-              ),
-          });
-      
-          ScrollTrigger.refresh();
-        }, 100);
-      
-        const handleResize = () => {
-          trigger?.refresh();
-        };
-      
-        window.addEventListener("resize", handleResize);
-      
-        return () => {
-          clearTimeout(timeoutId);
-          window.removeEventListener("resize", handleResize);
-          trigger?.kill();
-        };
-      });
-
-    if (!mounted) return <div></div>
-
-    return (
-    <div className="relative w-screen min-h-screen bg-black overflow-x-hidden">
-
-        <p data-gsap="exhibition-2-fixedtext-left" className="hidden xl:block opacity-0 fixed bottom-5 left-5 font-gara text-middark text-lg z-30 xl:w-[550px] leading-[18px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai</p>
-        <p data-gsap="exhibition-2-fixedtext-right" className="hidden xl:block opacity-0 fixed bottom-5 right-5 text-right font-gara text-middark text-lg z-30  xl:w-[550px] leading-[18px]">Leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
-
-
+      return (
+        <div data-gsap="exhibition-3" className="relative w-screen min-h-screen bg-dark overflow-x-hidden">
 
         <div className="z-[30] fixed top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-black to-transparent"></div>
-        <PageTitle delay={2.5} subtext="Bal oldali szárny" text="BENNSZORULT LÉLEGZET" />
 
-        {!isMobile && (
-        <div data-gsap="canvas" className="h-[150vh] w-screen fixed top-0 left-0">
-        <Exhibiton2Render />
+        <PageTitle delay={1.35} subtext="Apszis" text="PÁROS LÁBBAL A FÖLD FÖLÖTT" />
+
+        <div data-gsap="exhibition-3-gallery-1" className="mt-[100px]">
+        <BlurredImageCarousel images={carousel1} trigger={false} title="Példák a közel egy évig tartó zarándoklat változatos helyszíneiből"/>
         </div>
-        )}
-
-        {isMobile && (
-        <div className="fixed top-0 left-0 w-screen h-[calc(100vh)] bg-[#000]">
-            {videoID == 1 && (
-            <video
-            autoPlay
-            muted
-            playsInline
-            className="w-full h-full object-contain"
-            src={`scene${videoID}.mp4`}
-            onEnded={() => {
-            if (videoID === 1) {
-                setVideoID(2);
-            }}}
-            />
-            )}
-
-            {videoID == 2 && (
-            <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-contain"
-            src={`scene${videoID}.mp4`}
-            />
-            )}
-        </div>
-        )}
-
-        <div className="w-full h-[calc(100vh-290px-20vh)] md:h-[calc(100vh-290px)]"></div>
-
-        <div className="relative w-full h-full bg-black">
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-        <StaggeredSplitText>Az installáció a szemlélődés, az archeológia és a művészeti kutatás megismerési formáit modellezi a tudományos szféra székházának tárgyi emlékein keresztül. A mű a Magyar Tudományos Akadémia épületének a felújítása során, a harmadik emelet padlózatából kibontott szellőztetőberendezés elemeiből áll.<br></br> A 200 éves intézmény történelmi jelentőségű épületének lélegzéséért láthatatlanul felelős tárgyak szimbolikusan a tudományos élet nagyjainak leheletét, sóhajait, az agyakat átjáró oxigént őrzik. A szellőzőrendszer a világot egybekötő levegőáramláshoz kapcsolódik, miként a léghez hasonló, testetlen gondolatok létének alapja is a folyamatos, termékeny cserélődés.</StaggeredSplitText>
+        <StaggeredSplitText>Koronczi Endre egy fontos sóhaj keresésére indult útnak, a hátán a sóhaj befogására alkalmas üvegtárggyal. Az egy évig tartó gyaloglás kezdetén még nem tudta, hogy hol fogja megtalálni, amit keres, így a mű nemcsak fikciós, hanem valós kutatási folyamat is a dokumentáció és a videoművészet határán.</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel1} title="A Bennszorult lélegzet című installáció a Kérem, sóhajtson, Széchenyi Úr! című kiállításon a Godot Kortárs Művészeti Intézetben, 2024"/>
+        <BlurredImageCarousel images={carousel2} title="A sóhaj befogásához készített egyedi üvegtárgy Parádsasvári Üvegmanufaktúra műhelyében"/>
+
+        <div className="h-[70px] md:h-[150px]"></div>
+        <Video thumbnail="images/exhibition-3/gallery-2/14werk.webp" videoID="ABDaCca_uOk" />
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
-        <StaggeredSplitText>Az ipari tárgyakkal párbeszédbe állított természeti felvételen a lassan változó fumarola (geológiai képződmény, mely gázokat és gőzöket bocsát ki) a pneuma cosmic bolygó léptékű megmutatkozásaként, egy kozmikus lehelet kiáramlásaként jelenik meg. A levegő és a gondolatok cserélődése itt egy leletben tárul a néző elé, melynek kutatása párbeszédet teremt a tudományos akadémiák szellemisége és egy kutató művész metaforikus világlátása között.</StaggeredSplitText>
+        <StaggeredSplitText>Az installáció három egységből áll: a művész kutatását bemutató, a vándorlás monotonitását a helyszínek változatosságával ötvöző videóból, az üvegtárgyból, melyben a megtalált sóhajtás kerül megőrzésre, valamint a sóhaj befogásának pillanatát bemutató videóból. A két videóban meghatározó a lassúság, a kulcsjelenetek helyett a hosszú folyamat hangsúlyozása.</StaggeredSplitText>
         </div>
 
-        <Video thumbnail="images/exhibition-2/video.webp" videoID="hHZyi2eXODs" />
-        <div className="h-[150px]"></div>
-        <BlurredImageCarousel images={carousel2} title="A Magyar Tudományos Akadémia harmadik emeleti kiállítótermei a felújítás előtti állapotban"/>
 
-        <div
-            className="mt-[-100px] relative w-full h-full md:h-[550px] lg:h-[1000px] pt-[180px] pb-[70px] md:pt-0 md:pb-0 flex items-center justify-center"
-            >
-            <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-                <video data-gsap="exhibition-2-textbg" className="scale-110 w-full h-full object-cover z-1" playsInline muted loop autoPlay>
-                <source src="images/exhibition-2/bg_video2.mp4" type="video/mp4" />
-                </video>
+        <WalkSequence />
+
+        <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
+        <StaggeredSplitText>A Páros lábbal a föld felett egy játék, a lehetetlenre tett kísérlet, mely az illékony pillanat és az anyagtalan dolgok megragadásának vágyát fejezi ki.</StaggeredSplitText>
+        </div>
+
+        <BlurredImageCarousel images={carousel3} title="Az üvegtárgy a háti hordozóval és a zarándoklatot rögzítő kamerával"/>
+        <div className="md:h-[150px] h-[70px]"></div>
+        {/* <div className="mx-auto flex flex-col gap-[10px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[1050px]">
+            <p className="font-gara text-middark text-lg sm:text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>
+            <div>
+            <AnimatedLink href={"/"} external={true} size="large" text="A Végtelen Zarándoklat VIDEÓ" />
+            <AnimatedLink href={"/"} external={true} size="large" text="A Fejrehelyezés VIDEÓ" />
             </div>
-
-            <div className="absolute top-0 left-0 w-full h-full" style={{background: "linear-gradient(to bottom, rgba(5,5,5,1), rgba(5,5,5,0.75), rgba(5,5,5,1))"}}>
-            </div>
-
-            <StaggeredSplitText>Az archeológia tudományát is megidéző projekt a korábban a padlózatba rejtett, hétköznapi tárgyakat művészeti értékükben tárja a látogató elé. A labirintusszerűen elhelyezett szellőzőelemek erőteljes indusztriális jellege és sajátos története mellett az installáció a művész által a tárgyakban meglátott metaforán keresztül válik teljessé.</StaggeredSplitText>
-        </div>
-
-        <div data-gsap="exhibition-2-pin-helper" className="w-full h-[0px]"></div>
-        <PinnedImageReveal />
-        <p className="pt-[75px] mx-auto block xl:hidden text-center font-gara text-middark text-lg z-30  w-[calc(100%-40px)] leading-[18px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai, mellette leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
-
-
-        <div className="h-[150px]"></div>
-        <BlurredImageCarousel images={carousel4} title="A Magyar Tudományos Akadémia szellőztetőrendszeréből kibontott installációs elemek elszállítása az MTA Székház díszes folyosóin és lépcsőházán keresztül"/>
-
-
-        <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[220px] flex items-center justify-center">
-            <StaggeredSplitText>Ez a metafora jelenik meg az installációhoz tartozó szénrajzon is, melyen a Magyar Tudományos Akadémia neoreneszánsz székházának homlokzata jelenik meg. Az épületet átjárja vagy megzavarja egy megfoghatatlan, absztrakt motívum, a gesztusszerűen megjelenített légmozgás. A rajzon a két eltérő grafikai elem az általuk képviselt (világ)szemléleti és megismerési módok (tudomány és művészet) eltérő jellegét tükrözi, nyitva hagyva a kérdést, hogy találkozásuk termékeny vagy lehetetlen párbeszédet teremt.</StaggeredSplitText>
-        </div>
-
-        <BlurredImageCarousel images={carousel3} title="Az installáció elemeinek szállítása a K-ARTS Művészeti Alapítvány kecskeméti telephelyére"/>
-
-        <div className="mx-auto flex flex-col gap-[20px] md:gap-[30px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[924px]">
-            <p className="font-gara text-middark text-md sm:text-lg md:text-h4">Az installáció először Koronczi Endre Kérem, sóhajtson, Széchenyi Úr! kiállításán került bemutatásra.
-            <br></br><br></br>
-            Godot Kortárs Művészeti Intézet,<br></br> 
-            Budapest, 2024. 02. 23 – 06. 23, 
-            <br></br><br></br>
-            Kurátor: Cserhalmi Luca</p>
-        </div>
+        </div> */}
 
         <Footer />
-        </div>
     </div>
     )
 
