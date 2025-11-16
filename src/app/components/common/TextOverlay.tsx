@@ -115,7 +115,7 @@ export default function TextOverlay() {
     return (
         <div data-gsap="overlay-text" className="fixed top-0 left-0 w-screen h-screen z-[30] bg-[#050505d5]" onWheel={(e) => e.stopPropagation()}>
 
-            <div className="flex flex-col pt-[200px] pl-[20px] lg:pl-[100px] w-[calc(100%-40px)] lg:w-[760px] overflow-y-auto max-h-[100vh] pb-[100px]">
+            <div className="flex flex-col pt-[150px] md:pt-[200px] pl-[20px] lg:pl-[100px] w-[calc(100%-40px)] lg:w-[760px] overflow-y-auto max-h-[100vh] pb-[100px]">
                 <button onClick={closeOverlay} className="w-fit font-hal text-lg leading-[24px] text-midlight cursor-pointer hover:opacity-50 transition-opacity duration-150">
                 ← Vissza
                 </button>

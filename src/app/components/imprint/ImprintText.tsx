@@ -139,10 +139,10 @@ export default function ImprintText() {
             <br></br>Árvai István (K-Arts Művészeti és Rendezvényszervező Kft.)
             <br></br>Csatlós Judit
             <br></br>Csontó Lajos, Tari Ilona
+            <br></br>Koronczi Johanna
             <br></br>Török Róbert
             <br></br>Varga Mihály
-            <br></br>Koronczi Johanna
-            </p>~
+            </p>
 
             <a href="https://pneumacosmic.hu/" target="_blank" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark underline">pneumacosmic.hu/</a>
             <a href="https://www.instagram.com/pneumacosmic" target="_blank" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark underline">instagram.com/pneumacosmic</a>
