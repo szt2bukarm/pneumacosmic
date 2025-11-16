@@ -26,7 +26,10 @@ interface Store {
     setScrollTarget: (scrollTarget: string) => void
 
     overlayText: string | TrustedHTML,
-    setOverlayText: (overlayText: string) => void
+    setOverlayText: (overlayText: string) => void,
+
+    overlayWiki: boolean,
+    setOverlayWiki: (overlayWiki: boolean) => void
 }
 
 export const useStore = create<Store>((set) => ({
@@ -56,4 +59,7 @@ export const useStore = create<Store>((set) => ({
 
     overlayText: null,
     setOverlayText: (overlayText) => set({ overlayText }),
+
+    overlayWiki: false,
+    setOverlayWiki: (overlayWiki) => set({ overlayWiki }),
 }))

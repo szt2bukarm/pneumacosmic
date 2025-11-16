@@ -156,7 +156,7 @@ export default function NavMenu() {
                 {/* <NavSound /> */}
                 <NavLanguage />
             </div>
-        <img src="menu-close.svg" className="ml-auto w-[30px] h-[30px] hover:opacity-50 transition-opacity duration-150 cursor-pointer" onClick={() => setNavOpen(false)} />
+        <img src="menu-close.svg" className="ml-auto w-[23px] h-[23px] md:w-[30px] md:h-[30px] hover:opacity-50 transition-opacity duration-150 cursor-pointer" onClick={() => setNavOpen(false)} />
     </div>
 
     <div data-gsap="nav-menu" className="fixed top-0 left-0 z-[100] opacity-0 pointer-events-none">

@@ -312,7 +312,7 @@ export default function Page() {
         <StaggeredSplitText>Koronczi Endre egy fontos sóhaj keresésére indult útnak, a hátán a sóhaj befogására alkalmas üvegtárggyal. Az egy évig tartó gyaloglás kezdetén még nem tudta, hogy hol fogja megtalálni, amit keres, így a mű nemcsak fikciós, hanem valós kutatási folyamat is a dokumentáció és a videoművészet határán.</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel2} title="A sóhaj befogásához készített egyedi üvegtárgy Parádsasvári Üvegmanufaktúra műhelyében"/>
+        <BlurredImageCarousel images={carousel2} title="A sóhaj befogásához készített egyedi üvegtárgy a Parádsasvári Üvegmanufaktúra műhelyében"/>
 
         <div className="h-[70px] md:h-[150px]"></div>
         <Video thumbnail="images/exhibition-3/gallery-2/14werk.webp" videoID="ABDaCca_uOk" />

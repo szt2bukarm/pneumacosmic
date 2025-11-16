@@ -10,7 +10,7 @@ import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(SplitText)
 
 export default function TextOverlay() {
-    const {overlayText, setOverlayText} = useStore();
+    const {overlayText,overlayWiki, setOverlayText} = useStore();
     const textRef = useRef<HTMLParagraphElement>(null);
     const pathname = usePathname();
     const splitRef = useRef<SplitText | null>(null);
@@ -120,7 +120,9 @@ export default function TextOverlay() {
                 ← Vissza
                 </button>
                 <p ref={textRef} className="font-gara text-md leading-[20px] sm:text-lg sm:leading-[28px] text-middark mb-[70px] mt-[50px]" dangerouslySetInnerHTML={{__html: overlayText}}></p>
+                {overlayWiki && (
                 <AnimatedLink external={true} size="large" text="Pneuma Cosmic WIKI" href="https://hu.wikipedia.org/wiki/Pneuma_Cosmic" />
+                )}
             </div>
         </div>
     )

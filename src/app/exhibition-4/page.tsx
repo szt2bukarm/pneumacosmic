@@ -7,9 +7,10 @@ import gsap from "gsap"
 
 export default function Page() {
   const splineRef = useRef<HTMLDivElement>(null)
-  const {setOverlayText,isMobile} = useStore();
+  const {setOverlayText,setOverlayWiki,isMobile} = useStore();
 
   const openOverlay = () => {
+    setOverlayWiki(true);
     setOverlayText("A Pneuma Cosmic projekt fogalmi és vizuális asszociatív térképe a Lebegő hipotézis. Azokat a videókat, kifejezéseket és képeket mutatja be, melyek a pneuma cosmic mint hipotetikus kutatási tárgy művészeti feltárása alatt meghatározóvá váltak. Az installáció segít közelebb kerülni a pneuma cosmic fiktív kutatási projektjéhez, amelynek célja nem egy konkrét jelenség leírása, hanem egy körvonalak nélküli sejtés megragadására tett kísérlet. Koronczi itt pontokat jelöl ki, az összefüggések olvasata a nézőben születik meg. A kérdésfelvetés, a befogadóban létrejövő intuitív gondolkodási folyamat a kiállítás meghatározó eleme. A Lebegő hipotézis által felkínált kulcsok egy még be nem fejezett, tapogatózó kutatásba, cikázó gondolatokba engednek betekintést. A mű annak a tapasztalatnak a leképezése, miszerint az analitikus elme nem mindenhez enged hozzáférést, és olykor érdemes segítségül hívni a rendszerező struktúrák mellett a kevésbé tudatos gondolati folyamatokat is, hogy közelebb kerüljünk a megismeréshez.")
   }
 

@@ -203,7 +203,7 @@ export default function Page() {
         </div>
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-        <StaggeredSplitText>Balogh Máté zeneszerző a Pneuma Cosmic című kompozíciót Koronczi Endre projektjének akusztikus elemeként hozta létre. A mű a velencei kiállításra, annak fix fizikai terére és gondolati összefüggéseire készült. A hangfelvételen Balogh Máté játszik</StaggeredSplitText>
+        <StaggeredSplitText>Balogh Máté zeneszerző a Pneuma Cosmic című kompozíciót Koronczi Endre projektjének akusztikus elemeként hozta létre. A mű a velencei kiállításra, annak fix fizikai terére és gondolati összefüggéseire készült.<br></br>A hangfelvételen Balogh Máté játszik.</StaggeredSplitText>
         </div>
 
         <BlurredImageCarousel images={carousel2} title="Balogh Máté és a Pneuma Cosmic című hangszobor (Akusztikus elem) kottája"/>

@@ -74,7 +74,7 @@ export default function FooterCardDesktop({
   return (
     <TransitionLink
       href={href}
-      className={`cursor-pointer ${
+      className={`${pathname != href ? "cursor-pointer" : "cursor-default"} ${
         width === "full" ? "!flex-1" : "!flex-[0.5]"
       } relative flex-[0.5] transition-all duration-500 ease-in-out min-h-full
                  hover:!flex-[0_0_800px] brightness-100 group-hover:brightness-[0.2] 
@@ -103,7 +103,7 @@ export default function FooterCardDesktop({
       >
         <p className="font-gara text-h1 leading-[70px] mb-auto">{number}</p>
         <p className="font-gara text-h1 leading-[90%] mb-[10px]">{text}</p>
-        <p className="font-hal text-h5">{pathname == href ? "Jelenleg itt" : "Megtekintes →"}</p>
+        <p className="font-hal text-h5">{pathname == href ? "Jelenleg itt" : "Megtekintés →"}</p>
       </div>
     </TransitionLink>
   );

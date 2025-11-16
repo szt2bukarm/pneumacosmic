@@ -384,8 +384,8 @@ export default function Page() {
     return (
     <div className="relative w-screen min-h-screen bg-black overflow-x-hidden">
 
-        <p data-gsap="exhibition-2-fixedtext-left" className="hidden xl:block opacity-0 fixed bottom-5 left-5 font-gara text-middark text-lg z-30 xl:w-[550px] leading-[18px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai</p>
-        <p data-gsap="exhibition-2-fixedtext-right" className="hidden xl:block opacity-0 fixed bottom-5 right-5 text-right font-gara text-middark text-lg z-30  xl:w-[550px] leading-[18px]">Leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
+        <p data-gsap="exhibition-2-fixedtext-left" className="hidden xl:block opacity-0 fixed bottom-5 left-5 font-hal text-middark text-sm z-30 xl:w-[550px] leading-[14px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai</p>
+        <p data-gsap="exhibition-2-fixedtext-right" className="hidden xl:block opacity-0 fixed bottom-5 right-5 text-right font-hal text-middark text-sm z-30  xl:w-[550px] leading-[14px]">Leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
 
 
 
@@ -457,12 +457,13 @@ export default function Page() {
             <div className="absolute top-0 left-0 w-full h-full" style={{background: "linear-gradient(to bottom, rgba(5,5,5,1), rgba(5,5,5,0.75), rgba(5,5,5,1))"}}>
             </div>
 
-            <StaggeredSplitText>Az archeológia tudományát is megidéző projekt a korábban a padlózatba rejtett, hétköznapi tárgyakat művészeti értékükben tárja a látogató elé. A labirintusszerűen elhelyezett szellőzőelemek erőteljes indusztriális jellege és sajátos története mellett az installáció a művész által a tárgyakban meglátott metaforán keresztül válik teljessé.</StaggeredSplitText>
+            <StaggeredSplitText>Az archeológia tudományát is megidéző projekt a korábban a padlózatba rejtett, hétköznapi tárgyakat művészeti értékükben tárja a látogató elé.<br></br>A labirintusszerűen elhelyezett szellőzőelemek erőteljes indusztriális jellege és sajátos története mellett az installáció a művész által a tárgyakban meglátott metaforán keresztül válik teljessé.</StaggeredSplitText>
         </div>
 
         <div data-gsap="exhibition-2-pin-helper" className="w-full h-[0px]"></div>
         <PinnedImageReveal />
-        <p className="pt-[75px] mx-auto block xl:hidden text-center font-gara text-middark text-lg z-30  w-[calc(100%-40px)] leading-[18px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai, mellette leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
+        <p className="pt-[100px] mx-auto text-center font-hal text-middark text-sm w-[calc(100%-40px)] lg:w-[900px] leading-[15px] ">A fényképek a Fővárosi Szabó Ervin Könyvtár – Budapest Gyűjteményéből és a FORTEPAN – Budapest Főváros Levéltárából származnak.</p>
+        <p className="pt-[25px] mx-auto block xl:hidden text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai, mellette leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
 
 
         <div className="h-[150px]"></div>

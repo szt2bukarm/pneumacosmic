@@ -9,10 +9,22 @@ import gsap from "gsap";
 import { usePathname } from "next/navigation";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import { useLayoutEffect } from "react";
+import { useStore } from "@/app/useStore";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
     const pathname = usePathname();
+    const {setOverlayText,setOverlayWiki} = useStore();
+
+    const openNationalCommissioner = () => {
+        setOverlayWiki(false);
+        setOverlayText("A Velencei Biennálé nemzeti biztosa dr. Fabényi Julia, a Ludwig Múzeum igazgatója. Szervező intézmény: Ludwig Múzeum")
+    }
+
+    const OpenBienalle = () => {
+        setOverlayWiki(false);
+        setOverlayText("Ludwig Múzeum, Velencei Biennálé Iroda: Boros Géza a VBI vezetője, Bálványos Anna főmuzeológus coordinátor, Lakó Zsigmond olasz referens")
+    }
 
     useGSAP(() => {
         if (pathname == "/") {
@@ -68,9 +80,9 @@ export default function Footer() {
             {/* <FooterText /> */}
 
             <div data-gsap="footer-links">
-                <FooterLinks />
-                <FooterLinksMedium />
-                <FooterLinksMobile />
+                <FooterLinks openBienalle={OpenBienalle} openNational={openNationalCommissioner}/>
+                <FooterLinksMedium openBienalle={OpenBienalle} openNational={openNationalCommissioner}/>
+                <FooterLinksMobile openBienalle={OpenBienalle} openNational={openNationalCommissioner}/>
 
                 <a href="https://www.labiennale.org/en" target="_blank" className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-10">
                     <img src="/footerbanner.svg" className="w-full h-fit" />

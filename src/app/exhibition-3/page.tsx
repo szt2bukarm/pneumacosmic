@@ -83,7 +83,7 @@ export default function Page() {
 
         <div className="mx-auto flex flex-col gap-[10px] mb-[70px] md:mb-[150px] lg:mb-[200px] w-[90vw] xl:w-[1050px]">
             <p className="font-gara text-middark text-lg sm:text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>
-            <AnimatedLink external={false} size="large" text="Végtelen Türelem VIDEÓ" href="https://www.youtube.com/watch?v=Q6nwi3D_nvM&feature=youtu.be" />
+            <AnimatedLink external={true} size="large" text="Végtelen Türelem VIDEÓ" href="https://www.youtube.com/watch?v=Q6nwi3D_nvM&feature=youtu.be" />
         </div>
 
         <Footer />
