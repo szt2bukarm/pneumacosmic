@@ -1,135 +1,135 @@
 "use client"
-import BlurredImageCarousel from "../components/common/BlurredImageCarousel";
-import PageNavHeader from "../components/common/PageNavHeader";
-import PageTitle from "../components/common/PageTitle";
-import StaggeredSplitText from "../components/common/StaggeredSplitText";
-import Video from "../components/common/Video";
+import BlurredImageCarousel from "../../components/common/BlurredImageCarousel";
+import PageNavHeader from "../../components/common/PageNavHeader";
+import PageTitle from "../../components/common/PageTitle";
+import StaggeredSplitText from "../../components/common/StaggeredSplitText";
+import Video from "../../components/common/Video";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import PinnedImageReveal from "../components/Exhibition-2/PinnedImageReveal";
-import Footer from "../components/Footer/Footer";
-import ImageGallery from "../components/common/ImageGallery/ImageGallery";
-import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
+import PinnedImageReveal from "../../components/Exhibition-2/PinnedImageReveal";
+import Footer from "../../components/Footer/Footer";
+import ImageGallery from "../../components/common/ImageGallery/ImageGallery";
+import Exhibiton2Render from "../../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect } from "react";
-import AnimatedLink from "../components/common/AnimatedLink";
-import MusicSheet from "../components/exhibition-5/MusicSheet";
+import AnimatedLink from "../../components/common/AnimatedLink";
+import MusicSheet from "../../components/exhibition-5/MusicSheet";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
     {
-        src: "images/exhibition-5/gallery-1/werk1.webp",
+        src: "/images/exhibition-5/gallery-1/werk1.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk2.webp",
+        src: "/images/exhibition-5/gallery-1/werk2.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk3.webp",
+        src: "/images/exhibition-5/gallery-1/werk3.webp",
         text: "Próba szöveg"
     },
     {
-        src: "images/exhibition-5/gallery-1/werk4.webp",
+        src: "/images/exhibition-5/gallery-1/werk4.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk5.webp",
+        src: "/images/exhibition-5/gallery-1/werk5.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk6.webp",
+        src: "/images/exhibition-5/gallery-1/werk6.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk7.webp",
+        src: "/images/exhibition-5/gallery-1/werk7.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk8.webp",
+        src: "/images/exhibition-5/gallery-1/werk8.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk9.webp",
+        src: "/images/exhibition-5/gallery-1/werk9.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk10.webp",
+        src: "/images/exhibition-5/gallery-1/werk10.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk11.webp",
+        src: "/images/exhibition-5/gallery-1/werk11.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-1/werk12.webp",
+        src: "/images/exhibition-5/gallery-1/werk12.webp",
         text: null
     },
 ]
 
 const carousel2 = [
     {
-        src: "images/exhibition-5/gallery-2/mate1.webp",
+        src: "/images/exhibition-5/gallery-2/mate1.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-2/mate2.webp",
+        src: "/images/exhibition-5/gallery-2/mate2.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-2/mate3.webp",
+        src: "/images/exhibition-5/gallery-2/mate3.webp",
         text: "Próba szöveg"
     }
 ]
 
 const carousel3 = [
     {
-        src: "images/exhibition-5/gallery-3/studio1.webp",
+        src: "/images/exhibition-5/gallery-3/studio1.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-3/studio2.webp",
+        src: "/images/exhibition-5/gallery-3/studio2.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-3/studio3.webp",
+        src: "/images/exhibition-5/gallery-3/studio3.webp",
         text: "Próba szöveg"
     },
     {
-        src: "images/exhibition-5/gallery-3/studio4.webp",
+        src: "/images/exhibition-5/gallery-3/studio4.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-3/studio5.webp",
+        src: "/images/exhibition-5/gallery-3/studio5.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-3/studio6.webp",
+        src: "/images/exhibition-5/gallery-3/studio6.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-3/studio7.webp",
+        src: "/images/exhibition-5/gallery-3/studio7.webp",
         text: "Próba szöveg"
     },
     {
-        src: "images/exhibition-5/gallery-3/studio8.webp",
+        src: "/images/exhibition-5/gallery-3/studio8.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-3/studio9.webp",
+        src: "/images/exhibition-5/gallery-3/studio9.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-3/studio10.webp",
+        src: "/images/exhibition-5/gallery-3/studio10.webp",
         text: null
     },
     {
-        src: "images/exhibition-5/gallery-3/studio11.webp",
+        src: "/images/exhibition-5/gallery-3/studio11.webp",
         text: "Próba szöveg"
     },
     {
-        src: "images/exhibition-5/gallery-3/studio12.webp",
+        src: "/images/exhibition-5/gallery-3/studio12.webp",
         text: null
     }
 ]

@@ -55,7 +55,7 @@ function Scene() {
   const lightRef = useRef<THREE.SpotLight>(null);
   const {isMobile,loaded} = useStore();
 
-  const videoTexture = useVideoTexture("video.mp4", {
+  const videoTexture = useVideoTexture("/video.mp4", {
     muted: true,
     loop: true,
     autoplay: true,
@@ -120,10 +120,10 @@ function Scene() {
 
 
       {/* 3D Model */}
-      <GLBModel path="3dc.glb" position={[0, -0.45, 0]} scale={[0.4, 0.4, 0.4]} />
+      <GLBModel path="/3dc.glb" position={[0, -0.45, 0]} scale={[0.4, 0.4, 0.4]} />
 
       {/* Environment */}
-      <Environment files="black.exr" />
+      <Environment files="/black.exr" />
 
       {/* Postprocessing */}
       {/* <Suspense fallback={null}>

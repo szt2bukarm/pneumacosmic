@@ -5,10 +5,12 @@ import { useGSAP } from "@gsap/react"
 import ScrollTrigger from "gsap/src/ScrollTrigger"
 import StaggeredSplitText from "../common/StaggeredSplitText"
 import { useStore } from "@/app/useStore"
+import { useParams } from "next/navigation"
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
 export default function LandingText() {
     const {setOverlayText,setOverlayWiki} = useStore();
+    const {locale} = useParams();
 
     const openOverlay = () => {
         setOverlayWiki(true);
@@ -17,9 +19,9 @@ export default function LandingText() {
 
     return (
         <div data-gsap="landing-text" className="mt-[100vh] relative w-screen h-fit py-[70px] md:py-[100px] xl:py-[120px] flex items-center justify-center flex-col gap-[85px] z-10">
-            <StaggeredSplitText>
-            A <span className="font-garabold"><i>Pneuma Cosmic</i></span> Koronczi Endre képzőművész projektje, mely 61. Velencei Képzőművészeti Biennálé Magyar Pavilonjában kerül bemutatásra, kurátor: Cserhalmi Luca. A kiállítás Koronczi Ploubuter Park nevű művészeti kutatásának része, melynek keretében több évtizede kutatja a szél és a légmozgás jelenségét.<br></br><br></br> A Pneuma Cosmic fogalom a légmozgás egy metaforikus megközelítéséből indul ki, mely egy mindent átható, az anyagi világot láthatatlanul vitalizáló mozgatóerőre utal. A tájakat átjáró szél és az emberi sóhajtás a szellemi világ áramló gondolataival egyesül ebben gondolatban. A projekt részét képzik talált leletek, fiktív és valós dokumentációk, fogalommagyarázatok, videó- és kinetikus installációk, valamint Balogh Máté zeneszerző akusztikus eleme.
-            </StaggeredSplitText>
+                <StaggeredSplitText>
+                A <span className="font-garabold"><i>Pneuma Cosmic</i></span> Koronczi Endre képzőművész projektje, mely 61. Velencei Képzőművészeti Biennálé Magyar Pavilonjában kerül bemutatásra, kurátor: Cserhalmi Luca. A kiállítás Koronczi Ploubuter Park nevű művészeti kutatásának része, melynek keretében több évtizede kutatja a szél és a légmozgás jelenségét.<br></br><br></br> A Pneuma Cosmic fogalom a légmozgás egy metaforikus megközelítéséből indul ki, mely egy mindent átható, az anyagi világot láthatatlanul vitalizáló mozgatóerőre utal. A tájakat átjáró szél és az emberi sóhajtás a szellemi világ áramló gondolataival egyesül ebben gondolatban. A projekt részét képzik talált leletek, fiktív és valós dokumentációk, fogalommagyarázatok, videó- és kinetikus installációk, valamint Balogh Máté zeneszerző akusztikus eleme.
+                </StaggeredSplitText>
 
             <button onClick={openOverlay} className={`relative z-5 flex items-center justify-center font-hal w-fit px-[50px] h-[60px] rounded-[50px] bg-dark border border-[#7D7D7D] text-middark text-lg ease-in-out hover:opacity-50 hover:cursor-pointer transition-opacity duration-150`}>Bővebben →</button>
 

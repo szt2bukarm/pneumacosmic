@@ -6,14 +6,14 @@ import { useEnvironment, useGLTF } from '@react-three/drei';
 import { useGSAP } from '@gsap/react';
 
 const assets = [
-  "images/bennszorult.webp",
-  "images/paroslab.webp",
-  "images/saroslab.webp",
-  "images/lelegzofal.webp",
-  "images/fal.webp",
-  "images/akusztikus.webp",
-  "logo.webp",
-  "footerbanner.svg",
+  "/images/bennszorult.webp",
+  "/images/paroslab.webp",
+  "/images/saroslab.webp",
+  "/images/lelegzofal.webp",
+  "/images/fal.webp",
+  "/images/akusztikus.webp",
+  "/logo.webp",
+  "/footerbanner.svg",
   // ...Array.from({ length: 2 }, (_, i) => `images/exhibition-2/gallery-1/${i + 1}.webp`),
   // ...Array.from({ length: 2 }, (_, i) => `images/exhibition-2/gallery-2/${i + 1}mtan.webp`),
   // ...Array.from({ length: 2 }, (_, i) => `images/exhibition-2/gallery-3/${i + 1}kecskemet.webp`),
@@ -29,7 +29,7 @@ const assets = [
 ];
 
 // walk frames for the canvas sequence
-const walkFrames = Array.from({ length: 64 }, (_, i) => `images/exhibition-3/walk/${i+1}walk.avif`);
+const walkFrames = Array.from({ length: 64 }, (_, i) => `/images/exhibition-3/walk/${i+1}walk.avif`);
 
 export default function Loader() {
   const { setLoaded, loaded, setWalkBitmaps } = useStore();
@@ -160,8 +160,8 @@ export default function Loader() {
     >
       {random != 0 && (
         <>
-        <img data-gsap="loader-logo-full" src={`loader/loader${random}.webp?v=${random}`}  className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
-      <img data-gsap="loader-logo" src={`loader/loader${random}.webp?v=${random}`}  className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
+        <img data-gsap="loader-logo-full" src={`/loader/loader${random}.webp?v=${random}`}  className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
+      <img data-gsap="loader-logo" src={`/loader/loader${random}.webp?v=${random}`}  className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
         </>
       )}
       {/* <p className="text-white text-h1">

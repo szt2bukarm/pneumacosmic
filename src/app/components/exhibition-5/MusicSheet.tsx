@@ -4,9 +4,9 @@ import "swiper/css";
 
 export default function MusicSheet() {
   const images = [
-    "images/exhibition-5/sheet/sheet1.webp",
-    "images/exhibition-5/sheet/sheet1.webp",
-    "images/exhibition-5/sheet/sheet1.webp",
+    "/images/exhibition-5/sheet/sheet1.webp",
+    "/images/exhibition-5/sheet/sheet1.webp",
+    "/images/exhibition-5/sheet/sheet1.webp",
   ];
 
   return (

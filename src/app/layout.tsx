@@ -1,59 +1,47 @@
-import "./globals.css";
-import SmoothScroll from "./components/utils/SmoothScroll";
-import Nav from "./components/Nav/Nav";
-import NavMenu from "./components/Nav/NavMenu";
-import { ViewTransitions } from "next-view-transitions";
-import GradualBlurMemo from "./components/GradualBlur";
-import ImageGallery from "./components/common/ImageGallery/ImageGallery";
-import ImageGalleryWrapper from "./components/common/ImageGallery/ImageGalleryWrapper";
-import MobileTest from "./MobileTest";
-import Loader from "./components/Loader";
-import TextOverlay from "./components/common/TextOverlay";
+// app/layout.tsx
 import { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Pneuma Cosmic",
+  description: "Pneuma Cosmic, Koronczi Endre képzőművész projektje, mely 61. Velencei Képzőművészeti Biennálé Magyar Pavilonjában kerül bemutatásra, kurátor: Cserhalmi Luca.",
+  keywords: [  
+    "Pneuma Cosmic",
+    "Koronczi Endre",
+    "Képzőművész",
+    "61. Velencei Képzőművészeti Biennálé",
+    "labiennale",
+    "La Biennale di Venezia",
+    "La Biennale",
+    "Venezia",
+    "Velencei Biennálé",
+  ],
+  openGraph: {
+    title: "Pneuma Cosmic",
+    description: "Pneuma Cosmic, Koronczi Endre képzőművész projektje, mely 61. Velencei Képzőművészeti Biennálé Magyar Pavilonjában kerül bemutatásra, kurátor: Cserhalmi Luca.",
+    url: "https://www.pneumacosmic.hu",
+    siteName: "Pneuma Cosmic",
+    type: "website",
+    locale: "hu_HU",
+    alternateLocale: ["en_US", "it_IT"],
+    images: [
+      {
+        url: "https://www.pneumacosmic.hu/og.jpg",
+        width: 1280,
+        height: 720,
+        alt: "Pneuma Cosmic",
+      },
+    ]
+  },
   icons: {
     icon: "/favicon.png",
   }
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ViewTransitions>
-    <MobileTest />
     <html lang="en">
-      <head>
-      <script dangerouslySetInnerHTML={{ __html: `history.scrollRestoration = "manual"` }} />
-      </head>
-      <body
-      >
-        <Loader />
-        <Nav />
-        <TextOverlay />
-        <SmoothScroll>
-        {children}
-        <GradualBlurMemo
-          target="page"
-          position="top"
-          height="150px"
-          strength={1}
-          divCount={3}
-          curve="bezier"
-          opacity={1}
-          exponential={true}
-          zIndex={48}
-          />
-        {/* <Vignette /> */}
-        <NavMenu />
-        <ImageGalleryWrapper />
-        </SmoothScroll>
-      </body>
+      <body>{children}</body>
     </html>
-    </ViewTransitions>
   );
 }

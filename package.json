@@ -17,6 +17,7 @@
     "gsap": "^3.13.0",
     "mathjs": "^14.8.1",
     "next": "^14.2.22",
+    "next-intl": "^4.5.3",
     "next-view-transitions": "^0.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,243 +1,243 @@
 "use client"
-import BlurredImageCarousel from "../components/common/BlurredImageCarousel";
-import PageNavHeader from "../components/common/PageNavHeader";
-import PageTitle from "../components/common/PageTitle";
-import StaggeredSplitText from "../components/common/StaggeredSplitText";
-import Video from "../components/common/Video";
+import BlurredImageCarousel from "../../components/common/BlurredImageCarousel";
+import PageNavHeader from "../../components/common/PageNavHeader";
+import PageTitle from "../../components/common/PageTitle";
+import StaggeredSplitText from "../../components/common/StaggeredSplitText";
+import Video from "../../components/common/Video";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import PinnedImageReveal from "../components/Exhibition-2/PinnedImageReveal";
-import Footer from "../components/Footer/Footer";
-import ImageGallery from "../components/common/ImageGallery/ImageGallery";
-import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
+import PinnedImageReveal from "../../components/Exhibition-2/PinnedImageReveal";
+import Footer from "../../components/Footer/Footer";
+import ImageGallery from "../../components/common/ImageGallery/ImageGallery";
+import Exhibiton2Render from "../../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect, useState } from "react";
-import WalkSequence from "../components/Exhibition-3/WalkSequence";
-import AnimatedLink from "../components/common/AnimatedLink";
+import WalkSequence from "../../components/Exhibition-3/WalkSequence";
+import AnimatedLink from "../../components/common/AnimatedLink";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
     {
-        src: "images/exhibition-3/gallery-1/1general.webp",
+        src: "/images/exhibition-3/gallery-1/1general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/2general.webp",
+        src: "/images/exhibition-3/gallery-1/2general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/3general.webp",
+        src: "/images/exhibition-3/gallery-1/3general.webp",
         text: "Próba szöveg"
     },
     {
-        src: "images/exhibition-3/gallery-1/4general.webp",
+        src: "/images/exhibition-3/gallery-1/4general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/5general.webp",
+        src: "/images/exhibition-3/gallery-1/5general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/6general.webp",
+        src: "/images/exhibition-3/gallery-1/6general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/7general.webp",
+        src: "/images/exhibition-3/gallery-1/7general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/8general.webp",
+        src: "/images/exhibition-3/gallery-1/8general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/9general.webp",
+        src: "/images/exhibition-3/gallery-1/9general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/10general.webp",
+        src: "/images/exhibition-3/gallery-1/10general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/11general.webp",
+        src: "/images/exhibition-3/gallery-1/11general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/12general.webp",
+        src: "/images/exhibition-3/gallery-1/12general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/13general.webp",
+        src: "/images/exhibition-3/gallery-1/13general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/14general.webp",
+        src: "/images/exhibition-3/gallery-1/14general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/15general.webp",
+        src: "/images/exhibition-3/gallery-1/15general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/16general.webp",
+        src: "/images/exhibition-3/gallery-1/16general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/17general.webp",
+        src: "/images/exhibition-3/gallery-1/17general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/18general.webp",
+        src: "/images/exhibition-3/gallery-1/18general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/19general.webp",
+        src: "/images/exhibition-3/gallery-1/19general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/20general.webp",
+        src: "/images/exhibition-3/gallery-1/20general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/21general.webp",
+        src: "/images/exhibition-3/gallery-1/21general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/22general.webp",
+        src: "/images/exhibition-3/gallery-1/22general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/23general.webp",
+        src: "/images/exhibition-3/gallery-1/23general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/24general.webp",
+        src: "/images/exhibition-3/gallery-1/24general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/25general.webp",
+        src: "/images/exhibition-3/gallery-1/25general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/26general.webp",
+        src: "/images/exhibition-3/gallery-1/26general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/27general.webp",
+        src: "/images/exhibition-3/gallery-1/27general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/28general.webp",
+        src: "/images/exhibition-3/gallery-1/28general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/29general.webp",
+        src: "/images/exhibition-3/gallery-1/29general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/30general.webp",
+        src: "/images/exhibition-3/gallery-1/30general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/31general.webp",
+        src: "/images/exhibition-3/gallery-1/31general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/32general.webp",
+        src: "/images/exhibition-3/gallery-1/32general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/33general.webp",
+        src: "/images/exhibition-3/gallery-1/33general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/34general.webp",
+        src: "/images/exhibition-3/gallery-1/34general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/35general.webp",
+        src: "/images/exhibition-3/gallery-1/35general.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-1/36general.webp",
+        src: "/images/exhibition-3/gallery-1/36general.webp",
         text: null
     },
 ]
 
 const carousel2 = [
     {
-        src: "images/exhibition-3/gallery-2/1werk.webp",
+        src: "/images/exhibition-3/gallery-2/1werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/2werk.webp",
+        src: "/images/exhibition-3/gallery-2/2werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/3werk.webp",
+        src: "/images/exhibition-3/gallery-2/3werk.webp",
         text: "Próba szöveg"
     },
     {
-        src: "images/exhibition-3/gallery-2/4werk.webp",
+        src: "/images/exhibition-3/gallery-2/4werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/5werk.webp",
+        src: "/images/exhibition-3/gallery-2/5werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/6werk.webp",
+        src: "/images/exhibition-3/gallery-2/6werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/7werk.webp",
+        src: "/images/exhibition-3/gallery-2/7werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/8werk.webp",
+        src: "/images/exhibition-3/gallery-2/8werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/9werk.webp",
+        src: "/images/exhibition-3/gallery-2/9werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/10werk.webp",
+        src: "/images/exhibition-3/gallery-2/10werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/11werk.webp",
+        src: "/images/exhibition-3/gallery-2/11werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/12werk.webp",
+        src: "/images/exhibition-3/gallery-2/12werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/13werk.webp",
+        src: "/images/exhibition-3/gallery-2/13werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/14werk.webp",
+        src: "/images/exhibition-3/gallery-2/14werk.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-2/15werk.webp",
+        src: "/images/exhibition-3/gallery-2/15werk.webp",
         text: null
     },
 ]
 
 const carousel3 = [
     {
-        src: "images/exhibition-3/gallery-3/1object.webp",
+        src: "/images/exhibition-3/gallery-3/1object.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-3/2object.webp",
+        src: "/images/exhibition-3/gallery-3/2object.webp",
         text: null
     },
     {
-        src: "images/exhibition-3/gallery-3/3object.webp",
+        src: "/images/exhibition-3/gallery-3/3object.webp",
         text: null
     }
 ]
@@ -315,7 +315,7 @@ export default function Page() {
         <BlurredImageCarousel images={carousel2} title="A sóhaj befogásához készített egyedi üvegtárgy a Parádsasvári Üvegmanufaktúra műhelyében"/>
 
         <div className="h-[70px] md:h-[150px]"></div>
-        <Video thumbnail="images/exhibition-3/gallery-2/14werk.webp" videoID="ABDaCca_uOk" />
+        <Video thumbnail="/images/exhibition-3/gallery-2/14werk.webp" videoID="ABDaCca_uOk" />
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
         <StaggeredSplitText>Az installáció három egységből áll: a művész kutatását bemutató, a vándorlás monotonitását a helyszínek változatosságával ötvöző videóból, az üvegtárgyból, melyben a megtalált sóhajtás kerül megőrzésre, valamint a sóhaj befogásának pillanatát bemutató videóból. A két videóban meghatározó a lassúság, a kulcsjelenetek helyett a hosszú folyamat hangsúlyozása.</StaggeredSplitText>

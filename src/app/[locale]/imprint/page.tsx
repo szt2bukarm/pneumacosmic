@@ -1,9 +1,9 @@
 "use client"
 import { useLenis } from "@studio-freight/react-lenis";
-import ImprintHeader from "../components/imprint/ImprintHeader";
+import ImprintHeader from "../../components/imprint/ImprintHeader";
 import { useEffect } from "react";
-import Footer from "../components/Footer/Footer";
-import { useStore } from "../useStore";
+import Footer from "../../components/Footer/Footer";
+import { useStore } from "../../useStore";
 
 export default function Page() {
     const lenis = useLenis();

@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import { useTransitionRouter } from "next-view-transitions";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import gsap from 'gsap'
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useLenis } from "@studio-freight/react-lenis";
@@ -19,6 +19,7 @@ export default function TransitionLink({ href, children,data,scrollTarget, class
     const {navOpen,setNavOpen,setScrollTarget} = useStore();
     const pathname = usePathname();
     const lenis = useLenis();
+    const {locale} = useParams();
 
     const animation = () => {
             
@@ -84,10 +85,10 @@ export default function TransitionLink({ href, children,data,scrollTarget, class
     return (
         <Link data-gsap={data} href={href} onClick={(e) => {
             e.preventDefault();
-            if (pathname === href) return;
+            if (pathname === `/${locale}${href}`) return;
             if (scrollTarget) setScrollTarget(scrollTarget);
             setTimeout(() => {
-                Router.push(href, {
+                Router.push(`/${locale}${href}`, {
                     onTransitionReady: animation
                 });
             }, navOpen ? 10 : 20);

@@ -1,5 +1,5 @@
 "use client"
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import NavLanguage from "./NavLanguage";
 import NavOpener from "./NavOpener";
 import NavSound from "./NavSound";
@@ -11,12 +11,14 @@ import { useRef } from "react";
 
 export default function Nav() {
     const pathname = usePathname();
+    const {locale} = useParams();
     const {navOpen} = useStore();
 
     const pathRef = useRef(pathname);
 
     useGSAP(() => {
-        if (pathname === "/") {
+        console.log(pathname,locale)
+        if (pathname === "/" + locale ) {
             gsap.set('[data-gsap="nav-logo"]', {
                 display: "none"
             })
@@ -29,9 +31,9 @@ export default function Nav() {
 
         const previousPath = pathRef.current;
         const currentPath = pathname;
-        const isTransitionToHome = currentPath === "/" && previousPath !== "/";
+        const isTransitionToHome = currentPath === "/" + locale && previousPath !== "/" + locale;
 
-        const isTransitionFromHome = currentPath !== "/" && previousPath === "/";
+        const isTransitionFromHome = currentPath !== "/" + locale && previousPath === "/" + locale;
         if (isTransitionToHome) {
             gsap.to('[data-gsap="nav-logo"]', {
                 opacity: 0,
@@ -61,7 +63,7 @@ export default function Nav() {
                 }
             });
         }
-        else if (currentPath !== "/" && previousPath !== "/") {
+        else if (currentPath !== "/" + locale && previousPath !== "/" + locale) {
             setTimeout(() => {
                 gsap.set('[data-gsap="nav-logo"]', {
                     opacity: 1,
@@ -74,7 +76,7 @@ export default function Nav() {
 
         pathRef.current = currentPath;
 
-    },[pathname]); // Dependency o
+    },[pathname]);
 
     useGSAP(() => {
         if (navOpen) {
@@ -111,7 +113,7 @@ export default function Nav() {
 
             <div data-gsap="nav-logo" className="absolute left-[80px] sm:left-[100px] lg:left-[50%] top-[65px]  xl:top-[80px] translate-x-[-50%] translate-y-[-50%] flex w-fit z-[100] pointer-events-none opacity-0">
                 <TransitionLink href="/" className="z-[100] pointer-events-auto">
-                <img src="logo.webp" className="w-[130px] lg:w-[175px]  z-[100] mix-blend-multiply" style={{mixBlendMode: "multiply"}} />
+                <img src="/logo.webp" className="w-[130px] lg:w-[175px]  z-[100] mix-blend-multiply" style={{mixBlendMode: "multiply"}} />
                 </TransitionLink>
             </div>
 

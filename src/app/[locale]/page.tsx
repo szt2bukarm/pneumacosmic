@@ -1,10 +1,10 @@
 "use client"
-import Hero from "./components/landing/hero/Hero";
-import LandingText from "./components/landing/LandingText";
-import Footer from "./components/Footer/Footer";
+import Hero from "../components/landing/hero/Hero";
+import LandingText from "../components/landing/LandingText";
+import Footer from "../components/Footer/Footer";
 import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect } from "react";
-import Video from "./components/common/Video";
+import Video from "../components/common/Video";
 
 export default function Home() {
   const lenis = useLenis();

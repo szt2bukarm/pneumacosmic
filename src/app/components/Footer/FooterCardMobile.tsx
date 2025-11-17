@@ -1,5 +1,5 @@
 import TransitionLink from "@/app/TransitionLink";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 interface cardInterface {
     index: number,
@@ -13,6 +13,7 @@ interface cardInterface {
 
 export default function FooterCardMobile({ index,activeIndex, number, width, image, text, href }: cardInterface) {
     const pathname = usePathname();
+    const {locale} = useParams();
     
     return (
         <div className={`${index === activeIndex ? "opacity-100" : "opacity-50"} transition-all duration-300 ease-in-out flex gap-[48px] items-center justify-end flex-col min-h-[550px] md:min-h-[650px] w-full relative py-[40px] px-[20px]`} style={{backgroundImage: `url(${image})`, backgroundSize: "cover", backgroundPosition: "center"}}>
@@ -22,7 +23,7 @@ export default function FooterCardMobile({ index,activeIndex, number, width, ima
             <p className={`${activeIndex == index ? "translate-y-0" : "translate-y-[100px]"} relative z-5 text-center font-gara text-h5 md:text-h4 text-middark transition-all duration-300 ease-in-out`}>{text}</p>
 
             <TransitionLink href={href} className="w-full">
-            <button className={`${activeIndex === index ? "opacity-100" : "opacity-0"} relative z-5 flex items-center justify-center font-hal w-full h-[60px] rounded-[50px] bg-dark border border-[#7D7D7D] text-middark text-lg transition-all duration-300 ease-in-out`}>{pathname == href ? "Jelenleg itt" : "Megtekintés →"}</button>
+            <button className={`${activeIndex === index ? "opacity-100" : "opacity-0"} relative z-5 flex items-center justify-center font-hal w-full h-[60px] rounded-[50px] bg-dark border border-[#7D7D7D] text-middark text-lg transition-all duration-300 ease-in-out`}>{pathname == `/${locale}${href}` ? "Jelenleg itt" : "Megtekintés →"}</button>
             </TransitionLink>
         </div>
     )

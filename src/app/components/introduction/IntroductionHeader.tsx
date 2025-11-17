@@ -65,7 +65,7 @@ export default function IntroductionHeader() {
             <PageTitle text="BEMUTATKOZÁS" subtext="" delay={1.5} shadow />
 
             <div data-gsap="introduction-bg-scrollwrap" className="absolute top-[0px] left-0 w-full h-[120vh]">
-            <img data-gsap="introduction-bg" src="images/introduction/introduction.webp" className="opacity-0 w-full h-[120vh] object-cover" />
+            <img data-gsap="introduction-bg" src="/images/introduction/introduction.webp" className="opacity-0 w-full h-[120vh] object-cover" />
             </div>
 
             <div className="absolute bottom-0 left-0 h-[50px] bg-gradient-to-t from-dark to-transparent w-full"></div>

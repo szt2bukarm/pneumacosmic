@@ -71,7 +71,7 @@ export default function Video({ thumbnail, videoID }: Props) {
             className="cursor-pointer absolute top-0 left-0 w-full h-full flex items-center justify-center group bg-[#05050530] hover:bg-[#0505054c] duration-150 transition-all"
           >
             <img
-              src="video-play.webp"
+              src="/video-play.webp"
               className="group-hover:w-[120px] group-hover:lg:w-[280px] transition-all duration-150 ease-in-out w-[150px] lg:w-[300px]"
             />
           </div>

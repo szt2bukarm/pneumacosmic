@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useRef } from "react"
-import TransitionLink from "../TransitionLink"
-import PageNavHeader from "../components/common/PageNavHeader"
-import { useStore } from "../useStore"
+import TransitionLink from "../../TransitionLink"
+import PageNavHeader from "../../components/common/PageNavHeader"
+import { useStore } from "../../useStore"
 import gsap from "gsap"
 
 export default function Page() {
@@ -69,7 +69,7 @@ export default function Page() {
                 {!isMobile && (
                   <div className="flex items-center gap-[12px]">
                     <p className="font-hal text-middark text-md leading-none">Navigáció:</p>
-                    <img src="mouseicon.webp" className="w-[16px]" />
+                    <img src="/mouseicon.webp" className="w-[16px]" />
                   </div>
                 )}
             </div>

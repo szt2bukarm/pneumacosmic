@@ -11,7 +11,7 @@ export default function IntroductionText() {
             </div>
 
             <div data-gsap="introduction-video" className="py-[100px] md:py-[150px] lg:py-[200px] bg-dark">
-            <Video thumbnail="images/saroslab.webp" videoID="kG5n-XbcAzs" />
+            <Video thumbnail="/images/saroslab.webp" videoID="kG5n-XbcAzs" />
             </div>
 
             <div className="w-full h-full pb-[70px] md:pb-[150px] flex flex-col items-center justify-start">

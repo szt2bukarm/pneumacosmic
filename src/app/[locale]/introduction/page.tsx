@@ -1,10 +1,10 @@
 "use client"
 import { useEffect, useLayoutEffect } from "react";
-import PageNavHeader from "../components/common/PageNavHeader";
-import Video from "../components/common/Video";
-import Footer from "../components/Footer/Footer";
-import IntroductionHeader from "../components/introduction/IntroductionHeader";
-import IntroductionText from "../components/introduction/IntroductionText";
+import PageNavHeader from "../../components/common/PageNavHeader";
+import Video from "../../components/common/Video";
+import Footer from "../../components/Footer/Footer";
+import IntroductionHeader from "../../components/introduction/IntroductionHeader";
+import IntroductionText from "../../components/introduction/IntroductionText";
 import { useLenis } from "@studio-freight/react-lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";

@@ -21,6 +21,7 @@ export default function BlurredImageCarousel({ images,title,trigger=true }: Prop
   const textRef = useRef<HTMLParagraphElement>(null);
   
     const openGallery = () => {
+      console.log("asd")
       setGalleryOpen(true)
       setGalleryImages(images)
       setGalleryTitle(title)

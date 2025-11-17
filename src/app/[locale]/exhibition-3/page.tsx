@@ -1,32 +1,32 @@
 "use client"
-import BlurredImageCarousel from "../components/common/BlurredImageCarousel";
-import PageNavHeader from "../components/common/PageNavHeader";
-import PageTitle from "../components/common/PageTitle";
-import StaggeredSplitText from "../components/common/StaggeredSplitText";
-import Video from "../components/common/Video";
+import BlurredImageCarousel from "../../components/common/BlurredImageCarousel";
+import PageNavHeader from "../../components/common/PageNavHeader";
+import PageTitle from "../../components/common/PageTitle";
+import StaggeredSplitText from "../../components/common/StaggeredSplitText";
+import Video from "../../components/common/Video";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
-import PinnedImageReveal from "../components/Exhibition-2/PinnedImageReveal";
-import Footer from "../components/Footer/Footer";
-import ImageGallery from "../components/common/ImageGallery/ImageGallery";
-import Exhibiton2Render from "../components/Exhibition-2/Exhibition2Render";
+import PinnedImageReveal from "../../components/Exhibition-2/PinnedImageReveal";
+import Footer from "../../components/Footer/Footer";
+import ImageGallery from "../../components/common/ImageGallery/ImageGallery";
+import Exhibiton2Render from "../../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect } from "react";
-import AnimatedLink from "../components/common/AnimatedLink";
+import AnimatedLink from "../../components/common/AnimatedLink";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
     {
-        src: "images/exhibition-4/gallery-1/1kiallitas.webp",
+        src: "/images/exhibition-4/gallery-1/1kiallitas.webp",
         text: null
     },
     {
-        src: "images/exhibition-4/gallery-1/2kiallitas.webp",
+        src: "/images/exhibition-4/gallery-1/2kiallitas.webp",
         text: null
     },
     {
-        src: "images/exhibition-4/gallery-1/3kiallitas.webp",
+        src: "/images/exhibition-4/gallery-1/3kiallitas.webp",
         text: "Próba szöveg"
     },
 ]
@@ -74,7 +74,7 @@ export default function Page() {
         <StaggeredSplitText>Az installáción megjelenő mozgás visszafogott, alig vesszük észre. A fókuszált figyelem és tekintet határait feszegeti, miközben a lassú mozgás követése egy kutató türelmére készteti a nézőt. A Lélegző fal egyúttal egy optikai játékot űz velünk: a fal síkjának emelkedése és süllyedése szemből alig érzékelhető, a mozgást elnyeli az egynemű fehér felület, míg oldalról már látható a kidomborodó, majd visszaereszkedő anyag. A művön végbemenő változás a lélegző mellkas mozgását idézi. <br></br><br></br>A Végtelen türelem minimalista, transzcendentális hatást kelt, víziószerűen mutatva be a pavilon légzését. A metafizikai valóságra reflektáló installáció a világ észrevétlen, testetlen mozgatójára utal. Az installáció a kiállítás alatt bejárt asszociációs kör végpontjaként környezet és légmozgás kapcsolatának, valamint a pneuma cosmic gondolatának elvont, absztrakt megfogalmazása.</StaggeredSplitText>
         </div>
 
-        <Video thumbnail="images/exhibition-4/video.webp" videoID="ND5wqvvxMrM" />
+        <Video thumbnail="/images/exhibition-4/video.webp" videoID="ND5wqvvxMrM" />
 
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
