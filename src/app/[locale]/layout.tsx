@@ -11,6 +11,7 @@ import TextOverlay from "../components/common/TextOverlay";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import ImageGalleryWrapper from "../components/common/ImageGallery/ImageGalleryWrapper";
+import { Analytics } from "@vercel/analytics/next";
 
 interface Props {
   children: React.ReactNode;
@@ -94,6 +95,7 @@ export default function LocaleLayout({ children, params }: Props) {
             />
             <NavMenu />
           </SmoothScroll>
+          <Analytics />
         </body>
       </html>
     </ViewTransitions>
