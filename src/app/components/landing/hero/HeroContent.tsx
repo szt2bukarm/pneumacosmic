@@ -111,7 +111,7 @@ export default function HeroContent() {
             <div className="my-[20px] md:my-[70px] w-[80vw] max-w-[1100px] h-[40vh] mx-auto">
             <img
                 data-gsap="hero-logo"
-                src="logo.webp"
+                src="/logo.webp"
                 alt="Pneuma Cosmic logo"
                 className="w-full h-full object-contain !mix-blend-difference opacity-75"
             />
