@@ -29,7 +29,7 @@ const assets = [
 ];
 
 // walk frames for the canvas sequence
-const walkFrames = Array.from({ length: 64 }, (_, i) => `/images/exhibition-3/walk/${i+1}walk.avif`);
+const walkFrames = Array.from({ length: 64 }, (_, i) => `/images/exhibition-3/walk/${i + 1}walk.avif`);
 
 export default function Loader() {
   const { setLoaded, loaded, setWalkBitmaps } = useStore();
@@ -86,8 +86,8 @@ export default function Loader() {
     if (isMobile == null) return;
 
     if (!isMobile) {
-      useGLTF.preload('3dc.glb');
-      useEnvironment.preload({ files: 'black.exr' });
+      useGLTF.preload('/3dc.glb');
+      useEnvironment.preload({ files: '/black.exr' });
       const video = document.createElement('video');
       video.src = 'video.mp4';
       video.load();
@@ -150,8 +150,8 @@ export default function Loader() {
   }, [hideLoader]);
 
   useGSAP(() => {
-    gsap.to('[data-gsap="loader-logo"]', { clipPath: `inset(0% 0% ${progressRef.current}% 0%)`,duration: 0.1 });
-  },[progress])
+    gsap.to('[data-gsap="loader-logo"]', { clipPath: `inset(0% 0% ${progressRef.current}% 0%)`, duration: 0.1 });
+  }, [progress])
 
   return (
     <div
@@ -160,8 +160,8 @@ export default function Loader() {
     >
       {random != 0 && (
         <>
-        <img alt="loader icon" data-gsap="loader-logo-full" src={`/loader/loader${random}.webp?v=${random}`}  className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
-      <img alt="loader icon" data-gsap="loader-logo" src={`/loader/loader${random}.webp?v=${random}`}  className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
+          <img alt="loader icon" data-gsap="loader-logo-full" src={`/loader/loader${random}.webp?v=${random}`} className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
+          <img alt="loader icon" data-gsap="loader-logo" src={`/loader/loader${random}.webp?v=${random}`} className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
         </>
       )}
       {/* <p className="text-white text-h1">

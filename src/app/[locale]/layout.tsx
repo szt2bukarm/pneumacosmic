@@ -21,7 +21,7 @@ interface Props {
 export const metadata = {
   title: "Pneuma Cosmic",
   description: "Pneuma Cosmic, Koronczi Endre képzőművész projektje, mely 61. Velencei Képzőművészeti Biennálé Magyar Pavilonjában kerül bemutatásra, kurátor: Cserhalmi Luca.",
-  keywords: [  
+  keywords: [
     "Pneuma Cosmic",
     "Koronczi Endre",
     "Képzőművész",
