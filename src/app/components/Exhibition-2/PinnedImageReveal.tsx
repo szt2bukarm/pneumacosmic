@@ -98,6 +98,7 @@ export default function PinnedImageReveal() {
         >
           {Array.from({ length: 6 }).map((_, i) => (
             <img
+              alt="pinned image"
               data-gsap="exhibition-2-pinned-reveal-item"
               src={`/images/exhibition-2/MTA/${i + 1}.webp`}
               className={`${i === 0 ? "scale-100" : "scale-0"} absolute inset-0 w-full h-full object-cover`}
@@ -113,6 +114,7 @@ export default function PinnedImageReveal() {
         className="ml-auto w-[65%] md:w-[40%] opacity-0 translate-x-[1000px] rotate-[22.5deg]"
       >
         <img
+          alt="Leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből"
           src="/images/exhibition-2/MTA/0.webp"
           className="w-full h-full object-cover translate-y-[-30px] sm:translate-y-[-130px] md:-translate-y-0"
         />

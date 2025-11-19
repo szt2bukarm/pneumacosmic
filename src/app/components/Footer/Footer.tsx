@@ -85,7 +85,7 @@ export default function Footer() {
                 <FooterLinksMobile openBienalle={OpenBienalle} openNational={openNationalCommissioner}/>
 
                 <a href="https://www.labiennale.org/en" target="_blank" className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-10">
-                    <img src="/footerbanner.svg" className="w-full h-fit" />
+                    <img alt="footer banner" src="/footerbanner.svg" className="w-full h-fit" />
                 </a>
             </div>
 

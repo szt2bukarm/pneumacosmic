@@ -2,7 +2,7 @@ export default function ImprintText() {
     return (
         <div data-gsap="imprint-text" className="relative w-full h-full flex flex-col z-[21] px-[20px] md:pl-[100px] mt-[-70vh] pb-[100px]">
 
-            <img src="/logo.webp" className="w-[80%] md:w-[410px] mb-[40px]" />
+            <img alt="Pneuma Cosmic Logo" src="/logo.webp" className="w-[80%] md:w-[410px] mb-[40px]" />
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">IMPRESSZUM</p>
             
@@ -23,7 +23,7 @@ export default function ImprintText() {
             </p>
 
             <a href="https://www.ludwigmuseum.hu/velencei-biennale" target="_blank" className="w-full h-full">
-            <img src="/ludwig-museum.webp" className="w-[70%] md:w-[360px] mb-[50px]" />
+            <img alt="Ludwig Museum logo" src="/ludwig-museum.webp" className="w-[70%] md:w-[360px] mb-[50px]" />
             </a>
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
@@ -100,7 +100,7 @@ export default function ImprintText() {
             Kulturális és Innovációs Minisztérium
             </p>
             <a href="https://kormany.hu/kormanyzat/kulturalis-es-innovacios-miniszterium" target="_blank" className="w-full h-full">
-            <img src="/KIM.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            <img alt="KIM logo" src="/KIM.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
@@ -109,28 +109,28 @@ export default function ImprintText() {
             <br></br> <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="underline">https://uni-eszterhazy.hu/mk</a>
             </p>
             <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="w-full h-full">
-            <img src="/EKKE-MK.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            <img alt="EKKE-MK logo" src="/EKKE-MK.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
             
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
             K-ARTS
             </p>
             <a href="https://www.karts.hu/" target="_blank" className="w-full h-full">
-            <img src="/K-ARTS.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            <img alt="K-ARTS logo" src="/K-ARTS.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
             KÉSZ Csoport
             </p>
             <a href="https://www.keszgroup.com/" target="_blank" className="w-full h-full">
-            <img src="/KESZ.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            <img alt="KESZ logo" src="/KESZ.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
             Dreher
             </p>
             <a href="https://dreher.hu/" target="_blank" className="w-full h-full">
-            <img src="/dreher.webp" className="w-[70%] md:w-[360px] mb-[80px]" />
+            <img alt="Dreher logo" src="/dreher.webp" className="w-[70%] md:w-[360px] mb-[80px]" />
             </a>
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">

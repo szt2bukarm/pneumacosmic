@@ -150,13 +150,13 @@ export default function NavMenu() {
     {/* navigation */}
     <div data-gsap="nav-navigation" className="opacity-0 pointer-events-none fixed w-screen h-fit top-0 left-0 pt-[50px] xl:pt-[65px] px-[20px] sm:px-[40px] xl:px-[110px] flex justify-between z-[101]">
         <TransitionLink href="/">
-        <img src="/logo.svg" className="hidden lg:block w-[175px] cursor-pointer" />
+        <img alt="logo" src="/logo.svg" className="hidden lg:block w-[175px] cursor-pointer" />
         </TransitionLink>
         <div className="flex lg:hidden items-end gap-[40px]">
                 {/* <NavSound /> */}
                 <NavLanguage />
             </div>
-        <img src="/menu-close.svg" className="ml-auto w-[23px] h-[23px] md:w-[30px] md:h-[30px] hover:opacity-50 transition-opacity duration-150 cursor-pointer" onClick={() => setNavOpen(false)} />
+        <img alt="close" src="/menu-close.svg" className="ml-auto w-[23px] h-[23px] md:w-[30px] md:h-[30px] hover:opacity-50 transition-opacity duration-150 cursor-pointer" onClick={() => setNavOpen(false)} />
     </div>
 
     <div data-gsap="nav-menu" className="fixed top-0 left-0 z-[100] opacity-0 pointer-events-none">
@@ -166,6 +166,7 @@ export default function NavMenu() {
       {/* stacked images */}
       {navlinks.map((link, index) => (
         <img
+          alt={link.text}
           key={index}
           ref={el => (imageRefs.current[index] = el!)}
           src={link.image}

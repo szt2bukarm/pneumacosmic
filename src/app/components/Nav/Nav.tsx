@@ -12,11 +12,12 @@ import { useRef } from "react";
 export default function Nav() {
     const pathname = usePathname();
     const {locale} = useParams();
-    const {navOpen} = useStore();
+    const {navOpen,loaded} = useStore();
 
     const pathRef = useRef(pathname);
 
     useGSAP(() => {
+        if (!loaded) return
         console.log(pathname,locale)
         if (pathname === "/" + locale ) {
             gsap.set('[data-gsap="nav-logo"]', {
@@ -24,8 +25,14 @@ export default function Nav() {
             })
         } else {
             gsap.set('[data-gsap="nav-logo"]', {
-                display: "block"
+                display: "block",
+                opacity: gsap.getProperty('[data-gsap="nav-logo"]', "display") === "none" ? 0 : 1
             })
+            gsap.to('[data-gsap="nav-logo"]', {
+                opacity: 1,
+                duration: 0.3,
+                delay: 2,
+            });
         }
 
 
@@ -76,7 +83,7 @@ export default function Nav() {
 
         pathRef.current = currentPath;
 
-    },[pathname]);
+    },[pathname,loaded]);
 
     useGSAP(() => {
         if (navOpen) {
@@ -104,7 +111,7 @@ export default function Nav() {
     },[navOpen])
 
     return (
-        <div data-gsap="nav" style={{viewTransitionName: "nav"}} className={`fixed w-screen top-0 left-0 z-[50] h-[200px] pt-[50px] xl:pt-[65px] px-[20px] sm:px-[40px] xl:px-[110px] flex justify-between items-start pointer-events-none`}>
+        <div data-gsap="nav" style={{viewTransitionName: "nav",display: loaded ? "flex" : "none"}} className={`fixed w-screen top-0 left-0 z-[50] h-[200px] pt-[50px] xl:pt-[65px] px-[20px] sm:px-[40px] xl:px-[110px] flex justify-between items-start pointer-events-none`}>
 
             <div data-gsap="nav-sound" className="hidden lg:flex items-end gap-[40px] mr-auto">
                 {/* <NavSound /> */}
@@ -113,7 +120,7 @@ export default function Nav() {
 
             <div data-gsap="nav-logo" className="absolute left-[80px] sm:left-[100px] lg:left-[50%] top-[65px]  xl:top-[80px] translate-x-[-50%] translate-y-[-50%] flex w-fit z-[100] pointer-events-none opacity-0">
                 <TransitionLink href="/" className="z-[100] pointer-events-auto">
-                <img src="/logo.webp" className="w-[130px] lg:w-[175px]  z-[100] mix-blend-multiply" style={{mixBlendMode: "multiply"}} />
+                <img alt="logo" src="/logo.webp" className="w-[130px] lg:w-[175px]  z-[100] mix-blend-multiply" style={{mixBlendMode: "multiply"}} />
                 </TransitionLink>
             </div>
 

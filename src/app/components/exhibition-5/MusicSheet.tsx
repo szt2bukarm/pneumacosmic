@@ -16,7 +16,7 @@ export default function MusicSheet() {
           <img
             key={i}
             src={src}
-            alt=""
+            alt="kotta"
             className="w-[33%] h-auto object-cover"
           />
         ))}
@@ -56,7 +56,7 @@ export default function MusicSheet() {
             >
               <img
                 src={src}
-                alt=""
+                alt="kotta"
                 className="w-full h-auto object-cover"
               />
             </SwiperSlide>

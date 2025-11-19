@@ -141,11 +141,13 @@ function CameraAnimation() {
     const cameraRef = useRef<THREE.PerspectiveCamera>(null);
     const [target, setTarget] = useState(new THREE.Vector3(0, 0.7, 0));
     const cameraOffset = useRef(0);
+    const {loaded} = useStore();
   
     CustomEase.create("customEase", "M0,0 C0.12,0.65 0.35,1 1,1");
   
     // Responsive offsets
     useEffect(() => {
+      if (!loaded) return;
       const handleTarget = () => {
         const width = window.innerWidth;
   
@@ -187,10 +189,11 @@ function CameraAnimation() {
       handleTarget();
       window.addEventListener("resize", handleResize);
       return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, [loaded]);
   
     // Entrance anim only once
     useEffect(() => {
+      if (!loaded) return;
       if (!cameraRef.current || !lenis) return;
   
       lenis.stop();
@@ -206,7 +209,10 @@ function CameraAnimation() {
           delay: 0.5,
           ease: "customEase",
           onComplete: () => {
+            setTimeout(() => {
             lenis.start();
+            }, 100);
+            if (!cameraRef.current) return;
             gsap.to(cameraRef.current.position, {
               y: -15,
               ease: "none",
@@ -220,7 +226,7 @@ function CameraAnimation() {
           },
         }
       );
-    }, [lenis]);
+    }, [lenis,loaded]);
   
     useFrame(() => {
       if (cameraRef.current) {

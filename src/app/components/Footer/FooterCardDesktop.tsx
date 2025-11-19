@@ -83,6 +83,7 @@ export default function FooterCardDesktop({
     >
         {/*  image  */}
         <img
+          alt="footer card"
           data-gsap="footer-card-image"
           src={image}
           className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] scale-[1.4] w-full h-full object-cover"

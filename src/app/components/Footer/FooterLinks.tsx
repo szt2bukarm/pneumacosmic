@@ -43,7 +43,7 @@ export default function FooterLinks({openBienalle,openNational}: any) {
 
 
             <div className="flex flex-col 2xl:flex-row gap-[50px] 2xl:gap-[100px]">
-                <img data-gsap="footer-links-item" src="/logo.svg" className="w-[130px] h-fit" />
+                <img alt="footer logo" data-gsap="footer-links-item" src="/logo.svg" className="w-[130px] h-fit" />
                 
                 <div className="flex gap-[40px] lg:gap-[100px]">
 

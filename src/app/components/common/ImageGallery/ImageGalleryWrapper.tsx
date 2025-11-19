@@ -72,7 +72,7 @@ export default function ImageGalleryWrapper() {
                 <div className='pointer-events-none absolute bottom-0 left-0 w-full h-[175px] opacity-85 bg-gradient-to-b from-transparent to-black z-[9]'></div>
 
                 {/* UI */}
-                <img src="/menu-close.svg" className='w-[24px] h-[24px] absolute top-[47px] left-[40px] z-[10] hover:opacity-50 cursor-pointer transition-all duration-300' onClick={closeGallery} />
+                <img alt="close icon" src="/menu-close.svg" className='w-[24px] h-[24px] absolute top-[47px] left-[40px] z-[10] hover:opacity-50 cursor-pointer transition-all duration-300' onClick={closeGallery} />
                 <p data-gsap="gallery-subtitle" className='hidden md:block font-gara text-middark w-[80%] lg:w-[50%] text-lg leading-[20px] absolute bottom-[30px] left-[30px] md:left-[40px] z-[10] pointer-events-none'>{galleryTitle}</p>
 
             </div>

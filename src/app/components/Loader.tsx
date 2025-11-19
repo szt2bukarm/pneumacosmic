@@ -160,8 +160,8 @@ export default function Loader() {
     >
       {random != 0 && (
         <>
-        <img data-gsap="loader-logo-full" src={`/loader/loader${random}.webp?v=${random}`}  className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
-      <img data-gsap="loader-logo" src={`/loader/loader${random}.webp?v=${random}`}  className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
+        <img alt="loader icon" data-gsap="loader-logo-full" src={`/loader/loader${random}.webp?v=${random}`}  className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
+      <img alt="loader icon" data-gsap="loader-logo" src={`/loader/loader${random}.webp?v=${random}`}  className='brightness-50 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[150px] md:w-[300px]' />
         </>
       )}
       {/* <p className="text-white text-h1">

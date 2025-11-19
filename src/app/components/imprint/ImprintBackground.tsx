@@ -156,12 +156,12 @@ export default function ImprintBackground() {
   <div data-gsap="imprint-bg-wrapper" className="sticky top-0 w-screen h-screen opacity-50">
     <div className="relative w-full h-full overflow-hidden">
     <div data-gsap="imprint-bgimage" className="absolute top-0 left-0 w-screen h-screen !z-[5] opacity-75">
-        <img ref={el => {imagesRef.current[0] = el}} src="/images/saroslab.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
-        <img ref={el => {imagesRef.current[1] = el}} src="/images/fal.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
-        <img ref={el => {imagesRef.current[2] = el}} src="/images/bennszorult.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
-        <img ref={el => {imagesRef.current[3] = el}} src="/images/paroslab.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
-        <img ref={el => {imagesRef.current[4] = el}} src="/images/lelegzofal.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
-        <img ref={el => {imagesRef.current[5] = el}} src="/images/akusztikus.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img alt="imprint background image" ref={el => {imagesRef.current[0] = el}} src="/images/saroslab.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img alt="imprint background image" ref={el => {imagesRef.current[1] = el}} src="/images/fal.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img alt="imprint background image" ref={el => {imagesRef.current[2] = el}} src="/images/bennszorult.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img alt="imprint background image" ref={el => {imagesRef.current[3] = el}} src="/images/paroslab.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img alt="imprint background image" ref={el => {imagesRef.current[4] = el}} src="/images/lelegzofal.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
+        <img alt="imprint background image" ref={el => {imagesRef.current[5] = el}} src="/images/akusztikus.webp" className="absolute top-0 left-0 w-full h-[110vh] object-cover" />
     </div>
     {!isMobile && (
   <div

@@ -53,7 +53,9 @@ function SmoothScroll({ children }: { children: React.ReactNode }) {
 
   return (
     <ReactLenis className="current-page" root options={{ lerp: 0.1, duration: 1 }}>
-      {loaded && children}
+      <div key={loaded ? 1 : 0} className="w-full h-full" style={{ opacity: loaded ? 1 : 0 }}>
+      {children}
+      </div>
     </ReactLenis>
   );
 }

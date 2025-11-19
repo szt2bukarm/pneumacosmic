@@ -43,7 +43,7 @@ export default function FooterLinksMobile({openBienalle,openNational}: any) {
 
 
             <div className="flex items-center justify-center flex-col gap-[50px]">
-                <img data-gsap="footer-links-item-mobile" src="/logo.svg" className="w-[130px] h-fit" />
+                <img alt="footer logo" data-gsap="footer-links-item-mobile" src="/logo.svg" className="w-[130px] h-fit" />
                 
 
                     <div className="flex items-center justify-center flex-col gap-[40px]">
@@ -72,7 +72,7 @@ export default function FooterLinksMobile({openBienalle,openNational}: any) {
                         </div>
 
                         <a href="https://www.labiennale.org/en" target="_blank" className="mt-[20px] h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-[10]">
-                            <img src="/footerbanner.svg" className="w-full h-fit" />
+                            <img alt="footer banner" src="/footerbanner.svg" className="w-full h-fit" />
                         </a>
                     </div>
             </div>

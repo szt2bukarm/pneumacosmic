@@ -42,7 +42,7 @@ export default function FooterLinksMedium({openBienalle,openNational}: any) {
 
 
             <div className="flex flex-col gap-[50px]">
-                <img data-gsap="footer-links-item-medium" src="/logo.svg" className="w-[130px] h-fit" />
+                <img alt="footer logo" data-gsap="footer-links-item-medium" src="/logo.svg" className="w-[130px] h-fit" />
                 
                 <div className="flex gap-[60px]">
 

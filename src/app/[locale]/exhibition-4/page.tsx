@@ -69,7 +69,7 @@ export default function Page() {
                 {!isMobile && (
                   <div className="flex items-center gap-[12px]">
                     <p className="font-hal text-middark text-md leading-none">Navigáció:</p>
-                    <img src="/mouseicon.webp" className="w-[16px]" />
+                    <img alt="mouse move icon" src="/mouseicon.webp" className="w-[16px]" />
                   </div>
                 )}
             </div>
