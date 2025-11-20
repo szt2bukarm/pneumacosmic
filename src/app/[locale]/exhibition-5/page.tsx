@@ -221,7 +221,7 @@ export default function Page() {
         <BlurredImageCarousel images={carousel3} title="A Pneuma Cosmic felvétele a hangstúdióban (Balogh Máté, Koronczi Endre, Kádár Mihály)"/>
 
         <div data-gsap="exhibition-5-bg-trigger" className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
-        <StaggeredSplitText>A sóhaj mint akusztikus gesztus esszenciáját a sóhajtók különböző módokon értelmezik. A sóhajok orgánumbeli, hangmagassági, tempóbeli és dinamikai eltérései mellett olyan szempontok is megjelentek, mint a sóhajtás egyszeri vagy ismétlődő; csak levegőhanggal vagy hangszállal zengetve; érthető szöveggel vagy artikulálatlan hanggal; crescendóval, diminuendóval, esetleg schwellerrel megoldott; aktív belégzéssel vagy aktív kilégzéssel; orral, vagy orral és szájjal történő jellege. E különböző módozatokat Balogh a műben a rezonáltató eszközök és a rezonálás helyének tudatos megválasztásával érzékenyen érzékeltetni.<br></br><br></br><br></br><br></br>Balogh Máté</StaggeredSplitText>
+        <StaggeredSplitText>A sóhaj mint akusztikus gesztus esszenciáját a sóhajtók különböző módokon értelmezik. A sóhajok orgánumbeli, hangmagassági, tempóbeli és dinamikai eltérései mellett olyan szempontok is megjelentek, mint a sóhajtás egyszeri vagy ismétlődő; csak levegőhanggal vagy hangszállal zengetve; érthető szöveggel vagy artikulálatlan hanggal; crescendóval, diminuendóval, esetleg schwellerrel megoldott; aktív belégzéssel vagy aktív kilégzéssel; orral, vagy orral és szájjal történő jellege. E különböző módozatokat Balogh a műben a rezonáltató eszközök és a rezonálás helyének tudatos megválasztásával érzékenyen érzékeltetni.</StaggeredSplitText>
         </div>
 
         <Footer />

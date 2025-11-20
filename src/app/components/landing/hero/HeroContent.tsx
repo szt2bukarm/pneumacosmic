@@ -118,7 +118,7 @@ export default function HeroContent() {
             </div>
 
 
-            <p data-gsap="text" className="px-[80px] leading-none font-hal text-md md:text-lg text-midlight text-center">61. Velencei Képzőművészeti Biennálé, 2026<br/><span className="block mt-[30px] md:mt-0">Magyar Pavilon</span></p>
+            <p data-gsap="text" className="px-[80px] leading-none font-hal text-md md:text-lg text-midlight text-center">61. Velencei Képzőművészeti Biennále, 2026<br/><span className="block mt-[30px] md:mt-0">Magyar Pavilon</span></p>
         </div>
         </>
     )
