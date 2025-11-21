@@ -32,7 +32,7 @@ const assets = [
 const walkFrames = Array.from({ length: 64 }, (_, i) => `/images/exhibition-3/walk/${i + 1}walk.avif`);
 
 export default function Loader() {
-  const { setLoaded, loaded, setWalkBitmaps } = useStore();
+  const { setLoaded, loaded, setWalkBitmaps, walkBitmaps } = useStore();
   const [progress, setProgress] = useState(0);
   const progressRef = useRef(0);
   const [hideLoader, setHideLoader] = useState(false);
@@ -44,15 +44,32 @@ export default function Loader() {
     setRandom(Math.floor(Math.random() * 4) + 1);
   }, []);
 
+  // ---- browser detection ----
+  const getBrowserInfo = () => {
+    if (typeof window === 'undefined') return { isSafari: false, isOldIOS: false };
+    const ua = navigator.userAgent;
+
+    // Detect iOS < 16
+    const iosMatch = ua.match(/OS (\d+)_/);
+    const isIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    const isOldIOS = isIOS && iosMatch && parseInt(iosMatch[1], 10) < 16;
+
+    // Detect Safari (Desktop)
+    // Chrome/Edge user agents also contain "Safari", so we must check for "Safari" AND NOT "Chrome"
+    const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+
+    return { isSafari, isOldIOS };
+  };
+
   // ---- preload helper for normal images ----
-  const preloadAssets = (urls: string[]) =>
+  const preloadAssets = (urls: string[], limit = 100) =>
     new Promise<void>((resolve) => {
       let loadedCount = 0;
       const total = urls.length;
 
       if (total === 0) {
-        setProgress(100);
-        progressRef.current = 100;
+        setProgress(limit);
+        progressRef.current = limit;
         resolve();
         return;
       }
@@ -61,7 +78,7 @@ export default function Loader() {
         const img = new Image();
         img.onload = img.onerror = () => {
           loadedCount++;
-          const prog = (loadedCount / total) * 100; // full progress for critical assets
+          const prog = (loadedCount / total) * limit;
           setProgress(prog);
           progressRef.current = prog;
           if (loadedCount >= total) resolve();
@@ -69,6 +86,32 @@ export default function Loader() {
         img.src = url;
       });
     });
+
+  // ---- preload walk frames (main thread fallback) ----
+  const preloadWalkFramesMainThread = async () => {
+    let loadedCount = 0;
+    const total = walkFrames.length;
+
+    try {
+      const promises = walkFrames.map(async (url) => {
+        const res = await fetch(url);
+        const blob = await res.blob();
+        const bmp = await createImageBitmap(blob);
+
+        loadedCount++;
+        const prog = 50 + (loadedCount / total) * 50; // second half
+        setProgress(prog);
+        progressRef.current = prog;
+
+        return bmp;
+      });
+
+      const bitmaps = await Promise.all(promises);
+      setWalkBitmaps(bitmaps);
+    } catch (e) {
+      console.error("Walk frame preload error (main thread):", e);
+    }
+  };
 
   // ---- initial setup ----
   useEffect(() => {
@@ -105,34 +148,53 @@ export default function Loader() {
 
     const loadAll = async () => {
       try {
-        // 1. Load critical assets (blocking)
-        await preloadAssets(assets);
-        setTimeout(() => {
-        setLoaded(true);
-        }, 100);
+        const { isSafari, isOldIOS } = getBrowserInfo();
+        const shouldUseWorker = !isSafari && !isOldIOS;
 
-        // 2. Load walk frames in background (Web Worker)
-        const worker = new Worker('/loader.worker.js');
-        worker.postMessage(walkFrames);
+        if (shouldUseWorker) {
+          // STRATEGY A: Worker (Fast, Background)
+          // 1. Load critical assets (blocking, 0-100%)
+          await preloadAssets(assets, 100);
+          setTimeout(() => setLoaded(true), 100);
 
-        worker.onmessage = (e) => {
-          const bitmaps = e.data;
-          if (bitmaps && bitmaps.length > 0) {
-            setWalkBitmaps(bitmaps);
+          // 2. Load walk frames in background (Web Worker)
+          if (!walkBitmaps || walkBitmaps.length === 0) {
+            const worker = new Worker('/loader.worker.js');
+            worker.postMessage(walkFrames);
+
+            worker.onmessage = (e) => {
+              const bitmaps = e.data;
+              if (bitmaps && bitmaps.length > 0) {
+                setWalkBitmaps(bitmaps);
+              }
+              worker.terminate();
+            };
+
+            worker.onerror = (err) => {
+              console.error("Worker error:", err);
+              worker.terminate();
+            };
           }
-          worker.terminate();
-        };
 
-        worker.onerror = (err) => {
-          console.error("Worker error:", err);
-          worker.terminate();
-        };
+        } else {
+          // STRATEGY B: Main Thread (Slow, Blocking) - Fallback for Safari/Old iOS
+          // 1. Load critical assets (blocking, 0-50%)
+          await preloadAssets(assets, 50);
+
+          // 2. Load walk frames (blocking, 50-100%)
+          if (!walkBitmaps || walkBitmaps.length === 0) {
+            await preloadWalkFramesMainThread();
+          } else {
+            setProgress(100);
+            progressRef.current = 100;
+          }
+
+          setTimeout(() => setLoaded(true), 100);
+        }
 
       } catch (e) {
         console.error("Asset preload error:", e);
-        setTimeout(() => {
-        setLoaded(true);
-        }, 100);
+        setTimeout(() => setLoaded(true), 100);
       }
     };
     loadAll();
