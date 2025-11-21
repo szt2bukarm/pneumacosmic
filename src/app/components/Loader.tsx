@@ -50,11 +50,18 @@ export default function Loader() {
       let loadedCount = 0;
       const total = urls.length;
 
+      if (total === 0) {
+        setProgress(100);
+        progressRef.current = 100;
+        resolve();
+        return;
+      }
+
       urls.forEach((url) => {
         const img = new Image();
         img.onload = img.onerror = () => {
           loadedCount++;
-          const prog = (loadedCount / total) * 50; // half of total progress
+          const prog = (loadedCount / total) * 100; // full progress for critical assets
           setProgress(prog);
           progressRef.current = prog;
           if (loadedCount >= total) resolve();
@@ -62,24 +69,6 @@ export default function Loader() {
         img.src = url;
       });
     });
-
-  // ---- preload walk frames ----
-  const preloadWalkFrames = async () => {
-    const bitmaps: ImageBitmap[] = [];
-    for (let i = 0; i < walkFrames.length; i++) {
-      const url = walkFrames[i];
-      const res = await fetch(url);
-      const blob = await res.blob();
-      const bmp = await createImageBitmap(blob);
-      bitmaps.push(bmp);
-
-      // update progress for this part
-      const prog = 50 + ((i + 1) / walkFrames.length) * 50; // second half
-      setProgress(prog);
-      progressRef.current = prog;
-    }
-    setWalkBitmaps(bitmaps);
-  };
 
   // ---- initial setup ----
   useEffect(() => {
@@ -116,11 +105,30 @@ export default function Loader() {
 
     const loadAll = async () => {
       try {
-        await preloadAssets(assets);     // preload normal images
-        await preloadWalkFrames();       // preload walk frames
+        // 1. Load critical assets (blocking)
+        await preloadAssets(assets);
         setLoaded(true);
+
+        // 2. Load walk frames in background (Web Worker)
+        const worker = new Worker('/loader.worker.js');
+        worker.postMessage(walkFrames);
+
+        worker.onmessage = (e) => {
+          const bitmaps = e.data;
+          if (bitmaps && bitmaps.length > 0) {
+            setWalkBitmaps(bitmaps);
+          }
+          worker.terminate();
+        };
+
+        worker.onerror = (err) => {
+          console.error("Worker error:", err);
+          worker.terminate();
+        };
+
       } catch (e) {
         console.error("Asset preload error:", e);
+        setLoaded(true); // ensure loader hides even on error
       }
     };
     loadAll();
