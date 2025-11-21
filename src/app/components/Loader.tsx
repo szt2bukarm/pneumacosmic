@@ -107,7 +107,9 @@ export default function Loader() {
       try {
         // 1. Load critical assets (blocking)
         await preloadAssets(assets);
+        setTimeout(() => {
         setLoaded(true);
+        }, 100);
 
         // 2. Load walk frames in background (Web Worker)
         const worker = new Worker('/loader.worker.js');
@@ -128,7 +130,9 @@ export default function Loader() {
 
       } catch (e) {
         console.error("Asset preload error:", e);
-        setLoaded(true); // ensure loader hides even on error
+        setTimeout(() => {
+        setLoaded(true);
+        }, 100);
       }
     };
     loadAll();
