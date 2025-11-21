@@ -54,6 +54,28 @@ export default function Video({ thumbnail, videoID }: Props) {
     return () => clearInterval(interval);
   }, [isPlaying, player, duration]);
 
+  // Fullscreen change listener to pause on exit
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      const isFullscreen = document.fullscreenElement || (document as any).webkitFullscreenElement || (document as any).mozFullScreenElement || (document as any).msFullscreenElement;
+      if (!isFullscreen && isMobile && player) {
+        player.pauseVideo();
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+    document.addEventListener("msfullscreenchange", handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("mozfullscreenchange", handleFullscreenChange);
+      document.removeEventListener("msfullscreenchange", handleFullscreenChange);
+    };
+  }, [isMobile, player]);
+
   const handleEnd: YouTubeProps["onEnd"] = () => {
     console.log("Video ended!")
     setIsPlaying(false)
@@ -71,7 +93,17 @@ export default function Video({ thumbnail, videoID }: Props) {
 
   const handleStateChange: YouTubeProps["onStateChange"] = (event) => {
     // 1 = playing, 2 = paused
-    if (event.data === 1) setIsPlaying(true);
+    if (event.data === 1) {
+      setIsPlaying(true);
+      // Auto-fullscreen on mobile when playing
+      if (isMobile && wrapperRef.current) {
+        const el = wrapperRef.current as any;
+        if (el.requestFullscreen) el.requestFullscreen();
+        else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+        else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
+        else if (el.msRequestFullscreen) el.msRequestFullscreen();
+      }
+    }
     if (event.data === 2) setIsPlaying(false);
   }
 
@@ -160,6 +192,7 @@ export default function Video({ thumbnail, videoID }: Props) {
                 rel: 0,
                 disablekb: 1,
                 fs: 0,
+                playsinline: isMobile ? 0 : 1, // Force native fullscreen on iOS mobile
               },
             }}
             onEnd={handleEnd}
