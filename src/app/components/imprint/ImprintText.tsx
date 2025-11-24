@@ -23,7 +23,7 @@ export default function ImprintText() {
             </p>
 
             <a href="https://www.ludwigmuseum.hu/velencei-biennale" target="_blank" className="w-full h-full">
-            <img alt="Ludwig Museum logo" src="/ludwig-museum.webp" className="w-[70%] md:w-[360px] mb-[50px]" />
+            <img alt="Ludwig Museum logo" src="/ludwig-transparent.webp" className="w-[70%] md:w-[360px] mb-[50px]" />
             </a>
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
@@ -95,42 +95,42 @@ export default function ImprintText() {
             Gabriella Vidoni, Marco Vidoni
             </p>
 
-            <p id="tamogatok" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
+            <p id="tamogatok" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[25px]">
             <span className="opacity-75 font-garaitalic">Főtámogató:</span><br></br>
             Kulturális és Innovációs Minisztérium
             </p>
             <a href="https://kormany.hu/kormanyzat/kulturalis-es-innovacios-miniszterium" target="_blank" className="w-full h-full">
-            <img alt="KIM logo" src="/KIM.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            <img alt="KIM logo" src="/kim-transparent.webp" className="w-[70%] md:w-[305px] mb-[60px]" />
             </a>
 
-            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[25px]">
             <span className="opacity-75 font-garaitalic">Támogatók:</span><br></br>
             Eszterházy Károly Katolikus Egyetem, Művészeti Kar
             <br></br> <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="underline">https://uni-eszterhazy.hu/mk</a>
             </p>
             <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="w-full h-full">
-            <img alt="EKKE-MK logo" src="/EKKE-MK.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            <img alt="EKKE-MK logo" src="/ekke-transparent.webp" className="w-[70%] md:w-[480px] mb-[60px]" />
             </a>
             
-            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[25px]">
             K-ARTS
             </p>
             <a href="https://www.karts.hu/" target="_blank" className="w-full h-full">
-            <img alt="K-ARTS logo" src="/K-ARTS.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            <img alt="K-ARTS logo" src="/karts-transparent.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
-            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[25px]">
             KÉSZ Csoport
             </p>
             <a href="https://www.keszgroup.com/" target="_blank" className="w-full h-full">
-            <img alt="KESZ logo" src="/KESZ.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
+            <img alt="KESZ logo" src="/kesz-transparent.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
-            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[15px]">
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[25px]">
             Dreher
             </p>
             <a href="https://dreher.hu/" target="_blank" className="w-full h-full">
-            <img alt="Dreher logo" src="/dreher.webp" className="w-[70%] md:w-[360px] mb-[80px]" />
+            <img alt="Dreher logo" src="/dreher-transparent.webp" className="w-[70%] md:w-[260px] mb-[80px]" />
             </a>
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
