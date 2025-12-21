@@ -53,7 +53,7 @@ function GLBModel({
 
 function Scene() {
   const lightRef = useRef<THREE.SpotLight>(null);
-  const {isMobile,loaded} = useStore();
+  const { isMobile, loaded } = useStore();
 
   const videoTexture = useVideoTexture("/video.mp4", {
     muted: true,
@@ -89,33 +89,33 @@ function Scene() {
 
       {/* Reflective Floor */}
       {loaded && (
-      <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[50, 50]} />
-        <MeshReflectorMaterial
-          blur={isMobile ? [2000, 500] : [2000, 500]}
-          resolution={isMobile ? 64 : 512}
-          mixBlur={1}
-          mixStrength={550}
-          roughness={1}
-          color="#050505"
-          metalness={0}
-        />
-      </mesh>
+        <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+          <planeGeometry args={[50, 50]} />
+          <MeshReflectorMaterial
+            blur={isMobile ? [2000, 500] : [2000, 500]}
+            resolution={isMobile ? 64 : 512}
+            mixBlur={1}
+            mixStrength={550}
+            roughness={1}
+            color="#050505"
+            metalness={0}
+          />
+        </mesh>
       )}
 
       {loaded && (
-      <mesh position={[0, 0, -8.5]}>
-        <planeGeometry args={[50, 50]} />
-        <MeshReflectorMaterial
-          blur={[300, 300]}
-          resolution={isMobile ? 64 : 512}
-          mixBlur={1}
-          mixStrength={150}
-          roughness={1}
-          color="#050505"
-          metalness={0}
-        />
-      </mesh>
+        <mesh position={[0, 0, -8.5]}>
+          <planeGeometry args={[50, 50]} />
+          <MeshReflectorMaterial
+            blur={[300, 300]}
+            resolution={isMobile ? 64 : 512}
+            mixBlur={1}
+            mixStrength={150}
+            roughness={1}
+            color="#050505"
+            metalness={0}
+          />
+        </mesh>
       )}
 
 
@@ -125,124 +125,118 @@ function Scene() {
       {/* Environment */}
       <Environment files="/black.exr" />
 
-      {/* Postprocessing */}
-      {/* <Suspense fallback={null}>
-        <EffectComposer camera={cameraRef.current}>
-          <Bloom intensity={1.5} luminanceThreshold={0.2} luminanceSmoothing={0.9} />
-          <DepthOfField focusDistance={0.02} focalLength={0.02} bokehScale={1} height={480} />
-        </EffectComposer>
-      </Suspense> */}
+
     </>
   );
 }
 
 function CameraAnimation() {
-    const lenis = useLenis();
-    const cameraRef = useRef<THREE.PerspectiveCamera>(null);
-    const [target, setTarget] = useState(new THREE.Vector3(0, 0.7, 0));
-    const cameraOffset = useRef(0);
-    const {loaded} = useStore();
-  
-    CustomEase.create("customEase", "M0,0 C0.12,0.65 0.35,1 1,1");
-  
-    // Responsive offsets
-    useEffect(() => {
-      if (!loaded) return;
-      const handleTarget = () => {
-        const width = window.innerWidth;
-  
-        if (width < 550) {
-          cameraOffset.current = 20;
-          setTarget(new THREE.Vector3(0, 1.85, 0));
-        } else if (width < 768) {
-          cameraOffset.current = 10;
-          setTarget(new THREE.Vector3(0, 1.8, 0));
-        } else if (width < 1024) {
-          cameraOffset.current = 7;
-          setTarget(new THREE.Vector3(0, 1.55, 0));
-        } else if (width < 1400) {
-          cameraOffset.current = 5;
-          setTarget(new THREE.Vector3(0, 0.9, 0));
-        } else {
-          cameraOffset.current = 0;
-          setTarget(new THREE.Vector3(0, 0.7, 0));
-        }
-      };
+  const lenis = useLenis();
+  const cameraRef = useRef<THREE.PerspectiveCamera>(null);
+  const [target, setTarget] = useState(new THREE.Vector3(0, 0.7, 0));
+  const cameraOffset = useRef(0);
+  const { loaded } = useStore();
 
-      const handleCamera = () => {
-        if (cameraRef.current) {
-            gsap.to(cameraRef.current.position, {
-              z: 17.5 + cameraOffset.current,
-              y: 1,
-              x: 0,
-              duration: 0.5,
-              ease: "power2.out",
-            });
-          }
+  CustomEase.create("customEase", "M0,0 C0.12,0.65 0.35,1 1,1");
+
+  // Responsive offsets
+  useEffect(() => {
+    if (!loaded) return;
+    const handleTarget = () => {
+      const width = window.innerWidth;
+
+      if (width < 550) {
+        cameraOffset.current = 20;
+        setTarget(new THREE.Vector3(0, 1.85, 0));
+      } else if (width < 768) {
+        cameraOffset.current = 10;
+        setTarget(new THREE.Vector3(0, 1.8, 0));
+      } else if (width < 1024) {
+        cameraOffset.current = 7;
+        setTarget(new THREE.Vector3(0, 1.55, 0));
+      } else if (width < 1400) {
+        cameraOffset.current = 5;
+        setTarget(new THREE.Vector3(0, 0.9, 0));
+      } else {
+        cameraOffset.current = 0;
+        setTarget(new THREE.Vector3(0, 0.7, 0));
       }
+    };
 
-      const handleResize = () => {
-        handleTarget();
-        handleCamera();
-      }
-
-      handleTarget();
-      window.addEventListener("resize", handleResize);
-      return () => window.removeEventListener("resize", handleResize);
-    }, [loaded]);
-  
-    // Entrance anim only once
-    useEffect(() => {
-      if (!loaded) return;
-      if (!cameraRef.current || !lenis) return;
-  
-      lenis.stop();
-  
-      gsap.fromTo(
-        cameraRef.current.position,
-        { x: 0, y: 25, z: 17.5 + cameraOffset.current },
-        {
-          x: 0,
-          y: 1,
-          z: 17.5 + cameraOffset.current,
-          duration: 3,
-          delay: 0.5,
-          ease: "customEase",
-          onComplete: () => {
-            setTimeout(() => {
-            lenis.start();
-            }, 100);
-            if (!cameraRef.current) return;
-            gsap.to(cameraRef.current.position, {
-              y: -15,
-              ease: "none",
-              scrollTrigger: {
-                trigger: "[data-gsap='canvas']",
-                start: "top top",
-                end: "bottom top",
-                scrub: true,
-              },
-            });
-          },
-        }
-      );
-    }, [lenis,loaded]);
-  
-    useFrame(() => {
+    const handleCamera = () => {
       if (cameraRef.current) {
-        cameraRef.current.lookAt(target);
+        gsap.to(cameraRef.current.position, {
+          z: 17.5 + cameraOffset.current,
+          y: 1,
+          x: 0,
+          duration: 0.5,
+          ease: "power2.out",
+        });
       }
-    });
-  
-    return (
-      <PerspectiveCamera
-        ref={cameraRef}
-        makeDefault
-        fov={24}
-        position={[0, 25, 17.5 + cameraOffset.current]}
-      />
+    }
+
+    const handleResize = () => {
+      handleTarget();
+      handleCamera();
+    }
+
+    handleTarget();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [loaded]);
+
+  // Entrance anim only once
+  useEffect(() => {
+    if (!loaded) return;
+    if (!cameraRef.current || !lenis) return;
+
+    lenis.stop();
+
+    gsap.fromTo(
+      cameraRef.current.position,
+      { x: 0, y: 25, z: 17.5 + cameraOffset.current },
+      {
+        x: 0,
+        y: 1,
+        z: 17.5 + cameraOffset.current,
+        duration: 3,
+        delay: 0.5,
+        ease: "customEase",
+        onComplete: () => {
+          setTimeout(() => {
+            lenis.start();
+          }, 100);
+          if (!cameraRef.current) return;
+          gsap.to(cameraRef.current.position, {
+            y: -15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "[data-gsap='canvas']",
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        },
+      }
     );
-  }
+  }, [lenis, loaded]);
+
+  useFrame(() => {
+    if (cameraRef.current) {
+      cameraRef.current.lookAt(target);
+    }
+  });
+
+  return (
+    <PerspectiveCamera
+      ref={cameraRef}
+      makeDefault
+      fov={24}
+      position={[0, 25, 17.5 + cameraOffset.current]}
+    />
+  );
+}
 
 
 function DynamicDPR() {
@@ -255,7 +249,7 @@ function DynamicDPR() {
     const lowDPR = 0.001
 
     const trigger = ScrollTrigger.create({
-      trigger: "[data-gsap='canvas']", 
+      trigger: "[data-gsap='canvas']",
       start: "top-=1 bottom",
       end: "80% top",
       onEnter: () => {
@@ -284,14 +278,14 @@ function DynamicDPR() {
 
   return null
 }
-    
+
 export default function Exhibition2Render() {
-  const {isMobile} = useStore();
+  const { isMobile } = useStore();
 
   return (
     <Canvas
       className="translate-y-[-20vh] md:translate-y-0"
-      dpr={[0.5,1]}
+      dpr={[0.5, 1]}
       gl={{
         toneMapping: isMobile ? THREE.NoToneMapping : THREE.ACESFilmicToneMapping,
         outputEncoding: THREE.sRGBEncoding,

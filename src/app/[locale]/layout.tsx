@@ -8,6 +8,7 @@ import GradualBlurMemo from "../components/GradualBlur";
 import MobileTest from "../MobileTest";
 import Loader from "../components/Loader";
 import TextOverlay from "../components/common/TextOverlay";
+import TransitionManager from "../components/TransitionManager";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import ImageGalleryWrapper from "../components/common/ImageGallery/ImageGalleryWrapper";
@@ -77,6 +78,7 @@ export default function LocaleLayout({ children, params }: Props) {
         </head>
         <body>
           <Loader />
+          <TransitionManager />
           <Nav />
           <TextOverlay />
           <ImageGalleryWrapper />

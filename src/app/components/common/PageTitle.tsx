@@ -58,13 +58,13 @@ export default function PageTitle({ subtext, text, delay = 0,shadow=false}: Prop
 
   return (
     <div className="relative flex sm:justify-center sm:items-center pt-[160px] md:pt-[200px] z-[20] ">
-      <div className="flex flex-col md:px-[100px] px-[22px]">
-        <p
+      <div className="flex flex-col px-[22px] md:px-[90px] ">
+        {/* <p
           ref={subtitleRef}
           className="font-hal text-middark text-md leading-[18px] sm:text-lg sm:leading-[23px]"
         >
           {subtext}
-        </p>
+        </p> */}
         <p
           ref={titleRef}
           style={{transform: "translate3D(0, 0, 0)",filter: shadow? "drop-shadow(0px 0px 20px rgb(0, 0, 0)" : ""}}

@@ -64,7 +64,7 @@ export default function Page() {
 
       <div className="px-[30px] xl:px-[90px] py-[60px] flex flex-col xl:flex-row justify-end gap-[30px] xl:justify-between xl:items-center absolute w-full h-[400px] md:h-[300px] xl:h-[200px] bg-gradient-to-b from-transparent to-black bottom-0 left-0 z-1 pointer-events-none">
             <div className="flex flex-col gap-[8px]">
-                <p className="font-hal text-middark text-md leading-none">Bal oldali kör alakú terem</p>
+                {/* <p className="font-hal text-middark text-md leading-none">Bal oldali kör alakú terem</p> */}
                 <p className="font-gara text-middark text-lg md:text-h4 leading-none">LEBEGŐ HIPOTÉZIS</p>
                 {!isMobile && (
                   <div className="flex items-center gap-[12px]">

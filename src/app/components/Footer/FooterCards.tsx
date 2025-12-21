@@ -37,7 +37,7 @@ const cards = [
     number: 3,
     width: "full",
     image: "/images/lelegzofal.webp",
-    text: "VÉGTELEN TÜRELEM",
+    text: "VÉGTELEN TÜRELEM (LÉLEGEZŐ FAL)",
     href: "/exhibition-3",
   },
   {

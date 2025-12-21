@@ -23,78 +23,53 @@ export default function FooterCardDesktop({
   text,
   href,
 }: cardInterface) {
-  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const pathname = usePathname();
-  const {locale} = useParams();
-
-  useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    let resizeTimeout: ReturnType<typeof setTimeout>;
-
-    const handleResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        setWindowWidth(window.innerWidth);
-      }, 50); 
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => {
-      clearTimeout(resizeTimeout);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  const { locale } = useParams();
 
   useGSAP(() => {
-      const ctx = gsap.context(() => {
-        let trigger: ScrollTrigger
+    const mm = gsap.matchMedia();
 
-        const setup = () => {
-          trigger = ScrollTrigger.create({
-            trigger: '[data-gsap="footer-card-image"]',
-            start: "top-=300 center",
-            end: "bottom+=300 center",
-            scrub: true,
-            animation: gsap.fromTo('[data-gsap="footer-card-image"]', 
-              {y: 0},
-              {y: 100,}),
-          });
-        }
-        setTimeout(() => {
-          setup();
-        }, 300);
-        
-        return () => {
-          trigger?.kill();
-        };
+    mm.add("(min-width: 1024px)", () => {
+      ScrollTrigger.create({
+        trigger: '[data-gsap="footer-card-image"]',
+        start: "top-=300 center",
+        end: "bottom+=300 center",
+        scrub: true,
+        invalidateOnRefresh: true,
+        animation: gsap.fromTo('[data-gsap="footer-card-image"]',
+          { y: 0 },
+          { y: 100, }),
       });
-  
-      return () => ctx.revert();  
-  },[windowWidth]);
+    });
+
+    return () => mm.revert();
+  }, []);
 
   return (
     <TransitionLink
       href={href}
-      className={`${pathname != `/${locale}${href}` ? "cursor-pointer" : "cursor-default"} ${
-        width === "full" ? "!flex-1" : "!flex-[0.5]"
-      } relative flex-[0.5] transition-all duration-500 ease-in-out min-h-full
+      className={`${pathname != `/${locale}${href}` ? "cursor-pointer" : "cursor-default"} ${width === "full" ? "!flex-1" : "!flex-[0.5]"
+        } relative flex-[0.5] transition-all duration-500 ease-in-out min-h-full
                  hover:!flex-[0_0_800px] brightness-100 group-hover:brightness-[0.2] 
                  hover:!brightness-100 group/card !overflow-hidden`}
     >
-        {/*  image  */}
+      {/*  image  */}
+      {/*  image wrapper for centering and scaling */}
+      <div className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-full h-full scale-[1.4]">
         <img
           alt="footer card"
           data-gsap="footer-card-image"
           src={image}
-          className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] scale-[1.4] w-full h-full object-cover"
+          className="w-full h-full object-cover"
         />
+      </div>
 
-        {/* gradient overlay */}
-        <div
-          className="absolute inset-0 bg-gradient-to-bl 
+      {/* gradient overlay */}
+      <div
+        className="absolute inset-0 bg-gradient-to-bl 
                      from-[#0000004b] to-black z-2 opacity-0
                      group-hover/card:opacity-85 transition-opacity duration-300 ease-in-out"
-        ></div>
+      ></div>
 
       {/* text content */}
       <div
@@ -110,4 +85,3 @@ export default function FooterCardDesktop({
     </TransitionLink>
   );
 }
-    

@@ -4,7 +4,7 @@ export default function ImprintText() {
 
             <img alt="Pneuma Cosmic Logo" src="/logo.webp" className="w-[80%] md:w-[410px] mb-[40px]" />
 
-            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">IMPRESSZUM</p>
+            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">PROJEKT IMPRESSZUM</p>
             
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[80px]">
             Koronczi Endre kiállítása
@@ -12,7 +12,7 @@ export default function ImprintText() {
             <br></br>Magyar Pavilon
             <br></br>Velence, Giardini
             <br></br>2026. május 9. – november 22.
-            <br></br><br></br>Nemzeti biztos: Dr. Fabényi Julia
+            <br></br><br></br>Nemzeti biztos: Fabényi Julia
             <br></br>Kurátor: Cserhalmi Luca
             </p>
 
@@ -22,7 +22,7 @@ export default function ImprintText() {
             Budapest, <a className="underline" target="_blank" href="https://www.ludwigmuseum.hu/">https://www.ludwigmuseum.hu/</a>
             </p>
 
-            <a href="https://www.ludwigmuseum.hu/velencei-biennale" target="_blank" className="w-full h-full">
+            <a href="https://www.ludwigmuseum.hu/velencei-biennale" target="_blank" className="w-fit h-fit">
             <img alt="Ludwig Museum logo" src="/ludwig-transparent.webp" className="w-[70%] md:w-[360px] mb-[50px]" />
             </a>
 
@@ -32,7 +32,7 @@ export default function ImprintText() {
             </p>
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Pályázati zsűri:</span><br></br>
-            Boros Géza, Dr. Fabényi Julia, Kopeczky Róna, Sturcz János, Szipőcs Krisztina, Vízi Katalin
+            Boros Géza, Fabényi Julia, Kopeczky Róna, Sturcz János, Szipőcs Krisztina, Vízi Katalin
             </p>
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Kommunikáció:</span><br></br>
@@ -55,7 +55,7 @@ export default function ImprintText() {
             Juraj Ćarný, Nagy Edina, Németh Ilona, Balogh Máté
             </p>
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
-            <span className="opacity-75 font-garaitalic">Olvasó szerkesztő:</span><br></br>
+            <span className="opacity-75 font-garaitalic">Olvasószerkesztő:</span><br></br>
             Kőrösi Zsuzsanna
             </p>
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
@@ -83,10 +83,6 @@ export default function ImprintText() {
             Gyöngy Dániel
             </p>
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
-            <span className="opacity-75 font-garaitalic">Reklámtáska tervezése:</span><br></br>
-            Gspann Zsuzsanna
-            </p>
-            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Reklámtáska kivitelezése:</span><br></br>
             §Mikka Design
             </p>
@@ -99,7 +95,7 @@ export default function ImprintText() {
             <span className="opacity-75 font-garaitalic">Főtámogató:</span><br></br>
             Kulturális és Innovációs Minisztérium
             </p>
-            <a href="https://kormany.hu/kormanyzat/kulturalis-es-innovacios-miniszterium" target="_blank" className="w-full h-full">
+            <a href="https://kormany.hu/kormanyzat/kulturalis-es-innovacios-miniszterium" target="_blank" className="w-fit h-fit">
             <img alt="KIM logo" src="/kim-transparent.webp" className="w-[70%] md:w-[305px] mb-[60px]" />
             </a>
 
@@ -108,38 +104,40 @@ export default function ImprintText() {
             Eszterházy Károly Katolikus Egyetem, Művészeti Kar
             <br></br> <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="underline">https://uni-eszterhazy.hu/mk</a>
             </p>
-            <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="w-full h-full">
+            <a href="https://uni-eszterhazy.hu/mk" target="_blank" className="w-fit h-fit">
             <img alt="EKKE-MK logo" src="/ekke-transparent.webp" className="w-[70%] md:w-[480px] mb-[60px]" />
             </a>
             
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[25px]">
             K-ARTS
             </p>
-            <a href="https://www.karts.hu/" target="_blank" className="w-full h-full">
+            <a href="https://www.karts.hu/" target="_blank" className="w-fit h-fit">
             <img alt="K-ARTS logo" src="/karts-transparent.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[25px]">
             KÉSZ Csoport
             </p>
-            <a href="https://www.keszgroup.com/" target="_blank" className="w-full h-full">
+            <a href="https://www.keszgroup.com/" target="_blank" className="w-fit h-fit">
             <img alt="KESZ logo" src="/kesz-transparent.webp" className="w-[70%] md:w-[360px] mb-[60px]" />
             </a>
 
-            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[25px]">
+            <a href="https://dreher.hu/" target="_blank" className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[25px] hover:opacity-75 transition-all duration-150">
             Dreher
-            </p>
-            <a href="https://dreher.hu/" target="_blank" className="w-full h-full">
-            <img alt="Dreher logo" src="/dreher-transparent.webp" className="w-[70%] md:w-[260px] mb-[80px]" />
+            </a>
+            <a href="https://dreher.hu/" target="_blank" className="w-fit h-fit">
+            {/* <img alt="Dreher logo" src="/dreher-transparent.webp" className="w-[70%] md:w-[260px] mb-[80px]" /> */}
             </a>
 
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Külön Köszönet:</span><br></br>
-            Albrecht Zsófia és Bicskei Éva (Magyar Tudományos Akadémia, Képzőművészeti Gyűjtemény)
-            <br></br>Árvai István (K-Arts Művészeti és Rendezvényszervező Kft.)
+            Albrecht Zsófia
+            <br></br>Árvai István
+            <br></br>Bicskei Éva
             <br></br>Csatlós Judit
-            <br></br>Csontó Lajos, Tari Ilona
+            <br></br>Csontó Lajos
             <br></br>Koronczi Johanna
+            <br></br>Dr. Pajtókné Dr. Tari Ilona
             <br></br>Török Róbert
             <br></br>Varga Mihály
             </p>

@@ -26,6 +26,12 @@ export default function Footer() {
         setOverlayText("Ludwig Múzeum, Velencei Biennálé Iroda: Boros Géza a VBI vezetője, Bálványos Anna főmuzeológus coordinátor, Lakó Zsigmond olasz referens")
     }
 
+    const openContact = () => {
+        console.log("OpenContact")
+        setOverlayWiki(false);
+        setOverlayText("e-mail: <a href='mailto:biennale@ludwigmuseum.hu'>biennale@ludwigmuseum.hu</a><br>e-mail: <a href='mailto:pneumacosmic@gmail.com'>pneumacosmic@gmail.com</a><br>tel: (+36 1) 555 3484")
+    }
+
     useGSAP(() => {
         if (pathname == "/") {
             let trigger = ScrollTrigger.create({
@@ -80,13 +86,13 @@ export default function Footer() {
             {/* <FooterText /> */}
 
             <div data-gsap="footer-links">
-                <FooterLinks openBienalle={OpenBienalle} openNational={openNationalCommissioner}/>
-                <FooterLinksMedium openBienalle={OpenBienalle} openNational={openNationalCommissioner}/>
-                <FooterLinksMobile openBienalle={OpenBienalle} openNational={openNationalCommissioner}/>
+                <FooterLinks openContact={openContact}/>
+                <FooterLinksMedium openContact={openContact}/>
+                <FooterLinksMobile openContact={openContact}/>
 
-                <a href="https://www.labiennale.org/en" target="_blank" className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-10">
+                {/* <a href="https://www.labiennale.org/en" target="_blank" className="hidden absolute bottom-0 right-20 h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-10">
                     <img alt="footer banner" src="/footerbanner.svg" className="w-full h-fit" />
-                </a>
+                </a> */}
             </div>
 
             <div data-gsap="footer-bg" className={`absolute inset-0 translate-y-[500px] left-1/2 -translate-x-1/2 w-[130vw] md:w-screen md:translate-x-0 md:left-0 pointer-events-none`}

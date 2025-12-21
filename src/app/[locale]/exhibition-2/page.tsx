@@ -305,16 +305,16 @@ export default function Page() {
         <PageTitle delay={1.35} subtext="Apszis" text="PÁROS LÁBBAL A FÖLD FÖLÖTT" />
 
         <div data-gsap="exhibition-3-gallery-1" className="mt-[100px]">
-        <BlurredImageCarousel images={carousel1} trigger={false} title="Példák a közel egy évig tartó zarándoklat változatos helyszíneiből"/>
+        <BlurredImageCarousel images={carousel1} trigger={false} title="Válogatás a zarándoklat helyszíneiből"/>
         </div>
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
         <StaggeredSplitText>Koronczi Endre egy fontos sóhaj keresésére indult útnak, a hátán a sóhaj befogására alkalmas üvegtárggyal. Az egy évig tartó gyaloglás kezdetén még nem tudta, hogy hol fogja megtalálni, amit keres, így a mű nemcsak fikciós, hanem valós kutatási folyamat is a dokumentáció és a videoművészet határán.</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel2} title="A sóhaj befogásához készített egyedi üvegtárgy a Parádsasvári Üvegmanufaktúra műhelyében"/>
+        {/* <BlurredImageCarousel images={carousel2} title="A sóhaj befogására szolgáló üvegtárgy készítése a Parádsasvári Üvegmanufaktúra műhelyében, 2025"/> */}
 
-        <div className="h-[70px] md:h-[150px]"></div>
+        {/* <div className="h-[70px] md:h-[150px]"></div> */}
         <Video thumbnail="/images/exhibition-3/gallery-2/14werk.webp" videoID="ABDaCca_uOk" />
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">

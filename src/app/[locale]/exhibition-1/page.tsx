@@ -393,8 +393,8 @@ export default function Page() {
     return (
         <div className="relative w-screen min-h-screen bg-black overflow-x-hidden">
 
-            <p data-gsap="exhibition-2-fixedtext-left" className="hidden xl:block opacity-0 fixed bottom-5 left-5 font-hal text-middark text-sm z-30 xl:w-[550px] leading-[14px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai</p>
-            <p data-gsap="exhibition-2-fixedtext-right" className="hidden xl:block opacity-0 fixed bottom-5 right-5 text-right font-hal text-middark text-sm z-30  xl:w-[550px] leading-[14px]">Leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
+            <p data-gsap="exhibition-2-fixedtext-left" className="hidden xl:block opacity-0 fixed bottom-5 left-5 font-hal text-middark text-sm z-30 xl:w-[550px] leading-[14px]">Archív képek a Magyar Tudományos Akadémia termeiről. Fotók: Fővárosi Szabó Ervin Könyvtár, Budapest Gyűjtemény és Fortepan / Budapest Főváros Levéltára</p>
+            <p data-gsap="exhibition-2-fixedtext-right" className="hidden xl:block opacity-0 fixed bottom-5 right-5 text-right font-hal text-middark text-sm z-30  xl:w-[550px] leading-[14px]">A szellőzőrács leíró kartonja a Magyar Tudományos Akadémia Művészeti Gyűjteményében</p>
 
 
 
@@ -439,10 +439,10 @@ export default function Page() {
             <div className="relative w-full h-full bg-black">
 
                 <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-                    <StaggeredSplitText>Az installáció a szemlélődés, az archeológia és a művészeti kutatás megismerési formáit modellezi a tudományos szféra székházának tárgyi emlékein keresztül. A mű a Magyar Tudományos Akadémia épületének a felújítása során, a harmadik emelet padlózatából kibontott szellőztetőberendezés elemeiből áll.<br></br><br></br>A 200 éves intézmény történelmi jelentőségű épületének lélegzéséért láthatatlanul felelős tárgyak szimbolikusan a tudományos élet nagyjainak leheletét, sóhajait, az agyakat átjáró oxigént őrzik. A szellőzőrendszer a világot egybekötő levegőáramláshoz kapcsolódik, miként a léghez hasonló, testetlen gondolatok létének alapja is a folyamatos, termékeny cserélődés.</StaggeredSplitText>
+                    <StaggeredSplitText>Az installáció a szemlélődés, az archeológia és a művészeti kutatás megismerési formáit modellezi a tudományos szféra székházának tárgyi emlékein keresztül. A mű a Magyar Tudományos Akadémia épületének a felújítása során, a harmadik emelet padlózatából kibontott szellőztetőberendezés elemeiből áll. A 200 éves intézmény történelmi jelentőségű épületének lélegzéséért láthatatlanul felelős tárgyak szimbolikusan a tudományos élet nagyjainak leheletét, sóhajait, az agyakat átjáró oxigént őrzik. A szellőzőrendszer a világot egybekötő levegőáramláshoz kapcsolódik, miként a léghez hasonló, testetlen gondolatok létének alapja is a folyamatos, termékeny cserélődés.</StaggeredSplitText>
                 </div>
 
-                <BlurredImageCarousel images={carousel1} title="A Bennszorult lélegzet című installáció a Kérem, sóhajtson, Széchenyi Úr! című kiállításon a Godot Kortárs Művészeti Intézetben, 2024" />
+                <BlurredImageCarousel images={carousel1} title="A Bennszorult lélegzet installáció a Kérem, sóhajtson, Széchenyi Úr! kiállításon, Godot Kortárs Művészeti Intézet, 2024" />
 
                 <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
                     <StaggeredSplitText>Az ipari tárgyakkal párbeszédbe állított természeti felvételen a lassan változó fumarola (geológiai képződmény, mely gázokat és gőzöket bocsát ki) a pneuma cosmic bolygó léptékű megmutatkozásaként, egy kozmikus lehelet kiáramlásaként jelenik meg. A levegő és a gondolatok cserélődése itt egy leletben tárul a néző elé, melynek kutatása párbeszédet teremt a tudományos akadémiák szellemisége és egy kutató művész metaforikus világlátása között.</StaggeredSplitText>
@@ -450,7 +450,7 @@ export default function Page() {
 
                 <Video thumbnail="/images/exhibition-2/video.webp" videoID="hHZyi2eXODs" />
                 <div className="h-[150px]"></div>
-                <BlurredImageCarousel images={carousel2} title="A Magyar Tudományos Akadémia harmadik emeleti kiállítótermei a felújítás előtti állapotban" />
+                <BlurredImageCarousel images={carousel2} title="A Magyar Tudományos Akadémia harmadik emeleti kiállítótermei a felújítás előtti állapotban, 2024" />
 
                 <div
                     className="mt-[-100px] relative w-full h-full md:h-[550px] lg:h-[1000px] pt-[180px] pb-[70px] md:pt-0 md:pb-0 flex items-center justify-center"
@@ -464,30 +464,30 @@ export default function Page() {
                     <div className="absolute top-0 left-0 w-full h-full" style={{ background: "linear-gradient(to bottom, rgba(5,5,5,1), rgba(5,5,5,0.75), rgba(5,5,5,1))" }}>
                     </div>
 
-                    <StaggeredSplitText>Az archeológia tudományát is megidéző projekt a korábban a padlózatba rejtett, hétköznapi tárgyakat művészeti értékükben tárja a látogató elé.<br></br>A labirintusszerűen elhelyezett szellőzőelemek erőteljes indusztriális jellege és sajátos története mellett az installáció a művész által a tárgyakban meglátott metaforán keresztül válik teljessé.</StaggeredSplitText>
+                    <StaggeredSplitText>Az archeológia tudományát is megidéző projekt a korábban a padlózatba rejtett, hétköznapi tárgyakat művészeti értékükben tárja a látogató elé. A labirintusszerűen elhelyezett szellőzőelemek erőteljes indusztriális jellege és sajátos története mellett az installáció a művész által a tárgyakban meglátott metaforán keresztül válik teljessé.</StaggeredSplitText>
                 </div>
 
                 <div data-gsap="exhibition-2-pin-helper" className="w-full h-[0px]"></div>
                 <PinnedImageReveal />
-                <p className="pt-[100px] mx-auto text-center font-hal text-middark text-sm w-[calc(100%-40px)] lg:w-[900px] leading-[15px] ">A fényképek a Fővárosi Szabó Ervin Könyvtár – Budapest Gyűjteményéből és a FORTEPAN – Budapest Főváros Levéltárából származnak.</p>
-                <p className="pt-[25px] mx-auto block xl:hidden text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">Archív képek a Magyar Tudományos Akadémia termeiről, melyeken jól látszódnak a szellőzőrendszer kivezető nyílásai, mellette leíró karton a Magyar Tudományos Akadémia Művészeti Gyűjteményéből: 2 db szellőzőrács</p>
+                {/* <p className="pt-[100px] mx-auto text-center font-hal text-middark text-sm w-[calc(100%-40px)] lg:w-[900px] leading-[15px] ">A fényképek a Fővárosi Szabó Ervin Könyvtár – Budapest Gyűjteményéből és a FORTEPAN – Budapest Főváros Levéltárából származnak.</p> */}
+                <p className="pt-[100px] mx-auto block xl:hidden text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">Archív képek a Magyar Tudományos Akadémia termeiről. Fotók: Fővárosi Szabó Ervin Könyvtár, Budapest Gyűjtemény és Fortepan / Budapest Főváros Levéltára<br></br><br></br>A szellőzőrács leíró kartonja a Magyar Tudományos Akadémia Művészeti Gyűjteményében</p>
 
 
                 <div className="h-[150px]"></div>
-                <BlurredImageCarousel images={carousel4} title="A Magyar Tudományos Akadémia szellőztetőrendszeréből kibontott installációs elemek elszállítása az MTA Székház díszes folyosóin és lépcsőházán keresztül" />
+                <BlurredImageCarousel images={carousel4} title="A Magyar Tudományos Akadémia szellőztetőrendszeréből kibontott installációs elemek elszállítása, 2024" />
 
 
                 <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[220px] flex items-center justify-center">
                     <StaggeredSplitText>Ez a metafora jelenik meg az installációhoz tartozó szénrajzon is, melyen a Magyar Tudományos Akadémia neoreneszánsz székházának homlokzata jelenik meg. Az épületet átjárja vagy megzavarja egy megfoghatatlan, absztrakt motívum, a gesztusszerűen megjelenített légmozgás. A rajzon a két eltérő grafikai elem az általuk képviselt (világ)szemléleti és megismerési módok (tudomány és művészet) eltérő jellegét tükrözi, nyitva hagyva a kérdést, hogy találkozásuk termékeny vagy lehetetlen párbeszédet teremt.</StaggeredSplitText>
                 </div>
 
-                <BlurredImageCarousel images={carousel3} title="Az installáció elemeinek szállítása a K-ARTS Művészeti Alapítvány kecskeméti telephelyére" />
+                <BlurredImageCarousel images={carousel3} title="Az installáció elemeinek megérkezése a KÉSZ Csoport kecskeméti telephelyére, a K-ARTS Művészeti Alapítvány raktárába, 2024" />
 
                 <div className="mx-auto flex flex-col gap-[20px] md:gap-[30px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[924px]">
                     <p className="font-gara text-middark text-md sm:text-lg md:text-h4">Az installáció először Koronczi Endre Kérem, sóhajtson, Széchenyi Úr! kiállításán került bemutatásra.
                         <br></br><br></br>
                         Godot Kortárs Művészeti Intézet,<br></br>
-                        Budapest, 2024. 02. 23 – 06. 23,
+                        Budapest, 2024. 02. 23.–06. 23.
                         <br></br><br></br>
                         Kurátor: Cserhalmi Luca</p>
                 </div>

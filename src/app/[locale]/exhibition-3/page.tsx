@@ -64,10 +64,10 @@ export default function Page() {
 
         <div className="z-[30] fixed top-0 left-0 w-screen h-[150px] bg-gradient-to-b from-[#FFFFFFA9] to-transparent opacity-75"></div>
 
-        <PageTitle delay={1.5} subtext="Jobb oldali szárny" text="VÉGTELEN TÜRELEM" />
+        <PageTitle delay={1.5} subtext="Jobb oldali szárny" text="VÉGTELEN TÜRELEM (LÉLEGEZŐ FAL)" />
 
         <div data-gsap="exhibition-4-gallery-1" className="mt-[100px]">
-        <BlurredImageCarousel images={carousel1} trigger={false} title="A Végtelen türelem című installáció a Kérem, sóhajtson, Széchenyi Úr! című kiállításon a Godot Kortárs Művészeti Intézetben, 2024"/>
+        <BlurredImageCarousel images={carousel1} trigger={false} title="A Végtelen türelem (Lélegző fal) installáció a Kérem, sóhajtson, Széchenyi Úr! kiállításon, Godot Kortárs Művészeti Intézet, 2024"/>
         </div>
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
@@ -78,7 +78,7 @@ export default function Page() {
 
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-        <StaggeredSplitText>Koronczi Endre első lélegző fal installációja 2018-ban került bemutatásra az azonos című Végtelen türelem projektkiállításon, Budapesten. A mű egy polgári otthon múlttal átitatott terében jelent meg, felületén tapétamintával. Hat évvel később, 2024-ben készült el az installáció egy új változata, azonos címmel Koronczi Endre Kérem, sóhajtson, Széchenyi Úr! egyéni kiállításán a Godot Kortárs Művészeti Intézetben.<br></br><br></br>Ekkor a mű steril, white cube típusú térben valósult meg, a használt anyag is homogén, fehér, így nem hordozta magán a személyesség érzetét, tisztán a jelenségre került a hangsúly. A 61. Velencei Képzőművészeti Biennálén megvalósuló Végtelen türelem installáció ehhez áll legközelebb, ám a pozícionálás tekintetében eltérést mutatnak.</StaggeredSplitText>
+        <StaggeredSplitText>Koronczi Endre első lélegző fal installációja 2018-ban került bemutatásra az azonos című Végtelen türelem projektkiállításon, Budapesten. A mű egy polgári otthon múlttal átitatott terében jelent meg, felületén tapétamintával. Hat évvel később, 2024-ben készült el az installáció egy új változata, azonos címmel Koronczi Endre Kérem, sóhajtson Széchenyi Úr! egyéni kiállításán a Godot Kortárs Művészeti Intézetben.<br></br><br></br>Ekkor a mű steril, white cube típusú térben valósult meg, a használt anyag is homogén, fehér, így nem hordozta magán a személyesség érzetét, tisztán a jelenségre került a hangsúly. A 61. Velencei Képzőművészeti Biennálén megvalósuló Végtelen türelem installáció ehhez áll legközelebb, ám a pozícionálás tekintetében eltérést mutatnak.</StaggeredSplitText>
         </div>
 
         <div className="mx-auto flex flex-col gap-[10px] mb-[70px] md:mb-[150px] lg:mb-[200px] w-[90vw] xl:w-[1050px]">

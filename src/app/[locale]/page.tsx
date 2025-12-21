@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
 
       <LandingText />
-      <Video thumbnail="/herovideo.webp" videoID="wdN32OWRcrI" />
+      <Video thumbnail="/herovideo.webp" videoID="UqLk3ju5NfA" />
 
       <p
         className="relative mx-auto leading-[135%] font-gara text-middark text-lg md:text-h4 w-[calc(100%-40px)] text-center pt-[150px] pb-[50px]"><span className="opacity-50">A konceptualista, efemer művekből felépülő kiállítás</span> öt elemre osztható:</p>

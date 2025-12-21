@@ -53,7 +53,7 @@ export default function IntroductionHeader() {
     }),[];
 
     return (
-        <div className="relative w-full h-[120vh] md:h-[120vh] overflow-hidden">
+        <div className="relative w-full h-[120vh] md:h-[1500px] overflow-hidden">
             {isMobile && (
                 <div className="absolute z-[20] top-0 left-0 w-screen h-[350px] bg-gradient-to-b from-dark to-transparent">
                 </div>
@@ -64,8 +64,8 @@ export default function IntroductionHeader() {
 
             <PageTitle text="BEMUTATKOZÁS" subtext="" delay={1.5} shadow />
 
-            <div data-gsap="introduction-bg-scrollwrap" className="absolute top-[0px] left-0 w-full h-[120vh]">
-            <img alt="introduction background" data-gsap="introduction-bg" src="/images/introduction/introduction.webp" className="opacity-0 w-full h-[120vh] object-cover" />
+            <div data-gsap="introduction-bg-scrollwrap" className="absolute top-[0px] left-0 w-full h-[120vh] md:h-[1500px]">
+            <img alt="introduction background" data-gsap="introduction-bg" src="/images/introduction/genyo.webp" className="opacity-0 w-full h-[120vh] md:h-[1550px] object-cover object-center md:object-[50%_-75px]" />
             </div>
 
             <div className="absolute bottom-0 left-0 h-[50px] bg-gradient-to-t from-dark to-transparent w-full"></div>

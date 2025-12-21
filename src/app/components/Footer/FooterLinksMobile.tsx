@@ -4,7 +4,7 @@ import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger);
 
-export default function FooterLinksMobile({openBienalle,openNational}: any) {
+export default function FooterLinksMobile({openContact}: any) {
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
@@ -48,11 +48,11 @@ export default function FooterLinksMobile({openBienalle,openNational}: any) {
 
                     <div className="flex items-center justify-center flex-col gap-[40px]">
                         <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col">
-                            <p className="font-hal text-middark text-md leading-[125%]">BLOG</p>
-                            <a target="_blank" href="https://blog.pneumacosmic.hu/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">blog.pneumacosmic.hu</a>
-                        </div>
+                            {/* <p className="font-hal text-middark text-md leading-[125%]">BLOG</p> */}
+                            <a target="_blank" href="https://blog.pneumacosmic.hu/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Blog</a>
+                        {/* </div> */}
 
-                        <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col">
+                        {/* <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col"> */}
                         <a target="_blank" href="https://blog.pneumacosmic.hu/project-type/seta/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Séták</a>
                         <a target="_blank" href="https://blog.pneumacosmic.hu/project-type/beszelgetesek/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Beszélgetések</a>
                         <a target="_blank" href="https://blog.pneumacosmic.hu/project-type/mozi/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Mozi</a>
@@ -60,20 +60,21 @@ export default function FooterLinksMobile({openBienalle,openNational}: any) {
 
                         <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col mb-[30px]">
                         <TransitionLink href="/imprint" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Impresszum</TransitionLink>
-                            <a target="_blank" href="https://www.ludwigmuseum.hu/velencei-biennale/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Ludwig Múzeum</a>
+                        <button onClick={openContact} className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Kapcsolat</button>
+                            {/* <a target="_blank" href="https://www.ludwigmuseum.hu/velencei-biennale/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Ludwig Múzeum</a>
                             <button onClick={() => openBienalle()} className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Biennálé Iroda</button>
                             <button onClick={() => openNational()} className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Nemzeti Biztos</button>
-                            <TransitionLink href="/imprint" scrollTarget={"tamogatok"} className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Szponzorok</TransitionLink>
+                            <TransitionLink href="/imprint" scrollTarget={"tamogatok"} className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Szponzorok</TransitionLink> */}
                             </div>
 
-                        <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center gap-[40px]">
-                        <a href="http://vb26press.ludwigmuseum.hu/" target="_blank" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">PRESS KIT</a>
-                        <a href="http://koronczi.hu/pneumacosmic/download" target="_blank" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">DOWNLOAD</a>
+                        <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center gap-[40px] mb-[100px]">
+                        <a href="http://vb26press.ludwigmuseum.hu/" target="_blank" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Press Kit</a>
+                        {/* <a href="http://koronczi.hu/pneumacosmic/download" target="_blank" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">DOWNLOAD</a> */}
                         </div>
 
-                        <a href="https://www.labiennale.org/en" target="_blank" className="mt-[20px] h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-[10]">
+                        {/* <a href="https://www.labiennale.org/en" target="_blank" className="mt-[20px] h-[190px] w-[170px] p-[16px] md:flex items-start justify-start bg-[#D9D9D9] z-[10]">
                             <img alt="footer banner" src="/footerbanner.svg" className="w-full h-fit" />
-                        </a>
+                        </a> */}
                     </div>
             </div>
 
