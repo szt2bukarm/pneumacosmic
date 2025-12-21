@@ -60,8 +60,8 @@ export default function Footer() {
                 })
                 trigger = ScrollTrigger.create({
                     trigger: '[data-gsap="footer"]',
-                    start: "top top",
-                    end: "bottom+=200 top",
+                    start: "bottom-=200 bottom",
+                    end: "bottom bottom",                    
                     animation: gsap.to('[data-gsap="footer-bg"]', {
                         opacity: 1,
                         duration: 3,
