@@ -18,11 +18,11 @@ const navlinks = [
 ]
 
 const sublinks = [
-  {
-    text: "Pneuma Cosmic WIKI",
-    external: true,
-    href: "https://hu.wikipedia.org/wiki/Pneuma_Cosmic"
-  },
+  // {
+  //   text: "Pneuma Cosmic WIKI",
+  //   external: true,
+  //   href: "https://hu.wikipedia.org/wiki/Pneuma_Cosmic"
+  // },
   {
     text: "Bemutatkozás",
     external: false,

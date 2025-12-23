@@ -116,7 +116,7 @@ export default function TextOverlay() {
     }
 
     return (
-    <div data-gsap="overlay-text" className="fixed top-0 left-0 w-screen h-[100dvh] z-[30] bg-[#050505d5]" onWheel={(e) => e.stopPropagation()}>
+    <div data-gsap="overlay-text" className="fixed top-0 left-0 w-screen h-[100dvh] z-[40] bg-[#050505d5]" onWheel={(e) => e.stopPropagation()}>
 
         <div className="w-full max-h-[100dvh] overflow-y-auto" onWheel={(e) => e.stopPropagation()}>
             <div className="flex flex-col pt-[170px] md:pt-[200px] pl-[20px] lg:pl-[100px] w-[calc(100%-40px)] lg:w-[760px] h-full pb-[100px]">
@@ -124,9 +124,9 @@ export default function TextOverlay() {
                 ← Vissza
                 </button>
                 <p ref={textRef} className="font-gara text-md leading-[20px] sm:text-h5 sm:leading-[32px] text-middark mb-[70px] mt-[50px]" dangerouslySetInnerHTML={{__html: overlayText}}></p>
-                {overlayWiki && (
+                {/* {overlayWiki && (
                 <AnimatedLink external={true} size="large" text="Pneuma Cosmic WIKI" href="https://hu.wikipedia.org/wiki/Pneuma_Cosmic" />
-                )}
+                )} */}
             </div>
         </div>
     </div>

@@ -82,10 +82,10 @@ export default function ImprintText() {
             <span className="opacity-75 font-garaitalic">Web tartalomszolgáltatás:</span><br></br>
             Gyöngy Dániel
             </p>
-            <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
+            {/* <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[30px]">
             <span className="opacity-75 font-garaitalic">Reklámtáska kivitelezése:</span><br></br>
             §Mikka Design
-            </p>
+            </p> */}
             <p className="font-gara text-md leading-[18px] sm:text-lg sm:leading-[23px] text-middark mb-[100px]">
             <span className="opacity-75 font-garaitalic">Pavilon felügyelet:</span><br></br>
             Gabriella Vidoni, Marco Vidoni

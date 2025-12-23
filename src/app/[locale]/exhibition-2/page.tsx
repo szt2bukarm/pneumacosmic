@@ -316,6 +316,8 @@ export default function Page() {
 
         {/* <div className="h-[70px] md:h-[150px]"></div> */}
         <Video thumbnail="/images/exhibition-3/gallery-2/14werk.webp" videoID="ABDaCca_uOk" />
+        <p className="pt-[20px] mx-auto text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">A sóhaj befogására szolgáló üvegtárgy készítése a Parádsasvári Üvegmanufaktúra műhelyében, 2025</p>
+
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
         <StaggeredSplitText>Az installáció három egységből áll: a művész kutatását bemutató, a vándorlás monotonitását a helyszínek változatosságával ötvöző videóból, az üvegtárgyból, melyben a megtalált sóhajtás kerül megőrzésre, valamint a sóhaj befogásának pillanatát bemutató videóból. A két videóban meghatározó a lassúság, a kulcsjelenetek helyett a hosszú folyamat hangsúlyozása.</StaggeredSplitText>
@@ -323,6 +325,9 @@ export default function Page() {
 
 
         <WalkSequence />
+
+        <div className="hidden sm:block h-[100px]"></div>
+        <Video thumbnail="/images/exhibition-3/video.webp" videoID="qYsd8csWlSo" startTime={1560}/>
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
         <StaggeredSplitText>A Páros lábbal a föld felett egy játék, a lehetetlenre tett kísérlet, mely az illékony pillanat és az anyagtalan dolgok megragadásának vágyát fejezi ki.</StaggeredSplitText>

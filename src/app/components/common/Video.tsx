@@ -12,9 +12,10 @@ gsap.registerPlugin(ScrollTrigger);
 interface Props {
   thumbnail: string
   videoID: string
+  startTime?: number
 }
 
-export default function Video({ thumbnail, videoID }: Props) {
+export default function Video({ thumbnail, videoID, startTime }: Props) {
   const { isMobile } = useStore()
   const [isStarted, setIsStarted] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
@@ -193,6 +194,7 @@ export default function Video({ thumbnail, videoID }: Props) {
                 disablekb: 1,
                 fs: 0,
                 playsinline: isMobile ? 0 : 1, // Force native fullscreen on iOS mobile
+                start: startTime,
               },
             }}
             onEnd={handleEnd}
