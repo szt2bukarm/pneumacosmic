@@ -13,6 +13,7 @@ import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import ImageGalleryWrapper from "../components/common/ImageGallery/ImageGalleryWrapper";
 import { Analytics } from "@vercel/analytics/next";
+import BienLogo from "../components/landing/hero/BienLogo";
 
 interface Props {
   children: React.ReactNode;
@@ -79,7 +80,6 @@ export default function LocaleLayout({ children, params }: Props) {
         <body>
           <Loader />
           <TransitionManager />
-          <Nav />
           <TextOverlay />
           <ImageGalleryWrapper />
           <SmoothScroll>
@@ -93,10 +93,12 @@ export default function LocaleLayout({ children, params }: Props) {
               curve="bezier"
               opacity={1}
               exponential={true}
-              zIndex={48}
-            />
+              zIndex={50}
+              />
             <NavMenu />
           </SmoothScroll>
+          <Nav />
+          <BienLogo />
           <Analytics />
         </body>
       </html>

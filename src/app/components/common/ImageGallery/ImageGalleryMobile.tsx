@@ -203,9 +203,9 @@ export default function ImageGalleryMobile() {
             transition: scale === 1 ? "transform 0.25s ease" : "none",
           }}
         />
-        <p data-gsap="clicked-text" className="opacity-0 mt-4 text-center font-hal text-base text-middark px-4">
+        {/* <p data-gsap="clicked-text" className="opacity-0 mt-4 text-center font-hal text-base text-middark px-4">
           {clickedText || ""}
-        </p>
+        </p> */}
       </div>
 
       {/* Image Grid */}

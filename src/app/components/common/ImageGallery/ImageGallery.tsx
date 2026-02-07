@@ -287,7 +287,7 @@ useEffect(() => {
               return (
                 <div
                   key={globalIndex} // use global index as key
-                  className="relative hover:opacity-100 transition-opacity duration-350 min-w-[600px] h-[400px] overflow-hidden cursor-pointer"
+                  className="relative hover:opacity-100 transition-opacity duration-350 min-w-[600px] max-w-[600px] h-[400px] overflow-hidden cursor-pointer"
                 >
                   <img
                     className="w-full h-full object-cover object-center"

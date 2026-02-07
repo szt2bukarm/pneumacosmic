@@ -107,7 +107,6 @@ export default function HeroContent() {
             <div data-gsap="hero-dim" className="absolute top-0 left-0 w-screen h-screen bg-dark z-20 opacity-0 pointer-events-none"></div>
             <div className="absolute top-0 left-0 w-screen h-screen flex flex-col items-center justify-center">
 
-                {/* <img src="bien-logo.png" className="absolute top-[120px] md:top-[110px] xl:top-[130px] right-2 md:right-5 w-[120px] sm:w-[150px] lg:w-[12vw] xl:w-[10vw] max-w-[200px]"/> */}
 
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 !mix-blend-difference">
                     <p data-gsap="text" className="leading-none font-hal text-md md:text-lg text-midlight text-left lg:text-center">KORONCZI Endre</p>

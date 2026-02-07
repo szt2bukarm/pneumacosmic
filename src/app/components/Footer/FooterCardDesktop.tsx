@@ -29,18 +29,20 @@ export default function FooterCardDesktop({
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 1024px)", () => {
-      ScrollTrigger.create({
-        trigger: '[data-gsap="footer-card-image"]',
-        start: "top-=300 center",
-        end: "bottom+=300 center",
-        scrub: true,
-        invalidateOnRefresh: true,
-        animation: gsap.fromTo('[data-gsap="footer-card-image"]',
-          { y: 0 },
-          { y: 100, }),
+    setTimeout(() => {
+      mm.add("(min-width: 1024px)", () => {
+        ScrollTrigger.create({
+          trigger: '[data-gsap="footer-card-image"]',
+          start: "top-=300 center",
+          end: "bottom+=300 center",
+          scrub: true,
+          invalidateOnRefresh: true,
+          animation: gsap.fromTo('[data-gsap="footer-card-image"]',
+            { y: 0 },
+            { y: 100, }),
+        });
       });
-    });
+    }, 200);
 
     return () => mm.revert();
   }, []);
@@ -48,8 +50,9 @@ export default function FooterCardDesktop({
   return (
     <TransitionLink
       href={href}
+      scrollTarget={null}
       className={`${pathname != `/${locale}${href}` ? "cursor-pointer" : "cursor-default"} ${width === "full" ? "!flex-1" : "!flex-[0.5]"
-        } relative flex-[0.5] transition-all duration-500 ease-in-out min-h-full
+        } relative flex-[0.5] transition-all duration-[350ms] ease-[0.40_1_0.36_1] min-h-full
                  hover:!flex-[0_0_800px] brightness-100 group-hover:brightness-[0.2] 
                  hover:!brightness-100 group/card !overflow-hidden`}
     >
@@ -68,13 +71,13 @@ export default function FooterCardDesktop({
       <div
         className="absolute inset-0 bg-gradient-to-bl 
                      from-[#0000004b] to-black z-2 opacity-0
-                     group-hover/card:opacity-85 transition-opacity duration-300 ease-in-out"
+                     group-hover/card:opacity-85 transition-opacity duration-[350ms] ease-[0.22_1_0.36_1]"
       ></div>
 
       {/* text content */}
       <div
         className="opacity-0 -translate-x-[400px] group-hover/card:translate-x-0 pointer-events-none
-                   group-hover/card:opacity-100 transition-all duration-500 ease-in-out 
+                   group-hover/card:opacity-100 transition-all duration-[350ms] ease-[0.22_1_0.36_1] 
                    px-[40px] pt-[30px] pb-[50px] absolute top-0 left-0 min-w-[801px] min-h-[540px] 
                    text-middark flex flex-col"
       >
