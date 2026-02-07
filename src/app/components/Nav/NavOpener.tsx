@@ -15,7 +15,6 @@ export default function NavOpener() {
     const mainRoutes = ["/hu", "/en", "/it","/"]
     
     useGSAP(() => {
-        console.log("asd");
         if (mainRoutes.includes(pathname)) {
             gsap.to("[data-gsap='nav-opener']", {
                 opacity: 0,

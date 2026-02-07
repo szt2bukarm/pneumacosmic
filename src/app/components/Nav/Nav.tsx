@@ -18,7 +18,6 @@ export default function Nav() {
 
     useGSAP(() => {
         if (!loaded) return
-        console.log(pathname, locale)
         if (pathname === "/" + locale) {
             gsap.set('[data-gsap="nav-logo"]', {
                 display: "none"

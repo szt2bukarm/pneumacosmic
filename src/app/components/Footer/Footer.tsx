@@ -27,7 +27,6 @@ export default function Footer() {
     }
 
     const openContact = () => {
-        console.log("OpenContact")
         setOverlayWiki(false);
         setOverlayText("e-mail: <a href='mailto:biennale@ludwigmuseum.hu'>biennale@ludwigmuseum.hu</a><br>e-mail: <a href='mailto:pneumacosmic@gmail.com'>pneumacosmic@gmail.com</a><br>tel: (+36 1) 555 3484")
     }

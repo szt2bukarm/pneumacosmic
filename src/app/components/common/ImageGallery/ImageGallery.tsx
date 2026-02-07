@@ -244,7 +244,6 @@ useEffect(() => {
       <div data-gsap="gallery-pagination" className="opacity-0 z-[100] absolute left-[50%] bottom-2 translate-x-[-50%] items-center justify-center flex gap-[5px]">
           <p
             onClick={() => {
-              console.log("prev")
               if (currentImage === null) return;
               const prevIndex = currentImage === 0 ? images.length - 1 : currentImage - 1; // wrap around
               const prevImage = images[prevIndex];

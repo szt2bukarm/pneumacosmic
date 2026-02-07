@@ -266,9 +266,7 @@ export default function Page() {
     const [videoID, setVideoID] = useState(1);
     const { locale } = useParams();
 
-    useEffect(() => {
-        console.log(locale);
-    }, [locale])
+    useEffe
 
 
 

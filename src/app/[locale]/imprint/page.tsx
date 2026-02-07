@@ -24,7 +24,6 @@ export default function Page() {
 
         if (scrollTarget?.length > 0) {
             const target = document.getElementById(scrollTarget)
-            console.log(target);
             setTimeout(() => {
             lenis?.scrollTo(target,{offset: -200,onComplete: () => {
                 setScrollTarget("")

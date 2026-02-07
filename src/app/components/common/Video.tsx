@@ -78,7 +78,6 @@ export default function Video({ thumbnail, videoID, startTime }: Props) {
   }, [isMobile, player]);
 
   const handleEnd: YouTubeProps["onEnd"] = () => {
-    console.log("Video ended!")
     setIsPlaying(false)
     setIsStarted(false)
     setCurrentTime(0)
