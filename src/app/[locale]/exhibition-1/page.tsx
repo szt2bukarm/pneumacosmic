@@ -264,10 +264,6 @@ export default function Page() {
     const [mounted, setMounted] = useState(false);
     const { isMobile } = useStore();
     const [videoID, setVideoID] = useState(1);
-    const { locale } = useParams();
-
-    useEffe
-
 
 
     useEffect(() => {
