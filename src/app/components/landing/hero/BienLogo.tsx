@@ -47,6 +47,6 @@ export default function BienLogo() {
     }
 
     return (
-        <img data-gsap="bien-logo" src="bien-logo.png" className="fixed top-[30px] right-[20px] sm:top-[35px] sm:right-[25px] 2xl:top-[60px] 2xl:right-[40px] h-[15vh] sm:h-[18.5vh] 2xl:h-[25vh] max-h-[240px] z-[50]" />
+        <img data-gsap="bien-logo" src="/bien-logo.png" className="fixed top-[30px] right-[20px] sm:top-[35px] sm:right-[25px] 2xl:top-[60px] 2xl:right-[40px] h-[15vh] sm:h-[18.5vh] 2xl:h-[25vh] max-h-[240px] z-[50]" />
     )
 }
