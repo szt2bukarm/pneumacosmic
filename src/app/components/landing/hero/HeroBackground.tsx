@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 function AuroraPlane() {
-  const meshRef = useRef<any>();
+  const meshRef = useRef<THREE.Mesh>(null);
   const { size } = useThree();
 
   // vertex shader
@@ -71,7 +71,7 @@ function AuroraPlane() {
   // update each frame
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
-    const mat = meshRef.current.material;
+    const mat = meshRef.current.material as THREE.ShaderMaterial;
     mat.uniforms.iTime.value = clock.getElapsedTime();
     mat.uniforms.iResolution.value.set(size.width, size.height);
   });
@@ -106,7 +106,7 @@ function AuroraPlane() {
 export default function HeroBackground() {
 
     useGSAP(() => {
-        const ctx = gsap.context(() => {
+        gsap.context(() => {
             gsap.set('[data-gsap="hero-bg"]', {
                 opacity: 0.001,
             })

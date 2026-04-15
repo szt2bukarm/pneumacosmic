@@ -55,7 +55,6 @@ export default function HeroContent() {
         const ctx = gsap.context(() => {
             let trigger: ScrollTrigger;
             setTimeout(() => {
-                let colorTrigger: ScrollTrigger;
                 trigger = ScrollTrigger.create({
                     trigger: '[data-gsap="hero-dim"]',
                     start: "10% top",
@@ -79,7 +78,7 @@ export default function HeroContent() {
                     })
                 })
 
-                colorTrigger = ScrollTrigger.create({
+                ScrollTrigger.create({
                     trigger: '[data-gsap="landing-text"]',
                     start: "20% top",
                     end: "90% top",
