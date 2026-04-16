@@ -57,7 +57,7 @@ export const metadata = {
 };
 
 // Allowed locales
-const VALID_LOCALES = ["hu"];
+const VALID_LOCALES = ["hu","en"];
 const RESET_LOCALE = "hu";
 
 export default function LocaleLayout({ children, params }: Props) {

@@ -31,7 +31,7 @@ export default function Page() {
 
     useLayoutEffect(() => {
         const ctx = gsap.context(() => {
-            let trigger = ScrollTrigger.create({
+            const trigger = ScrollTrigger.create({
                 trigger: '[data-gsap="introduction-video"]',
                 start: "top-=200 center",
                 end: "bottom+=200 center",

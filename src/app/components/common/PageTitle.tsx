@@ -1,22 +1,24 @@
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import SplitText from "gsap/src/SplitText"
-import { useRef } from "react";
+import React, { useRef } from "react";
 gsap.registerPlugin(SplitText);
 
 interface Props {
   subtext: string,
   text: string,
   delay: number,
-  shadow?: boolean
+  shadow?: boolean,
+  noPadding?: boolean
 }
 
-export default function PageTitle({ subtext, text, delay = 0,shadow=false}: Props) {
+export default function PageTitle({ text, delay = 0,shadow=false, noPadding=false}: Props) {
   const titleRef = useRef<HTMLParagraphElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
 
   useGSAP(() => {
-    const ctx = gsap.context(() => {
+    gsap.context(() => {
+      if (!titleRef.current) return;
       // First split into words
       const splitWords = new SplitText(titleRef.current, { type: "words" })
 
@@ -54,10 +56,10 @@ export default function PageTitle({ subtext, text, delay = 0,shadow=false}: Prop
         }
       })
     })
-  })
+  }, [text])
 
   return (
-    <div className="relative flex sm:justify-center sm:items-center pt-[160px] md:pt-[200px] z-[20] ">
+    <div className={`relative flex sm:justify-center sm:items-center ${noPadding ? "pt-0" : "pt-[160px] md:pt-[200px]"} z-[20] `}>
       <div className="flex flex-col px-[22px] md:px-[90px] ">
         {/* <p
           ref={subtitleRef}
@@ -67,10 +69,15 @@ export default function PageTitle({ subtext, text, delay = 0,shadow=false}: Prop
         </p> */}
         <p
           ref={titleRef}
-          style={{transform: "translate3D(0, 0, 0)",filter: shadow? "drop-shadow(0px 0px 20px rgb(0, 0, 0)" : ""}}
-          className="font-gara text-middark text-[10vw] leading-[10vw] sm:text-h1 sm:leading-[70px]"
+          style={{transform: "translate3D(0, 0, 0)", filter: shadow ? "drop-shadow(0px 0px 20px rgb(0, 0, 0)" : ""}}
+          className="font-gara text-middark text-[10vw] leading-[10vw] sm:text-h1 sm:leading-[70px] lg:text-center"
         >
-          {text}
+          {text.split("<br>").map((line, i, arr) => (
+            <React.Fragment key={i}>
+              {line}
+              {i < arr.length - 1 && <br />}
+            </React.Fragment>
+          ))}
         </p>
       </div>
     </div>

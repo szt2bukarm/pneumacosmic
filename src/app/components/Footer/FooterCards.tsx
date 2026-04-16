@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import FooterCardMobile from "./FooterCardMobile";
 import TransitionLink from "@/app/TransitionLink";
+import { useParams } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,40 +17,46 @@ const cards = [
     number: 4,
     width: "half",
     image: "/images/fal.webp",
-    text: "LEBEGŐ HIPOTÉZIS",
+    text_hu: "LEBEGŐ HIPOTÉZIS",
+    text_en: "FLOATING HYPOTHESIS",
     href: "/exhibition-4",
   },
   {
     number: 1,
     width: "full",
     image: "/images/bennszorult.webp",
-    text: "BENNSZORULT LÉLEGZET",
+    text_hu: "BENNSZORULT LÉLEGZET",
+    text_en: "TRAPPED BREATH",
     href: "/exhibition-1",
   },
   {
     number: 2,
     width: "full",
     image: "/images/paroslab.webp",
-    text: "PÁROS LÁBBAL A FÖLD FÖLÖTT",
+    text_hu: "PÁROS LÁBBAL A FÖLD FÖLÖTT",
+    text_en: "BOTH FEET ABOVE THE GROUND",
     href: "/exhibition-2",
   },
   {
     number: 3,
     width: "full",
     image: "/images/lelegzofal.webp",
-    text: "VÉGTELEN TÜRELEM (LÉLEGEZŐ FAL)",
+    text_hu: "VÉGTELEN TÜRELEM (LÉLEGEZŐ FAL)",
+    text_en: "NEVERENDING PATIENCE (BREATHING WALL)",
     href: "/exhibition-3",
   },
   {
     number: 5,
     width: "half",
     image: "/images/akusztikus.webp",
-    text: "AKUSZTIKUS ELEM",
+    text_hu: "AKUSZTIKUS ELEM",
+    text_en: "ACOUSTIC ELEMENT",
     href: "/exhibition-5",
   },
 ];
 
 export default function FooterCards() {
+  const {locale} = useParams();
   const [activeIndex, setActiveIndex] = useState(1);
   // const cardsRef = useRef<HTMLDivElement[]>([]);
 
@@ -87,7 +94,7 @@ export default function FooterCards() {
             index={index + 1}
             width={card.width}
             image={card.image}
-            text={card.text}
+            text={locale == "hu" ? card.text_hu : card.text_en}
             href={card.href}
           />
         ))}
@@ -135,7 +142,7 @@ export default function FooterCards() {
                 number={card.number}
                 image={card.image}
                 activeIndex={activeIndex}
-                text={card.text}
+                text={locale == "hu" ? card.text_hu : card.text_en}
                 href={card.href}
               />
             </SwiperSlide>

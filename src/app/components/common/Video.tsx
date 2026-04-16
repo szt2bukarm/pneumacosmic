@@ -9,6 +9,15 @@ import { useStore } from "@/app/useStore"
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface YTPlayer {
+  pauseVideo: () => void;
+  playVideo: () => void;
+  getCurrentTime: () => number;
+  getDuration: () => number;
+  setVolume: (vol: number) => void;
+  seekTo: (time: number) => void;
+}
+
 interface Props {
   thumbnail: string
   videoID: string
@@ -19,7 +28,7 @@ export default function Video({ thumbnail, videoID, startTime }: Props) {
   const { isMobile } = useStore()
   const [isStarted, setIsStarted] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [player, setPlayer] = useState<any>(null)
+  const [player, setPlayer] = useState<YTPlayer | null>(null)
   const [volume, setVolume] = useState(50)
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
@@ -58,7 +67,13 @@ export default function Video({ thumbnail, videoID, startTime }: Props) {
   // Fullscreen change listener to pause on exit
   useEffect(() => {
     const handleFullscreenChange = () => {
-      const isFullscreen = document.fullscreenElement || (document as any).webkitFullscreenElement || (document as any).mozFullScreenElement || (document as any).msFullscreenElement;
+      interface DocumentFull extends Document {
+        webkitFullscreenElement?: Element;
+        mozFullScreenElement?: Element;
+        msFullscreenElement?: Element;
+      }
+      const doc = document as DocumentFull;
+      const isFullscreen = doc.fullscreenElement || doc.webkitFullscreenElement || doc.mozFullScreenElement || doc.msFullscreenElement;
       if (!isFullscreen && isMobile && player) {
         player.pauseVideo();
       }
@@ -97,7 +112,12 @@ export default function Video({ thumbnail, videoID, startTime }: Props) {
       setIsPlaying(true);
       // Auto-fullscreen on mobile when playing
       if (isMobile && wrapperRef.current) {
-        const el = wrapperRef.current as any;
+        interface HTMLElementFull extends HTMLElement {
+          webkitRequestFullscreen?: () => void;
+          mozRequestFullScreen?: () => void;
+          msRequestFullscreen?: () => void;
+        }
+        const el = wrapperRef.current as HTMLElementFull;
         if (el.requestFullscreen) el.requestFullscreen();
         else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
         else if (el.mozRequestFullScreen) el.mozRequestFullScreen();
@@ -135,7 +155,7 @@ export default function Video({ thumbnail, videoID, startTime }: Props) {
   }
 
   useGSAP(() => {
-    let pauseTrigger = ScrollTrigger.create({
+    const pauseTrigger = ScrollTrigger.create({
       trigger: wrapperRef.current,
       start: "top-=500 center",
       end: "bottom+=500 center",

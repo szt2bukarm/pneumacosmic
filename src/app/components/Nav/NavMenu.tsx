@@ -3,18 +3,18 @@ import gsap from "gsap"
 import { useEffect, useRef, useState } from "react"
 import { useStore } from "../../useStore";
 import { useGSAP } from "@gsap/react";
-import NavSound from "./NavSound";
 import NavLanguage from "./NavLanguage";
 import TransitionLink from "@/app/TransitionLink";
 import AnimatedLink from "../common/AnimatedLink";
+import { useParams } from "next/navigation";
 
 
 const navlinks = [
-  { image: "/images/bennszorult.webp", text: "BENNSZORULT LÉLEGZET", href: "/exhibition-1" },
-  { image: "/images/paroslab.webp", text: "PÁROS LÁBBAL A FÖLD FÖLÖTT", href: "/exhibition-2" },
-  { image: "/images/lelegzofal.webp", text: "VÉGTELEN TÜRELEM (LÉLEGEZŐ FAL)", href: "/exhibition-3" },
-  { image: "/images/fal.webp", text: "LEBEGŐ HIPOTÉZIS", href: "/exhibition-4" },
-  { image: "/images/akusztikus.webp", text: "AKUSZTIKUS ELEM", href: "/exhibition-5" },
+  { image: "/images/bennszorult.webp", text_hu: "BENNSZORULT LÉLEGZET", text_en: "TRAPPED BREATH", href: "/exhibition-1" },
+  { image: "/images/paroslab.webp", text_hu: "PÁROS LÁBBAL A FÖLD FÖLÖTT", text_en: "BOTH FEET ABOVE THE GROUND", href: "/exhibition-2" },
+  { image: "/images/lelegzofal.webp", text_hu: "VÉGTELEN TÜRELEM (LÉLEGEZŐ FAL)", text_en: "NEVERENDING PATIENCE (BREATHING WALL)", href: "/exhibition-3" },
+  { image: "/images/fal.webp", text_hu: "LEBEGŐ HIPOTÉZIS", text_en: "FLOATING HYPOTHESIS", href: "/exhibition-4" },
+  { image: "/images/akusztikus.webp", text_hu: "AKUSZTIKUS ELEM", text_en: "ACOUSTIC ELEMENT", href: "/exhibition-5" },
 ]
 
 const sublinks = [
@@ -24,28 +24,33 @@ const sublinks = [
   //   href: "https://hu.wikipedia.org/wiki/Pneuma_Cosmic"
   // },
   {
-    text: "Bemutatkozás",
+    text_hu: "Bemutatkozás",
+    text_en: "Introduction",
     external: false,
     href: "/introduction"
   },
   {
-    text: "Instagram",
+    text_hu: "Instagram",
+    text_en: "Instagram",
     external: true,
     href: "https://www.instagram.com/pneumacosmic"
   },
   {
-    text: "Blog",
+    text_hu: "Blog",
+    text_en: "Blog",
     external: true,
     href: "https://blog.pneumacosmic.hu/"
   },
   {
-    text: "Impresszum",
+    text_hu: "Impresszum",
+    text_en: "Imprint",
     external: false,
     href: "/imprint"
   }
 ]
 
 export default function NavMenu() {
+  const {locale} = useParams();
     const { navOpen, setNavOpen } = useStore()
   const imageRefs = useRef<HTMLImageElement[]>([])
   const numberRefs = useRef<HTMLParagraphElement[]>([])
@@ -166,9 +171,9 @@ export default function NavMenu() {
       {/* stacked images */}
       {navlinks.map((link, index) => (
         <img
-          alt={link.text}
+          alt={locale == "hu" ? link.text_hu : link.text_en}
           key={index}
-          ref={el => (imageRefs.current[index] = el!)}
+          ref={el => { imageRefs.current[index] = el!; }}
           src={link.image}
           className="absolute inset-0 w-full h-[400px] md:h-[70vh] object-cover object-center"
           style={{ opacity: index === 0 ? 1 : 0 }}
@@ -179,7 +184,7 @@ export default function NavMenu() {
       {navlinks.map((_, index) => (
         <p
           key={index}
-          ref={el => (numberRefs.current[index] = el!)}
+          ref={el => { numberRefs.current[index] = el!; }}
           className="absolute mix-blend-overlay right-1 top-[-50px] md:top-[-250px] xl:top-0 md:right-5 text-midlight font-gara text-[400px] leading-[400px] md:text-[1000px] md:leading-[1000px] xl:text-[800px] xl:leading-[800px]"
           style={{ opacity: index === 0 ? 1 : 0 }}
         >
@@ -241,7 +246,7 @@ export default function NavMenu() {
             <div data-gsap="nav-links" key={index} className="relative" onMouseOver={() => handleHover(index)}>
               <p className="absolute text-midlight -top-[50px] -left-5 opacity-20 font-gara text-h1">{index + 1}</p>
               <TransitionLink href={link.href} className="font-gara text-midlight text-md sm:text-lg md:text-h4 cursor-pointer hover:opacity-50 transition-opacity duration-150">
-                {link.text}
+                {locale == "hu" ? link.text_hu : link.text_en}
               </TransitionLink>
             </div>
           ))}
@@ -251,8 +256,8 @@ export default function NavMenu() {
         <div className="flex flex-col gap-[12px] flex-shrink-0">
 
           {sublinks.map((link, index) => (
-              <div data-gsap="nav-links">
-                <AnimatedLink external={link.external} size="small" text={link.text} href={link.href} />
+              <div data-gsap="nav-links" key={`sublink-${index}`}>
+                <AnimatedLink external={link.external} size="small" text={locale == "hu" ? link.text_hu : link.text_en} href={link.href} />
               </div>
           ))}
         </div>

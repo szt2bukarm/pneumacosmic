@@ -33,7 +33,7 @@ export default function Footer() {
 
     useGSAP(() => {
         if (pathname == "/") {
-            let trigger = ScrollTrigger.create({
+            const trigger = ScrollTrigger.create({
                 trigger: '[data-gsap="landing-text-wrapper"]',
                 start: "50% center",
                 end: "bottom+=200 center",

@@ -1,9 +1,7 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
-import ImrpintCarousel from "./ImprintCarousel";
 import ImprintBackground from "./ImprintBackground";
 import ImprintText from "./ImprintText";
 import { useStore } from "@/app/useStore";
@@ -15,7 +13,7 @@ export default function ImprintHeader() {
 
         // intro anims
         useGSAP(() => {
-            const ctx = gsap.context(() => {
+            gsap.context(() => {
                 gsap.from('[data-gsap="imprint-bg"]', {
                     opacity: 0.01,
                     duration: 1,
@@ -42,7 +40,7 @@ export default function ImprintHeader() {
         useGSAP(() => {
             const ctx = gsap.context(() => {
                 setTimeout(() => {
-                    let trigger = ScrollTrigger.create({
+                    const trigger = ScrollTrigger.create({
                         trigger: '[data-gsap="imprint-content"]',
                         start: "bottom-=1000 center",
                         end: "bottom-=300 center",

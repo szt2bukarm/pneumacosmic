@@ -3,21 +3,22 @@
 import { useStore } from "@/app/useStore"
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import AnimatedLink from "./AnimatedLink";
 import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(SplitText)
 
 export default function TextOverlay() {
-    const {overlayText,overlayWiki, setOverlayText} = useStore();
+    const { overlayText, overlayWiki, setOverlayText } = useStore();
     const textRef = useRef<HTMLParagraphElement>(null);
     const pathname = usePathname();
     const splitRef = useRef<SplitText | null>(null);
+    const {locale} = useParams();
 
     useEffect(() => {
         closeOverlay();
-    },[pathname])
+    }, [pathname])
 
     useGSAP(() => {
         if (overlayText) {
@@ -26,7 +27,7 @@ export default function TextOverlay() {
                 duration: 0.3,
             });
         }
-    },[overlayText])
+    }, [overlayText])
 
     const splitLines = () => {
         if (!textRef.current) return;
@@ -75,7 +76,7 @@ export default function TextOverlay() {
 
     useEffect(() => {
         const html = document.documentElement;
-    
+
         if (overlayText) {
             html.style.overflow = "hidden";
             html.style.touchAction = "none";
@@ -83,20 +84,20 @@ export default function TextOverlay() {
             html.style.overflow = "";
             html.style.touchAction = "";
         }
-    
+
         return () => {
             html.style.overflow = "";
             html.style.touchAction = "";
         }
     }, [overlayText])
-    
+
     useEffect(() => {
         const handleKey = (e: KeyboardEvent) => {
             if (e.key === "Escape" && overlayText) {
                 closeOverlay();
             }
         };
-    
+
         window.addEventListener("keydown", handleKey);
         return () => window.removeEventListener("keydown", handleKey);
     }, [overlayText]);
@@ -116,19 +117,19 @@ export default function TextOverlay() {
     }
 
     return (
-    <div data-gsap="overlay-text" className="fixed top-0 left-0 w-screen h-[100dvh] z-[40] bg-[#050505d5]" onWheel={(e) => e.stopPropagation()}>
+        <div data-gsap="overlay-text" className="fixed top-0 left-0 w-screen h-[100dvh] z-[40] bg-[#050505d5]" onWheel={(e) => e.stopPropagation()}>
 
-        <div className="w-full max-h-[100dvh] overflow-y-auto" onWheel={(e) => e.stopPropagation()}>
-            <div className="flex flex-col pt-[170px] md:pt-[200px] pl-[20px] lg:pl-[100px] w-[calc(100%-40px)] lg:w-[760px] h-full pb-[100px]">
-                <button onClick={closeOverlay} className="w-fit font-hal text-lg leading-[24px] text-midlight cursor-pointer hover:opacity-50 transition-opacity duration-150">
-                ← Vissza
-                </button>
-                <p ref={textRef} className="font-gara text-md leading-[20px] sm:text-h5 sm:leading-[32px] text-middark mb-[70px] mt-[50px]" dangerouslySetInnerHTML={{__html: overlayText}}></p>
-                {/* {overlayWiki && (
+            <div className="w-full max-h-[100dvh] overflow-y-auto" onWheel={(e) => e.stopPropagation()}>
+                <div className="flex flex-col pt-[170px] md:pt-[200px] pl-[20px] lg:pl-[100px] w-[calc(100%-40px)] lg:w-[760px] h-full pb-[100px]">
+                    <button onClick={closeOverlay} className="w-fit font-hal text-lg leading-[24px] text-midlight cursor-pointer hover:opacity-50 transition-opacity duration-150">
+                        ← {locale == "hu" && 'Vissza'}{locale == "en" && 'Back'}
+                    </button>
+                    <p ref={textRef} className="font-gara text-md leading-[20px] sm:text-h5 sm:leading-[32px] text-middark mb-[70px] mt-[50px]" dangerouslySetInnerHTML={{ __html: overlayText }}></p>
+                    {/* {overlayWiki && (
                 <AnimatedLink external={true} size="large" text="Pneuma Cosmic WIKI" href="https://hu.wikipedia.org/wiki/Pneuma_Cosmic" />
                 )} */}
+                </div>
             </div>
         </div>
-    </div>
     )
 }

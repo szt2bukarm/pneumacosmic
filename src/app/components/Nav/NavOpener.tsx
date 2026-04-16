@@ -1,6 +1,7 @@
+"use client"
 import { useGSAP } from "@gsap/react";
 import { useStore } from "../../useStore";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
@@ -9,6 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function NavOpener() {
     const { setNavOpen, navOpen } = useStore();
+    const {locale} = useParams();
     const triggerRef = useRef<any>(null);
     const pathname = usePathname();
 
@@ -21,7 +23,7 @@ export default function NavOpener() {
                 pointerEvents: "none"
             })
             setTimeout(() => {
-                let trigger = ScrollTrigger.create({
+                const trigger = ScrollTrigger.create({
                 trigger: "[data-gsap='hero-dim']",
                 start: "20% top",
                 end: "40% top",
@@ -65,7 +67,7 @@ export default function NavOpener() {
 
     return (
         <div data-gsap="nav-opener" className={`opacity-0   ml-auto flex items-center justify-center gap-[12px] hover:opacity-50 cursor-pointer hover:brightness-50 transition-[filter] duration-150`}  onClick={() => setNavOpen(!navOpen)}>
-            <p className="hidden sm:block font-hal text-lg leading-[18px] translate-y-[0.5px] text-middark">MENÜ</p>
+            <p className="hidden sm:block font-hal text-lg leading-[18px] translate-y-[0.5px] text-middark">{locale == "hu" ? "MENÜ" : "MENU"}</p>
             <img alt="menu" src="/menu-lines.svg" />
         </div>
     )

@@ -7,8 +7,8 @@ interface Store {
     galleryOpen: boolean,
     setGalleryOpen: (galleryOpen: boolean) => void
 
-    galleryImages: { src: string; text: string }[]
-    setGalleryImages: (galleryImages: { src: string; text: string }[]) => void
+    galleryImages: { src: string; text?: string | null }[]
+    setGalleryImages: (galleryImages: { src: string; text?: string | null }[]) => void
 
     galleryTitle: string,
     setGalleryTitle: (galleryTitle: string) => void
@@ -25,7 +25,7 @@ interface Store {
     scrollTarget: string | null,
     setScrollTarget: (scrollTarget: string) => void
 
-    overlayText: string | TrustedHTML,
+    overlayText: string | TrustedHTML | null,
     setOverlayText: (overlayText: string) => void,
 
     overlayWiki: boolean,

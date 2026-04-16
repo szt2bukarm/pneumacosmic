@@ -30,7 +30,7 @@ export default function NavSound() {
     return (
         <div className="cursor-pointer flex items-end justify-end gap-[3px] min-h-[26px]" onClick={() => setSoundOn(!soundOn)}>
             {Array.from({ length: 7 }).map((_, i) => (
-                <div key={i} ref={(el) => soundBars.current[i] = el} className="w-[3px] h-[27px] bg-midlight rounded-[2px]"></div>
+                <div key={i} ref={(el) => { soundBars.current[i] = el!; }} className="w-[3px] h-[27px] bg-midlight rounded-[2px]"></div>
             ))}
         </div>
     )

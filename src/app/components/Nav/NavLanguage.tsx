@@ -1,17 +1,26 @@
-import TransitionLink from "@/app/TransitionLink";
-import Link from "next/link";
-import { useParams } from "next/navigation"
-import { useState } from "react"
+import { useParams, usePathname } from "next/navigation"
 
 export default function NavLanguage() {
-    const {locale} = useParams();
+    const { locale } = useParams();
+    const pathname = usePathname();
 
-    // const [language, setLanguage] = useState(locale.toString().toUpperCase())
+    const getNewPath = (targetLang: string) => {
+        if (!pathname) return `/${targetLang.toLowerCase()}`;
+        const segments = pathname.split("/");
+        segments[1] = targetLang.toLowerCase();
+        return segments.join("/");
+    };
 
     return (
-        <div className="flex gap-[25px] opacity-50 cursor-not-allowed">
-            {["HU","EN","IT"].map((lang) => (
-                <a key={lang} href={`/${lang.toLowerCase()}`} className={`pointer-events-none h-fit leading-[23px] font-hal text-midlight text-lg cursor-pointer ${locale.toString().toUpperCase() === lang ? "opacity-100" : "opacity-30"} transition-opacity duration-150`}>{lang}</a>
+        <div className="flex gap-[25px] ">
+            {["HU", "EN"].map((lang) => (
+                <a
+                    key={lang}
+                    href={getNewPath(lang)}
+                    className={`h-fit leading-[23px] font-hal text-midlight text-lg cursor-pointer ${locale.toString().toUpperCase() === lang ? "opacity-100" : "opacity-50"} transition-opacity duration-150 hover:opacity-25`}
+                >
+                    {lang}
+                </a>
             ))}
         </div>
     )

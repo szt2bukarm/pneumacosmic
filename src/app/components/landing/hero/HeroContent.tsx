@@ -3,10 +3,12 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import ScrollTrigger from "gsap/src/ScrollTrigger"
 import { useStore } from "@/app/useStore"
+import { useParams } from "next/navigation"
 gsap.registerPlugin(ScrollTrigger)
 
 export default function HeroContent() {
     const { isMobile } = useStore();
+    const { locale } = useParams();
 
     // hero animations
     useGSAP(() => {
@@ -108,7 +110,7 @@ export default function HeroContent() {
 
 
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 !mix-blend-difference">
-                    <p data-gsap="text" className="leading-none font-hal text-md md:text-lg text-midlight text-left lg:text-center">KORONCZI Endre</p>
+                    <p data-gsap="text" className="leading-none font-hal text-md md:text-lg text-midlight text-left lg:text-center">{locale == "hu" && "KORONCZI Endre"}{locale == "en" && "Endre KORONCZI"}</p>
 
                     <div className="my-[20px] xl:my-[30px] w-[95vw] max-w-[1400px] lg:h-[45vh]">
                         <img
@@ -121,8 +123,8 @@ export default function HeroContent() {
                 </div>
 
                 <div className="z-10 flex flex-col lg:flex-row lg:items-end gap-[20px] lg:gap-[65px] w-[95vw] lg:w-[90vw] mb-[70px] mt-auto">
-                    <p data-gsap="text" className="leading-none font-hal text-md md:text-lg text-midlight text-left">kurátor: Cserhalmi Luca<br></br>szervező: Ludwig Múzeum<br></br>nemzeti biztos: Fabényi Julia</p>
-                    <p data-gsap="text" className="leading-none font-hal text-md md:text-lg text-midlight text-left">61. Velencei Képzőművészeti Biennále, 2026<br /><span className="block mt-[30px] md:mt-0">Magyar Pavilon</span></p>
+                    <p data-gsap="text" className="leading-none font-hal text-md md:text-lg text-midlight text-left">{locale == "hu" && 'kurátor: Cserhalmi Luca'}{locale == "en" && 'Curator: Luca Cserhalmi '}<br></br>{locale == "hu" && 'szervező: Ludwig Múzeum'}{locale == "en" && 'Organiser: Ludwig Museum'}<br></br>{locale == "hu" && 'nemzeti biztos: Fabényi Julia'}{locale == "en" && 'National Commissioner: Fabényi Julia'}</p>
+                    <p data-gsap="text" className="leading-none font-hal text-md md:text-lg text-midlight text-left">{locale == "hu" && '61. Velencei Képzőművészeti Biennále, 2026'}{locale == "en" && '61st International Art Exhibition – La Biennale di Venezia, 2026'}<br /><span className="block mt-[30px] md:mt-0">{locale == "hu" && 'Magyar Pavilon'}{locale == "en" && 'Hungarian Pavilion'}</span></p>
 
                     <div
                         data-gsap="scroll"

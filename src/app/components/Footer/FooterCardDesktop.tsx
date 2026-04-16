@@ -1,3 +1,4 @@
+"use client"
 import TransitionLink from "@/app/TransitionLink";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -83,7 +84,11 @@ export default function FooterCardDesktop({
       >
         <p className="font-gara text-h1 leading-[70px] mb-auto">{number}</p>
         <p className="font-gara text-h1 leading-[90%] mb-[10px]">{text}</p>
-        <p className="font-hal text-h5">{pathname == `/${locale}${href}` ? "Jelenleg itt" : "Megtekintés →"}</p>
+        <p className="font-hal text-h5">
+
+          {pathname == `/${locale}${href}` ? (locale == "hu" ? "Jelenleg itt" : "Currently here") : (locale == "hu" ? "Megtekintés →" : "View →")}
+
+        </p>
       </div>
     </TransitionLink>
   );

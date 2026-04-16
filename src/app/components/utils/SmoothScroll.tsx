@@ -3,7 +3,7 @@ import { useStore } from "@/app/useStore";
 import { ReactLenis } from "@studio-freight/react-lenis";
 import gsap from "gsap";
 import CustomEase from "gsap/CustomEase";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 gsap.registerPlugin(CustomEase);
 

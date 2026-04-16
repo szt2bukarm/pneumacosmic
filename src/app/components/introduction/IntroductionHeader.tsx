@@ -1,17 +1,17 @@
 "use client"
 import { useGSAP } from "@gsap/react";
-import PageNavHeader from "../common/PageNavHeader";
 import PageTitle from "../common/PageTitle";
 import IntroductionBackground from "./IntroductionBackground";
 import gsap from "gsap";
-import { useLayoutEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useStore } from "@/app/useStore";
+import { useParams } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function IntroductionHeader() {
     const {isMobile} = useStore();
+    const {locale} = useParams();
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
@@ -29,7 +29,7 @@ export default function IntroductionHeader() {
                 ease: "power4.out"
             });
 
-            let trigger = ScrollTrigger.create({
+            const trigger = ScrollTrigger.create({
                 trigger: '[data-gsap="introduction-bg"]',
                 start: "top+=60% center",
                 end: "bottom+=1000 center",
@@ -50,7 +50,7 @@ export default function IntroductionHeader() {
 
         });
         return () => ctx.revert();
-    }),[];
+    }, []);
 
     return (
         <div className="relative w-full h-[120vh] md:h-[1500px] uw:h-[90vw] overflow-hidden">
@@ -62,7 +62,7 @@ export default function IntroductionHeader() {
             <IntroductionBackground />
             )}
 
-            <PageTitle text="BEMUTATKOZÁS" subtext="" delay={1.5} shadow />
+            <PageTitle text={locale == "hu" ? "BEMUTATKOZÁS" : "INTRODUCTION"} subtext="" delay={1.5} shadow />
 
             <div data-gsap="introduction-bg-scrollwrap" className="absolute top-[0px] left-0 w-full h-[120vh] md:h-[1500px] uw:h-[90vw]">
             <img alt="introduction background" data-gsap="introduction-bg" src="/images/introduction/intro.webp" className="opacity-0 w-full h-[120vh] md:h-[1550px] uw:h-[100vw] object-cover object-center md:object-[50%_-75px] uw:object-[50%_-175px]" />

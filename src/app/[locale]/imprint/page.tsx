@@ -22,15 +22,17 @@ export default function Page() {
             }, 35);
         }, 5);
 
-        if (scrollTarget?.length > 0) {
+        if (scrollTarget && scrollTarget.length > 0) {
             const target = document.getElementById(scrollTarget)
-            setTimeout(() => {
-            lenis?.scrollTo(target,{offset: -200,onComplete: () => {
-                setScrollTarget("")
-            }})
-            }, 100);
+            if (target) {
+                setTimeout(() => {
+                lenis?.scrollTo(target,{offset: -200,onComplete: () => {
+                    setScrollTarget("")
+                }})
+                }, 100);
+            }
         }
-    },[lenis])
+    },[lenis, scrollTarget, setScrollTarget])
 
 
 

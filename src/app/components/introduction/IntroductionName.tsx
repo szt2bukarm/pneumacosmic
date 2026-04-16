@@ -15,7 +15,7 @@ export default function IntroductionName({name}: {name: string}) {
                 y: 20,
                 filter: "blur(10px)"
             });
-            let trigger = ScrollTrigger.create({
+            const trigger = ScrollTrigger.create({
                 trigger: nameRef.current,
                 start: "top-=200 center",
                 end: "bottom+=200 center",

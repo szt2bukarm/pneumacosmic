@@ -173,7 +173,7 @@ export default function ImageGallery({closeGallery}: {closeGallery: () => void})
   }, [])
 
   // Split images into columns of 3 (using the new structure)
-  const columns: { src: string; text: string }[][] = []
+  const columns: { src: string; text?: string | null }[][] = []
   for (let i = 0; i < images.length; i += IMAGES_PER_COLUMN) {
     columns.push(images.slice(i, i + IMAGES_PER_COLUMN))
   }

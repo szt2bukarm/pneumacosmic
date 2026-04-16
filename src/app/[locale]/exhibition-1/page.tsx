@@ -1,6 +1,5 @@
 "use client"
 import BlurredImageCarousel from "../../components/common/BlurredImageCarousel";
-import PageNavHeader from "../../components/common/PageNavHeader";
 import PageTitle from "../../components/common/PageTitle";
 import StaggeredSplitText from "../../components/common/StaggeredSplitText";
 import Video from "../../components/common/Video";
@@ -9,12 +8,10 @@ import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import PinnedImageReveal from "../../components/Exhibition-2/PinnedImageReveal";
 import Footer from "../../components/Footer/Footer";
-import ImageGallery from "../../components/common/ImageGallery/ImageGallery";
 import Exhibiton2Render from "../../components/Exhibition-2/Exhibition2Render";
 import { useLenis } from "@studio-freight/react-lenis";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "../../useStore";
-import { useRouter } from "next/router";
 import { useParams } from "next/navigation";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -263,9 +260,9 @@ export default function Page() {
     const lenis = useLenis();
     const [mounted, setMounted] = useState(false);
     const { isMobile } = useStore();
+    const {locale} = useParams();
     const [videoID, setVideoID] = useState(1);
-
-
+    
     useEffect(() => {
         if (!lenis) return
         lenis?.scrollTo(0, { immediate: true })
@@ -303,7 +300,7 @@ export default function Page() {
     useGSAP(() => {
         const ctx = gsap.context(() => {
             setTimeout(() => {
-                let parallaxTrigger = ScrollTrigger.create({
+                const parallaxTrigger = ScrollTrigger.create({
                     trigger: '[data-gsap="exhibition-2-textbg"]',
                     start: "top-=100 center",
                     end: "bottom+=100 center",
@@ -387,13 +384,19 @@ export default function Page() {
     return (
         <div className="relative w-screen min-h-screen bg-black overflow-x-hidden">
 
-            <p data-gsap="exhibition-2-fixedtext-left" className="hidden xl:block opacity-0 fixed bottom-5 left-5 font-hal text-middark text-sm z-30 xl:w-[550px] leading-[14px]">Archív képek a Magyar Tudományos Akadémia termeiről. Fotók: Fővárosi Szabó Ervin Könyvtár, Budapest Gyűjtemény és Fortepan / Budapest Főváros Levéltára</p>
-            <p data-gsap="exhibition-2-fixedtext-right" className="hidden xl:block opacity-0 fixed bottom-5 right-5 text-right font-hal text-middark text-sm z-30  xl:w-[550px] leading-[14px]">A szellőzőrács leíró kartonja a Magyar Tudományos Akadémia Művészeti Gyűjteményében</p>
+            <p data-gsap="exhibition-2-fixedtext-left" className="hidden xl:block opacity-0 fixed bottom-5 left-5 font-hal text-middark text-sm z-30 xl:w-[550px] leading-[14px]">
+                {locale == "hu" && "Archív képek a Magyar Tudományos Akadémia termeiről. Fotók: Fővárosi Szabó Ervin Könyvtár, Budapest Gyűjtemény és Fortepan / Budapest Főváros Levéltára"}
+                {locale == "en" && 'Photos: Metropolitan Ervin Szabó Library, Budapest Collection and FORTEPAN / Budapest City Archives'}
+            </p>
+            <p data-gsap="exhibition-2-fixedtext-right" className="hidden xl:block opacity-0 fixed bottom-5 right-5 text-right font-hal text-middark text-sm z-30  xl:w-[550px] leading-[14px]">
+                {locale == "hu" && 'A szellőzőrács leíró kartonja a Magyar Tudományos Akadémia Művészeti Gyűjteményében'}
+                {locale == "en" && 'Catalogue card of a ventilation grille in the Hungarian Academy of Sciences Art Collection'}
+            </p>
 
 
 
             <div className="z-[30] fixed top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-black to-transparent"></div>
-            <PageTitle delay={2.5} subtext="Bal oldali szárny" text="BENNSZORULT LÉLEGZET" />
+            <PageTitle delay={2.5} subtext="Bal oldali szárny" text={locale == "hu" ? "BENNSZORULT LÉLEGZET" : "TRAPPED BREATH"} />
 
             {!isMobile && (
                 <div data-gsap="canvas" className="h-[150vh] w-screen fixed top-0 left-0">
@@ -433,18 +436,24 @@ export default function Page() {
             <div className="relative w-full h-full bg-black">
 
                 <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-                    <StaggeredSplitText>Az installáció a szemlélődés, az archeológia és a művészeti kutatás megismerési formáit modellezi a tudományos szféra székházának tárgyi emlékein keresztül. A mű a Magyar Tudományos Akadémia épületének a felújítása során, a harmadik emelet padlózatából kibontott szellőztetőberendezés elemeiből áll. A 200 éves intézmény történelmi jelentőségű épületének lélegzéséért láthatatlanul felelős tárgyak szimbolikusan a tudományos élet nagyjainak leheletét, sóhajait, az agyakat átjáró oxigént őrzik. A szellőzőrendszer a világot egybekötő levegőáramláshoz kapcsolódik, miként a léghez hasonló, testetlen gondolatok létének alapja is a folyamatos, termékeny cserélődés.</StaggeredSplitText>
+                    <StaggeredSplitText>
+                        {locale == "hu" && 'Az installáció a szemlélődés, az archeológia és a művészeti kutatás megismerési formáit modellezi a tudományos szféra székházának tárgyi emlékein keresztül. A mű a Magyar Tudományos Akadémia épületének a felújítása során, a harmadik emelet padlózatából kibontott szellőztetőberendezés elemeiből áll. A 200 éves intézmény történelmi jelentőségű épületének lélegzéséért láthatatlanul felelős tárgyak szimbolikusan a tudományos élet nagyjainak leheletét, sóhajait, az agyakat átjáró oxigént őrzik. A szellőzőrendszer a világot egybekötő levegőáramláshoz kapcsolódik, miként a léghez hasonló, testetlen gondolatok létének alapja is a folyamatos, termékeny cserélődés.'}
+                        {locale == "en" && 'The installation models different forms of cognition by contemplation, archaeology, and artistic research through artefacts from the headquarters of the scientific sphere. The work consists of elements of the ventilation system removed from the third floor of the building of the Hungarian Academy of Sciences during its renovation. Having been invisibly responsible for the breathing of the 200-year-old institution’s historically significant building, these objects symbolically preserve the breath, sighs, and oxygen flowing through the brains of the great minds of academic life. The ventilation system is connected to the airflow that connects the world, just like the existence of ethereal, incorporeal thoughts is based on continuous, productive exchange.'}
+                    </StaggeredSplitText>
                 </div>
 
-                <BlurredImageCarousel images={carousel1} title="A Bennszorult lélegzet installáció a Kérem, sóhajtson, Széchenyi Úr! kiállításon, Godot Kortárs Művészeti Intézet, 2024" />
+                <BlurredImageCarousel images={carousel1} title={locale == "hu" ? 'A Bennszorult lélegzet installáció a Kérem, sóhajtson, Széchenyi Úr! kiállításon, Godot Kortárs Művészeti Intézet, 2024' : 'The Trapped Breath installation at the exhibition Please Sigh, Mr Széchenyi!, Godot Institute of Contemporary Art, 2024'} />
 
                 <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
-                    <StaggeredSplitText>Az ipari tárgyakkal párbeszédbe állított természeti felvételen a lassan változó fumarola (geológiai képződmény, mely gázokat és gőzöket bocsát ki) a pneuma cosmic bolygó léptékű megmutatkozásaként, egy kozmikus lehelet kiáramlásaként jelenik meg. A levegő és a gondolatok cserélődése itt egy leletben tárul a néző elé, melynek kutatása párbeszédet teremt a tudományos akadémiák szellemisége és egy kutató művész metaforikus világlátása között.</StaggeredSplitText>
+                    <StaggeredSplitText>
+                    {locale == "hu" && 'Az ipari tárgyakkal párbeszédbe állított természeti felvételen a lassan változó fumarola (geológiai képződmény, mely gázokat és gőzöket bocsát ki) a pneuma cosmic bolygó léptékű megmutatkozásaként, egy kozmikus lehelet kiáramlásaként jelenik meg. A levegő és a gondolatok cserélődése itt egy leletben tárul a néző elé, melynek kutatása párbeszédet teremt a tudományos akadémiák szellemisége és egy kutató művész metaforikus világlátása között.'}
+                    {locale == "en" && 'Installed in dialogue with the industrial relics, a footage set in nature displays a slowly changing fumarole (a geological formation that emits gases and vapours) that appears as the planetary-scale manifestation of pneuma cosmic: the outflow of a cosmic breath. The exchange of air and thoughts is revealed to the spectator in a single artefact, the exploration of which creates a dialogue between the spirit of scientific academies and the metaphorical worldview of a researcher artist.'}
+                    </StaggeredSplitText>
                 </div>
 
-                <Video thumbnail="/images/exhibition-2/video.webp" videoID="hHZyi2eXODs" />
+                <Video thumbnail="/images/exhibition-2/video.webp" videoID="Jg2I1KP7Y7A" />
                 <div className="h-[150px]"></div>
-                <BlurredImageCarousel images={carousel2} title="A Magyar Tudományos Akadémia harmadik emeleti kiállítótermei a felújítás előtti állapotban, 2024" />
+                <BlurredImageCarousel images={carousel2} title={locale == "hu" ? 'A Magyar Tudományos Akadémia harmadik emeleti kiállítótermei a felújítás előtti állapotban, 2024' : 'The third floor exhibition halls of the Hungarian Academy of Sciences before renovation, 2024'} />
 
                 <div
                     className="mt-[-100px] relative w-full h-full md:h-[550px] lg:h-[1000px] pt-[180px] pb-[70px] md:pt-0 md:pb-0 flex items-center justify-center"
@@ -458,32 +467,43 @@ export default function Page() {
                     <div className="absolute top-0 left-0 w-full h-full" style={{ background: "linear-gradient(to bottom, rgba(5,5,5,1), rgba(5,5,5,0.75), rgba(5,5,5,1))" }}>
                     </div>
 
-                    <StaggeredSplitText>Az archeológia tudományát is megidéző projekt a korábban a padlózatba rejtett, hétköznapi tárgyakat művészeti értékükben tárja a látogató elé. A labirintusszerűen elhelyezett szellőzőelemek erőteljes indusztriális jellege és sajátos története mellett az installáció a művész által a tárgyakban meglátott metaforán keresztül válik teljessé.</StaggeredSplitText>
+                    <StaggeredSplitText>
+                        {locale == "hu" && 'Az archeológia tudományát is megidéző projekt a korábban a padlózatba rejtett, hétköznapi tárgyakat művészeti értékükben tárja a látogató elé. A labirintusszerűen elhelyezett szellőzőelemek erőteljes indusztriális jellege és sajátos története mellett az installáció a művész által a tárgyakban meglátott metaforán keresztül válik teljessé.'}
+                        {locale == "en" && 'Also evocative of the science of archaeology, the project reveals the artistic value of everyday objects previously concealed by the flooring. In addition to the strongly industrial character and unique history of the labyrinthine ventilation elements, the installation becomes complete through the metaphor the artist perceives in the objec   ts.'}
+                    </StaggeredSplitText>
                 </div>
 
                 <div data-gsap="exhibition-2-pin-helper" className="w-full h-[0px]"></div>
                 <PinnedImageReveal />
                 {/* <p className="pt-[100px] mx-auto text-center font-hal text-middark text-sm w-[calc(100%-40px)] lg:w-[900px] leading-[15px] ">A fényképek a Fővárosi Szabó Ervin Könyvtár – Budapest Gyűjteményéből és a FORTEPAN – Budapest Főváros Levéltárából származnak.</p> */}
-                <p className="pt-[100px] mx-auto block xl:hidden text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">Archív képek a Magyar Tudományos Akadémia termeiről. Fotók: Fővárosi Szabó Ervin Könyvtár, Budapest Gyűjtemény és Fortepan / Budapest Főváros Levéltára<br></br><br></br>A szellőzőrács leíró kartonja a Magyar Tudományos Akadémia Művészeti Gyűjteményében</p>
+                <p className="pt-[100px] mx-auto block xl:hidden text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">{locale == "hu" && 'Archív képek a Magyar Tudományos Akadémia termeiről. Fotók: Fővárosi Szabó Ervin Könyvtár, Budapest Gyűjtemény és Fortepan / Budapest Főváros Levéltára'}{locale == "en" && 'Photos: Metropolitan Ervin Szabó Library, Budapest Collection and FORTEPAN / Budapest City Archives'}<br></br><br></br>{locale == "hu" && 'A szellőzőrács leíró kartonja a Magyar Tudományos Akadémia Művészeti Gyűjteményében'}{locale == "en" && 'Catalogue card of a ventilation grille in the Hungarian Academy of Sciences Art Collection'}</p>
 
 
                 <div className="h-[150px]"></div>
-                <BlurredImageCarousel images={carousel4} title="A Magyar Tudományos Akadémia szellőztetőrendszeréből kibontott installációs elemek elszállítása, 2024" />
+                <BlurredImageCarousel images={carousel4} title={locale == "hu" ? 'A Magyar Tudományos Akadémia szellőztetőrendszeréből kibontott installációs elemek elszállítása, 2024' : 'Movers carrying the ventilation elements dismantled from the ventilation system of the Hungarian Academy of Sciences, 2024'} />
 
 
                 <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[220px] flex items-center justify-center">
-                    <StaggeredSplitText>Ez a metafora jelenik meg az installációhoz tartozó szénrajzon is, melyen a Magyar Tudományos Akadémia neoreneszánsz székházának homlokzata jelenik meg. Az épületet átjárja vagy megzavarja egy megfoghatatlan, absztrakt motívum, a gesztusszerűen megjelenített légmozgás. A rajzon a két eltérő grafikai elem az általuk képviselt (világ)szemléleti és megismerési módok (tudomány és művészet) eltérő jellegét tükrözi, nyitva hagyva a kérdést, hogy találkozásuk termékeny vagy lehetetlen párbeszédet teremt.</StaggeredSplitText>
+                    <StaggeredSplitText>
+                        {locale == "hu" && 'Ez a metafora jelenik meg az installációhoz tartozó szénrajzon is, melyen a Magyar Tudományos Akadémia neoreneszánsz székházának homlokzata jelenik meg. Az épületet átjárja vagy megzavarja egy megfoghatatlan, absztrakt motívum, a gesztusszerűen megjelenített légmozgás. A rajzon a két eltérő grafikai elem az általuk képviselt (világ)szemléleti és megismerési módok (tudomány és művészet) eltérő jellegét tükrözi, nyitva hagyva a kérdést, hogy találkozásuk termékeny vagy lehetetlen párbeszédet teremt.'}
+                        {locale == "en" && 'This metaphor also appears in the charcoal drawing accompanying the installation, which depicts the facade of the Neo-Renaissance headquarters of the Hungarian Academy of Sciences. The building is permeated, or disrupted, by an elusive, abstract motif, the gestural rendering of air movement. In the drawing, the two different graphic elements reflect the different characters of the worldviews and modes of cognition (science and art) they represent, leaving open the question of whether the dialogue their encounter creates is fruitful or impossible.'}
+                    </StaggeredSplitText>
                 </div>
 
-                <BlurredImageCarousel images={carousel3} title="Az installáció elemeinek megérkezése a KÉSZ Csoport kecskeméti telephelyére, a K-ARTS Művészeti Alapítvány raktárába, 2024" />
+                <BlurredImageCarousel images={carousel3} title={locale == "hu" ? 'Az installáció elemeinek megérkezése a KÉSZ Csoport kecskeméti telephelyére, a K-ARTS Művészeti Alapítvány raktárába, 2024' : 'Arrival of the installation elements at the Kecskemét site of KÉSZ Group, the warehouse of K-ARTS Foundation, 2024'} />
 
                 <div className="mx-auto flex flex-col gap-[20px] md:gap-[30px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[924px]">
-                    <p className="font-gara text-middark text-md sm:text-lg md:text-h4">Az installáció először Koronczi Endre Kérem, sóhajtson, Széchenyi Úr! kiállításán került bemutatásra.
+                    <p className="font-gara text-middark text-md sm:text-lg md:text-h4">
+                        {locale == "hu" && 'Az installáció először Koronczi Endre Kérem, sóhajtson, Széchenyi Úr! kiállításán került bemutatásra.'}
+                        {locale == "en" && 'The installation was first displayed at Endre Koronczi exhibition Please Sigh, Mr Széchenyi!'}
                         <br></br><br></br>
-                        Godot Kortárs Művészeti Intézet,<br></br>
-                        Budapest, 2024. 02. 23.–06. 23.
+                        {locale == "hu" && 'Godot Kortárs Művészeti Intézet,'}
+                        {locale == "en" && 'Godot Institute of Contemporary Art,'}<br></br>
+                        {locale == "hu" && 'Budapest, 2024. 02. 23.–06. 23.'}
+                        {locale == "en" && 'Budapest, 23 02 – 23 06 2024'}
                         <br></br><br></br>
-                        Kurátor: Cserhalmi Luca</p>
+                        {locale == "hu" && 'Kurátor: Cserhalmi Luca'}
+                        {locale == "en" && 'Curator: Luca Cserhalmi'}</p>
                 </div>
 
                 <Footer />

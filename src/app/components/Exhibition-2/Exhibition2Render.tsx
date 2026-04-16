@@ -92,6 +92,7 @@ function Scene() {
         <mesh position={[0, -0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
           <planeGeometry args={[50, 50]} />
           <MeshReflectorMaterial
+            mirror={0.5}
             blur={isMobile ? [2000, 500] : [2000, 500]}
             resolution={isMobile ? 64 : 512}
             mixBlur={1}
@@ -107,6 +108,7 @@ function Scene() {
         <mesh position={[0, 0, -8.5]}>
           <planeGeometry args={[50, 50]} />
           <MeshReflectorMaterial
+            mirror={0.5}
             blur={[300, 300]}
             resolution={isMobile ? 64 : 512}
             mixBlur={1}

@@ -15,6 +15,7 @@ import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect, useState } from "react";
 import WalkSequence from "../../components/Exhibition-3/WalkSequence";
 import AnimatedLink from "../../components/common/AnimatedLink";
+import { useParams } from "next/navigation";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
@@ -245,6 +246,7 @@ const carousel3 = [
 export default function Page() {
     const lenis = useLenis();
     const [mounted,setMounted] = useState(false);
+    const {locale} = useParams();
 
     useEffect(() => {
         if (!lenis) return
@@ -302,25 +304,25 @@ export default function Page() {
 
         <div className="z-[30] fixed top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-black to-transparent"></div>
 
-        <PageTitle delay={1.35} subtext="Apszis" text="PÁROS LÁBBAL A FÖLD FÖLÖTT" />
+        <PageTitle delay={1.35} subtext="Apszis" text={locale == "hu" ? "PÁROS LÁBBAL A FÖLD FÖLÖTT": "BOTH FEET ABOVE THE GROUND"} />
 
         <div data-gsap="exhibition-3-gallery-1" className="mt-[100px]">
-        <BlurredImageCarousel images={carousel1} trigger={false} title="Válogatás a zarándoklat helyszíneiből"/>
+        <BlurredImageCarousel images={carousel1} trigger={false} title={locale == "hu" ? 'Válogatás a zarándoklat helyszíneiből' : 'A selection from the pilgrimage sites'}/>
         </div>
 
         <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-        <StaggeredSplitText>Koronczi Endre egy fontos sóhaj keresésére indult útnak, a hátán a sóhaj befogására alkalmas üvegtárggyal. Az egy évig tartó gyaloglás kezdetén még nem tudta, hogy hol fogja megtalálni, amit keres, így a mű nemcsak fikciós, hanem valós kutatási folyamat is a dokumentáció és a videoművészet határán.</StaggeredSplitText>
+        <StaggeredSplitText>{locale == "hu" && 'Koronczi Endre egy fontos sóhaj keresésére indult útnak, a hátán a sóhaj befogására alkalmas üvegtárggyal. Az egy évig tartó gyaloglás kezdetén még nem tudta, hogy hol fogja megtalálni, amit keres, így a mű nemcsak fikciós, hanem valós kutatási folyamat is a dokumentáció és a videoművészet határán.'}{locale == "en" && 'Endre Koronczi set out on a journey in search of an important sigh, carrying on his back a glass object suitable for capturing it. At the beginning of his year-long walk, he did not yet know where he would find what he was looking for, so the work is just as much fictitious as it is a real research process on the border of documentation and video art.'}</StaggeredSplitText>
         </div>
 
         {/* <BlurredImageCarousel images={carousel2} title="A sóhaj befogására szolgáló üvegtárgy készítése a Parádsasvári Üvegmanufaktúra műhelyében, 2025"/> */}
 
         {/* <div className="h-[70px] md:h-[150px]"></div> */}
         <Video thumbnail="/images/exhibition-3/gallery-2/14werk.webp" videoID="ABDaCca_uOk" />
-        <p className="pt-[20px] mx-auto text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">A sóhaj befogására szolgáló üvegtárgy készítése a Parádsasvári Üvegmanufaktúra műhelyében, 2025</p>
+        <p className="pt-[20px] mx-auto text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">{locale == "hu" && 'A sóhaj befogására szolgáló üvegtárgy készítése a Parádsasvári Üvegmanufaktúra műhelyében, 2025'}{locale == "en" && 'Production of the glass object for capturing the sigh at the workshop of the Parádsasvár Glass Manufactory, 2025'}</p>
 
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
-        <StaggeredSplitText>Az installáció három egységből áll: a művész kutatását bemutató, a vándorlás monotonitását a helyszínek változatosságával ötvöző videóból, az üvegtárgyból, melyben a megtalált sóhajtás kerül megőrzésre, valamint a sóhaj befogásának pillanatát bemutató videóból. A két videóban meghatározó a lassúság, a kulcsjelenetek helyett a hosszú folyamat hangsúlyozása.</StaggeredSplitText>
+        <StaggeredSplitText>{locale == "hu" && 'Az installáció három egységből áll: a művész kutatását bemutató, a vándorlás monotonitását a helyszínek változatosságával ötvöző videóból, az üvegtárgyból, melyben a megtalált sóhajtás kerül megőrzésre, valamint a sóhaj befogásának pillanatát bemutató videóból. A két videóban meghatározó a lassúság, a kulcsjelenetek helyett a hosszú folyamat hangsúlyozása.'}{locale == "en" && 'The installation is composed of three units: a video presenting the artist’s research, combining the monotony of wandering with the diversity of locations; the glass object used for preserving the found sigh; and a video showing the moment of capturing the sigh. The two videos are characterised by slowness and emphasis on the long process instead of key scenes.'}</StaggeredSplitText>
         </div>
 
 
@@ -330,10 +332,10 @@ export default function Page() {
         <Video thumbnail="/images/exhibition-3/video.webp" videoID="qYsd8csWlSo" startTime={1560}/>
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
-        <StaggeredSplitText>A Páros lábbal a föld felett egy játék, a lehetetlenre tett kísérlet, mely az illékony pillanat és az anyagtalan dolgok megragadásának vágyát fejezi ki.</StaggeredSplitText>
+        <StaggeredSplitText>{locale == "hu" && 'A Páros lábbal a föld felett egy játék, a lehetetlenre tett kísérlet, mely az illékony pillanat és az anyagtalan dolgok megragadásának vágyát fejezi ki.'}{locale == "en" && 'Both Feet Above the Ground is a game, an attempt at the impossible that expresses the desire to capture fleeting moments and immaterial things.'}</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel3} title="Az üvegtárgy a háti hordozóval és a zarándoklatot rögzítő kamerával"/>
+        <BlurredImageCarousel images={carousel3} title={locale == "hu" ? 'Az üvegtárgy a háti hordozóval és a zarándoklatot rögzítő kamerával' : 'The glass object with its backpack carrier and the camera used to record the pilgrimage'}/>
         <div className="md:h-[150px] h-[70px]"></div>
         {/* <div className="mx-auto flex flex-col gap-[10px] my-[70px] md:my-[150px] lg:my-[200px] w-[90vw] xl:w-[1050px]">
             <p className="font-gara text-middark text-lg sm:text-h4 md:text-h3">TOVÁBBI TARTALMAK</p>

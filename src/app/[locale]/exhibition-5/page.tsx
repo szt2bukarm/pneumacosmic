@@ -15,6 +15,7 @@ import { useLenis } from "@studio-freight/react-lenis";
 import { useEffect } from "react";
 import AnimatedLink from "../../components/common/AnimatedLink";
 import MusicSheet from "../../components/exhibition-5/MusicSheet";
+import { useParams } from "next/navigation";
 gsap.registerPlugin(ScrollTrigger);
 
 const carousel1 = [
@@ -136,6 +137,7 @@ const carousel3 = [
 
 export default function Page() {
     const lenis = useLenis();
+    const {locale} = useParams();
 
     useEffect(() => {
         if (!lenis) return
@@ -154,7 +156,7 @@ export default function Page() {
     useGSAP(() => {
         const ctx = gsap.context(() => {
             setTimeout(() => {
-                let bgTrigger = ScrollTrigger.create({
+                const bgTrigger = ScrollTrigger.create({
                     trigger: '[data-gsap="exhibition-5-bg-trigger"]',
                     start: "top center",
                     end: "bottom center",
@@ -195,16 +197,21 @@ export default function Page() {
 
         <div className="z-[30] fixed top-0 left-0 w-screen h-[200px] bg-gradient-to-b from-black to-transparent"></div>
 
-        <PageTitle delay={1.5} subtext="" text="AKUSZTIKUS ELEM" />
-        <p data-gsap="exhibition-5-subtitle" className="font-hal px-[20px] md:px-0 text-middark text-md leading-[18px] md:text-lg md:leading-[23px] w-screen sm:text-center mb-[70px] mt-[20px]">Balogh Máté<br></br>Pneuma Cosmic<br></br>2025, 23' 40"</p>
+        <PageTitle delay={1.5} subtext="" text={locale == "hu" ? 'AKUSZTIKUS ELEM' : 'ACOUSTIC ELEMENT'} />
+        <p data-gsap="exhibition-5-subtitle" className="font-hal px-[20px] md:px-0 text-middark text-md leading-[18px] md:text-lg md:leading-[23px] w-screen sm:text-center mb-[70px] mt-[20px]">{locale == "hu" ? 'Balogh Máté' : 'Máté Balogh'}<br></br>Pneuma Cosmic<br></br>2025, 23' 40"</p>
 
         <div data-gsap="exhibition-5-gallery-1">
-        <BlurredImageCarousel images={carousel1} trigger={false} title="Balogh Máté zeneszerző kísérleti hangfelvételeket készít az installáció elemein, 2024"/>
+        <BlurredImageCarousel images={carousel1} trigger={false} title={locale == "hu" ? 'Balogh Máté zeneszerző kísérleti hangfelvételeket készít az installáció elemein, 2024' : 'Composer Máté Balogh making experimental sound recordings using the installation’s elements, 2024'}/>
         </div>
 
-        <div className="w-full h-full py-[70px] md:py-[150px] lg:py-[200px] flex items-center justify-center">
-        <StaggeredSplitText>Balogh Máté zeneszerző a Pneuma Cosmic című kompozíciót Koronczi Endre projektjének akusztikus elemeként hozta létre. A mű a velencei kiállításra, annak fix fizikai terére és gondolati összefüggéseire készült. A hangfelvételen Balogh Máté játszik.<br></br><br></br>Balogh a Bennszorult lélegzet installáció egyik szellőztetőelemét használta hangszerként. A hangokat ütéssel, kaparással, húzással, dörzsöléssel, nyomással, illetve tremolóval (hangremegtetéssel) hozta létre, melyeket kontaktmikrofonnal rögzített. A tárgy egyes lapjainak különböző pontjait zengetve eltérő hosszúságú lecsengések tapasztalhatók. A rezonáltató anyagokat Balogh hosszas kísérletezés során, a tárggyal való „reakcióképességük” alapján választotta ki. Ennek megfelelően összesen hét anyagot használ: 1. ujjbegy (emberi bőr), 2. faverő (akácfa), 3. marimbaverő (kemény filc), 4. gumilabda hústűn (superball), 5. fémdarab (acél), 6. fültisztító pálcika (vatta), 7. lenből készült kötözőzsineg.</StaggeredSplitText>
+        <div className="w-full h-full pt-[70px] md:pt-[150px] lg:pt-[200px] flex items-center justify-center">
+        <StaggeredSplitText>{locale == "hu" && 'Balogh Máté zeneszerző a Pneuma Cosmic című kompozíciót Koronczi Endre projektjének akusztikus elemeként hozta létre. A mű a velencei kiállításra, annak fix fizikai terére és gondolati összefüggéseire készült. A hangfelvételen Balogh Máté játszik.'}{locale == "en" && 'Composer Máté Balogh created the composition Pneuma Cosmic as an acoustic element accompanying Endre Koronczi’s project. The work was created specifically for the exhibition in Venice, tied to its fixed physical space and conceptual context.'}</StaggeredSplitText>
         </div>
+
+        <div className="w-full h-full pt-[30px] pb-[70px] md:pb-[150px] lg:pb-[200px] flex items-center justify-center">
+        <StaggeredSplitText>{locale == "hu" && 'Balogh a Bennszorult lélegzet installáció egyik szellőztetőelemét használta hangszerként. A hangokat ütéssel, kaparással, húzással, dörzsöléssel, nyomással, illetve tremolóval (hangremegtetéssel) hozta létre, melyeket kontaktmikrofonnal rögzített. A tárgy egyes lapjainak különböző pontjait zengetve eltérő hosszúságú lecsengések tapasztalhatók. A rezonáltató anyagokat Balogh hosszas kísérletezés során, a tárggyal való „reakcióképességük” alapján választotta ki. Ennek megfelelően összesen hét anyagot használ: 1. ujjbegy (emberi bőr), 2. faverő (akácfa), 3. marimbaverő (kemény filc), 4. gumilabda hústűn (superball), 5. fémdarab (acél), 6. fültisztító pálcika (vatta), 7. lenből készült kötözőzsineg.'}{locale == "en" && "Máté Balogh plays on the recording. Balogh used one of the ventilation elements of the Trapped Breath installation as an instrument. He produced the sounds by striking, scraping, dragging, rubbing, pressing, and tremolo (vibrating the sound), which he recorded with a contact microphone. By resonating different points on the object’s individual plates, decays of varying lengths can be observed. Balogh selected the materials for resonating the plates through extensive experimentation, based on the object’s ‘responsiveness’ to them. Accordingly, he used a total of seven different materials: 1. fingertip (human skin), 2. wooden mallet (acacia wood), 3. marimba mallet (hard felt), 4. rubber ball on a meat skewer (superball), 5. piece of metal (steel), 6. cotton bud (cotton wool), 7. linen twine."}</StaggeredSplitText>
+        </div>
+        
 
         {/* <BlurredImageCarousel images={carousel2} title="Balogh Máté és a Pneuma Cosmic című hangszobor (Akusztikus elem) kottája"/> */}
 
@@ -213,17 +220,17 @@ export default function Page() {
         {/* </div> */}
 
         <MusicSheet />
-        <p className="pt-[20px] mx-auto text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">Balogh Máté: Pneuma Cosmic (Akusztikus elem), kotta, 2025</p>
+        <p className="pt-[20px] mx-auto text-center font-hal text-middark text-sm w-[calc(100%-40px)] leading-[15px]">{locale == "hu" && 'Balogh Máté: Pneuma Cosmic (Akusztikus elem), kotta, 2025'}{locale == "en" && 'Máté Balogh: Pneuma Cosmic (Acoustic element), score, 2025'}</p>
 
 
         <div className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
-        <StaggeredSplitText>A mű Koronczi Endre Sóhajtozásgyűjtemény című videójából 2010–2011 között készült változat hangról hangra történő zenei átkódolása. A videóban szereplő emberek sóhajtozása a művet tizennyolc fázisra osztja. A fázisok egy-egy fix hangi eszköztárral (rezonáltató készlettel) rendelkeznek, melyek összessége kirajzolja az adott fázisra (a sóhajtó emberre) vonatkozó személyes hangképet. A sóhajok „ki-be” áramló jellegét az idiofon megszólaltatásmódban a hangszeren történő „oda-vissza” mozdulatok jelenítik meg.</StaggeredSplitText>
+        <StaggeredSplitText>{locale == "hu" && 'A mű Koronczi Endre Sóhajtozásgyűjtemény című videójából 2010–2011 között készült változat hangról hangra történő zenei átkódolása. A videóban szereplő emberek sóhajtozása a művet tizennyolc fázisra osztja. A fázisok egy-egy fix hangi eszköztárral (rezonáltató készlettel) rendelkeznek, melyek összessége kirajzolja az adott fázisra (a sóhajtó emberre) vonatkozó személyes hangképet. A sóhajok „ki-be” áramló jellegét az idiofon megszólaltatásmódban a hangszeren történő „oda-vissza” mozdulatok jelenítik meg.'}{locale == "en" && 'The piece is a sound-for-sound musical transcription of the 2010–2011 version of Endre Koronczi’s video Sighing Collection. The composition is divided into eighteen phases by the sighing of the people in the video. Each phase employs a fixed set of acoustic tools (resonators), which together generate the idiosyncratic sonic character corresponding to the given phase (sighing individual). The in-and-out flowing nature of sighing is rendered in the idiophonic performance method as back-and-forth motion.'}</StaggeredSplitText>
         </div>
 
-        <BlurredImageCarousel images={carousel3} title="A Pneuma Cosmic felvétele a Soundwork hangstúdiójában, Balogh Máté, Koronczi Endre és Kádár Mihály, 2025"/>
+        <BlurredImageCarousel images={carousel3} title={locale == "hu" ? 'A Pneuma Cosmic felvétele a Soundwork hangstúdiójában, Balogh Máté, Koronczi Endre és Kádár Mihály, 2025' : 'Recording Pneuma Cosmic at the Soundwork sound studio, Máté Balogh, Endre Koronczi and Mihály Kádár, 2025'}/>
 
         <div data-gsap="exhibition-5-bg-trigger" className="w-full h-full py-[70px] md:py-[150px] flex items-center justify-center">
-        <StaggeredSplitText>A sóhaj mint akusztikus gesztus esszenciáját a sóhajtók különböző módokon értelmezik. A sóhajok orgánumbeli, hangmagassági, tempóbeli és dinamikai eltérései mellett olyan szempontok is megjelentek, mint a sóhajtás egyszeri vagy ismétlődő; csak levegőhanggal vagy hangszállal zengetve; érthető szöveggel vagy artikulálatlan hanggal; crescendóval, diminuendóval, esetleg schwellerrel megoldott; aktív belégzéssel vagy aktív kilégzéssel; orral vagy orral és szájjal történő jellege. E különböző módozatokat Balogh a műben a rezonáltató eszközök és a rezonálás helyének tudatos megválasztásával érzékenyen érzékeltetni.</StaggeredSplitText>
+        <StaggeredSplitText>{locale == "hu" && 'A sóhaj mint akusztikus gesztus esszenciáját a sóhajtók különböző módokon értelmezik. A sóhajok orgánumbeli, hangmagassági, tempóbeli és dinamikai eltérései mellett olyan szempontok is megjelentek, mint a sóhajtás egyszeri vagy ismétlődő; csak levegőhanggal vagy hangszállal zengetve; érthető szöveggel vagy artikulálatlan hanggal; crescendóval, diminuendóval, esetleg schwellerrel megoldott; aktív belégzéssel vagy aktív kilégzéssel; orral vagy orral és szájjal történő jellege. E különböző módozatokat Balogh a műben a rezonáltató eszközök és a rezonálás helyének tudatos megválasztásával érzékenyen érzékeltetni.'}{locale == "en" && 'The essence of the sigh as an acoustic gesture is interpreted in different ways by the sighers. Beyond variations in the timbre, pitch, tempo, and dynamics of the sighs, other aspects have also emerged, such as whether the sigh is single or repeated; whether it is voiceless breath or vocal cord vibration; whether it is accompanied by intelligible words or inarticulate sounds; executed in crescendo, diminuendo, or perhaps a swell; characterised by active inhalation or active exhalation; or produced through the nose only, or through the nose and mouth. Balogh’s piece sensitively conveys these different modes by carefully choosing both the resonating tools and the points of resonance.'}</StaggeredSplitText>
         </div>
 
         <Footer />

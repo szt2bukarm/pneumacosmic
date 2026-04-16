@@ -7,8 +7,8 @@ import { useStore } from "./useStore";
 export default function TransitionLink({ href, children, data, scrollTarget, className }: {
     href: string;
     children: React.ReactNode;
-    data?: any
-    scrollTarget: string | null
+    data?: string;
+    scrollTarget?: string | null;
     className?: string;
 }) {
     const Router = useTransitionRouter();

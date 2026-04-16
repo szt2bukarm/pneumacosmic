@@ -2,9 +2,12 @@ import TransitionLink from "@/app/TransitionLink";
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useParams } from "next/navigation";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FooterLinksMobile({openContact}: any) {
+    const {locale} = useParams();
+
 
     useGSAP(() => {
         const ctx = gsap.context(() => {
@@ -49,18 +52,18 @@ export default function FooterLinksMobile({openContact}: any) {
                     <div className="flex items-center justify-center flex-col gap-[40px]">
                         <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col">
                             {/* <p className="font-hal text-middark text-md leading-[125%]">BLOG</p> */}
-                            <a target="_blank" href="https://blog.pneumacosmic.hu/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Blog</a>
+                            <a target="_blank" href="https://blog.pneumacosmic.hu/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">{locale == "hu" && 'Blog'}{locale == "en" && 'Blog'}</a>
                         {/* </div> */}
 
                         {/* <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col"> */}
-                        <a target="_blank" href="https://blog.pneumacosmic.hu/project-type/seta/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Séták</a>
-                        <a target="_blank" href="https://blog.pneumacosmic.hu/project-type/beszelgetesek/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Beszélgetések</a>
-                        <a target="_blank" href="https://blog.pneumacosmic.hu/project-type/mozi/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Mozi</a>
+                        <a target="_blank" href="https://blog.pneumacosmic.hu/project-type/seta/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">{locale == "hu" && 'Séták'}{locale == "en" && 'Walks'}</a>
+                        <a target="_blank" href="https://blog.pneumacosmic.hu/project-type/beszelgetesek/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">{locale == "hu" && 'Beszélgetések'}{locale == "en" && 'Talks'}</a>
+                        <a target="_blank" href="https://blog.pneumacosmic.hu/project-type/mozi/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">{locale == "hu" && 'Mozi'}{locale == "en" && 'Cinema'}</a>
                         </div>
 
                         <div data-gsap="footer-links-item-mobile" className="flex items-center justify-center flex-col mb-[30px]">
-                        <TransitionLink href="/imprint" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Impresszum</TransitionLink>
-                        <button onClick={openContact} className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Kapcsolat</button>
+                        <TransitionLink href="/imprint" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">{locale == "hu" && 'Impresszum'}{locale == "en" && 'Imprint'}</TransitionLink>
+                        <button onClick={openContact} className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">{locale == "hu" && 'Kapcsolat'}{locale == "en" && 'Contact'}</button>
                             {/* <a target="_blank" href="https://www.ludwigmuseum.hu/velencei-biennale/" className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Ludwig Múzeum</a>
                             <button onClick={() => openBienalle()} className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Biennálé Iroda</button>
                             <button onClick={() => openNational()} className="font-hal text-middark text-md cursor-pointer transition-opacity duration-150 hover:opacity-50 leading-[125%]">Nemzeti Biztos</button>
